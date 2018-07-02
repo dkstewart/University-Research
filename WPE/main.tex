@@ -1,0 +1,177 @@
+\documentclass{sig-alternate-05-2015}
+%\documentclass{llncs}
+\usepackage{makeidx}
+\usepackage{tabularx,colortbl}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{flushend}
+\usepackage{cite}
+\usepackage{amsmath}
+%\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{stmaryrd}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{latexsym}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{comment}
+\usepackage{longtable}
+\usepackage{supertabular}
+\usepackage{times}
+\usepackage{listings}
+\usepackage{subfigure}
+\usepackage{color}
+\usepackage{balance}
+\usepackage{xspace}
+\usepackage[ruled, vlined, linesnumbered]{algorithm2e}
+\usepackage[autostyle]{csquotes}
+
+
+
+%\theoremstyle{Definition}
+%\newtheorem{definition}{Definition}
+%%%
+%\theoremstyle{Theorem}
+%\newtheorem{theorem}{Theorem}
+
+
+%\newcommand{\definition}{\noindent \textbf{Definition} \citation{}}
+%\newcommand{\theorem}{\noindent \textbf{Theorem} \citation{}}
+%\newcommand{\lemma}{\noindent \textbf{Lemma} \citation{}}
+
+%\newdef{lemma}{Lemma}
+%\newdef{definition}{Definition}
+%\newdef{theorem}{Theorem}
+%\newdef{corollary}{Corollary}
+%\newdef{note}{Note}
+%\newdef{axiom}{Axiom}
+\newcommand{\mkeyword}[1]{\mbox{\texttt{#1}}}
+\DeclareMathOperator{\kuop}{uop}
+\DeclareMathOperator{\kbop}{bop}
+\DeclareMathOperator{\kite}{ite}
+\DeclareMathOperator{\kpre}{pre}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ktrue}{true}
+\DeclareMathOperator{\kfalse}{false}
+\DeclareMathOperator{\kselect}{select}
+\DeclareMathOperator{\ran}{range}
+\definecolor{mypink}{rgb}{0.858, 0.188, 0.478}
+\newcommand{\lbb}{[\![}
+\newcommand{\rbb}{]\!]}
+\newcommand{\expr}{\phi}
+\newcommand{\exprS}{\Phi}
+\newcommand{\mike}[1]{\textcolor{red}{#1}}
+\newcommand{\janet}[1]{\textcolor{blue}{#1}}
+\newcommand{\darren}[1]{\textcolor{green}{#1}}
+\newcommand{\danielle}[1]{\textcolor{orange}{#1}}
+
+\sloppypar
+
+
+
+\begin{document}
+\CopyrightYear{2016}
+\setcopyright{acmcopyright}
+%\conferenceinfo{FSE'16,}{November 13-19, 2016, Seattle, WA, USA}
+%\isbn{978-1-4503-4218-6/16/11}\acmPrice{\$15.00}
+%\doi{http://dx.doi.org/10.1145/2950290.2950346}
+
+\definecolor{gold}{rgb}{0.90,.66,0}
+\definecolor{dgreen}{rgb}{0,0.6,0}
+\newcommand{\stateequiv}{\equiv_{s}}
+\newcommand{\traceequiv}{\equiv_{\sigma}}
+\newcommand{\ta}{\text{TA}}
+\newcommand{\cta}{\text{TA$_{C}$}}
+\newcommand{\tta}{\text{TA$_{T}$}}
+\newcommand{\ucalg}{\texttt{\small{IVC\_UC}}}
+\newcommand{\ucbfalg}{\texttt{\small{IVC\_UCBF}}}
+\renewcommand{\abstract}{\noindent {\sc \textbf{\large {Abstract}}}\\}
+
+
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+\title{Written Preliminary Examination Report: Architectural Modeling and Analysis for Safety Engineering}
+%\subtitle{[subtitle]
+%\titlenote{A full version of this paper is available as
+%\textit{Author's Guide to Preparing ACM SIG Proceedings Using
+%\LaTeX$2_\epsilon$\ and BibTeX} at
+%\texttt{www.acm.org/eaddress.htm}}}
+\numberofauthors{1} %  in this sample file, there are a *total*
+% of EIGHT authors. SIX appear on the 'first-page' (for formatting
+% reasons) and the remaining two appear in the \additionalauthors section.
+%
+\author{
+% You can go ahead and credit any number of authors here,
+% e.g. one 'row of three' or two rows (consisting of one row of three
+% and a second row of one, two or three).
+%
+% The command \alignauthor (no curly braces needed) should
+% precede each author name, affiliation/snail-mail address and
+% e-mail address. Additionally, tag each line of
+% affiliation/address with \affaddr, and tag the
+% e-mail address with \email.
+%
+% 1st. author
+\alignauthor
+Danielle Stewart\\
+       \affaddr{Department of Computer Science \& Engineering}\\
+       \affaddr{University of Minnesota}\\
+       \affaddr{MN, USA}\\
+       \email{dkstewar@umn.edu}
+       }
+
+
+
+\maketitle
+
+\begin{abstract}
+This paper describes a new methodology with tool support for model-based safety analysis. It is implemented as a {\em Safety Annex} for the Architecture Analysis and Design Language (AADL). The Safety Annex provides the ability to describe faults and faulty component behaviors in AADL models. In contrast to previous AADL-based approaches, the Safety Annex leverages a formal description of the nominal system behavior to propagate faults in the system. This approach ensures consistency with the rest of the system development process and simplifies the work of safety engineers. The language for describing faults is extensible and allows safety engineers to weave various types of faults into the nominal system model. The Safety Annex supports the injection of faults into component level outputs, and the resulting behavior of the system can be analyzed using model checking through the Assume-Guarantee Reasoning Environment (AGREE).
+\end{abstract}
+
+\keywords{Model-based systems engineering; fault analysis; safety engineering}
+
+\input{introduction}
+
+\input{background}
+%	\input{SA_background}
+%	\input{mbsa}
+%	\input{process}
+%	\input{related_work}
+
+\input{safety_annex}
+
+\input{case_study}
+
+\input{related_work}
+
+\input{future_work}
+
+\input{conclusion}
+
+\bibliographystyle{abbrv}
+\bibliography{biblio}
+%\vspace{-7.25cm}
+% This ~ seems to fix an odd bibliography alignment issue
+~
+
+%\ifdefined\TECHREPORT
+%\appendix
+%
+%\section{Appendix: Proof of Equivalence}
+%\input{appendix}
+%\fi
+
+%\section{Appendix: GPCA CENTA Model}
+%\label{appendix:gpcacenta}
+%\begin{figure}[!ht]
+%\begin{center}
+%\includegraphics[scale=0.6]{images/sampled_pca.PNG} %[trim = 0 2 0 0, clip=true]{Comp}
+%\caption{GPCA AGREE Properties modeled as a Timed Automata} \label{fig:samplepca}
+%\end{center}
+%\end{figure}
+
+%\balancecolumns
+
+\end{document} 
