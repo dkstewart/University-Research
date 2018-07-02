@@ -1,3 +1,6 @@
+%%%%%		Research Papers		%%%%%
+
+% UMN / Rockwell 
 @inproceedings{Stewart17:IMBSA,
   author =       {Danielle Stewart and Michael Whalen and Darren Cofer and Mats P.E. Heimdahl},
   title =        {{Architectural Modeling and Analysis for Safety Engineering}},
@@ -30,27 +33,6 @@
   year =         "2007"
 }
 
-@inproceedings{Halbwachs91:IEEE,
-  author =       {N. Halbwachs and P. Caspi and P. Raymond and D. Pilaud},
-  title =        {{The Synchronous Dataflow Programming Language Lustre}},
-  booktitle =    {{IEEE}},
-   year =         "1991",
-  volume =       "79(9)",
-  pages =        "1305-1320"
-}
-
-@MISC{SRIInternational,
-  author =       {{SRI International}},
-  title =        {{The {PVS} Specification and Verification System}},
-  howpublished = "http://pvs.csl.sri.com"
-}
-
-@MISC{SCADE,
-  author =       {{Esterel Technologies}},
-  title =        {{{SCADE} Suite Product Description}},
-  howpublished = "http://www.estereltechnologies.com"
-}
-
 @inproceedings{QFCS15:backes,
  author={Backes, John and Cofer, Darren and Miller, Steven and Whalen, Michael W.},
  title={{Requirements Analysis of a Quad-Redundant Flight Control System}},
@@ -69,22 +51,6 @@
   publisher = {ACM}
 }
 
-@ARTICLE{2017arXiv171201222G,
-   author = {{Gacek}, A. and {Backes}, J. and {Whalen}, M. and {Wagner}, L. and
-	{Ghassabani}, E.},
-    title = "{The JKind Model Checker}",
-  journal = {ArXiv e-prints},
-archivePrefix = "arXiv",
-   eprint = {1712.01222},
- primaryClass = "cs.LO",
- keywords = {Computer Science - Logic in Computer Science},
-     year = 2017,
-    month = dec,
-   adsurl = {http://adsabs.harvard.edu/abs/2017arXiv171201222G},
-  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
-}
-
-
 @inproceedings{NFM2012:CoGaMiWhLaLu,
  author = {Darren D. Cofer and Andrew Gacek and Steven P. Miller and Michael W. Whalen and Brian LaValley and Lui Sha},
  title = {{Compositional Verification of Architectural Models}},
@@ -96,26 +62,6 @@ archivePrefix = "arXiv",
  year = {2012}
 }
 
-@MISC{IEEE:PSL,
-  title = {{{IEEE} Standard for Property Specification Language (PSL)}},
-  organization = {IEEE Std 1850-2005},
-  year = {2005}
-}
-
-@MISC{RTCA:StdC,
-  title = {{{RTCA/DO-178C} Software Considerations in Airborne Systems and Equipment Certification}},
-  organization = {RTCA, Inc.},
-  year = {2011}
-}
-
-@inproceedings{FMCAD2008:HaTi,
- author = {G. Hagen and C. Tinelli},
- title = {{Scaling up the formal verification of {L}ustre programs with {SMT}-based techniques}},
- booktitle = {In Proceedings of the 8th International Conference on Formal Methods in Computer-Aided Design (FMCAD '08)},
- publisher = {IEEE},
- year = {2008}
-}
-
 @inproceedings{NFM2012:KaGaTiWh,
  author = {Temesghan Kahsai and Pierre-Loic Garoche and Cesare Tinelli and Michael Whalen},
  title = {{Incremental Verification with Mode Machine Invariants in State Machines}},
@@ -125,8 +71,19 @@ archivePrefix = "arXiv",
  year = {2012}
 }
 
+
+% SMT / Lustre
+@inproceedings{FMCAD2008:HaTi,
+	author = {G. Hagen and C. Tinelli},
+ 	title = {{Scaling up the formal verification of {L}ustre programs with {SMT}-based techniques}},
+ 	booktitle = {In Proceedings of the 8th International Conference on Formal Methods in Computer-Aided Design (FMCAD '08)},
+ 	publisher = {IEEE},
+ 	year = {2008}
+}
+
+% FBK
 @inproceedings{DBLP:conf/cav/BozzanoCPJKPRT15,
-  author    = {Marco Bozzano and
+  	author    = {Marco Bozzano and
                Alessandro Cimatti and
                Anthony Fernandes Pires and
                D. Jones and
@@ -134,157 +91,29 @@ archivePrefix = "arXiv",
                T. Petri and
                R. Robinson and
                Stefano Tonetta},
-  title     = {{Formal Design and Safety Analysis of {AIR6110} Wheel Brake System}},
-  booktitle = {{CAV} 2015, Proceedings, Part {I}},
-  pages     = {518--535},
-  year      = {2015}
-}
-
-@book{FeilerModelBasedEngineering2012,
-   title = {Model-Based Engineering with AADL: An Introduction to the SAE Architecture Analysis \& Design Language},
-   author={Peter Feiler and David Gluch},
-   year={2012},
-   publisher={Addison-Wesley Professional},
-}
-
-@MISC{AIR6110,
-  author = {{AIR 6110}},
-  title = {{Contiguous Aircraft/System Development Process Example}},
-  publisher = {SAE},
-  month = {Dec.},
-  year={2011}
-}
-
-@MISC{AADL_Standard,
-	author = {{AS5506C}},
-	title = {{Architecture Analysis \& Design Language (AADL)}},
-	publisher = {SAE International},
-	month = {Jan.},
-	year={2017}
+  	title     = {{Formal Design and Safety Analysis of {AIR6110} Wheel Brake System}},
+  	booktitle = {{CAV} 2015, Proceedings, Part {I}},
+  	pages     = {518--535},
+  	year      = {2015}
 }
 
 @inproceedings{CAV2015:BoCiGrMa,
- author = {Marco Bozzano and Alessandro Cimatti and Alberto Griggio and Cristian Mattarei},
- title = {{Efficient Anytime Techniques for Model-Based Safety Analysis}},
- booktitle = {Computer Aided Verification},
- year = {2015}
-}
-
-@inproceedings{CAV2011:KwNoPa,
- author = {Marta Kwiatkowska and Gethin Norman and David Parker},
- title = {{{PRiSM} 4.0: Verification of Probabilistic Real-time Systems}},
- booktitle = {In Proceedings of the 23rd International Conference on Computer Aided Verification (CAV '11)},
- volume = {6806 of LNCS},
- page = {585-591},
- year = {2011}
-}
-
-@TECHREPORT{EMV2,
-author = {Feiler, Peter and Hudak, John and Delange, Julien and Gluch, Dave},
-year = {2016},
-month = {06},
-title = {Architecture Fault Modeling and Analysis with the Error Model Annex, Version 2},
-institution = {Software Engineering Institute},
-number = {CMU/SEI-2016-TR-009}
-}
-
-@ARTICLE{info17:HaLuHo,
- author = {Hönig, Philipp and Lunde, Rüdiger and Holzapfel, Florian},
- title = {{Model Based Safety Analysis with smartIflow}},
- journal = {Information},
- volume={8},
- year = {2017},
- number ={1},
- url = {http://www.mdpi.com/2078-2489/8/1/7}
-}
-
-@article{CHEN201391,
-title = {{Systems Modeling with {EAST-ADL} for Fault Tree Analysis through {HiP-HOPS}*}},
- author = {Chen, DeJiu and Mahmud, Nidhal and Walker, Martin and Feng, Lei and L{\"o}nn, Henrik and Papadopoulos, Yiannis},
-journal = "IFAC Proceedings Volumes",
-volume = "46",
-number = "22",
-pages = "91 - 96",
-year = "2013",
-note = "",
-issn = "1474-6670"
-}
-
-@techreport{SEI:AADL,
- author = {Delange, Julien and Feiler, Peter and Gluch, Danid P. and Hudak, John},
- title = {{{AADL} Fault Modeling and Analysis Within an {ARP4761} Safety Assessment}},
- number = {CMU/SEI-2014-TR-020 },
- institution = {Software Engineering Institute: Carnegie Mellon University},
- month = {October},
- year = {2014},
- url = {http://resources.sei.cmu.edu/asset_files/technicalreport/2014_005_001_311911.pdf}
-}
-
-@InProceedings{10.1007/3-540-61772-8_46,
-author="Bernardeschi, Cinzia
-and Fantechi, Alessandro
-and Gnesi, Stefania
-and Mongardi, Giorgio",
-editor="Hlawiczka, Andrzej
-and Silva, Jo{\~a}o Gabriel
-and Simoncini, Luca",
-title="Proving safety properties for embedded control systems",
-booktitle="Dependable Computing --- EDCC-2",
-year="1996",
-publisher="Springer Berlin Heidelberg",
-pages="321--332"
-}
-
-@inproceedings{DBLP:conf/safecomp/CimattiGMRTT98,
-  author    = {Alessandro Cimatti and
-               Fausto Giunchiglia and
-               Giorgio Mongardi and
-               Dario Romano and
-               Fernando Torielli and
-               Paolo Traverso},
-  title     = {Model Checking Safety Critical Software with {SPIN:} An Application
-               to a Railway Interlocking System},
-  booktitle = {Computer Safety, Reliability and Security, 17th International Conference,
-               SAFECOMP'98, Heidelberg, Germany, October 5-7, 1998, Proceedings},
-  pages     = {284--295},
-  year      = {1998}
+ 	author = {Marco Bozzano and Alessandro Cimatti and Alberto Griggio and Cristian Mattarei},
+ 	title = {{Efficient Anytime Techniques for Model-Based Safety Analysis}},
+ 	booktitle = {Computer Aided Verification},
+ 	year = {2015}
 }
 
 @inproceedings{DBLP:conf/edcc/BernardeschiFGM96,
-  author    = {Cinzia Bernardeschi and
+  	author    = {Cinzia Bernardeschi and
                Alessandro Fantechi and
                Stefania Gnesi and
                Giorgio Mongardi},
-  title     = {Proving Safety Properties for Embedded Control Systems},
-  booktitle = {Dependable Computing - EDCC-2, Second European Dependable Computing
+  	title     = {Proving Safety Properties for Embedded Control Systems},
+  	booktitle = {Dependable Computing - EDCC-2, Second European Dependable Computing
                Conference, Taormina, Italy, October 2-4, 1996, Proceedings},
-  pages     = {321--332},
-  year      = {1996}
-}
-
-@phdthesis{MattareiThesis,
-  title = {Scalable Safety and Reliability Analysis via Symbolic Model Checking: Theory and Application (Doctoral Dissertation},
-  school = {Universit~a Degli Studi di Trento},
-  author = {Cristian Mattarei},
-  year = {2016}
-}
-
-@MISC{SAE:ARP4761,
-  author = {{SAE ARP 4761}},
-  title = {{Guidelines and Methods for Conducting the Safety Assessment
-Process on Civil Airborne Systems and Equipment}},
-  publisher = {SAE International},
-  month = {December},
-  year={1996}
-}
-
-@MISC{SAE:ARP4754A,
-	author = {{SAE ARP4754A}},
-	title = {{Guidelines for Development of Civil Aircraft and Systems}},
-	publisher = {SAE International},
-	location = {Warrendale, PA, USA},
-	month = {December},
-	year={2010}
+  	pages     = {321--332},
+  	year      = {1996}
 }
 
 @article{CIMATTI2015333,
@@ -296,7 +125,6 @@ Process on Civil Airborne Systems and Equipment}},
 	note = "SEAA ’12",
 	author = "Alessandro Cimatti and Stefano Tonetta"
 }
-
 
 @article{Bozzano:2011:SDP:1992983.1992988,
 	author = {Bozzano, Marco and Cimatti, Alessandro and Katoen, Joost-Pieter and Nguyen, Viet Yen and Noll, Thomas and Roveri, Marco},
@@ -352,17 +180,32 @@ Process on Civil Airborne Systems and Equipment}},
 	pages="81--97"
 }
 
-
-@book{Bozzano:2010:DSA:1951720,
-	author = {Bozzano, Marco and Villafiorita, Adolfo},
-	title = {Design and Safety Assessment of Critical Systems},
-	year = {2010},
-	isbn = {1439803315, 9781439803318},
-	edition = {1st},
-	publisher = {Auerbach Publications},
-	address = {Boston, MA, USA},
+% MBSA Review
+@INPROCEEDINGS{5979344,
+	author={O. Lisagor and T. Kelly and R. Niu},
+	booktitle={The Proceedings of 2011 9th International Conference on Reliability, Maintainability and Safety},
+	title={{Model-based safety assessment: Review of the discipline and its challenges}},
+	year={2011},
+	pages={625-632},
+	keywords={risk analysis;safety;classification;model-based safety assessment;system safety engineering;Analytical models;Computational modeling;Frequency 		modulation;Mathematical model;Safety;Semantics;Valves;Model-Based Safety Assessment;Safety Assessment Methodology;System Safety Engineering},
+	doi={10.1109/ICRMS.2011.5979344},
+	month={June}
 }
 
+% Byzantine (NASA)
+@inproceedings{Driscoll-Byzantine-Fault,
+	author = {Driscoll, Kevin and Sivencrona, Hkan and Zumsteg, Phil},
+	title =  {{Byzantine Fault Tolerance, from Theory to Reality}},
+	booktitle =    {SAFECOMP},
+	year =         "2003",
+	volume =       "2788",
+	series =       {LNCS},
+	pages =        "235--248"
+}
+
+%%%%% 			Tool papers		%%%%%
+
+% xSAP
 @inproceedings{DBLP:conf/tacas/BittnerBCCGGMMZ16,
   author    = {Benjamin Bittner and
                Marco Bozzano and
@@ -379,6 +222,62 @@ Process on Civil Airborne Systems and Equipment}},
   year      = {2016}
 }
 
+% AltaRica
+@article{PROSVIRNOVA2013127,
+title = {{The {A}lta{R}ica 3.0 Project for Model-Based Safety Assessment}},
+journal = "IFAC",
+volume = "46",
+number = "22",
+pages = "127 - 132",
+year = "2013",
+author = "Tatiana Prosvirnova and Michel Batteux and Pierre-Antoine Brameret and Abraham Cherfi and Thomas Friedlhuber and Jean-Marc Roussel and Antoine Rauzy"
+}
+
+% PRISM
+@inproceedings{CAV2011:KwNoPa,
+ author = {Marta Kwiatkowska and Gethin Norman and David Parker},
+ title = {{{PRiSM} 4.0: Verification of Probabilistic Real-time Systems}},
+ booktitle = {In Proceedings of the 23rd International Conference on Computer Aided Verification (CAV '11)},
+ volume = {6806 of LNCS},
+ page = {585-591},
+ year = {2011}
+}
+
+% Lustre
+@inproceedings{Halbwachs91:IEEE,
+  author =       {N. Halbwachs and P. Caspi and P. Raymond and D. Pilaud},
+  title =        {{The Synchronous Dataflow Programming Language Lustre}},
+  booktitle =    {{IEEE}},
+   year =         "1991",
+  volume =       "79(9)",
+  pages =        "1305-1320"
+}
+
+% JKind
+@ARTICLE{2017arXiv171201222G,
+  	author = {{Gacek}, A. and {Backes}, J. and {Whalen}, M. and {Wagner}, L. and{Ghassabani}, E.},
+ 	title = "{The JKind Model Checker}",
+ 	journal = {ArXiv e-prints},
+	archivePrefix = "arXiv",
+  	eprint = {1712.01222},
+	primaryClass = "cs.LO",
+ 	keywords = {Computer Science - Logic in Computer Science},
+     	year = 2017,
+    	month = dec,
+   	adsurl = {http://adsabs.harvard.edu/abs/2017arXiv171201222G},
+ 	adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+% SAML
+@inproceedings{Gudemann:2010:FQQ:1909626.1909813,
+   author = {Gudemann, Matthias and Ortmeier, Frank},
+   title = {A Framework for Qualitative and Quantitative Formal Model-Based Safety Analysis},
+   booktitle = {HASE 2010},
+   year = {2010},
+   pages = {132--141}
+}
+
+% SmartIFlow
 @Article{info8010007,
 AUTHOR = {H{\"o}nig, Philipp and Lunde, R{\"u}diger and Holzapfel, Florian},
 TITLE = {{Model Based Safety Analysis with smartIflow}},
@@ -389,24 +288,95 @@ NUMBER = {1},
 ARTICLE_NUMBER = {7}
 }
 
-@INPROCEEDINGS{5979344,
-author={O. Lisagor and T. Kelly and R. Niu},
-booktitle={The Proceedings of 2011 9th International Conference on Reliability, Maintainability and Safety},
-title={{Model-based safety assessment: Review of the discipline and its challenges}},
-year={2011},
-pages={625-632},
-keywords={risk analysis;safety;classification;model-based safety assessment;system safety engineering;Analytical models;Computational modeling;Frequency modulation;Mathematical model;Safety;Semantics;Valves;Model-Based Safety Assessment;Safety Assessment Methodology;System Safety Engineering},
-doi={10.1109/ICRMS.2011.5979344},
-month={June},}
 
-@article{PROSVIRNOVA2013127,
-title = {{The {A}lta{R}ica 3.0 Project for Model-Based Safety Assessment}},
-journal = "IFAC",
+% HipHops
+@article{CHEN201391,
+title = {{Systems Modeling with {EAST-ADL} for Fault Tree Analysis through {HiP-HOPS}*}},
+ author = {Chen, DeJiu and Mahmud, Nidhal and Walker, Martin and Feng, Lei and L{\"o}nn, Henrik and Papadopoulos, Yiannis},
+journal = "IFAC Proceedings Volumes",
 volume = "46",
 number = "22",
-pages = "127 - 132",
+pages = "91 - 96",
 year = "2013",
-author = "Tatiana Prosvirnova and Michel Batteux and Pierre-Antoine Brameret and Abraham Cherfi and Thomas Friedlhuber and Jean-Marc Roussel and Antoine Rauzy"
+note = "",
+issn = "1474-6670"
+}
+
+% SPIN
+@inproceedings{DBLP:conf/safecomp/CimattiGMRTT98,
+  author    = {Alessandro Cimatti and
+               Fausto Giunchiglia and
+               Giorgio Mongardi and
+               Dario Romano and
+               Fernando Torielli and
+               Paolo Traverso},
+  title     = {Model Checking Safety Critical Software with {SPIN:} An Application
+               to a Railway Interlocking System},
+  booktitle = {Computer Safety, Reliability and Security, 17th International Conference,
+               SAFECOMP'98, Heidelberg, Germany, October 5-7, 1998, Proceedings},
+  pages     = {284--295},
+  year      = {1998}
+}
+
+%%%%% 			Tech reports		%%%%%
+
+@techreport{SATechReport,
+ author = {Stewart, Danielle and Liu, Jing and Whalen, Michael and Cofer, Darren and Peterson, Michael},
+ title = {{Safety Annex for Architecture Analysis Design and Analysis Language}},
+ number = {18-007},
+ institution = {University of Minnesota},
+ month = {March},
+ year = {2018},
+ url = {https://www.cs.umn.edu/research/technical_reports/view/18-007}
+}
+
+
+@techreport{FTATechReport,
+ author = {Vesley, W and Stamatelatos, M and Dugan, J and Minnarick, J and Railsback, J},
+ title = {{Fault Tree Handbook with Aerospace Applications}},
+ institution = {NASA},
+ year = {2002}
+}
+
+@TECHREPORT{EMV2,
+author = {Feiler, Peter and Hudak, John and Delange, Julien and Gluch, Dave},
+year = {2016},
+month = {06},
+title = {Architecture Fault Modeling and Analysis with the Error Model Annex, Version 2},
+institution = {Software Engineering Institute},
+number = {CMU/SEI-2016-TR-009}
+}
+
+@techreport{SEI:AADL,
+ author = {Delange, Julien and Feiler, Peter and Gluch, Danid P. and Hudak, John},
+ title = {{{AADL} Fault Modeling and Analysis Within an {ARP4761} Safety Assessment}},
+ number = {CMU/SEI-2014-TR-020 },
+ institution = {Software Engineering Institute: Carnegie Mellon University},
+ month = {October},
+ year = {2014},
+ url = {http://resources.sei.cmu.edu/asset_files/technicalreport/2014_005_001_311911.pdf}
+}
+
+%%%%%			Tool specific
+
+@MISC{SRIInternational,
+  author =       {{SRI International}},
+  title =        {{The {PVS} Specification and Verification System}},
+  howpublished = "http://pvs.csl.sri.com"
+}
+
+@MISC{SCADE,
+  author =       {{Esterel Technologies}},
+  title =        {{{SCADE} Suite Product Description}},
+  howpublished = "http://www.estereltechnologies.com"
+}
+
+%%%%%			PhD Theses		%%%%%
+@phdthesis{MattareiThesis,
+  title = {Scalable Safety and Reliability Analysis via Symbolic Model Checking: Theory and Application (Doctoral Dissertation},
+  school = {Universit~a Degli Studi di Trento},
+  author = {Cristian Mattarei},
+  year = {2016}
 }
 
 @phdthesis{prosvirnova:tel-01119730,
@@ -423,38 +393,67 @@ author = "Tatiana Prosvirnova and Michel Batteux and Pierre-Antoine Brameret and
   HAL_VERSION = {v2},
 }
 
-
-@inproceedings{Gudemann:2010:FQQ:1909626.1909813,
-   author = {Gudemann, Matthias and Ortmeier, Frank},
-   title = {A Framework for Qualitative and Quantitative Formal Model-Based Safety Analysis},
-   booktitle = {HASE 2010},
-   year = {2010},
-   pages = {132--141}
+%%%%%			Websites, Guidelines, etc.
+@MISC{SAE:ARP4761,
+  author = {{SAE ARP 4761}},
+  title = {{Guidelines and Methods for Conducting the Safety Assessment
+Process on Civil Airborne Systems and Equipment}},
+  publisher = {SAE International},
+  month = {December},
+  year={1996}
 }
 
-@inproceedings{Driscoll-Byzantine-Fault,
-	author = {Driscoll, Kevin and Sivencrona, Hkan and Zumsteg, Phil},
-	title =  {{Byzantine Fault Tolerance, from Theory to Reality}},
-	booktitle =    {SAFECOMP},
-	year =         "2003",
-	volume =       "2788",
-	series =       {LNCS},
-	pages =        "235--248"
+@MISC{SAE:ARP4754A,
+	author = {{SAE ARP4754A}},
+	title = {{Guidelines for Development of Civil Aircraft and Systems}},
+	publisher = {SAE International},
+	location = {Warrendale, PA, USA},
+	month = {December},
+	year={2010}
 }
 
-@techreport{SATechReport,
- author = {Stewart, Danielle and Liu, Jing and Whalen, Michael and Cofer, Darren and Peterson, Michael},
- title = {{Safety Annex for Architecture Analysis Design and Analysis Language}},
- number = {18-007},
- institution = {University of Minnesota},
- month = {March},
- year = {2018},
- url = {https://www.cs.umn.edu/research/technical_reports/view/18-007}
+@MISC{AIR6110,
+  author = {{AIR 6110}},
+  title = {{Contiguous Aircraft/System Development Process Example}},
+  publisher = {SAE},
+  month = {Dec.},
+  year={2011}
 }
 
-@techreport{FTATechReport,
- author = {Vesley, W and Stamatelatos, M and Dugan, J and Minnarick, J and Railsback, J},
- title = {{Fault Tree Handbook with Aerospace Applications}},
- institution = {NASA},
- year = {2002}
+@MISC{AADL_Standard,
+	author = {{AS5506C}},
+	title = {{Architecture Analysis \& Design Language (AADL)}},
+	publisher = {SAE International},
+	month = {Jan.},
+	year={2017}
+}
+
+@MISC{IEEE:PSL,
+  title = {{{IEEE} Standard for Property Specification Language (PSL)}},
+  organization = {IEEE Std 1850-2005},
+  year = {2005}
+}
+
+@MISC{RTCA:StdC,
+  title = {{{RTCA/DO-178C} Software Considerations in Airborne Systems and Equipment Certification}},
+  organization = {RTCA, Inc.},
+  year = {2011}
+}
+
+%%%%%			Books		%%%%%
+@book{FeilerModelBasedEngineering2012,
+   title = {Model-Based Engineering with AADL: An Introduction to the SAE Architecture Analysis \& Design Language},
+   author={Peter Feiler and David Gluch},
+   year={2012},
+   publisher={Addison-Wesley Professional},
+}
+
+@book{Bozzano:2010:DSA:1951720,
+	author = {Bozzano, Marco and Villafiorita, Adolfo},
+	title = {Design and Safety Assessment of Critical Systems},
+	year = {2010},
+	isbn = {1439803315, 9781439803318},
+	edition = {1st},
+	publisher = {Auerbach Publications},
+	address = {Boston, MA, USA},
 }
