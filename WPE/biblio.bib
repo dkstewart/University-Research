@@ -180,6 +180,20 @@
 	pages="81--97"
 }
 
+@article{criticalembeddedsystems,
+author = {Bozzano, Marco and Cimatti, Alessandro and Katoen, Joost-Pieter and Yen Nguyen, Viet and Noll, Thomas and Roveri, Marco},
+year = {2009},
+title = {Model-Based Codesign of Critical Embedded Systems},
+volume = {507}
+}
+
+@INPROCEEDINGS{5185388, 
+author={M. Bozzano and A. Cimatti and M. Roveri and J. P. Katoen and V. Y. Nguyen and T. Noll}, 
+booktitle={2009 7th IEEE/ACM International Conference on Formal Methods and Models for Co-Design}, 
+title={Codesign of dependable systems: A component-based modeling language}, 
+year={2009}
+}
+
 % MBSA Review
 @INPROCEEDINGS{5979344,
 	author={O. Lisagor and T. Kelly and R. Niu},
@@ -259,9 +273,34 @@ title = {{The {A}lta{R}ica 3.0 Project for Model-Based Safety Assessment}},
 journal = "IFAC",
 volume = "46",
 number = "22",
-pages = "127 - 132",
 year = "2013",
 author = "Tatiana Prosvirnova and Michel Batteux and Pierre-Antoine Brameret and Abraham Cherfi and Thomas Friedlhuber and Jean-Marc Roussel and Antoine Rauzy"
+}
+
+@phdthesis{prosvirnova:tel-01119730,
+  TITLE = {{AltaRica 3.0: a Model-Based approach for Safety Analyses}},
+  AUTHOR = {Prosvirnova, Tatiana},
+  URL = {https://pastel.archives-ouvertes.fr/tel-01119730},
+  SCHOOL = {{Ecole Polytechnique}},
+  YEAR = {2014},
+  MONTH = Nov,
+  KEYWORDS = {Safety ; Reliability ; Model-Based approach ; AltaRica ; Analyse du risque ; Fiabilit{\'e} ; S{\^u}ret{\'e} de Fonctionnement ; approche orient{\'e}e mod{\`e}les},
+  TYPE = {Theses},
+  PDF = {https://pastel.archives-ouvertes.fr/tel-01119730/file/main.pdf}
+}
+
+@INPROCEEDINGS{Bieber04safetyassessment,
+    author = {Pierre Bieber and Christian Bougnol and Charles Castel and Jean Pierre Heckmann and Christophe Kehren and Sylvain Metge and Christel Seguin},
+    title = {{Safety Assessment with Altarica - Lessons Learnt Based on Two Aircraft System Studies}},
+    booktitle = {In 18th IFIP World Computer Congress},
+    year = {2004}
+}
+
+@INPROCEEDINGS{BieberERTS2018,
+	author = {Pierre Bieber and Jean-Loup Farges and Xavier Pucel and Louis-Marie S{\`e}jeau and Christel Seguin},
+	title = {Model - Based Safety Analysis for co-assessment of operation and system safety: application to specific operations of unmanned aircraft},
+	booktitle = {ERTS2},
+	year = {2018}
 }
 
 % PRISM
@@ -349,6 +388,32 @@ issn = "1474-6670"
   year      = {1998}
 }
 
+% COMPASS
+@InProceedings{10.1007/978-3-642-04468-7_15,
+author="Bozzano, Marco
+and Cimatti, Alessandro
+and Katoen, Joost-Pieter
+and Nguyen, Viet Yen
+and Noll, Thomas
+and Roveri, Marco",
+title={{The COMPASS Approach: Correctness, Modelling and Performability of Aerospace Systems}},
+booktitle="Computer Safety, Reliability, and Security",
+year="2009",
+publisher="Springer Berlin Heidelberg"
+}
+
+@InProceedings{compass30toolset,
+	author = {Bozzano, Marco and Bruintjes, Harold and Cimatti, Alessandro and Katoen, Joost-Pieter and Noll, Thomas and Tonetta, Stefano},
+	title = {The COMPASS 3.0 Toolset (short paper)},
+	booktitle =    {{IMBSA 2017}},
+  	year =         "2017"
+}
+
+@MISC{COMPASSusersguide,
+	author = {{COMPASS Users Manual}},
+	howpublished = "http://www.compass-toolset.org/docs/compass-manual.pdf"
+}
+
 %%%%% 			Tech reports		%%%%%
 
 @techreport{SATechReport,
@@ -404,6 +469,44 @@ number = {CMU/SEI-2016-TR-009}
   howpublished = "http://www.estereltechnologies.com"
 }
 
+@MISC{NuSMV,
+	author =       {{NuSMV Model Checker}},
+	howpublished = "http://nusmv.itc.it"
+}
+
+@Article{Cimatti2000,
+author="Cimatti, Alessandro
+and Clarke, Edmund
+and Giunchiglia, Fausto
+and Roveri, Marco",
+title="NUSMV: a new symbolic model checker",
+journal="International Journal on Software Tools for Technology Transfer",
+year="2000"
+}
+
+@MISC{MRMC,
+	author =       {{MRMC: Markov Rewards Model Checker}},
+	howpublished = "http://wwwhome.cs.utwente.nl/~zapreevis/mrmc/"
+}
+
+@inproceedings{Katoen:2005:MRM:1114692.1115230,
+ author = {Katoen, Joost-Pieter and Khattri, Maneesh and Zapreev, Ivan S.},
+ title = {A Markov Reward Model Checker},
+ booktitle = {Proceedings of the Second International Conference on the Quantitative Evaluation of Systems},
+ series = {QEST '05},
+ year = {2005},
+ publisher = {IEEE Computer Society}
+} 
+
+@MISC{RAT,
+	author =       {{RAT: Requirements Analysis Tool}},
+	howpublished = "http://rat.itc.it"
+}
+
+
+
+
+
 %%%%%			PhD Theses		%%%%%
 @MISC{mattarei,
   TITLE = {{Scalable safety and reliability analysis via symbolic model checking: theory and applications}},
@@ -430,7 +533,7 @@ number = {CMU/SEI-2016-TR-009}
   HAL_VERSION = {v2},
 }
 
-%%%%%			Websites, Guidelines, etc.
+%%%%%			Websites, Guidelines, Reviews etc.
 @MISC{SAE:ARP4761,
   author = {{SAE ARP 4761}},
   title = {{Guidelines and Methods for Conducting the Safety Assessment
@@ -478,20 +581,21 @@ Process on Civil Airborne Systems and Equipment}},
 }
 
 @misc{amaseRepo,
-  author = {D. Stewart and J. Liu and M. Whalen and D. Cofer},
-  title = {AMASE},
+  author = {Stewart, Danielle and Liu, Jing and Whalen, Michael and Cofer, Darren and Peterson, Michael},
+  title = {Safety Annex for AADL Repository},
+  year = {2017},
   publisher = {GitHub},
   journal = {GitHub repository},
   howpublished = {\url{https://github.com/loonwerks/AMASE}}
 }
 
-@misc{smaccmRepo,
-  author = {D. Stewart and J. Liu and M. Whalen and D. Cofer},
-  title = {SMACCM},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/smaccm/smaccm}}
+@INPROCEEDINGS{5979344,
+author={O. Lisagor and T. Kelly and R. Niu},
+booktitle={The Proceedings of 2011 9th International Conference on Reliability, Maintainability and Safety},
+title={{Model-based safety assessment: Review of the discipline and its challenges}},
+year={2011}
 }
+
 
 %%%%%			Books		%%%%%
 @book{FeilerModelBasedEngineering2012,

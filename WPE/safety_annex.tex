@@ -12,6 +12,15 @@ The Safety Annex Users Guide can be found at \url{https://github.com/loonwerks/A
 
 An AADL model of the nominal system behavior specifies the hardware and software components of the system and their interconnections. This nominal model is then annotated with assume-guarantee contracts using the AGREE annex for AADL. The nominal model requirements are verified using compositional verification techniques based on inductive model checking~\cite{2017arXiv171201222G}.
 
+\begin{figure*}[!ht]
+	\vspace{-0.6in}
+	\begin{center}
+		\includegraphics[trim=30 635 0 30,clip,width=1.0\dimexpr\textwidth-1.5cm\relax]{images/pump_fault.pdf}
+		\caption{Pump Fault Definition in the Safety Annex}
+		\label{fig:fault_pump}
+	\end{center}
+\end{figure*}
+
 Once the nominal model behavior is defined and verified, the Safety Annex can be used to specify possible faulty behaviors for each component. The faults are defined on each of the relevant components using a customizable library of fault nodes and the faults are assigned a probability of occurrence. A probability threshold is also defined at the system level. This extended model can be analyzed to verify the behavior of the system in the presence of faults. Verification of the nominal model with or without the fault model is controlled through the safety analysis option during AGREE verification.
 
 To illustrate the syntax of the Safety Annex, we use an example based on the Wheel Brake System (WBS) described in AIR6110 standards document and used in  previous work ~\cite{Stewart17:IMBSA, AIR6110}.
@@ -21,15 +30,6 @@ The \textit{fault library} contains commonly used fault node definitions. Common
 
 A \textit{fault declaration} is shown in Figure~\ref{fig:fault_pump}. This describes a fail to zero fault in a pump. The \textit{fail\_to} node provides the mechanism in which a faulty value is injected into the fault model. When the \textit{trigger} condition for this pump fault is satisfied, the nominal component output value is overridden by the failure value. In this particular example, the pump will fail to produce any pressure and the hydraulic fluid ceases being pumped through the lines.  
 
-\begin{figure*}[h!]
-	\vspace{-0.6in}
-	\begin{center}
-		\includegraphics[trim=30 635 0 30,clip,width=1.3\dimexpr\textwidth-1.5cm\relax]{images/pump_fault.pdf}
-		\caption{Pump Fault Definition in the Safety Annex}
-		\label{fig:fault_pump}
-	\end{center}
-\end{figure*}
-
 The \textit{fault statement} consists of a unique description string, the fault node definition name, and a series of \textit{fault subcomponent} statements. Contents of the fault statement are as follows.\\
 \textbf{Inputs} in a fault statement are the parameters of the fault node definition. In the example above, \textit{val\_in} and \textit{alt\_val} are the two input parameters of the fault node. These are linked to the output from the Pump component (\textit{pressure\_output.val}), and \textit{alt\_value}, a fail to value of zero. When the analysis is run, these values are passed into the fault node definition.\\
 \textbf{Outputs} of the fault definition correspond to the outputs of the fault node. The fault output statement links the component output (\textit{pressure\_output.val}) with the fault node output (\textit{val\_out}). If the fault is triggered, the nominal value of \textit{pressure\_output.val} is overridden by the failure value output by the fault node. Faulty outputs can take deterministic or non-deterministic values. \\
@@ -37,7 +37,7 @@ The \textit{fault statement} consists of a unique description string, the fault 
 \textbf{Duration} describes the duration of the fault; currently the Safety Annex supports permanent faults.\\
 
 \subsection{Hardware Failures and Dependent Faults}
-
+\label{sec:hardware_faults}
 Failures in hardware (HW) components can trigger behavioral faults in the software (SW) or system (SYS) components that depend on them.  For example, a CPU failure may trigger faulty behavior in threads bound to that CPU. In addition, a failure in one HW component may trigger failures in other HW components located nearby, such as cascading failure caused by a fire or water damage.
 
 Faults propagate in AGREE as part of the nominal behavior of a system. This means that any propagation in the HW portion of an AADL model would have to be artificially modeled using data ports and AGREE behaviors in SW. This is less than ideal as there may not be concrete behaviors associated with HW components. In other words, faulty behaviors mainly manifest themselves on the software components that depend on the hardware components.
@@ -60,6 +60,7 @@ To better model faults at the system level dependent on HW failures, there is a 
 %\label{fig:fault_propagation}%      only if needed  
 %\end{minipage}
 
+\iffalse
 \begin{figure*}[]
 	\begin{center}
 		\includegraphics[width=.7\textwidth]{images/fault_propagation.png}
@@ -67,8 +68,9 @@ To better model faults at the system level dependent on HW failures, there is a 
 		\label{fig:fault_propagation}
 	\end{center}
 \end{figure*}
+\fi
 
-When analyzing hardware specific faults, it is often of interest to see how these faults may propagate to other components of the system, specifically the software components. As an example, consider software systems that run on a particular CPU. This CPU has a hardware fault pertaining to overheating. An important question is how this hardware specific fault may propagate to components that rely on the CPU. In the nominal model, there is a binding between hardware and software components in AADL that is specified within the system implementation. In order to model this type of fault, users can specify fault dependencies in the system implementation where these dependencies are clearly defined. This is the only case of explicit fault propagation within the Safety Annex and in this case the propagation only is from the hardware to the software that runs on it. An example of a fault dependency specification is shown in Figure~\ref{fig:fault_propagation}, showing that a valve failure triggers a pressure failure fault at a subcomponent that relies upon that valve. 
+When analyzing hardware specific faults, it is often of interest to see how these faults may propagate to other components of the system, specifically the software components. As an example, consider software systems that run on a particular CPU. This CPU has a hardware fault pertaining to overheating. An important question is how this hardware specific fault may propagate to components that rely on the CPU. In the nominal model, there is a binding between hardware and software components in AADL that is specified within the system implementation. In order to model this type of fault, users can specify fault dependencies in the system implementation where these dependencies are clearly defined. This is the only case of explicit fault propagation within the Safety Annex and in this case the propagation only is from the hardware to the software that runs on it. %An example of a fault dependency specification is shown in Figure~\ref{fig:fault_propagation}, showing that a valve failure triggers a pressure failure fault at a subcomponent that relies upon that valve. 
 
 
 \subsection{Implementation Details}
