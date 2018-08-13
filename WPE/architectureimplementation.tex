@@ -1,15 +1,16 @@
-\section{Architecture and Implementation}
+\section{Implementation Details}
 
 
-The architecture of the Safety Annex is shown in Figure~\ref{fig:plugin-arch}.  It is written in Java as a plug-in for the OSATE AADL toolset, which is built on Eclipse.  It is not designed as a stand-alone extension of the language, but works with behavioral contracts specified AGREE AADL annex and associated tools~\cite{NFM2012:CoGaMiWhLaLu}.  AGREE allows {\em assume-guarantee} behavioral contracts to be added to AADL components.  The language used for contract specification is based on the Lustre dataflow language~\cite{Halbwachs91:IEEE}. AGREE improves scalability of formal verification to large systems by decomposing the analysis of a complex system architecture into a collection of smaller verification tasks that correspond to the structure of the architecture.
+This section provides an overview of how the Safety Annex is related to AADL, AGREE, and the JKind model checker.  The Safety Annex is written in Java as a plug-in for the OSATE AADL toolset, which is built on Eclipse.  It is not designed as a stand-alone extension of the language, but works with behavioral contracts specified AGREE annex and associated tools.  AGREE allows assume-guarantee behavioral contracts to be added to AADL components.  The language used for contract specification is based on the Lustre dataflow language~\cite{Halbwachs91:IEEE}. 
+
+The organization of these interactions  is shown in Figure~\ref{fig:plugin-arch}. The AADL file is annotated with AGREE contracts which creates the nominal model.This nominal model is parsed and sent to JKind in order to perform formal verification. If the Safety Annex is also annotated within this model, this creates the extended (fault) model. When desired, the user can run ``Perform Safety Analysis'' within the Osate environment. This creates an extension point where the Safety Analysis informaiton is added into the AGREE model before getting passed to JKind for analysis. In either case, the JKind verification result is returned and displayed to the user in the Osate environment. For more information about this process, see the Safety Annex Users Guide or the technical report~\cite{amaseRepo,SATechReport}.
 
 \begin{figure}
 \begin{center}
-%\includegraphics[trim=0 400 430 0,clip,width=0.85\textwidth]{images/arch.png}
 \includegraphics[width=.9\textwidth]{images/arch.png}
 \end{center}
 \vspace{-0.2in}
-\caption{Safety Annex Plug-in Architecture}
+\caption{Safety Annex Plug-in Design}
 \label{fig:plugin-arch}
 \end{figure}
 
@@ -17,7 +18,6 @@ AGREE contracts are used to define the nominal behaviors of system components as
 
 \begin{figure}
 \vspace{-0.1in}
-%\includegraphics[trim=30 150 120 10,clip,width=\textwidth]{images/sample_code.png}
 \includegraphics[width=\textwidth]{images/sample_code.png}
 \vspace{-0.3in}
 \caption{Nominal AGREE node and its extension with faults}
