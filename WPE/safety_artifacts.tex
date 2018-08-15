@@ -1,7 +1,7 @@
 \subsection{Safety Artifacts}
 \label{subsec:safety_artifacts}
 
-The fault behavior of the model is commonly analyzed using techniques described and formalized in guidelines such as ARP4761 and AIR6110 and the most relevant of these techniques are Fault Tree Analysis (FTA), Fault Mode and Effects Analysis (FMEA), and Common Cause Analysis (CCA)~\cite{SAE:ARP4761, AIR6110, 0f356f05e72f43018211b36f97c8854a, Bozzano:2010:DSA:1951720}. 
+The fault behavior of the model is commonly analyzed using techniques described and formalized in guidelines such as ARP4761 and AIR6110 and the most relevant of these techniques are Fault Tree Analysis (FTA) and Fault Mode and Effects Analysis (FMEA)~\cite{SAE:ARP4761, AIR6110, 0f356f05e72f43018211b36f97c8854a, Bozzano:2010:DSA:1951720}. 
 
 \subsubsection{Fault Tree Analysis}
 A Fault Tree (FT) is a directed acyclic graph whose leaves model component failures and whose gates model failure propagation. The system failure under examination is the root of the tree and is called the Top Level Event (TLE). The Basic Events (BE) are the events that can occur in the system which lead to the TLE and in the graphical model, these correspond to the leaves. The gates in the fault tree describe how failures propagate through the system. Each gate has one output and one or more inputs. In Figure~\ref{fig:introFT}, the AND gate has three inputs and one output. The leaves of the tree represent the basic events of the system and in the case of this fault tree, these three events are also the \textit{Minimum Cut Set} for this top level event. The Minimal Cut Set (MCS) is the minimum set of basic events that must occur together in order to cause the TLE to occur. Finding these sets is important to FTA and has been an active area of interest in the research community since fault trees were first described in Bell Labs in 1961~\cite{historyFTA, 0f356f05e72f43018211b36f97c8854a}. 
@@ -27,10 +27,6 @@ FMEA is represented as a table that shows the relationships between sets of faul
 \caption{A Simple FMEA Table} \label{fig:introFMEA}
 \end{center}
 \end{figure}
-
-\subsubsection{Common Cause Analysis}
-Common cause failure analysis (CCA) attempts to find failures in the system for which two or more events have the potential to occur due to the same cause. Often a common cause event will trigger a set of failures in the system. Examining these common causes and the failure sets are of interest in various safety analysis processes. ARP4754A describes CCA as a way to establish physical and functional separation and identify independence requirements between systems. 
-
 
 \subsubsection{Safety Artifacts in the MBSA Process}
 The artifacts developed from the MBSA process can be updated iteratively from the shared nominal and fault model of the system. It is assumed that the model is created and maintained in sync with the hardware and software design and implementation and guided by the hazard and probability information from a preliminary system FTA. The analysis results for each iteration of the model are then used to update the preliminary system FTA. This process continues iteratively until the system safety property is satisfied with the desired fault tolerance and failure probability. 
