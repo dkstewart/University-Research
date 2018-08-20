@@ -1,7 +1,7 @@
 \section{The Safety Annex}
 \label{sec:safety_annex}
 
-In this section, we describe the main features and functionality of the Safety Annex. The usage of the terms error, failure, and fault follow their definitions in Section~\ref{sec:terminology}. We use {\em fault} as the generic modeling keyword throughout the AADL model hierarchy.
+The usage of the terms error, failure, and fault follow their definitions in Section~\ref{sec:terminology}. We use {\em fault} as the generic modeling keyword throughout the AADL model hierarchy.
 
 The Safety Annex Users Guide can be found at \url{https://github.com/loonwerks/AMASE/tree/develop} along with the tool plugins and examples described in this report. 
 
@@ -12,20 +12,28 @@ The Safety Annex Users Guide can be found at \url{https://github.com/loonwerks/A
 
 An AADL model of the nominal system behavior specifies the hardware and software components of the system and their interconnections. This nominal model is then annotated with assume-guarantee contracts using the AGREE annex for AADL. The nominal model requirements are verified using compositional verification techniques based on inductive model checking~\cite{2017arXiv171201222G}.
 
-\begin{figure*}[!ht]
-	\vspace{-0.6in}
+\begin{figure*}[h!]
 	\begin{center}
-		\includegraphics[trim=30 635 0 30,clip,width=1.0\dimexpr\textwidth-1.5cm\relax]{images/pump_fault.pdf}
-		\caption{Pump Fault Definition in the Safety Annex}
+		\includegraphics[trim=30 600 0 30,clip,width=1.0\dimexpr\textwidth-1.5cm\relax]{images/nominalPump.pdf}
+		\caption{Nominal Pump Model with AGREE contract}
+		\label{fig:nominalPump}
+	\end{center}
+\end{figure*}
+
+\begin{figure*}[!ht]
+	\vspace{-0.4in}
+	\begin{center}
+		\includegraphics[trim=30 630 0 30,clip,width=1.0\dimexpr\textwidth-1.5cm\relax]{images/pump_fault.pdf}
+		\caption{Pump Fault Definition}
 		\label{fig:fault_pump}
 	\end{center}
 \end{figure*}
 
-Once the nominal model behavior is defined and verified, the Safety Annex can be used to specify possible faulty behaviors for each component. The faults are defined on each of the relevant components using a customizable library of fault nodes and the faults are assigned a probability of occurrence. A probability threshold is also defined at the system level. This extended model can be analyzed to verify the behavior of the system in the presence of faults. Verification of the nominal model with or without the fault model is controlled through the safety analysis option during AGREE verification.
+Once the nominal model behavior is defined and verified, the Safety Annex can be used to specify possible faulty behaviors for each component. The faults are defined on each of the relevant components using a customizable library of fault nodes and the faults are assigned a probability of occurrence. A probability threshold is also defined at the system level. This extended model can be analyzed to verify the behavior of the system in the presence of faults. Verification of the nominal model with or without the fault model is controlled through the safety analysis option during AGREE verification. An example of this is shown in Figure~\ref{fig:nominalPump} as a pump component. In this simple example, the pump has an output and the contract is that the pump output is always positive. 
 
 To illustrate the syntax of the Safety Annex, we use an example based on the Wheel Brake System (WBS) described in AIR6110 standards document and used in  previous work ~\cite{Stewart17:IMBSA, AIR6110}.
 
-The \textit{fault library} contains commonly used fault node definitions. Commonly used faults in various systems include \textit{fail\_to} fault, where the output of a component fails to a particular value, for instance a pump may fail to produce any output and hence the fail to value is zero. Another example of a commonly occuring fault is an \textit{inverted\_boolean}. For example, a sensor may have an inverted value fault present on its boolean output. The fault library is simply a collection of fault nodes with these commonly used fault definitions which are then easily referenced within the fault definitions in the safety annex. 
+The \textit{fault library} contains commonly used fault node definitions. Commonly used faults in various systems include \textit{fail\_to} fault, \\where the output of a component fails to a particular value, for instance a pump may fail to produce any output and hence the fail to value is zero. Another example of a commonly occuring fault is an \textit{inverted\_boolean}. For example, a sensor may have an inverted value fault present on its boolean output. The fault library is simply a collection of fault nodes with these commonly used fault definitions which are then easily referenced within the fault definitions in the safety annex. 
 
 
 A \textit{fault declaration} is shown in Figure~\ref{fig:fault_pump}. This describes a fail to zero fault in a pump. The \textit{fail\_to} node provides the mechanism in which a faulty value is injected into the fault model. When the \textit{trigger} condition for this pump fault is satisfied, the nominal component output value is overridden by the failure value. In this particular example, the pump will fail to produce any pressure and the hydraulic fluid ceases being pumped through the lines.  
@@ -84,7 +92,7 @@ When analyzing hardware specific faults, it is often of interest to see how thes
 \end{center}
 \end{figure*}
 
-This section provides an overview of how the Safety Annex is related to AADL, AGREE, and the JKind model checker.  The Safety Annex is written in Java as a plug-in for the OSATE AADL toolset, which is built on Eclipse.  It is not designed as a stand-alone extension of the language, but works with behavioral contracts specified AGREE annex and associated tools.  AGREE allows assume-guarantee behavioral contracts to be added to AADL components.  The language used for contract specification is based on the Lustre dataflow language~\cite{Halbwachs91:IEEE}. 
+The Safety Annex is written in Java as a plug-in for the OSATE AADL toolset, which is built on Eclipse.  It is not designed as a stand-alone extension of the language, but works with behavioral contracts specified AGREE annex and associated tools.  AGREE allows assume-guarantee behavioral contracts to be added to AADL components.  The language used for contract specification is based on the Lustre dataflow language~\cite{Halbwachs91:IEEE}. 
 
 The organization of these interactions  is shown in Figure~\ref{fig:plugin-arch}. The AADL file is annotated with AGREE contracts which creates the nominal model. This nominal model is parsed and sent to JKind where formal verification is performed. If the Safety Annex is also annotated within this model, this creates the extended (fault) model. When desired, the user can run ``Perform Safety Analysis'' within the Osate environment. This creates an extension point where the Safety Analysis informaiton is added into the AGREE model before getting passed to JKind for analysis. In either case, the JKind verification result is returned and displayed to the user in the Osate environment. For more information about this process or figures depicting the environment and analysis results, see the Safety Annex Users Guide or the Safety Annex Technical Report~\cite{amaseRepo, SATechReport}.
 

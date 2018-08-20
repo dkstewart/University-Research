@@ -40,7 +40,7 @@ An example property is to ensure no inadvertent braking of each of the 8 wheels.
 
 Fault analysis on the top level WBS system was performed on the 11 top-level properties using two fault hypotheses.  In the first case, we allow at most one fault, and in the second we allow combinations of faults that exceed the acceptable probability for the top-level hazard defined in AIR6110.
 
-We use this model to demonstrate the benefits of formal fault analysis and to show the scalability of our tools.  We applied both {\em monolithic} analysis, in which the entire model is flattened and analyzed at once, and also {\em compositional} analysis, where each architectural layer is analyzed hierarchically.
+We use this model to illustrate the use of formal fault analysis and to show the scalability of our tools.  We applied both {\em monolithic} analysis, in which the entire model is flattened and analyzed at once, and also {\em compositional} analysis, where each architectural layer is analyzed hierarchically.
 For the fault-free ``nominal'' system model, monolithic analysis requires 21 seconds, whereas compositional analysis requires 1 minute and 53 seconds.  Although the compositional time is longer, each sub-problem completes in less than 5 seconds.  The additional time for compositional analysis is  due to the start-up overhead to invoke the JKind model checker many times for individual layers.  On the other hand, when examining the model under a single-fault hypothesis (maximum one fault present in the system), compositional analysis requires 2 minutes 6 seconds, while monolithic analysis did not terminate after 60 minutes. The reason for this lies in the difference between compositional analysis and monolithic analysis as described in Section~\ref{subsec:agree}. 
 
 Given a probabilistic fault hypothesis of $5*10^{-7}$, monolithic analysis requires 3 minutes 25 seconds.
@@ -53,17 +53,17 @@ This counterexample can be used to further analyze the system design.  For our m
 \label{subsec:qrfc_case_study}
 We have also used the Safety Annex to examine more complex fault types, such as {\em Byzantine} faults.  A Byzantine fault presents different symptoms to different observers, so that they may disagree regarding whether a fault is present. For example, a sensor may appear to be both failed and functional to different components to which it provides signal. 
 
-The Quad-Redundant Flight Control System (QFCS) was first developed in Simulink and then manually translated in AADL by Backes, et. al. This system consists of four cross-checking flight control computers (FCC) as shown in Figure XX. The work done by Backus formalized the requirements for components of the system and for more detail on the requirements specification, see the original paper~\cite{QFCS15:backes}. 
+The Quad-Redundant Flight Control System (QFCS) was first developed in Simulink and then manually translated in AADL by Backes, et. al. This system consists of four cross-checking flight control computers (FCC). The work done by Backus formalized the requirements for components of the system and for more detail on the requirements specification, see the original paper~\cite{QFCS15:backes}. 
 
 The QFCS nominal system model was extended to model and analyze various types of faulty behaviors. Faulty behaviors were introduced to analyze the response of the system to multiple faults, and to evaluate fault mitigation logic in the model. As expected, the QFCS system-level properties failed when unhandled faulty behaviors were introduced.
 
 We also used the Safety Annex to explore more complicated faults at the system level on a simplified QFCS model with cross-channel communication between its Flight Control Computers.
 
 \begin{itemize}
-	\item Byzantine faults~\cite{Driscoll-Byzantine-Fault} were simulated by creating one-to-one connections from the source to multiple observers so that disagreements could be introduced by injecting faults on individual outputs. The system level property ``at most one flight control computer in command'' was falsified in one second in the presence of Byzantine faults on the baseline model. The same property was verified in three seconds on an extended model with a Byzantine fault handling protocol added.  System designers can use this approach to verify if a system design is resilient to Byzantine faults, examine vulnerabilities, and determine if a mitigation mechanism works.
+	\item Byzantine faults were simulated by creating one-to-one connections from the source to multiple observers so that disagreements could be introduced by injecting faults on individual outputs~\cite{Driscoll-Byzantine-Fault}. The system level property ``at most one flight control computer in command'' was falsified in one second in the presence of Byzantine faults on the baseline model. The same property was verified in three seconds on an extended model with a Byzantine fault handling protocol added.  System designers can use this approach to verify if a system design is resilient to Byzantine faults, examine vulnerabilities, and determine if a mitigation mechanism works.
 	
 	\item Dependent faults were modeled by first injecting failures to the cross-channel data link (CCDL) bus (physical layer), and faults to the flight control computer (FCC) outputs (logical layer), then specifying fault propagations in the top level system implementation (where the data connections between FCC outputs were bound to the CCDL bus subcomponents). The fault propagation indicates that one CCDL bus failure can trigger all FCC output faults. With the fault hypothesis that allows a maximum of one fault active during execution, the system level property ``not all FCCs fail at the same time'' was falsified in one second.
 	
 	
 \end{itemize}
-
+\newpage
