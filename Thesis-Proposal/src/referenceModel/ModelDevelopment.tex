@@ -1,0 +1,375 @@
+\subsection{Constructing the Model}
+
+In our requirements, we described an initial
+set of constructs that we wish to include as well as some high-level
+relationships among them.  Because we wish to model the behaviors of
+heterogeneous individuals, we introduce autonomous agents to our reference
+model.  We choose this representation because both agents and humans are
+\begin{inparaenum}[(1)]
+    \item bounded problem-solving entities, \item situated in an environment
+    with limited observability of the
+        environment,
+    \item autonomous, and \item reactive~\cite{jennings_agent-based_2000,
+    crowder_development_2012}.
+\end{inparaenum} 
+Further, agents provide a way to encapsulate behavior and decision-making,
+isolating changes and reducing coupling.  This does not prevent us from
+representing entire teams as agents, but in this work we focus on modeling only
+individuals.
+
+As a consequence of modeling individuals, we must also model interactions.  We
+model such interactions as messages passed from an originating agent to one or
+more other agents.  The VDT model, in addition to communication constructs,
+defines the concept of a communication channel.  The channel introduces a number
+of properties for communications that capture if the communication will
+interrupt the recipient and enable reasoning about message
+priority~\cite{jin_virtual_1996}.  This mechanism can also introduce
+communication delays and provide a way to model globally-distributed teams,
+therefore we include a communication channel construct in our model.
+
+Because we use agents to represent individuals, we require some concept of an
+action that an agent can perform, providing a mechanism for the agent to do any
+number of things, such as generate messages.  The agent, then, must be able to
+choose an action and execute it, exhibiting a behavior.  Additional details
+about the workings of the agent are beyond the scope of this work as our focus
+is to describe the essential modeling constructs and relationships for process
+models.
+
+To aid us in decoupling work packages from process activities, we define
+a number of constructs.
+The first, artifacts, represent the deliverables of the project.  Work packages
+specify the smallest unit of useful function that may be added to one or more
+artifacts.  Work packages may be dependent on other work packages, forming a
+partial ordering.  Process activities describe how to perform work specified by
+a work package, essentially enabling an agent to transform a work package into a
+small piece of function within a given artifact.  They too are partially ordered
+according to their dependencies.
+Agents, while executing an activity, may generate defects and messages to other
+agents.  The VDT model computes the frequency of communication among agents
+working on interdependent tasks based on the task's degree of interdependency
+and uncertainty~\cite[p.178]{jin_virtual_1996}.
+% ~\cite[p.88]{kunz_virtual_1998}.
+We have addressed interdependencies, however we require complexity information
+for each work package in order to model both communication generation and how
+long an agent, executing an activity, will take to transform a work package.
+
+Thus far, we have defined messages, communication channels, agents, work
+packages, activities, artifacts, and functions as basic constructs that we need
+to create a process model and its target environment---i.e., the people,
+product, and project concerns.  When attempting to construct a model for the
+scenario described in the previous subsection, it becomes immediately apparent
+that these constructs are insufficient to describe a model that can capture
+\begin{inparaenum}[]
+  \item individual personal processes (for TDD), 
+  \item shared/co-dependent personal processes (for the tester role), 
+  \item work grouping (for grouping work and earning value), 
+  \item the team process (for the overall scrum process), and 
+  \item knowledge (for skills).
+\end{inparaenum}
+The remainder of this subsection focuses on describing how we can apply our
+constructs and relationships---defining additional ones as required---to model
+these concerns.
+% When describing our concrete case of what we wish to model, a number of
+% modeling concerns were made apparent.  In order to model what we specified in
+% the previous subsection, We immediately see that we must incorporate concerns
+% from the following into our reference model:
+% To construct the remainder of our reference model, let's look at the concerns
+% outlined in our brief example description.
+% %  some scenarios we wish to represent % and add to the model as required.
+
+
+\subsubsection{Modeling Individual Processes}
+Test driven development (TDD) is a development practice that is summed up as
+Think, Red, Green, Refactor (Figure~\ref{fig:tdd})~\cite{shore_art_2010}.
+In this process, the developer thinks through the function, develops a test case
+that fails on execution, develops just enough of the code to ensure the test
+suite passes, executes the test, then refactors the code ensuring all
+tests continue to pass.  At the end of this process, the function
+is complete and the process continues for the next function.
+
+\begin{figure}[htb]
+    \centering
+        \includegraphics[width=0.75\textwidth]{img/shoreTDD}
+    \caption{The TDD process~\cite{shore_art_2010}.}
+    \label{fig:tdd}
+\end{figure}
+
+In this process, the developer works on a single work package,
+however, there are numerous activities required to complete the work package and
+thereby complete the function.  We already include an activity as a construct
+within our reference model.  Activities are partially ordered by dependency and 
+may be executed more than once for a given work package.
+% We must track that 
+% each required activity is complete before marking the work package complete.
+
+An interesting implication of this case is that the analysis performed in the
+refactoring activity may trigger rework in other, completed functions.  With
+TDD, this occurs in the refactor activity.  Moreover, the agent may not have
+sufficient skills to perform the necessary rework.
+Because we cannot always contain the rework, we need a way to model it in some
+way.  The defect construct supports this, but should rework that does not result
+in an error impact the quality metric?
+Rather than limiting concrete model expressiveness, we defer this decision to
+the modeler and include a rework construct to support either choice; defining a
+defect as a particular type of rework.  Because both work packages and rework
+specify work to be performed, we endow the rework construct with much of the
+same attributes as a work package.
+Additionally, defects (and potentially rework) may be latent or found.  Latent
+defects are attached to the generated function until found.  Only found defects
+are available for fixing.
+
+The TDD process also highlights the fact that activities produce different types
+of function.  For example, the red (test case implementation) activity in TDD
+generates automated unit tests for the product, but does not add function to the
+product itself.  It would not be correct to attach the test case implementation
+of the work package to the product artifact, since the test suite may undergo
+different process rigors as the product artifact.  Instead, we wish to add the
+test code to a separate artifact.  We could accomplish this by specifying the
+target artifact on the work package, but this has the potential to couple the
+process and product.  Instead, we indirectly reference the artifact by storing
+the target artifact type in the activity and, when needed, using it to find the
+particular artifact.  The newly generated function object---the automated test
+cases in our example---is then attached to the found artifact---the test suite.
+
+
+\subsubsection{Modeling Shared Processes}
+
+\begin{figure*}[h!t!b]
+    \centering
+        \includegraphics[width=\textwidth]{img/TestActivityNetwork}
+        \caption{Example activity dependency network (arrows point to successors).}
+    \label{fig:testActivityNetwork}
+\end{figure*}
+
+
+Some teams split activities among team members to leverage particular
+skills/affinities or reduce confirmation bias in verification and validation
+activities.  Thus, we need to add a mechanism to represent this in our model.
+Assume we have an activity dependency network as depicted in
+Figure~\ref{fig:testActivityNetwork}.
+In this network, no activity may begin until all of its predecessor activities
+have completed.  Assume \texttt{Understand Work Package Specification} must be
+performed by everyone who works on this work package.  Further, assume all
+activities that do not cross the dotted line must be performed by the same agent
+or else it must be redone by someone else (as may be the case when there is low
+ceremony or if new developers are added to the team).
+
+\begin{figure*}[h!t!b]
+    \centering
+        \includegraphics[width=\textwidth]{img/roleMarkedTestActivityNetwork}
+        \caption{Example activity dependency network (arrows point to successors). 
+        The role annotations are shown for a tester
+        ('\texttt{T}') and developer ('\texttt{D}'). '\texttt{*!}' indicates
+        that the activity must be performed by every agent.}
+    \label{fig:testActivityNetwork_annotated}
+\end{figure*}
+
+We wish to model a set of activities that must be performed by the same person. 
+ A natural way to represent this through roles.  Roles restrict the type of
+agent that may perform an activity on a given work package.  Further, roles may
+be reassigned as required, resulting in lost effort.
+
+Supplementing the existing model with roles does not prohibit us from allowing
+an agent to be both a tester and developer.  We wish to allow the process to
+define if this is permissible or not, but specifying roles allows us to define
+allowable agent-activity assignments in interesting ways---such as an activity
+that must be performed by each agent working on the work package.
+We illustrate this with the role annotations in
+Figure~\ref{fig:testActivityNetwork_annotated}.
+
+
+% TODO:  Do I need a work package type to specify which set of activities are
+% valid?  Doesn't the artifact set and the artifact type address this for me?
+
+% We observe here that roles and activities both depend on what we wish to
+% accomplish.  The role of tester may be meaningless when the deliverable is the
+% user manual for the product.  Thus, 
+
+% 
+%  the particular artifact that is upd activities result in artifacts
+% with different types of required artifacts come the potential for different types of work packages to meet the project's requirements.  Work package types allow us to know both which activities are required to complete the feature specified by the work package as well as which roles are required by the process.  Work package types also help us decouple activities and work packages.
+
+% TODO -- check the larson citation!
+\subsubsection{Modeling Value Groups}
+Many agile teams use stories to describe a feature from the user's
+perspective~\cite{_state_2015}.  Stories are composed of small tasks, and,
+upon completion of all tasks, the story is marked as complete.
+Only when the story is marked as complete may the team claim credit for
+completing the feature.  At this point, the product's functionality is
+considered to increase---similar to the 0/100 rule in earned value
+management~\cite{larson_project_2010}.
+Thus, in order to model the increase of product functionality (and value), we
+require a construct that allows us to group work packages into value groups.
+
+
+\subsubsection{Modeling Team Processes}
+Scrum is a popular agile process that allows for a large amount of flexibility
+(Figure~\ref{fig:scrum}).  In this process, the team performs work in a
+fixed-time iteration (sprint) to incrementally develop a product.  For each
+sprint, the team plans the sprint (the planning meeting/kick-off); executes the
+plan, holding regular scrum meetings to briefly exchange status; demo the
+product and gather customer feedback (the sprint review); and analyze the
+successes and failures of the previous iteration (the sprint
+retrospective)~\cite{rubin_essential_2012}.
+
+We observe that there are different behaviors exhibited and activities performed
+within each process context as determined by the developer's role.  Further, we
+observe that each context is composed of a set of child contexts or specific
+activities.  For a developer that uses TDD for his development process, the
+develop context is composed of the TDD activities: Think, Red, Green, Refactor.
+The sprint, itself a context, is composed of other contexts---i.e.
+develop and each of the meetings.  Like activities, contexts at the same level
+are partially ordered.
+Each context may specify a set of roles defined for contexts/activities
+contained within it as well as role assignment constraints.  As stated earlier,
+roles restrict the activities that may be performed by an agent in that role.
+We expand this so roles can also be used to restrict which contexts may be
+entered by an agent.
+
+Let's discuss roles further through an illustrative example.  In the scrum
+process there are three roles defined for the team---the product owner, scrum
+master, and developer---with external stakeholders interacting with the team at
+certain points~\cite{rubin_essential_2012}.
+Let's say that a team is about to start a scrum meeting.  Upon entering the
+scrum meeting the developers all behave in the same way, each answering the
+three status questions.  This is itself a new behavior for developers specific
+to the scrum meeting context.  The scrum master also has different
+responsibilities within the meeting context.
+Stakeholders, including the product owner, are generally required to remain
+quiet if they are permitted to join the meeting at all.
+We, therefore, see effectively three roles within the scrum meeting context:
+developer, scrum master, and stakeholder, each with context-specific actions
+they may perform.  These context-specific actions are different from the
+behaviors exhibited outside of the scrum meeting context.  There are a number of
+ways to model this behavior change---including using the parent definitions,
+overriding the parent roles, or replacing the parent's roles---each with their own merits. 
+Thus, we want child contexts to support role overriding, accessing parent roles,
+or removing all parent roles from the agent.
+
+In scrum, there are two artifacts (databases) that help the team track the
+product's stories and record plans: the product backlog and sprint
+backlog~\cite{rubin_essential_2012}.  Both decentralize work assignments,
+empowering developers to retrieve work packages according to pre-established
+guidelines.  It is conceivable that there could be other databases, such as a
+defect tracking system, to record/store work packages during the simulation.  To
+address this in simulation models, we introduce an additional construct, the
+backlog, that may contain value groups, work packages, discovered rework, or
+found defects.  In scrum, backlogs may belong to subsets of the team---i.e.,
+certain individuals that have responsibilities over the backlog---however, we
+leave assigning and enforcing such responsibilities as a detail of the input
+model.
+
+\begin{figure}[htb]
+    \centering
+        \includegraphics[width=0.75\textwidth]{img/ScrumProcess}
+    \caption{The scrum process.  Initial set-up has been omitted.}
+    \label{fig:scrum}
+\end{figure}
+
+% Backlogs may belong to the
+% team, as is the case with the sprint backlog, or they may belong to a subset of
+% the team, as is the case with the product backlog.  More specifically, an agent
+% may have certain responsibilities for the backlog that may or may not be shared
+% with others.  We see this in scrum with the product backlog.  The entire team
+% can see the product backlog, but only the process owner is permitted to modify
+% it, except to move a story (value group) into the sprint backlog.
+
+
+\subsubsection{Modeling Knowledge}
+Within the sprint, developers work on work packages from the sprint backlog,
+stopping regularly to participate in the scrum meeting.  Scrum does
+not define specific development activities or any form of partial ordering of
+the activities to be performed when completing a work package.  This is left to
+the team to define should they choose to do so.  There are a natural set of
+activities that developers must perform when developing a function for a given
+type of artifact as well as a natural partial ordering of those activities.
+
+Further, the scrum process does not define how work packages are assigned to
+individuals.  The team could assign them during the sprint kick-off meeting or
+individuals could select work packages according to some team-specific
+high-level principles, such as completing the highest priority work packages
+first.  Work packages may also be assigned according to the combination of
+resource constraints and qualifications~\cite[p.352]{rubin_essential_2012}.
+
+Resource constraints, or the availability of resources, can be captured as part
+of each agent.  However, when is someone qualified to work on a work package?
+For software developers and other intellectual workers, fitness for work is
+based on the individual's quality of knowledge within a number of different
+knowledge domains.  While there are a number of ways to classify
+knowledge~\cite{gorman_types_2002, robillard_role_1999}, software development
+literature generally focuses on declarative knowledge---knowledge based in fact,
+either semantic knowledge or experiential (episodic)
+knowledge~\cite{robillard_role_1999}---and procedural knowledge.  Indeed, the
+process constructs within our reference model encode one form of procedural
+knowledge.  To allow expression of the quality of that procedural knowledge, we
+wish to include within the agent the ability to deviate from the modeled process
+and independently sequence activities and contexts.
+
+% TODO -- Can I find citations to support this?
+However, in the author's experience, there are a number of knowledge domains
+that must be modeled.  This includes declarative knowledge such as the product
+domain information, product information (e.g., specifications and current
+progress), and organizational structure as well as procedural knowledge such as
+skills.  The reference model, thus far, contains a means to model some product
+information in the form of work packages and their dependencies.  Organizational
+knowledge should be included within the agent as it describes not just the
+static structure of the organization, but also the inter-agent relationships and
+varies by agent.  Modeling information and procedures that are required to
+complete an activity for a work package---including skills, product knowledge,
+and domain knowledge---requires a new construct to represent this knowledge.  We
+know that an agent requires knowledge to perform work; the quality (or level) of
+which determines the speed to complete work and quality of the resultant
+product.  However, simply adding knowledge requirements to work packages and
+activities increases coupling.  If, for example, we add skills knowledge to the
+work package, then we must specify all required skills for any possible activity
+that could be performed on the work package.  Similarly, if we add
+application/application-domain knowledge or specific technological skills to the
+activity, we have effectively tied the activity to the project and cannot reuse
+the construct with different products.  In order to separate the product and
+process, we need to associate knowledge requirements with the work product,
+activity, and target artifact; we attach domain and application knowledge
+requirements to the work package, foundational skill requirements (e.g. behavior
+driven development, architecture, or programming skills) to the activity, and
+specific technology skill requirements (e.g., specific languages or libraries)
+to the artifact.  
+% However, as a reference model, this is simply guidance to
+% those who use this to build a concrete model.
+
+In addition to simply requiring certain pieces of knowledge, the work packages
+in the IPT model have a difficulty level that must match the
+knowledge quality (competency-level) of the agent~\cite{crowder_development_2012}.
+Using this mechanism, the simulation can ensure the sufficiency of the agent's
+knowledge.  We incorporate this into the reference
+model as it will further improve simulation output accuracy, capturing
+the amount of time spent by the agent acquiring the necessary quality of
+knowledge.  The specifics of agent knowledge acquisition is left until
+simulation framework development.
+
+Attaching knowledge to artifacts poses an additional problem: what happens if
+there are artifacts that require different skill sets, such as a server written
+in Java and a client written in .Net?  We don't want to attach these to the same
+artifact, but in the current model our only choices are to either create two
+artifacts of the same type, or specify them as two separate types.  The
+former leads to ambiguity for the activity when trying to attach a completed
+function to an artifact.  The later leads to activity duplication, again tying
+the process to the product.  Rather than introducing ambiguity or greater coupling, we can
+introduce a new construct, the artifact set, that allows us to group
+related artifacts.  With this construct, the Java server and its related test
+artifact would be defined in one set, the .Net server and its related test
+artifact would be in a second set.  An integration testing artifact can be
+defined as needed in a third set or as part of the test artifact of either of
+the other two sets.  To ensure product and process separation, the work package
+must indicate the artifact set that the activities should target.
+
+
+
+% TODO -- Good point, but agent model specific.  This is probably a tangent
+%         here.
+% However, in
+% the IPT model, increases in an agent's competency-level are only achieved
+% through communicating with other agents and is reset upon subtask
+% completion~\cite[p.1431]{crowder_desgining_2012}.  The authors of the IPT model
+% justify this reset by claiming that there may be elements of competency that are
+% specific to the subtask.  While this is may be true of understanding what must
+% be done, this fails to account for other forms of knowledge acquisition, such as 
+% learning or improving skills and domain-knowledge.  

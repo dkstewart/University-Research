@@ -1,0 +1,58 @@
+Our project, proposed here, is not without its risks.  Table \ref{table:risks}
+summarizes the high priority risks and our risk management strategy.
+
+
+% \begin{tabular}{L{.25\textwidth}
+% >{\raggedright}p{.35\textwidth} L{.25\textwidth}} 
+\begin{table}[h!]
+\caption{Summary of the high priority risks.}
+\label{table:risks}
+\begin{centering}
+\begin{tabular}{L{.25\textwidth} L{.35\textwidth} L{.25\textwidth}}
+\hline 
+Risk Description & Strategy & Trigger \\ \hline
+
+% There is one or more agile process models that cannot be expressed within our
+% reference model &
+% \vspace{-5mm}
+% \begin{itemize}[nolistsep,noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+% \item Mitigate -- leverage existing literature and the experiences of others to
+% develop diverse examples; encode
+% \end{itemize} &
+
+The agent behavioral model does not sufficiently capture human behavior & 
+\vspace{-5mm}
+\begin{itemize}[nolistsep,noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+\item Mitigate -- use literature to guide utility function construction so as to
+model reality.
+\item Mitigate -- tune behaviors using a subset of our final evaluation set
+% \item Mitigate -- if all else fails, switch to a BDI framework
+\end{itemize} &
+Test outputs are inconsistent with expectations.\\ \hline
+
+
+The impact model does not sufficiently capture the impacts of actions on the
+world &
+\vspace{-5mm}
+\begin{itemize}[nolistsep,noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+\item Mitigate -- use a set of known impact models (e.g., COCOMO II) as the initial
+relation
+\item Mitigate -- change the impact model; use one based on other simulation
+frameworks
+\end{itemize} &
+Test outputs are inconsistent with expectations.\\ \hline
+
+% The impact model does not sufficiently capture the impacts of actions on the
+% world &
+% \vspace{-5mm}
+% \begin{itemize}[nolistsep,noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+% \item Avoid -- use a set of known impact models (e.g., COCOMO II) as the initial
+% relation
+% \item Mitigate -- change the impact model; use one based on other simulation
+% frameworks
+% \end{itemize} &
+% Test outputs are inconsistent with expectations.\\ \hline
+
+\end{tabular} 
+\end{centering}
+\end{table}

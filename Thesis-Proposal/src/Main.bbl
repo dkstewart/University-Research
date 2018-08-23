@@ -1,0 +1,510 @@
+\begin{thebibliography}{10}
+
+\bibitem{_principles_2001}
+Principles behind the agile manifesto.
+\newblock \url{http://agilemanifesto.org/principles.html}, 2001.
+
+\bibitem{_types_2007}
+Types of knowledge-based systems.
+\newblock In {\em An Introduction to Knowledge Engineering}, pages 26--88.
+  Springer London, Jan. 2007.
+
+\bibitem{_qsm_2011}
+{QSM\textsuperscript{\textregistered}} {SLIM}-{Estimate}.
+\newblock \url{http://www.qsm.com/tools/slim-estimate}, Mar. 2011.
+
+\bibitem{_chaos_2013}
+Chaos manifesto 2013: Think big, act small.
+\newblock Technical report, The Standish Group International, Inc., 2013.
+
+\bibitem{_guide_2013}
+{\em A {Guide} to the {Project} {Management} {Body} of {Knowledge}
+  ({PMBOK}{\textregistered} {Guide}).}
+\newblock Project Management Institute, Incorporated, Newtown Square, PA, 5
+  edition, 2013.
+
+\bibitem{_state_2015}
+State of {Agile} {Survey}, 9th {Annual}.
+\newblock
+  \url{http://www.versionone.com/pdf/state-of-agile-development-survey-ninth.pdf},
+  2015.
+
+\bibitem{aalst_application_1998}
+W.~M.~P. {\VAN{Aalst}{van der} Aalst}.
+\newblock The apllication of petri nets to workflow management.
+\newblock {\em Journal of Circuits, Systems and Computers}, 08(01):21--66, Feb.
+  1998.
+
+\bibitem{ambler_disciplined_2012}
+S.~W. Ambler and M.~Lines.
+\newblock {\em Disciplined Agile Delivery: A Practitioner's Guide to Agile
+  Software Delivery in the Enterprise}.
+\newblock {IBM} Press, 2012.
+
+\bibitem{antoniol_assessing_2004}
+G.~Antoniol, A.~Cimitile, G.~Di~Lucca, and M.~Di~Penta.
+\newblock Assessing staffing needs for a software maintenance project through
+  queuing simulation.
+\newblock {\em {IEEE} Transactions on Software Engineering}, 30(1):43--58, Jan.
+  2004.
+
+\bibitem{beck_embracing_1999}
+K.~Beck.
+\newblock Embracing change with extreme programming.
+\newblock {\em Computer}, 32(10):70--77, 1999.
+
+\bibitem{bloomfield_safety_2010}
+R.~Bloomfield and P.~Bishop.
+\newblock Safety and {Assurance} {Cases}: {Past}, {Present} and {Possible}
+  {Future}{\textendash}an {Adelard} {Perspective}.
+\newblock {\em Making Systems Safer}, pages 51--67, 2010.
+
+\bibitem{boehm_software_2000}
+B.~W. Boehm.
+\newblock {\em Software {Cost} {Estimation} with {Cocomo} {II}}.
+\newblock Prentice Hall, Upper Saddle River, NJ, Aug. 2000.
+
+\bibitem{boehm_balancing_2004}
+B.~W. Boehm and R.~Turner.
+\newblock {\em Balancing Agility and Discipline: A Guide for the Perplexed}.
+\newblock Addison-Wesley Professional, 2004.
+
+\bibitem{chau_knowledge_2004}
+T.~Chau and F.~Maurer.
+\newblock Knowledge sharing in agile software teams.
+\newblock In W.~Lenski, editor, {\em Logic versus Approximation}, number 3075
+  in Lecture Notes in Computer Science, pages 173--183. Springer Berlin
+  Heidelberg, Jan. 2004.
+
+\bibitem{chen_improving_2011}
+B.~Chen.
+\newblock {\em Improving Processes Using Static Anlaysis Techniques}.
+\newblock PhD thesis, University of Massachusetts, Amherst, Amherst, {MA}, Feb.
+  2011.
+
+\bibitem{chen_metamorphic_1998}
+T.~Y. Chen, S.~C. Cheung, and S.~M. Yiu.
+\newblock Metamorphic {Testing}: {A} {New} {Approach} for {Generating} {Next}
+  {Test} {Cases}.
+\newblock Technical {Report} HKUST-CS98-01, Department of Computer Science, The
+  Hong Kong UNiversity of Science and Technology, 1998.
+
+\bibitem{chen_fault-based_2003}
+T.~Y. Chen, T.~H. Tse, and Z.~Quan~Zhou.
+\newblock Fault-based testing without the need of oracles.
+\newblock {\em Information and Software Technology}, 45(1):1--9, Jan. 2003.
+
+\bibitem{cockburn_characterizing_1999}
+A.~Cockburn.
+\newblock Characterizing people as non-linear, first-order components in
+  software development.
+\newblock Technical Report {HaT} Technical Report 1999.03, Humans and
+  Technology, Oct. 1999.
+
+\bibitem{cockburn_selecting_2000}
+A.~Cockburn.
+\newblock Selecting a project's methodology.
+\newblock {\em Software, {IEEE}}, 17(4):64{\textendash}71, 2000.
+
+\bibitem{cockburn_crystal_2004}
+A.~Cockburn.
+\newblock {\em Crystal {Clear}: {A} {Human}-{Powered} {Methodology} for {Small}
+  {Teams}}.
+\newblock Addison-Wesley Professional, 1 edition, Oct. 2004.
+
+\bibitem{cohn_scrum_????}
+M.~Cohn.
+\newblock Scrum methodology and project management.
+\newblock \url{http://mountaingoatsoftware.com/agile/scrum}.
+
+\bibitem{crowder_development_2012}
+R.~Crowder, M.~Robinson, H.~Hughes, and Y.-W. Sim.
+\newblock The development of an agent-based modeling framework for simulating
+  engineering team work.
+\newblock {\em {IEEE} Transactions on Systems, Man and Cybernetics, Part A:
+  Systems and Humans}, 42(6):1425 --1439, Nov. 2012.
+
+\bibitem{curtis_process_1992}
+B.~Curtis, M.~I. Kellner, and J.~Over.
+\newblock Process modeling.
+\newblock {\em Communications of the {ACM}}, 35(9):75--90, Sept. 1992.
+
+\bibitem{de_silva_reference_2015}
+I.~J. De~Silva, S.~Rayadurgam, and M.~P.~E. Heimdahl.
+\newblock A {Reference} {Model} for {Simulating} {Agile} {Processes}.
+\newblock In {\em Proceedings of the 2015 {International} {Conference} on
+  {Software} and {System} {Process}}, Tallinn, Estonia, Aug. 2015. ACM.
+
+\bibitem{diebold_agile_2015}
+P.~Diebold and T.~Zehler.
+\newblock The {Agile} {Practices} {Impact} {Model}: {Idea}, {Concept}, and
+  {Application} {Scenario}.
+\newblock In {\em Proceedings of the 2015 {International} {Conference} on
+  {Software} and {System} {Process}}, pages 92--96, Tallinn, Estonia, 2015.
+  ACM.
+
+\bibitem{dignum_towards_2000}
+F.~Dignum, D.~Morley, E.~Sonenberg, and L.~Cavedon.
+\newblock Towards socially sophisticated {BDI} agents.
+\newblock In {\em Fourth {International} {Conference} on {MultiAgent}
+  {Systems}, 2000. {Proceedings}}, pages 111--118, 2000.
+
+\bibitem{donzelli_hybrid_2001-1}
+P.~Donzelli and G.~Iazeolla.
+\newblock Hybrid simulation modelling of the software process.
+\newblock {\em Journal of Systems and Software}, 59(3):227--235, Dec. 2001.
+
+\bibitem{donzelli_hybrid_2001}
+P.~Donzelli and G.~Iazeolla.
+\newblock A hybrid software process simulation model.
+\newblock {\em Software Process: Improvement and Practice},
+  6(2):97{\textendash}109, 2001.
+
+\bibitem{doyle_rationality_1992}
+J.~Doyle.
+\newblock Rationality and its roles in reasoning.
+\newblock {\em Computational Intelligence}, 8(2):376--409, 1992.
+
+\bibitem{drappa_quantitative_1999}
+A.~Drappa and J.~Ludewig.
+\newblock Quantitative modeling for the interactive simulation of software
+  projects.
+\newblock {\em Journal of Systems and Software}, 46(2):113{\textendash}122,
+  1999.
+
+\bibitem{duggan_comparison_2006}
+J.~Duggan.
+\newblock A comparison of petri net and system dynamics approaches for
+  modelling dynamic feedback systems.
+\newblock In {\em International Conference of the System Dynamics Society},
+  volume~24, page 23{\textendash}27, 2006.
+
+\bibitem{epstein_generative_2011}
+J.~M. Epstein.
+\newblock {\em Generative social science: Studies in agent-based computational
+  modeling}.
+\newblock Princeton University Press, 2011.
+
+\bibitem{epstein_growing_1996}
+J.~M. Epstein and R.~L. Axtell.
+\newblock {\em Growing artificial societies: social science from the bottom
+  up}.
+\newblock {MIT} press, Nov. 1996.
+
+\bibitem{erdogmus_effectiveness_2005}
+H.~Erdogmus, M.~Morisio, and M.~Torchiano.
+\newblock On the effectiveness of the test-first approach to programming.
+\newblock {\em {IEEE} Transactions on Software Engineering}, 31(3):226--237,
+  Mar. 2005.
+
+\bibitem{fagan_design_1976}
+M.~Fagan.
+\newblock Design and code inspections to reduce errors in program development.
+\newblock {\em IBM Systems Journal}, 15(3):182--211, 1976.
+
+\bibitem{garcia_uses_2005}
+R.~Garcia.
+\newblock Uses of agent-based modeling in {Innovation/New} product development
+  research*.
+\newblock {\em Journal of Product Innovation Management},
+  22(5):380{\textendash}398, 2005.
+
+\bibitem{gorman_types_2002}
+M.~Gorman.
+\newblock Types of knowledge and their roles in technology transfer.
+\newblock {\em The Journal of Technology Transfer}, 27(3):219--231, 2002.
+
+\bibitem{huff_plan-based_1988}
+K.~E. Huff and V.~R. Lesser.
+\newblock A plan-based intelligent assistant that supports the software
+  development process.
+\newblock In {\em Proceedings of the {ACM} {SIGSOFT/SIGPLAN} Software
+  Engineering Symposium on Practical Software Development Environments}, page
+  97{\textendash}106, 1988.
+
+\bibitem{humphrey_managing_1989}
+W.~Humphrey.
+\newblock {\em Managing the software process}.
+\newblock Addison-Wesley, Reading, {MA}, 1989.
+
+\bibitem{jennings_agent-based_2000}
+N.~Jennings.
+\newblock On agent-based software engineering.
+\newblock {\em Artificial intelligence}, 117(2):277{\textendash}296, 2000.
+
+\bibitem{jin_virtual_1996}
+Y.~Jin and R.~Levitt.
+\newblock The virtual design team: A computational model of project
+  organizations.
+\newblock {\em Computational \& Mathematical Organization Theory},
+  2(3):171--195, Sept. 1996.
+
+\bibitem{kalus_criteria_2013}
+G.~Kalus and M.~Kuhrmann.
+\newblock Criteria for software process tailoring: a systematic review.
+\newblock In {\em Proceedings of the 2013 {International} {Conference} on
+  {Software} and {System} {Process}}, pages 171--180. ACM, 2013.
+\newblock 00003.
+
+\bibitem{kan_metrics_2003}
+S.~Kan.
+\newblock {\em Metrics and {Models} in {Software} {Quality} {Engineering}}.
+\newblock Addison-Wesley, Toronto, 2 edition, 2003.
+
+\bibitem{kelly_can_2008}
+T.~Kelly.
+\newblock Can {Process}-{Based} and {Product}-{Based} {Approaches} to
+  {Software} {Safety} {Certification} be {Reconciled}?
+\newblock {\em Improvements in System Safety}, pages 3--12, 2008.
+
+\bibitem{knoernschild_software_2008}
+K.~Knoernschild.
+\newblock Software {Process} - {Maturity}, {Formality}, {Ceremony}.
+\newblock
+  \url{http://apsblog.burtongroup.com/2008/11/software-process---maturity-formality-ceremony.html},
+  Nov. 2008.
+
+\bibitem{larson_project_2010}
+E.~Larson and C.~Gray.
+\newblock {\em Project Management: The Managerial Process}.
+\newblock {McGraw} Hill, New York, 5 edition edition, Mar. 2010.
+
+\bibitem{lehman_simulation_2005}
+M.~Lehman, G.~Kahen, and J.~Ramil.
+\newblock Simulation process modelling for managing software evolution.
+\newblock In S.~Acu{\~n}a and N.~Juristo, editors, {\em Software Process
+  Modeling}, number~10 in International Series in Software Engineering, pages
+  87--109. Springer {US}, Jan. 2005.
+
+\bibitem{levitt_virtual_2012}
+R.~Levitt.
+\newblock The {Virtual} {Design} {Team}: {Designing} {Project} {Organizations}
+  as {Engineers} {Design} {Bridges}.
+\newblock {\em Journal of Organization Design}, 1(2):14, Aug. 2012.
+
+\bibitem{madachy_system_1996}
+R.~Madachy.
+\newblock System dynamics modeling of an inspection-based process.
+\newblock In {\em , Proceedings of the 18th International Conference on
+  Software Engineering, 1996}, pages 376--386, Mar. 1996.
+
+\bibitem{martin_model_2000}
+R.~Martin and D.~Raffo.
+\newblock A model of the software development process using both continuous and
+  discrete models.
+\newblock {\em Software Process: Improvement and Practice},
+  5(2-3):147{\textendash}157, 2000.
+
+\bibitem{martin_application_2001}
+R.~Martin and D.~Raffo.
+\newblock Application of a hybrid process simulation model to a software
+  development project.
+\newblock {\em Journal of Systems and Software}, 59(3):237{\textendash}246,
+  2001.
+
+\bibitem{martinez-miranda_teaks:_2006}
+J.~Mart{\'i}nez-Miranda, A.~Aldea, R.~Ba{\~n}ares-Alc{\'a}ntara, and
+  M.~Alvarado.
+\newblock {TEAKS}: simulation of human performance at work to support team
+  configuration.
+\newblock In {\em Proceedings of the 5th international joint conference on
+  {Autonomous} agents and multiagent systems}, {AAMAS} '06, pages 114--116, New
+  York, NY, USA, 2006. ACM.
+
+\bibitem{martinez-miranda_modelling_2009}
+J.~Mart{\'i}nez-Miranda and J.~Pav{\'o}n.
+\newblock Modelling {Trust} into an {Agent}-{Based} {Simulation} {Tool} to
+  {Support} the {Formation} and {Configuration} of {Work} {Teams}.
+\newblock In Y.~Demazeau, J.~Pav{\'o}n, J.~M. Corchado, and J.~Bajo, editors,
+  {\em 7th {International} {Conference} on {Practical} {Applications} of
+  {Agents} and {Multi}-{Agent} {Systems}}, number~55 in Advances in
+  {Intelligent} and {Soft} {Computing}, pages 80--89. Springer Berlin
+  Heidelberg, 2009.
+
+\bibitem{mccarthy_philosophical_1987}
+J.~{McCarthy} and P.~Hayes.
+\newblock Some philosophical problems from the standpoint of artificial
+  intelligence.
+\newblock In {\em Readings in Nonmonotonic Reasoning}, pages 26--45. Morgan
+  Kaufmann Publishers, Inc, San Francisco, 1987.
+
+\bibitem{mcconnell_right-sizing_2008}
+S.~{McConnell}.
+\newblock Right-sizing agile development.
+\newblock \url{http://www.computer.org/portal/web/newwebinars/mcconnell}, Oct.
+  2008.
+
+\bibitem{mcdermind_software_2001}
+J.~McDermind.
+\newblock Software safety: {Where}'s the {Evidence}.
+\newblock In {\em {Proceedings} of the 6th {Australian} workshop on {Safety}
+  critical systems and software}, volume~3 of {\em SCS '01}. ACM, 2001.
+
+\bibitem{mi_knowledge-based_1990}
+P.~Mi and W.~Scacchi.
+\newblock A knowledge-based environment for modeling and simulating software
+  engineering processes.
+\newblock {\em {IEEE} Transactions on Knowledge and Data Engineering}, 2(3):283
+  --289, Sept. 1990.
+
+\bibitem{muller_simulation_2008}
+M.~M{\"u}ller and D.~Pfahl.
+\newblock Simulation methods.
+\newblock In F.~Shull, J.~Singer, and D.~I.~K. Sj{\o}berg, editors, {\em Guide
+  to Advanced Empirical Software Engineering}, pages 117--152. Springer London,
+  2008.
+
+\bibitem{munch_software_2012}
+J.~M{\"u}nch, O.~Armbrust, M.~Kowalczyk, M.~Soto, J.~M{\"u}nch, O.~Armbrust,
+  M.~Kowalczyk, and M.~Soto.
+\newblock Software {Process} {Simulation}.
+\newblock In D.~Rombach and P.~Liggesmeyer, editors, {\em Software {Process}
+  {Definition} and {Management}}, The {Fraunhofer} {IESE} {Series} on
+  {Software} and {Systems} {Engineering}, pages 187--210. Springer Berlin
+  Heidelberg, 2012.
+
+\bibitem{neil_predicting_1996}
+M.~Neil and N.~Fenton.
+\newblock Predicting software quality using {Bayesian} belief networks.
+\newblock In {\em Proceedings of the 21st {Annual} {Software} {Engineering}
+  {Workshop}}, pages 217--230. NASA Goddard Space Flight Centre, 1996.
+
+\bibitem{nosek_case_1998}
+J.~T. Nosek.
+\newblock The case for collaborative programming.
+\newblock {\em Communications of the {ACM}}, 41(3):105--108, Mar. 1998.
+
+\bibitem{oconnor_exploring_2015}
+R.~V. O'Connor and M.~Lepmets.
+\newblock Exploring the {Use} of the {Cynefin} {Framework} to {Inform}
+  {Software} {Development} {Approach} {Decisions}.
+\newblock In {\em Proceedings of the 2015 {International} {Conference} on
+  {Software} and {System} {Process}}, {ICSSP} 2015, pages 97--101, New York,
+  NY, USA, 2015. ACM.
+
+\bibitem{pastre_automated_1993}
+D.~Pastre.
+\newblock Automated theorem proving in mathematics.
+\newblock {\em Annals of Mathematics and Artificial Intelligence},
+  8(3-4):425--447, Sept. 1993.
+
+\bibitem{pokahr_bdi_2005}
+A.~Pokahr, L.~Braubach, and W.~Lamersdorf.
+\newblock A {BDI} {Architecture} for {Goal} {Deliberation}.
+\newblock In {\em Proceedings of the fourth international joint conference on
+  {Autonomous} agents and multiagent systems}, pages 1295--1296. ACM, 2005.
+
+\bibitem{putnam_five_2003}
+L.~Putnam and W.~Myers.
+\newblock {\em Five core metrics}.
+\newblock Dorset House Publishing New York, 2003.
+
+\bibitem{raffo_empirical_1999}
+D.~Raffo, T.~Kaltio, D.~Partridge, K.~Phalp, and J.~F. Ramil.
+\newblock Empirical studies applied to software process models.
+\newblock {\em Empirical Software Engineering}, 4(4):353--369, 1999.
+
+\bibitem{rao_modeling_1991}
+A.~S. Rao and M.~P. Georgeff.
+\newblock Modeling rational agents within a {BDI}-architecture.
+\newblock In R.~Fikes and E.~Sandewall, editors, {\em Proceedings of
+  {Knowledge} {Representation} and {Reasoning}}, volume~91, pages 473--484.
+  Morgan Kaufman, 1991.
+
+\bibitem{raunak_simulating_2009}
+M.~Raunak, L.~Osterweil, A.~Wise, L.~Clarke, and P.~Henneman.
+\newblock Simulating patient flow through an emergency department using
+  process-driven discrete event simulation.
+\newblock In {\em {ICSE} Workshop on Software Engineering in Health Care, 2009.
+  {SEHC} '09}, pages 73 --83, May 2009.
+
+\bibitem{robillard_role_1999}
+P.~Robillard.
+\newblock The {Role} of {Knowledge} in {Software} {Development}.
+\newblock {\em Communications of the {ACM}}, 42(1):87--92, Jan. 1999.
+
+\bibitem{rubin_essential_2012}
+K.~Rubin.
+\newblock {\em Essential {Scrum}: {A} practical guide to the most popular
+  {Agile} process}.
+\newblock Addison-Wesley, 2012.
+
+\bibitem{russell_artificial_2010}
+S.~Russell and P.~Norvig.
+\newblock {\em Artificial Intelligence: A Modern Approach}.
+\newblock Prentice Hall, Upper Saddle River, {NJ}, 3 edition, 2010.
+
+\bibitem{scacchi_experience_1999}
+W.~Scacchi.
+\newblock Experience with software process simulation and modeling.
+\newblock {\em Journal of Systems and Software}, 46(2{\textendash}3):183--192,
+  Apr. 1999.
+
+\bibitem{schwaber_scrum_2014}
+K.~Schwaber and J.~Sutherland.
+\newblock The {Scrum} {Guide}: {The} {Definitive} {Guide} to {Scrum}.
+\newblock
+  \url{http://www.scrumguides.org/docs/scrumguide/v1/Scrum-Guide-US.pdf}, 2014.
+
+\bibitem{shenhar_diamond_2007}
+A.~Shenhar and D.~Dvir.
+\newblock Diamond {Framework}: {A} {New} {Model} for {Project} {Management}.
+\newblock In {\em Reinventing {Project} {Management}: {The} {Diamond}
+  {Approach} to {Successful} {Growth} and {Innovation}}, page 288. Harvard
+  Business Review Press, 1 edition, Aug. 2007.
+
+\bibitem{shoham_social_1995}
+Y.~Shoham and M.~Tennenholtz.
+\newblock On social laws for artificial agent societies: off-line design.
+\newblock {\em Artificial intelligence}, 73(1):231--252, 1995.
+
+\bibitem{shore_art_2010}
+J.~Shore.
+\newblock The {Art} of {Agile} {Development}: {Test}-{Driven} {Development},
+  Mar. 2010.
+
+\bibitem{sim_agent-based_2009}
+Y.-W. Sim, R.~Crowder, M.~Robinson, and H.~Hughes.
+\newblock An agent-based approach to modelling integrated product teams
+  undertaking a design activity.
+\newblock In {\em Proceedings of the ASME International Design Engineering
+  Technical Conferences and Computers and Information in Engineering
+  Conference, 2009}, volume~2, pages 227--236, San Diego, {CA}, Sept. 2009.
+  {ASME}.
+
+\bibitem{stecklein_error_2004}
+J.~M. Stecklein, J.~Dabney, B.~Dick, B.~Haskins, R.~Lovell, and G.~Moroney.
+\newblock Error {Cost} {Escalation} through the {Project} {Life} {Cycle}.
+\newblock Conference {Paper} JSC-CN-8435, NASA, Houston, TX, June 2004.
+
+\bibitem{tvedt_evaluating_1995}
+J.~D. Tvedt and J.~S. Collofello.
+\newblock Evaluating the effectiveness of process improvements on software
+  development cycle time via system dynamics modeling.
+\newblock {\em Proceedings of the International Computer Software and
+  Applications Conference (COMPSAC) 19}, pages 318---325, 1995.
+
+\bibitem{weaver_pragmatic_2003}
+R.~Weaver, J.~Fenn, and T.~Kelly.
+\newblock A pragmatic approach to reasoning about the assurance of safety
+  arguments.
+\newblock In {\em {SCS} '03 {Proceedings} of the 8th {Australian} workshop on
+  {Safety} critical systems and software}, volume~33. ACM, 2003.
+
+\bibitem{wernick_software_1999}
+P.~Wernick and M.~Lehman.
+\newblock Software process white box modelling for {FEAST/1}.
+\newblock {\em Journal of Systems and Software}, 46(2-3):193--201, 1999.
+
+\bibitem{williams_strengthening_2000}
+L.~Williams, R.~Kessler, W.~Cunningham, and R.~Jeffries.
+\newblock Strengthening the case for pair programming.
+\newblock {\em {IEEE} Software}, 17(4):19--25, July 2000.
+
+\bibitem{xu_using_2008}
+P.~Xu and B.~Ramesh.
+\newblock Using process tailoring to manage software development challenges.
+\newblock {\em {IT} Professional}, 10(4):39{\textendash}45, 2008.
+\newblock 00026.
+
+\end{thebibliography}

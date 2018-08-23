@@ -1,8 +1,0 @@
-\section{Future Work}
-\label{sec:future_work}
-As mentioned in Section~\ref{subsec:qrfc_case_study}, the Byzantine fault analysis is currently manually performed. Part of the future work entails automating this process in order to have easy injection of Byzantine faults in a system model. 
-
-Considering that fault trees are commonly used in all major fields of safety engineering, and due to the importance of MCSs in safety engineering, it is important for the Safety Annex to automatically provide such artifacts. A difficulty in automatically generating such artifacts is finding the MCSs in large models~\cite{CAV2015:BoCiGrMa, 10.1007/978-3-540-75596-8-13,0f356f05e72f43018211b36f97c8854a}. At this time, the monolithic method of analysis that is used in order to generate MCSs tends to generate fault trees that are quite shallow but very wide. When the model is large enough, it becomes very difficult to generate all MCSs~\cite{mattarei}. Compositional probabilistic analysis is a topic that needs further exploration in this research before fault trees can be generated from compositional safety analysis approaches. 
-
-When MCSs are generated in an efficient way, safety analysis artifacts such as FTs and FMEA tables can also be generated. Throughout this process, it is important to find out what is the desired structure of fault trees from the perspective of safety engineers for certification purposes. The goal is to make this tool usable for safety analysts and pertinant to the safety assessment process.
-

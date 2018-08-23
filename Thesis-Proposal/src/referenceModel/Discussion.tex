@@ -1,0 +1,75 @@
+\subsection{Requirements Satisfaction}\label{sec:discussion}
+
+In this section we set out to construct our initial agent-based reference model
+suitable for describing process simulation models.  At the outset we described
+some requirements for the reference model; that the model must support modeling
+agility and provide process-product independence.  In this section we discuss
+how our model satisfies those requirements.
+
+\subsubsection{Modeling Agility}
+While our reference model was built around a specific scenario that we wish to
+model, we believe the constructs and relationships that comprise the reference
+model are suitable for modeling an arbitrary agile process as the reference
+model has a means for capturing
+\begin{inparaenum}[(1)]
+    \item individuals and their interactions,
+    \item processes with low process prescription, and
+    \item in-process requirements changes.
+\end{inparaenum}  We discuss our plans to validate this belief in later
+sections.
+
+Our reference model allows implementing models to represent individual behavior
+using agents as abstractions of people.  While our reference model does not
+prescribe the agent's behavior, it does capture the agent's relationships to
+other model constructs.  The specific agent representation will dictate the
+behaviors the agent may or may not express; however the established
+relationships constrain the otherwise unbounded behavior of the agent.  We also
+provide a means for agents to communicate or otherwise acquire knowledge when
+its own knowledge is insufficient to complete an activity for a work package.
+
+In our discussion about applying the reference model to our motivational
+scenario, we described how an agent can perform work within a process with low
+process prescription by empowering the agent to perform activities in whichever
+order it chooses.  
+
+Further, we described how we could model in-process requirements change through
+a generator agent.  Because artifacts are composed of functions in our
+reference model, we have the means to model incremental product development and 
+function removal.
+
+
+\subsubsection{Process Specification Independence}
+Driven by our desire to provide a means for process experimentation, we set
+out to decouple the process from the product within the simulation
+model.  With our reference model, we achieve this by breaking direct
+dependencies among activities and work packages.  The work package's artifact set and the
+activity's artifact type properties together provide a means to look up the
+target artifact of the activity.  If the specified artifact exists, it will
+receive the function once produced; if it doesn't exist, the activity will be
+skipped.  In this way, we separate the base product and process constructs.
+
+Greater care is required to break coupling caused by knowledge requirements. 
+Earlier, we proposed a division of knowledge requirements that we believe will
+break the knowledge coupling by associating knowledge with the constructs that
+need it the most.  In our reference model, we propose associating
+\begin{inparaenum}[(1)]
+    \item domain and application knowledge requirements with work
+        packages,
+    \item foundational skills (e.g. testing ability) with
+        activities, and
+    \item specific technology skills (e.g. languages or libraries) with
+        artifacts.
+\end{inparaenum}
+Artifacts, representing the project deliverables, are encoded using specific
+technologies.  In contrast, activities may be used by multiple processes and
+work packages by multiple activities making both constructs poor candidates for
+specifying specific technology knowledge requirements.  Work packages,
+describing the properties of the work to be performed, require domain and
+application knowledge to understand them.  Activities, describing how to
+complete a task in a technology independent way, require generalized knowledge
+to complete the specified steps.  Thus, we have a partitioning of the knowledge 
+in our model that supports process-product independence.
+
+We believe these constructs and relationships sufficiently break the direct
+dependencies between the specific process and product concerns allowing a
+modeler to change the details of one without altering the other.
