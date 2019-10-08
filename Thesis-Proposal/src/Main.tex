@@ -9,35 +9,71 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{epic,eepic,units}
 \usepackage{hyperref}
-\usepackage{url}
-
-% From:
-% http://tex.stackexchange.com/questions/12703/how-to-create-fixed-width-table-columns-with-text-raggedright-centered-raggedlef
 \usepackage{array}
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
-\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
-
 \usepackage{longtable}
 \usepackage{mathrsfs}
 \usepackage{multirow}
 \usepackage{bigstrut}
-\usepackage{amssymb}
-\usepackage{graphicx}
 \usepackage{cite}
 \usepackage{paralist}
 \usepackage[stable]{footmisc}   %Lets us use footnotes in section headers.
 % \usepackage[style={square, numbers}]{natbib}
-% \usepackage{amsmath}
-% \usepackage{amssymb}
-% \usepackage{amsthm}
-% \usepackage{caption}
-% \usepackage[vertfit]{breakurl}
 \usepackage{listings, multicol}
-\usepackage{enumitem}
 \usepackage{subcaption}  % subfigures
 \usepackage{bibentry}
-% \usepackage[section, numberedsection=autolabel, nonumberlist]{glossaries}
+\usepackage{makeidx}
+\usepackage{tabularx,colortbl}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{flushend}
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{stmaryrd}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{latexsym}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{comment}
+\usepackage{longtable}
+\usepackage{supertabular}
+\usepackage{times}
+\usepackage{listings}
+%\usepackage{subfigure}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage{balance}
+\usepackage{xspace}
+\usepackage[ruled, vlined, linesnumbered]{algorithm2e}
+\usepackage[autostyle]{csquotes}
+\usepackage[]{algorithm2e}
+\usepackage{authblk}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newcommand{\mkeyword}[1]{\mbox{\texttt{#1}}}
+\DeclareMathOperator{\kuop}{uop}
+\DeclareMathOperator{\kbop}{bop}
+\DeclareMathOperator{\kite}{ite}
+\DeclareMathOperator{\kpre}{pre}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ktrue}{true}
+\DeclareMathOperator{\kfalse}{false}
+\DeclareMathOperator{\kselect}{select}
+\DeclareMathOperator{\ran}{range}
+\newcommand{\lbb}{[\![}
+\newcommand{\rbb}{]\!]}
+\newcommand{\expr}{\phi}
+\newcommand{\exprS}{\Phi}
+\newcommand{\danielle}[1]{\textcolor{blue}{#1}}
 
 %Dealing with dutch names:
 % http://tex.stackexchange.com/questions/40747/bibtex-handling-of-the-dutch-van-name-prefix-with-natbib
@@ -120,7 +156,7 @@
 		% Model Checking
 		% Compositional Verification
 		% IVCs
-\input{StateOfThePractice}
+\input{RelatedWork}
 \input{CompositionalSafetyAnalysis}
 \input{Conclusion}
 
@@ -134,7 +170,7 @@
 %%%
     \bibliographystyle{abbrv}
 %     \bibliographystyle{abbrvnat}
-\bibliography{noAbbreviations,citations}
+\bibliography{noAbbreviations,biblio}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
