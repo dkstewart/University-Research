@@ -1,0 +1,46 @@
+\begin{thebibliography}{1}
+
+\bibitem{ERTS2020}
+Danielle Stewart, Jing Liu, Michael Whalen, Darren Cofer, and Michael Peterson.
+\newblock {The Safety Annex for Architecture Analysis Design and Analysis
+  Language}.
+\newblock In {\em ERTS 2020: 10th European Conference Embedded Real Time
+  Systems}, To appear.
+
+\bibitem{AMASEFinalReport}
+Danielle Stewart, Jing Liu, Michael Whalen, Darren Cofer, and Michael Peterson.
+\newblock {Architectural Modeling and Analysis for Safety Engineering (AMASE)
+  Final Report}.
+\newblock https://github.com/loonwerks/AMASE/tree/master/doc, September 2019.
+
+\bibitem{SATechReport}
+Danielle Stewart, Jing Liu, Michael Whalen, Darren Cofer, and Michael Peterson.
+\newblock {The Safety Annex for Architecture Analysis Design and Analysis
+  Language}.
+\newblock Technical Report 18-007, University of Minnesota, March 2018.
+
+\bibitem{imbsa2017}
+Danielle Stewart, Michael~W Whalen, Darren Cofer, and Mats Heimdahl.
+\newblock Architecture modeling and analysis for safety engineering.
+\newblock In {\em IMBSA2017: 5th International Symposium on Model-Based Safety
+  and Assessment}, 2017.
+
+\bibitem{GALLIAN2015204}
+Joseph~A. Gallian and Danielle Stewart.
+\newblock Even harmonious labelings of disjoint graphs with a small component.
+\newblock {\em AKCE International Journal of Graphs and Combinatorics},
+  12(2):204 -- 215, 2015.
+
+\bibitem{GALLIAN2015193}
+Joseph~A. Gallian and Danielle Stewart.
+\newblock Properly even harmonious labelings of disconnected graphs.
+\newblock {\em AKCE International Journal of Graphs and Combinatorics},
+  12(2):193 -- 203, 2015.
+
+\bibitem{GALLIAN20151}
+Joseph Gallian and Danielle Stewart.
+\newblock Properly even harmonious labelings of disjoint unions with even
+  sequential graphs.
+\newblock {\em Journal of Graph Labelings}, 1(1), 2015.
+
+\end{thebibliography}
