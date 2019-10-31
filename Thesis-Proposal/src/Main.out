@@ -10,11 +10,18 @@
 \BOOKMARK [1][-]{section.1.4}{Evaluation}{chapter.1}% 10
 \BOOKMARK [1][-]{section.1.5}{Chapters and Organization of the Proposal}{chapter.1}% 11
 \BOOKMARK [0][-]{chapter.2}{Background}{}% 12
-\BOOKMARK [0][-]{chapter.3}{Proposed Approach}{}% 13
-\BOOKMARK [1][-]{section.3.1}{Fault Tree Analysis}{chapter.3}% 14
-\BOOKMARK [1][-]{section.3.2}{Inductive Validity Cores}{chapter.3}% 15
-\BOOKMARK [1][-]{section.3.3}{Architecture Analysis and Design Language}{chapter.3}% 16
-\BOOKMARK [1][-]{section.3.4}{Compositional Analysis}{chapter.3}% 17
-\BOOKMARK [2][-]{subsection.3.4.1}{Assume Guarantee Reasoning Environment}{section.3.4}% 18
-\BOOKMARK [1][-]{section.3.5}{Safety Annex for AADL}{chapter.3}% 19
-\BOOKMARK [1][-]{section.3.6}{Definitions}{chapter.3}% 20
+\BOOKMARK [1][-]{section.2.1}{Related Work}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.2}{Tools and Modeling Language}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.2.1}{Architecture Analysis and Design Language}{section.2.2}% 15
+\BOOKMARK [2][-]{subsection.2.2.2}{Assume Guarantee Reasoning Environment}{section.2.2}% 16
+\BOOKMARK [2][-]{subsection.2.2.3}{Safety Annex for AADL}{section.2.2}% 17
+\BOOKMARK [1][-]{section.2.3}{Inductive Validity Cores and Formal Definitions}{chapter.2}% 18
+\BOOKMARK [2][-]{subsection.2.3.1}{Inductive Validity Cores}{section.2.3}% 19
+\BOOKMARK [2][-]{subsection.2.3.2}{Related Definitions}{section.2.3}% 20
+\BOOKMARK [0][-]{chapter.3}{Proposed Approach}{}% 21
+\BOOKMARK [1][-]{section.3.1}{Behavioral and Explicit Error Propagation}{chapter.3}% 22
+\BOOKMARK [2][-]{subsection.3.1.1}{Implementation}{section.3.1}% 23
+\BOOKMARK [1][-]{section.3.2}{Generation of Minimal Cut Sets from MIVCs}{chapter.3}% 24
+\BOOKMARK [1][-]{section.3.3}{Probabilistic Computations over the Fault Tree}{chapter.3}% 25
+\BOOKMARK [0][-]{chapter.4}{Conclusion}{}% 26
+\BOOKMARK [0][-]{chapter*.8}{References}{}% 27
