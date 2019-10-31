@@ -11,4 +11,10 @@
 \BOOKMARK [1][-]{section.1.5}{Chapters and Organization of the Proposal}{chapter.1}% 11
 \BOOKMARK [0][-]{chapter.2}{Background}{}% 12
 \BOOKMARK [0][-]{chapter.3}{Proposed Approach}{}% 13
-\BOOKMARK [0][-]{chapter*.6}{References}{}% 14
+\BOOKMARK [1][-]{section.3.1}{Fault Tree Analysis}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.2}{Inductive Validity Cores}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.3}{Architecture Analysis and Design Language}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.4}{Compositional Analysis}{chapter.3}% 17
+\BOOKMARK [2][-]{subsection.3.4.1}{Assume Guarantee Reasoning Environment}{section.3.4}% 18
+\BOOKMARK [1][-]{section.3.5}{Safety Annex for AADL}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.6}{Definitions}{chapter.3}% 20
