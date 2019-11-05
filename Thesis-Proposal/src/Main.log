@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2018.8.13)  31 OCT 2019 13:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2018.8.13)  5 NOV 2019 11:24
 entering extended mode
 **./Main.tex
 (Main.tex
@@ -815,64 +815,35 @@ Acknowledgements
 ] (Abstract.tex)
 Abstract
 [2] (Main.toc
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 7.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 4.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 7.
+LaTeX Font Info:    Try loading font information for U+msa on input line 4.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 7.
+LaTeX Font Info:    Try loading font information for U+msb on input line 4.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+stmry on input line 7.
+LaTeX Font Info:    Try loading font information for U+stmry on input line 4.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\stmaryrd\ustmry.fd")
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 7.
+(Font)              using `U/stmry/m/n' instead on input line 4.
 
-LaTeX Font Info:    Try loading font information for U+lasy on input line 7.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 4.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
-) [3
-
-])
+))
 \tf@toc=\write5
 \openout5 = `Main.toc'.
 
- [4] (Main.lot)
-\tf@lot=\write6
-\openout6 = `Main.lot'.
-
-
-[5
-
-] (Main.lof)
-\tf@lof=\write7
-\openout7 = `Main.lof'.
-
-
-extra
-[6
-
-] (Declarations.tex
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 7.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 8.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-Overfull \hbox (19.16208pt too wide) in paragraph at lines 8--9
-\OT1/pcr/m/n/10.95 github . com / loonwerks / AMASE / tree / master / doc / AMA
-SE _ Final _ Report _
- []
-
-) [7
+ [3
 
 ]) (Introduction.tex
 Chapter 1.
@@ -882,96 +853,78 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.13 
+l.15 
       [1
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.24 
-      [2] [3] [4] [5]) (Background.tex [6]
+l.24 \end{enumerate}
+                     [2]) (Background.tex [3]
 Chapter 2.
-[7
+[4
 
-]) (ToolsAndLanguage.tex [8] [9]) (IVC.tex [10] Excluding 'comment' comment.
-[11]) (Proposal.tex [12]
+]) (ToolsAndLanguage.tex [5] [6]) (IVC.tex [7] Excluding 'comment' comment.
+[8]) (Proposal.tex [9]
 Chapter 3.
-[13
+[10
 
 ]
-<images/arch.png, id=373, 462.0462pt x 108.405pt>
+<images/arch.png, id=295, 462.0462pt x 108.405pt>
 File: images/arch.png Graphic file (type png)
 <use images/arch.png>
 Package pdftex.def Info: images/arch.png  used on input line 25.
 (pdftex.def)             Requested size: 415.55249pt x 97.49907pt.
- [14 <./images/arch.png>]
-<images/lustre.jpg, id=384, 1132.23pt x 559.33969pt>
+ [11 <./images/arch.png>]
+<images/lustre.jpg, id=308, 1132.23pt x 559.33969pt>
 File: images/lustre.jpg Graphic file (type jpg)
 <use images/lustre.jpg>
 Package pdftex.def Info: images/lustre.jpg  used on input line 42.
 (pdftex.def)             Requested size: 339.67162pt x 167.80319pt.
- [15 <./images/lustre.jpg>]
-Excluding 'comment' comment.) (Conclusion.tex [16]
+ [12 <./images/lustre.jpg>]
+Excluding 'comment' comment.) (Conclusion.tex [13]
 Chapter 4.
-) (Main.bbl [17
+) (Main.bbl [14
 
-] [18
+] [15
 
-] [19] [20]pdfTeX warning (ext4): destination with the same identifier (name{ci
-te.nasaFinalReport}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.268 \bibitem{nasaFinalReport}
-                               
+] [16] [17]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 273.
+
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
 Underfull \hbox (badness 3954) in paragraph at lines 269--275
 \OT1/ptm/m/n/10.95 chi-tec-tural mod-el-ing and anal-y-sis for safety en-gi-nee
 r-ing (AMASE), NASA fi-
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{cite.stewart2
-020safety}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.276 \bibitem{stewart2020safety}
-                                 pdfTeX warning (ext4): destination with the sa
-me identifier (name{cite.SATechReport}) has been already used, duplicate ignore
-d
-<to be read again> 
-                   \relax 
-l.282 \bibitem{SATechReport}
-                            pdfTeX warning (ext4): destination with the same id
-entifier (name{cite.Stewart17:IMBSA}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.288 \bibitem{Stewart17:IMBSA}
-                               )
+)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 178.
- [21]
+ [18]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 178.
  (Main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 178.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 178.
 Package rerunfilecheck Info: File `Main.out' has not changed.
-(rerunfilecheck)             Checksum: AF865BCB440EAAD456A1DFF5312834B8;1864.
+(rerunfilecheck)             Checksum: 8A167D944F6980AD00C55233B5A9420A;1414.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 178.
  )
 (\end occurred when \iftrue on line 35 was incomplete) 
 Here is how much of TeX's memory you used:
- 13227 strings out of 492973
- 196356 string characters out of 3135897
- 328233 words of memory out of 3000000
- 16669 multiletter control sequences out of 15000+200000
+ 13191 strings out of 492973
+ 195728 string characters out of 3135897
+ 328230 words of memory out of 3000000
+ 16656 multiletter control sequences out of 15000+200000
  27759 words of font info for 72 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,8n,40p,1724b,477s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,8n,40p,1724b,498s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 
 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public
 /amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
@@ -983,9 +936,9 @@ KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw
 /times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb
 ><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Main.pdf (30 pages, 391259 bytes).
+Output written on Main.pdf (23 pages, 373031 bytes).
 PDF statistics:
- 484 PDF objects out of 1000 (max. 8388607)
- 118 named destinations out of 1000 (max. 500000)
- 227 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 409 PDF objects out of 1000 (max. 8388607)
+ 104 named destinations out of 1000 (max. 500000)
+ 171 words of extra memory for PDF output out of 10000 (max. 10000000)
 
