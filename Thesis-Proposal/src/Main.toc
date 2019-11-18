@@ -8,13 +8,20 @@
 \contentsline {subsection}{\numberline {2.2.1}Architecture Analysis and Design Language}{5}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Assume Guarantee Reasoning Environment}{5}{subsection.2.2.2}
 \contentsline {subsection}{\numberline {2.2.3}Safety Annex for AADL}{6}{subsection.2.2.3}
-\contentsline {section}{\numberline {2.3}Inductive Validity Cores and Formal Definitions}{6}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Inductive Validity Cores}{6}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Related Definitions}{7}{subsection.2.3.2}
-\contentsline {chapter}{\numberline {3}Proposed Approach}{9}{chapter.3}
-\contentsline {section}{\numberline {3.1}Behavioral and Explicit Error Propagation}{9}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Implementation}{10}{subsection.3.1.1}
-\contentsline {section}{\numberline {3.2}Generation of Minimal Cut Sets from MIVCs}{11}{section.3.2}
-\contentsline {section}{\numberline {3.3}Probabilistic Computations over the Fault Tree}{12}{section.3.3}
-\contentsline {chapter}{\numberline {4}Conclusion}{13}{chapter.4}
-\contentsline {chapter}{References}{14}{chapter*.5}
+\contentsline {section}{\numberline {2.3}Definitions}{6}{section.2.3}
+\contentsline {chapter}{\numberline {3}Proposed Approach}{8}{chapter.3}
+\contentsline {section}{\numberline {3.1}The Safety Annex and Fault Modeling}{8}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Implementation}{8}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}The Sensor System}{9}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}The Safety Annex for the Sensor System}{10}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}Fault Modeling}{12}{section.3.2}
+\contentsline {section}{\numberline {3.3}Verification Capabilities in the Face of Component Failures}{12}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Maximum Fault Analysis}{13}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Probabilistic Threshold Analysis}{14}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.4}Generation of Minimal Cut Sets from MIVCs}{15}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}The General Idea}{15}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Illustrative Example}{16}{subsection.3.4.2}
+\contentsline {section}{\numberline {3.5}Compositional Probabilistic Computations}{17}{section.3.5}
+\contentsline {section}{\numberline {3.6}Evaluation of Results}{18}{section.3.6}
+\contentsline {chapter}{\numberline {4}Conclusion}{19}{chapter.4}
+\contentsline {chapter}{References}{20}{chapter*.11}
