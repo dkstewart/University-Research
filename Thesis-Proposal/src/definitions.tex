@@ -1,54 +1,27 @@
-\subsection{Definitions}
+\section{Definitions}
 \label{sec:definitions}
-Intuitively a constraint system contains the contracts that constrain component behavior and faults that are defined over these components. In the case of a nominal model augmented with faults, a constraint system is defined as follows. Let $F$ be the set of all fault activation literals defined in the model and $G$ be the set of all component contracts (guarantees). 
+A constraint system $C$ is an ordered set of $n$ abstract constraints $\{C_1, C_2, ..., C_n\}$ over a set of variables. The constraint $C_i$ restricts the allowed assignments of these variables in some way~\cite{liffiton2016fast}. Given a constraint system, we require some method of determining, for any subset $S \subseteq C$, whether $S$ is \textit{satisfiable} (SAT) or \textit{unsatisfiable} (UNSAT). When a subset $S$ is SAT, this means that there exists an assignment allowed by all $C_i \in S$; when no such assignment exists, $S$ is considered UNSAT. Given a constraint system $C$, there are certain subsets of $C$ that are of interest in terms of satisfiability. Definitions 2-4 are taken from research by Liffiton et. al.~\cite{liffiton2016fast}. 
 
-\begin{definition}A constraint system $C = \{C_1,C_2,...,C_n\}$ where for $i \in \{1,...,n\}$, $C_i$ has the following constraints for any $f_j \in F$ and $g_k \in G$ with regard to the top level property $P$: 
-\begin{center}
-$C_i \in \left\{ \begin{array}{ll}
-	f_j :&  inactive\\
-	g_k :& true\\
-	P :& false\\
-\end{array}\right.$	
-\end{center}
-\label{def:constraintsystem}
+\begin{definition} : A Minimal Unsatisfiable Subset (MUS) $M$ of a constraint system $C$ is a subset $M \subseteq C$ such that $M$ is unsatisfiable and $\forall c \in M$ : $M \setminus \{c\}$ is satisfiable. 
 \end{definition}
-
-Given a state space $S$, a transition system $(I,T)$ consists of the initial state predicate $I : S \rightarrow \{0,1\}$ and a transition step predicate $T : S \times S \rightarrow \{0,1\}$. Reachability for $(I,T)$ is defined as the smallest predicate $R : S \rightarrow \{0,1\}$ that satisfies the following formulas:
-\begin{center}
-$\forall s. I(s) \Rightarrow R(s)$\\
-$\forall s, s' .  R \land T(s,s') \Rightarrow R(s')$\\
-\end{center}
-A safety property $\mathcal{P} : S \to \{0,1\}$ is a state predicate. A safety property $\mathcal{P}$ holds on a transition system $(I,T)$ if it holds on all reachable states. More formally, $\forall s . R(s) \Rightarrow \mathcal{P}(s)$. When this is the case, we write $(I,T) \vdash\mathcal{P}$~\cite{Ghassabani2017EfficientGO}. 
-
-Given a transition system that satisfies a safety property $P$, it is possible to find which model elements are necessary for satisfying the safety property through the use of the \textit{All Minimal Inductive Validity Cores All-MIVCs} algorithms~\cite{Ghassabani2017EfficientGO,bendik2018online}. This algorithm collects all minimal unsatisfiable subsets of a given transition system in terms of the negation of the top level property. The minimal unsatisfiable subsets consist of component contracts constrained to \textit{true}. When the constraints on these model elements are removed from the constraint system $C$, this results in an UNSAT system. This can be seen as the minimal explanation of the constraint systems infeasibility. Recall that this constraint system is in terms of the \textit{negation} of the safety property. Thus, this algorithm provides all model elements required for the proof of the safety property. 
-
-We utilize this algorithm by providing not only component contracts (constrained to \textit{true}) as model elements, but also fault activation literals constrained to \textit{false}. Thus the resulting MIVCs will contain the required contracts and constrained fault activation literals in order to prove the safety property. This information is used throughout this section to provide the underlying theory behind the generation of minimal cut sets from all MIVCs. 
-
-Definitions 1-3 are taken from research by Liffiton et. al.~\cite{liffiton2016fast}. 
-
-\begin{definition} : A Minimal Unsatisfiable Subset ($MUS$) of a constraint system $C$ is :\\
- $\{MUS \subseteq C$ $|$ $MUS$ is UNSAT and $\forall c \in MUS$: $MUS \setminus \{c\}$ is SAT$\}$. This is the minimal explaination of the constraint systems infeasability. 
+An MUS is the minimal explanation of the constraint systems infeasability. 
+\begin{definition} : A Minimal Correction Set (MCS) $M$ of a constraint system $C$ is a subset $M\subseteq C$ such that $C \setminus M$ is satisfiable and $\forall S \subset M$ : $C \setminus S$ is unsatisfiable. 
 \end{definition}
+A MCS can be seen to ``correct'' the infeasability of the constraint system by their removal from $C$.
 
-A closely related set is a \textit{minimal correction set} (MCS). The MCSs describe the minimal set of model elements for which if constraints are removed, the constraint system is satisfied. For constraint system $C$, this corresponds to which faults are not constrained to inactive (and are hence active) and violated contracts which lead to the violation of the safety property. In other words, the minimal set of active faults and/or violated properties that lead to the top level event.  
-
-\begin{definition} : A Minimal Correction Set ($MCS$) of a constraint system $C$ is :\\
- $\{MCS \subseteq C$ $|$ $C \setminus MCS$ is SAT and $\forall S \subset MCS$ : $C \setminus S$ is UNSAT$\}$. A MCS can be seen to ``correct'' the infeasability of the constraint system.
-\end{definition}
-
-A duality exists between MUSs of a constraint system and MCSs as established by Reiter \cite{reiter1987theory}. This duality is defined in terms of \textit{minimal hitting sets}. A hitting set of a collection of sets $A$ is a set $H$ such that every set in $A$ is ``hit'' be $H$; $H$ contains at least one element from every set in $A$ \cite{liffiton2016fast}. The MCSs can be generated from the MUSs if all MUSs are known. Thus, the use of the All-MIVCs algorithm is required. 
-
+A duality exists between MUSs of a constraint system and MCSs as established by Reiter \cite{reiter1987theory}. This duality is defined in terms of \textit{Minimal Hitting Sets} (MHS). A hitting set of a collection of sets $A$ is a set $H$ such that every set in $A$ is ``hit'' be $H$; $H$ contains at least one element from every set in $A$. Every MUS of a constraint system is a minimal hitting set of the system's MCSs, and likewise every MCS is a minimal hitting set of the system's MUSs~\cite{liffiton2016fast, reiter1987theory, de1987diagnosing}.
 \begin{definition}: Given a collection of sets $K$, a hitting set for $K$ is a set $H \subseteq \cup_{S \in K} S$ such that $H \cap S \neq \emptyset$ for each $S  \in K$. A hitting set for $K$ is minimal if and only if no proper subset of it is a hitting set for $K$. 
 \end{definition}
 
-Utilizing this approach, the MCSs are generated from the MUSs that are provided by the All-MIVCs algorithm~\cite{Ghassabani2017EfficientGO} and a minimal hitting set algorithm developed by Murakami et. al.~\cite{murakami2013efficient,gainer2017minimal}. \\
-
-A Minimal Cut Set ($MinCutSet$) is a minimal collection of faults that lead to the violation of the safety property (or in other words, lead to the top level event in the fault tree). We define a minimal cut set consistently with much of the research in this field~\cite{0f356f05e72f43018211b36f97c8854a,historyFTA}
-
-\begin{definition} :  A Minimal Cut Set can be defined as the set of faults in a system that cause the violation of the safety property. Furthermore, any strict subset of these faults will not cause violation of the safety property. 
+Since we are interested in sets of faults that when active cause violation of the safety property, we turn our attention to Minimal Cut Sets. 
+\begin{definition}
+A \textit{Minimal Cut Set} (MinCutSet) is a minimal collection of faults that lead to the violation of the safety property. Furthermore, any subset of a MinCutSet will not cause this property violation. 
 \end{definition}
+We define a minimal cut set consistently with much of the research in this field~\cite{0f356f05e72f43018211b36f97c8854a,historyFTA}.\\
 
+\textbf{Inductive Validity Cores}: Given a complex model, it is useful to extract traceability information related to the proof; in other words, which elements of the model were necessary to construct the proof. An algorithm was introduced by Ghassabani, et. al. to provide Inductive Validity Cores (IVCs) as a way to determine which model elements are necessary for the inductive proofs of the safety properties for sequential systems~\cite{GhassabaniGW16}. Given a safety property of the system, a model checker is invoked to construct a proof of the property. The IVC generation algorithm extracts traceability information from the proof process and returns a minimal set of the model elements required in order to prove the property. Later research extended this algorithm in order to produce all minimal IVC elements (all MIVCs)~\cite{Ghassabani2017EfficientGO,bendik2018online}. 
 
+The MIVC algorithm considers a constraint system consisting of the assumptions and contracts of system components and the negation of the safety property of interest (i.e. the top level event). It then collects all Minimal Unsatisfiable Subsets (MUSs) of this constraint system; these are the minimal explanations of the constraint systems infeasibility in terms of the \textit{negation} of the safety property. Equivalently, these are the minimal model elements necessary to proof the safety property.% In section \ref{sec:definitions}, we show the formal definitions of IVCs and related sets in detail. \\
 
 
 
