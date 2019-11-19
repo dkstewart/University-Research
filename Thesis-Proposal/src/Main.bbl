@@ -1,5 +1,19 @@
 \begin{thebibliography}{10}
 
+\bibitem{FAA}
+{Federal Aviation Administration (FAA)}.
+\newblock \url{https://www.faa.gov/regulations_policies/faa_regulations/}.
+\newblock Accessed: 2010-11-19.
+
+\bibitem{SAE}
+{SAE International}.
+\newblock \url{https://www.sae.org/}.
+\newblock Accessed: 2010-11-19.
+
+\bibitem{AIR6110}
+{AIR 6110}.
+\newblock {Contiguous Aircraft/System Development Process Example}, Dec. 2011.
+
 \bibitem{AADL_Standard}
 {AS5506C}.
 \newblock {Architecture Analysis \& Design Language (AADL)}, Jan. 2017.
