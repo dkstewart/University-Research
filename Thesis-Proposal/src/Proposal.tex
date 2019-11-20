@@ -83,7 +83,7 @@ The fields of a fault definition are shown in Figure~\ref{fig:annexes} and are d
 \item \textbf{Duration}: When a fault becomes active, it is designated as a permanent fault. 
 \end{itemize}
 
-\section{Fault Modeling}
+\subsection{Modeling Dependent Faults}
 Within the AADL component instance model, the Safety Annex is added which contain the fault definitions for the given component. When a fault is activated by its specified triggering conditions, it modifies the output of the component. This faulty behavior may violate the contracts of other components in the system, including assumptions of downstream components. The impact of a fault is computed by the AGREE model checker when the safety analysis is run on the fault model and thus determined implicitly; the error propagation is not explicitly defined as in other closely related tools~\cite{EMV2,compass30toolset}. 
 
 On the other hand, failures in hardware (HW) components can trigger behavioral faults in the system components that depend on them. This makes it beneficial to allow for explicit error propagation and the definition of dependencies in the fault model. For example, a CPU failure may trigger faulty behavior in the threads bound to that CPU or a failure in one HW component may trigger failure in other HW components located nearby, such as overheating, fire, or explosion
@@ -273,47 +273,64 @@ For a set of MinCutSets, $S$, the probability can be computed using the followin
     $\mathcal{P}(S_1 \cup S_2) = \mathcal{P}(S_1) + \mathcal{P}(S_2) - \mathcal{P}(S_1 \cap S_2)$
 \end{center}
 
-Due to the independence assumption, $\mathcal{P}(S_1 \cap S_2)$ is computed as $\mathcal{P}(S_1) \cdot   \mathcal{P}(S_2)$. If the set of MinCutSets are represented using a Binary Decision Diagram, there have are efficient ways of computing the probability \danielle{cite these}. 
+Due to the independence assumption, $\mathcal{P}(S_1 \cap S_2)$ is computed as $\mathcal{P}(S_1) \cdot   \mathcal{P}(S_2)$. Using this technique, it is theoretically possible to compute the overall probability of a TLE given all MinCutSets and an independence assumption, but in the real world of safety analysis this poses some problems, the largest of which is scalability. Given a very large system with many possible faults, it becomes difficult to compute all MinCutSets without pruning of any kind. If one is unable to complete such computations, it is not possible to simply compute the probabilities as described above. 
 
-Using this technique, it is theoretically possible to compute the overall probability of a TLE given all MinCutSets and an independence assumption, but in the real world of safety analysis this poses some problems, the largest of which is scalability. Given a very large system with many possible faults, it becomes difficult to compute all MinCutSets without pruning of any kind. If one is unable to complete such computations, it is not possible to simply compute the probabilities as described above. 
+As previously discussed, it is standard practice to consider cut sets only up to a given cardinality. As the cardinality of the cut sets increase, the likelihood of their occurrence decreases and as the system increases in size, the possible combinations of problematic faults will inevitably increase, at times exponentially. In order to simplify these calculations and address the problem of scalability, MinCutSets up to a certain cardiality are considered. Everything above that is "safely" ignored, and then specific criteria is used to overapproximate the error. The end result of these computations is above the actual probability (i.e. a safe approximation), but close enough to be significant. 
 
-Due to scalability, it is standard practice to consider cut sets only up to a given cardinality. As the cardinality of the cut sets increase, the likelihood of their occurrence decreases and as the system increases in size, the possible combinations of problematic faults will inevitably increase, at times exponentially. In order to simplify these calculations and address the problem of scalability, MinCutSets up to a certain cardiality are considered. Everything above that is "safely" ignored, and then specific criteria is used to overapproximate the error. The end result of these computations is above the actual probability, but close enough to be significant. 
+Another drawback to computing an exact probability of the TLE is the problem of model reliability and exactness. For instance, if two groups of engineers each built a model of the same system, the models may not be equivalent; especially in terms of behavioral properties. Since our approach of computing MinCutSets depends on the properties over system components, the calculated top-level probability will change. Different representations of the system will alter the computations.  
 
+As an example, assume that Figure~\ref{fig:probComp1} is a snapshot of a given layer in a system designed by the first group of engineers. Component A has a contract, $G_A$, which is determined by the All-IVC algorithm to depend on a lower level contract, $g_A = a \land b$. $g_A$ will be in the set of IVCs for the contract $G_A$. Assume that only $a$ is required for the proof of $G_A$. 
 
-%Given that this independence assumption is not enough in a compositional approach, there is a question about \textit{how} the computation can be accurately performed. 
-
-\section{Evaluation of Results}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{comment}
-\section{Fault Tree Analysis} 
-The use of fault trees are common in many safety assessment processes and the ability to generate the cut sets needed for the construction of the fault tree is a useful part of any safety analysis tool. The fault tree is a safety artifact commonly referenced in requirement protocol documents such as ARP4761, ARP4754, and AIR6110~\cite{SAE:ARP4761,SAE:ARP4754A,AIR6110}.
-
-A Fault Tree (FT) is a directed acyclic graph whose leaves model component failures and whose gates model failure propagation~\cite{0f356f05e72f43018211b36f97c8854a}. The system failure under examination is the root of the tree and is called the Top Level Event (TLE). The node types in a fault tree are \textit{events} and \textit{gates}. An event is an occurrence within the system, typically the failure of a subsystem down to an individual component. Events can be grouped into Basic Events (BEs), which occur independently, and \textit{intermediate events} which occur dependently and are caused by one or more other events~\cite{historyFTA}.  These events model the failure of the system (or subsystem) under consideration. The gates represent how failures propagate through the system and how failures in subsystems can cause system wide failures. The two main logic symbols used are the Boolean logic AND-gates and OR-gates. An AND-gate is used when the undesired top level event can only occur when all the lower conditions are true. The OR-gate is used when the undesired event can occur if any one or more of the next lower conditions is true. This is not a comprehensive list of gate types, but we focus our attention on these two common gate types. 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=8cm]{images/introFT2.pdf}
-\caption{A simple fault tree} \label{fig:introFT}
+\includegraphics[width=6cm]{images/probComp1.PNG}
+\caption{Sample System Contract Part I} \label{fig:probComp1}
 \end{center}
 \end{figure}
 
-Figure~\ref{fig:introFT} shows a simple example of a fault tree based on SAE ARP4761~\cite{SAE:ARP4761}. In this example, the top level event corresponds to an aircraft losing all wheel braking. In order for this event to occur, all of the basic events must occur. This is seen through the use of the AND gate below the top level event. The gates in the fault tree describe how failures propagate through the system. Each gate has one output and one or more inputs. In Figure~\ref{fig:introFT}, the AND gate has three inputs and one output. The leaves of the tree represent the basic events of the system. %and 
-In the case of this fault tree, these three events are also the Minimal Cut Sets (MinCutSets) for this top level event. A MinCutSet is the minimal set of basic events that must occur together in order to cause the TLE to occur. Generating and analyzing these MinCutSets is important to FTA and has been an active area of interest in the research community since fault trees were first described in Bell Labs in 1961~\cite{historyFTA,0f356f05e72f43018211b36f97c8854a}. 
+Two faults are defined on component B: $f_1$ violates $a$ and $f_2$ violates $b$. Since each of these faults will violate the contract $g_A$, each of these faults will be found in MinCutSets for $G_A$.
 
-There are two main types of fault tree analysis that we differentiate here as \textit{qualitative} analysis and \textit{quantitative} analysis. In qualitative analysis, the structure of the fault tree is considered and the MinCutSets are a way to indicate which combinations of component failures will cause the system to fail. On the other hand, in quantitative analysis the probability of the TLE is calculated given the probability of occurrence of the basic events. By being able to generate MinCutSets
-based on both cardinality and probability, this allows for either form of FTA to be created. 
+Now assume that Figure~\ref{fig:probComp2} was the system representation built by the second group of engineers. 
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=6cm]{images/probComp2.PNG}
+\caption{Sample System Contract Part II} \label{fig:probComp2}
+\end{center}
+\end{figure} 
+The basic system structure is the same, but this time they wrote two contracts for component B: $g_1 = a$ and $g_2 = b$. Since $b$ is not required for the proof of $G_A$, only $g_1$ is found in the IVCs for $G_A$ and thus only $f_1$ will be seen in the MinCutSets for this particular contract. 
+
+In this simple example, it is easy to see why a single computation of the top-level probability of a system may be misleading. To this end, we wish to find a way to accurately obtain higher and lower bounds of what the probability is likely to be. 
+
+A lower bound for the probability can be obtained by choosing a maximum cardinality for MinCutSets before computations begin, e.g. assume that cardinalities above $n$ are too unlikely to be significant. This will contribute to better scalability in large systems with numerous possible cut sets. A higher bound is commonly assigned by experts of the system, e.g. around 3 orders of magnitude higher than the lower approximation. 
+
+It would be beneficial to leverage the IVC information to provide both the lower and upper bound approximations and show that these values are significant and trustworthy. 
 
 
-\end{comment}
+
+\section{Evaluation of Results}
+The goal of this dissertation is to provide usable and reliable safety assessment artifacts and methodologies that can be implemented on industrial scale systems. Furthermore, the artifacts should shed light on the system organizational hierarchy, interacting components, and problematic faults. This is useful within the assessment process and can provide valuable feedback to engineers on both the safety and development side. 
+
+To this end, we will implement a large scale system model in the aerospace domain and collect the artifacts and other pertinent information derived from this process. We will show how this information can provide feedback to the system engineers and be useful in the certification process. 
+
+The Wheel Brake System (WBS) was initially developed for illustrative purposes by SAE AIR6110~\cite{AIR6110} and has been used in numerous case studies and research into Model-Based Safety Analysis~\cite{Stewart17:IMBSA,DBLP:conf/cav/BozzanoCPJKPRT15,mcmillan2019increasing,cimatti2016temporal,cimatti2018tightening,konrad2016faa}. This model is large enough to assess scalability and provides numerous complex component interactions and behaviors. The AADL version of this model will be annotated with AGREE contracts that accurately describe the behavior of the system components. Faults will be attached to each of the components as per descriptions in AIR6110. The analysis of this approach will address the four main contributions of the Safety Annex: 
+\begin{enumerate}
+    \item Maximum $n$ fault threshold compositional analysis
+    \item Probabilistic threshold monolithic analysis 
+    \item Minimal cut set computations (max $n$ and probabilistic threshold)
+    \item Probabilistic evaluations and computations
+\end{enumerate}
+
+The artifacts generated from each run will be assessed in light of safety assessment and fit into the process as described in Sections \ref{sec:saProcess} and \ref{sec:saProcess2}.
+
+Using other models representative of the aerospace industry, we will explore the necessity of using a shared system model that drives the development and safety processes, and show the fault modeling flexibility of the Safety Annex. 
+
+
+
+
+
+
+
+
+
+
+

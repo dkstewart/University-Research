@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2018.8.13)  19 NOV 2019 16:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2018.8.13)  20 NOV 2019 13:57
 entering extended mode
 **./Main.tex
 (Main.tex
@@ -860,7 +860,7 @@ l.15
       [1
 
 ]
-Overfull \hbox (4.86821pt too wide) in paragraph at lines 32--34
+Overfull \hbox (4.86821pt too wide) in paragraph at lines 33--35
 []\OT1/ptm/b/n/10.95 Determine ac-cu-rate com-po-si-tional prob-a-bilis-tic com
 -pu-ta-tions for the top-level events.
  []
@@ -880,9 +880,9 @@ Package pdftex.def Info: images/introFT2.pdf  used on input line 14.
 [3
 
 ]
-Overfull \hbox (25.16849pt too wide) in paragraph at lines 26--27
+Overfull \hbox (25.16849pt too wide) in paragraph at lines 27--28
 \OT1/ptm/m/n/10.95 The tra-di-tional safety as-sess-ment pro-cess at the sys-te
-m level is based on the stan-dards ARP4754A [[][]50[][]]
+m level is based on the stan-dards ARP4754A [[][]67[][]]
  []
 
 [4 <./images/introFT2.pdf
@@ -893,17 +893,17 @@ id other resource which is no dict (key 'ProcSets', type <array>); ignored.
 <images/process3.png, id=266, 963.6pt x 542.025pt>
 File: images/process3.png Graphic file (type png)
 <use images/process3.png>
-Package pdftex.def Info: images/process3.png  used on input line 54.
+Package pdftex.def Info: images/process3.png  used on input line 56.
 (pdftex.def)             Requested size: 353.22215pt x 195.00584pt.
- [6 <./images/process3.png>] [7]) (ToolsAndLanguage.tex [8])
-(Definitions.tex [9]
+ [6 <./images/process3.png>] [7] [8]) (ToolsAndLanguage.tex [9])
+(Definitions.tex [10]
 Underfull \hbox (badness 10000) in paragraph at lines 20--21
 
  []
 
-[10]) (Proposal.tex [11]
+) (Proposal.tex [11]
 Chapter 3.
-<images/arch.png, id=396, 462.0462pt x 108.405pt>
+<images/arch.png, id=438, 462.0462pt x 108.405pt>
 File: images/arch.png Graphic file (type png)
 <use images/arch.png>
 Package pdftex.def Info: images/arch.png  used on input line 16.
@@ -914,23 +914,23 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [12
 
 ]
-<images/lustre.jpg, id=407, 1132.23pt x 559.33969pt>
+<images/lustre.jpg, id=449, 1132.23pt x 559.33969pt>
 File: images/lustre.jpg Graphic file (type jpg)
 <use images/lustre.jpg>
 Package pdftex.def Info: images/lustre.jpg  used on input line 33.
 (pdftex.def)             Requested size: 339.67162pt x 167.80319pt.
  [13 <./images/arch.png> <./images/lustre.jpg>]
-<images/two_sensors.PNG, id=418, 440.14438pt x 329.23pt>
+<images/two_sensors.PNG, id=460, 440.14438pt x 329.23pt>
 File: images/two_sensors.PNG Graphic file (type png)
 <use images/two_sensors.PNG>
 Package pdftex.def Info: images/two_sensors.PNG  used on input line 49.
 (pdftex.def)             Requested size: 249.33403pt x 186.50258pt.
-<images/sensorAnnexes.PNG, id=420, 465.74pt x 283.55937pt>
+<images/sensorAnnexes.PNG, id=462, 465.74pt x 283.55937pt>
 File: images/sensorAnnexes.PNG Graphic file (type png)
 <use images/sensorAnnexes.PNG>
 Package pdftex.def Info: images/sensorAnnexes.PNG  used on input line 60.
 (pdftex.def)             Requested size: 290.88547pt x 177.10735pt.
-<images/sensorNode.PNG, id=422, 394.97563pt x 53.19875pt>
+<images/sensorNode.PNG, id=464, 394.97563pt x 53.19875pt>
 File: images/sensorNode.PNG Graphic file (type png)
 <use images/sensorNode.PNG>
 Package pdftex.def Info: images/sensorNode.PNG  used on input line 69.
@@ -944,12 +944,12 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [14 <./images/two_sensors.PNG>] [15 <./images/sensorAnnexes.PNG> <./images/sens
 orNode.PNG>]
-<images/hypothesisMaxN.png, id=442, 147.04938pt x 36.63687pt>
+<images/hypothesisMaxN.png, id=484, 147.04938pt x 36.63687pt>
 File: images/hypothesisMaxN.png Graphic file (type png)
 <use images/hypothesisMaxN.png>
 Package pdftex.def Info: images/hypothesisMaxN.png  used on input line 102.
 (pdftex.def)             Requested size: 166.21844pt x 41.41313pt.
-<images/hypothesisProb.png, id=443, 181.17688pt x 38.1425pt>
+<images/hypothesisProb.png, id=485, 181.17688pt x 38.1425pt>
 File: images/hypothesisProb.png Graphic file (type png)
 <use images/hypothesisProb.png>
 Package pdftex.def Info: images/hypothesisProb.png  used on input line 112.
@@ -959,7 +959,7 @@ Package pdftex.def Info: images/hypothesisProb.png  used on input line 112.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [16 <./images/hypothesisMaxN.png>]
-<images/assertCount.PNG, id=452, 471.26062pt x 111.91812pt>
+<images/assertCount.PNG, id=494, 471.26062pt x 111.91812pt>
 File: images/assertCount.PNG Graphic file (type png)
 <use images/assertCount.PNG>
 Package pdftex.def Info: images/assertCount.PNG  used on input line 129.
@@ -992,32 +992,44 @@ Underfull \hbox (badness 10000) in paragraph at lines 252--253
 
  []
 
-[21] Excluding 'comment' comment.) (Conclusion.tex [22]
+[21] [22]
+<images/probComp1.PNG, id=552, 407.5225pt x 294.60063pt>
+File: images/probComp1.PNG Graphic file (type png)
+<use images/probComp1.PNG>
+Package pdftex.def Info: images/probComp1.PNG  used on input line 286.
+(pdftex.def)             Requested size: 170.71652pt x 123.41225pt.
+<images/probComp2.PNG, id=554, 386.44376pt x 297.11pt>
+File: images/probComp2.PNG Graphic file (type png)
+<use images/probComp2.PNG>
+Package pdftex.def Info: images/probComp2.PNG  used on input line 296.
+(pdftex.def)             Requested size: 170.71652pt x 131.25015pt.
+ [23 <./images/probComp1.PNG> <./images/probComp2.PNG>])
+(Conclusion.tex [24]
 Chapter 4.
-) (Main.bbl [23
+) (Main.bbl [25
 
 ]
 LaTeX Font Info:    Try loading font information for OT1+pcr on input line 5.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-[24
+[26
 
-] [25] [26]
-Underfull \hbox (badness 3954) in paragraph at lines 283--289
+] [27] [28] [29]
+Underfull \hbox (badness 3954) in paragraph at lines 391--397
 \OT1/ptm/m/n/10.95 chi-tec-tural mod-el-ing and anal-y-sis for safety en-gi-nee
 r-ing (AMASE), NASA fi-
  []
 
-)
+[30])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 178.
- [27]
+ [31]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 178.
  (Main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 178.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 178.
 Package rerunfilecheck Info: File `Main.out' has not changed.
-(rerunfilecheck)             Checksum: 904E1E67DFF92CEF615CF234DCE09281;2348.
+(rerunfilecheck)             Checksum: EA5B22DFE6E7DB4769248CABA9090A70;2358.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1026,11 +1038,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 178.
  )
 (\end occurred when \iftrue on line 35 was incomplete) 
 Here is how much of TeX's memory you used:
- 13323 strings out of 492973
- 197896 string characters out of 3135897
- 330214 words of memory out of 3000000
- 16722 multiletter control sequences out of 15000+200000
- 30399 words of font info for 76 fonts, out of 3000000 for 9000
+ 13409 strings out of 492973
+ 199628 string characters out of 3135897
+ 335007 words of memory out of 3000000
+ 16775 multiletter control sequences out of 15000+200000
+ 31477 words of font info for 77 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,18n,40p,1724b,531s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 
@@ -1045,9 +1057,9 @@ fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
 e1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/ut
 mb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Main.pdf (33 pages, 598196 bytes).
+Output written on Main.pdf (37 pages, 647885 bytes).
 PDF statistics:
- 612 PDF objects out of 1000 (max. 8388607)
- 160 named destinations out of 1000 (max. 500000)
- 305 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 705 PDF objects out of 1000 (max. 8388607)
+ 190 named destinations out of 1000 (max. 500000)
+ 315 words of extra memory for PDF output out of 10000 (max. 10000000)
 

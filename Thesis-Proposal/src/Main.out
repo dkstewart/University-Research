@@ -4,7 +4,7 @@
 \BOOKMARK [1][-]{section.1.1}{Chapters and Organization of the Proposal}{chapter.1}% 4
 \BOOKMARK [0][-]{chapter.2}{Background}{}% 5
 \BOOKMARK [1][-]{section.2.1}{The Safety Assessment Process and Required Artifacts}{chapter.2}% 6
-\BOOKMARK [2][-]{subsection.2.1.1}{Concise Overview of the Process and It's Artifacts}{section.2.1}% 7
+\BOOKMARK [2][-]{subsection.2.1.1}{Overview of the Process and It's Artifacts}{section.2.1}% 7
 \BOOKMARK [2][-]{subsection.2.1.2}{The Traditional Safety Assessment Process}{section.2.1}% 8
 \BOOKMARK [2][-]{subsection.2.1.3}{Model-Based Safety Assessment Process Supported by Formal Methods}{section.2.1}% 9
 \BOOKMARK [1][-]{section.2.2}{Related Work}{chapter.2}% 10
@@ -18,14 +18,14 @@
 \BOOKMARK [2][-]{subsection.3.1.1}{Implementation}{section.3.1}% 18
 \BOOKMARK [2][-]{subsection.3.1.2}{The Sensor System}{section.3.1}% 19
 \BOOKMARK [2][-]{subsection.3.1.3}{The Safety Annex for the Sensor System}{section.3.1}% 20
-\BOOKMARK [1][-]{section.3.2}{Fault Modeling}{chapter.3}% 21
-\BOOKMARK [1][-]{section.3.3}{Verification Capabilities in the Face of Component Failures}{chapter.3}% 22
-\BOOKMARK [2][-]{subsection.3.3.1}{Maximum Fault Analysis}{section.3.3}% 23
-\BOOKMARK [2][-]{subsection.3.3.2}{Probabilistic Threshold Analysis}{section.3.3}% 24
-\BOOKMARK [1][-]{section.3.4}{Generation of Minimal Cut Sets from MIVCs}{chapter.3}% 25
-\BOOKMARK [2][-]{subsection.3.4.1}{The General Idea}{section.3.4}% 26
-\BOOKMARK [2][-]{subsection.3.4.2}{Illustrative Example}{section.3.4}% 27
-\BOOKMARK [1][-]{section.3.5}{Compositional Probabilistic Computations}{chapter.3}% 28
-\BOOKMARK [1][-]{section.3.6}{Evaluation of Results}{chapter.3}% 29
+\BOOKMARK [2][-]{subsection.3.1.4}{Modeling Dependent Faults}{section.3.1}% 21
+\BOOKMARK [1][-]{section.3.2}{Verification Capabilities in the Face of Component Failures}{chapter.3}% 22
+\BOOKMARK [2][-]{subsection.3.2.1}{Maximum Fault Analysis}{section.3.2}% 23
+\BOOKMARK [2][-]{subsection.3.2.2}{Probabilistic Threshold Analysis}{section.3.2}% 24
+\BOOKMARK [1][-]{section.3.3}{Generation of Minimal Cut Sets from MIVCs}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.3.1}{The General Idea}{section.3.3}% 26
+\BOOKMARK [2][-]{subsection.3.3.2}{Illustrative Example}{section.3.3}% 27
+\BOOKMARK [1][-]{section.3.4}{Compositional Probabilistic Computations}{chapter.3}% 28
+\BOOKMARK [1][-]{section.3.5}{Evaluation of Results}{chapter.3}% 29
 \BOOKMARK [0][-]{chapter.4}{Conclusion}{}% 30
-\BOOKMARK [0][-]{chapter*.14}{References}{}% 31
+\BOOKMARK [0][-]{chapter*.16}{References}{}% 31

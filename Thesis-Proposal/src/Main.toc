@@ -4,29 +4,29 @@
 \contentsline {section}{\numberline {1.1}Chapters and Organization of the Proposal}{2}{section.1.1}
 \contentsline {chapter}{\numberline {2}Background}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}The Safety Assessment Process and Required Artifacts}{3}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Concise Overview of the Process and It's Artifacts}{3}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.1}Overview of the Process and It's Artifacts}{3}{subsection.2.1.1}
 \contentsline {subsubsection}{Fault Tree Analysis}{3}{section*.3}
 \contentsline {subsection}{\numberline {2.1.2}The Traditional Safety Assessment Process}{4}{subsection.2.1.2}
 \contentsline {subsection}{\numberline {2.1.3}Model-Based Safety Assessment Process Supported by Formal Methods}{5}{subsection.2.1.3}
 \contentsline {section}{\numberline {2.2}Related Work}{6}{section.2.2}
-\contentsline {section}{\numberline {2.3}Tools and Modeling Language}{8}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Architecture Analysis and Design Language}{8}{subsection.2.3.1}
+\contentsline {section}{\numberline {2.3}Tools and Modeling Language}{9}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Architecture Analysis and Design Language}{9}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Assume Guarantee Reasoning Environment}{9}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}Safety Annex for AADL}{9}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.3}Safety Annex for AADL}{10}{subsection.2.3.3}
 \contentsline {section}{\numberline {2.4}Definitions}{10}{section.2.4}
 \contentsline {chapter}{\numberline {3}Proposed Approach}{12}{chapter.3}
 \contentsline {section}{\numberline {3.1}The Safety Annex and Fault Modeling}{12}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Implementation}{12}{subsection.3.1.1}
 \contentsline {subsection}{\numberline {3.1.2}The Sensor System}{13}{subsection.3.1.2}
 \contentsline {subsection}{\numberline {3.1.3}The Safety Annex for the Sensor System}{14}{subsection.3.1.3}
-\contentsline {section}{\numberline {3.2}Fault Modeling}{16}{section.3.2}
-\contentsline {section}{\numberline {3.3}Verification Capabilities in the Face of Component Failures}{16}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Maximum Fault Analysis}{17}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Probabilistic Threshold Analysis}{18}{subsection.3.3.2}
-\contentsline {section}{\numberline {3.4}Generation of Minimal Cut Sets from MIVCs}{19}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}The General Idea}{19}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Illustrative Example}{20}{subsection.3.4.2}
-\contentsline {section}{\numberline {3.5}Compositional Probabilistic Computations}{21}{section.3.5}
-\contentsline {section}{\numberline {3.6}Evaluation of Results}{22}{section.3.6}
-\contentsline {chapter}{\numberline {4}Conclusion}{23}{chapter.4}
-\contentsline {chapter}{References}{24}{chapter*.14}
+\contentsline {subsection}{\numberline {3.1.4}Modeling Dependent Faults}{16}{subsection.3.1.4}
+\contentsline {section}{\numberline {3.2}Verification Capabilities in the Face of Component Failures}{16}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Maximum Fault Analysis}{17}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Probabilistic Threshold Analysis}{18}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Generation of Minimal Cut Sets from MIVCs}{19}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}The General Idea}{19}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Illustrative Example}{20}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.4}Compositional Probabilistic Computations}{21}{section.3.4}
+\contentsline {section}{\numberline {3.5}Evaluation of Results}{24}{section.3.5}
+\contentsline {chapter}{\numberline {4}Conclusion}{25}{chapter.4}
+\contentsline {chapter}{References}{26}{chapter*.16}
