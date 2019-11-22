@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2018.8.13)  20 NOV 2019 13:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2018.8.13)  21 NOV 2019 18:49
 entering extended mode
 **./Main.tex
 (Main.tex
@@ -897,7 +897,7 @@ Package pdftex.def Info: images/process3.png  used on input line 56.
 (pdftex.def)             Requested size: 353.22215pt x 195.00584pt.
  [6 <./images/process3.png>] [7] [8]) (ToolsAndLanguage.tex [9])
 (Definitions.tex [10]
-Underfull \hbox (badness 10000) in paragraph at lines 20--21
+Underfull \hbox (badness 10000) in paragraph at lines 22--23
 
  []
 
@@ -917,23 +917,28 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <images/lustre.jpg, id=449, 1132.23pt x 559.33969pt>
 File: images/lustre.jpg Graphic file (type jpg)
 <use images/lustre.jpg>
-Package pdftex.def Info: images/lustre.jpg  used on input line 33.
+Package pdftex.def Info: images/lustre.jpg  used on input line 35.
 (pdftex.def)             Requested size: 339.67162pt x 167.80319pt.
  [13 <./images/arch.png> <./images/lustre.jpg>]
-<images/two_sensors.PNG, id=460, 440.14438pt x 329.23pt>
+<images/two_sensors.PNG, id=459, 440.14438pt x 329.23pt>
 File: images/two_sensors.PNG Graphic file (type png)
 <use images/two_sensors.PNG>
-Package pdftex.def Info: images/two_sensors.PNG  used on input line 49.
+Package pdftex.def Info: images/two_sensors.PNG  used on input line 51.
 (pdftex.def)             Requested size: 249.33403pt x 186.50258pt.
-<images/sensorAnnexes.PNG, id=462, 465.74pt x 283.55937pt>
+<images/sensorAnnexes.PNG, id=461, 465.74pt x 283.55937pt>
 File: images/sensorAnnexes.PNG Graphic file (type png)
 <use images/sensorAnnexes.PNG>
-Package pdftex.def Info: images/sensorAnnexes.PNG  used on input line 60.
+Package pdftex.def Info: images/sensorAnnexes.PNG  used on input line 64.
 (pdftex.def)             Requested size: 290.88547pt x 177.10735pt.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 69.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
 <images/sensorNode.PNG, id=464, 394.97563pt x 53.19875pt>
 File: images/sensorNode.PNG Graphic file (type png)
 <use images/sensorNode.PNG>
-Package pdftex.def Info: images/sensorNode.PNG  used on input line 69.
+Package pdftex.def Info: images/sensorNode.PNG  used on input line 73.
 (pdftex.def)             Requested size: 249.33403pt x 33.58275pt.
 
 
@@ -942,78 +947,78 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14 <./images/two_sensors.PNG>] [15 <./images/sensorAnnexes.PNG> <./images/sens
-orNode.PNG>]
-<images/hypothesisMaxN.png, id=484, 147.04938pt x 36.63687pt>
+[14 <./images/two_sensors.PNG>]
+Overfull \hbox (43.6871pt too wide) in paragraph at lines 84--85
+\OT1/ptm/m/n/10.95 tion. In this case, the nom-i-nal com-po-nent (pres-sure sen
+-sor) out-put \OT1/pcr/m/n/10.95 High[]Pressure[]Indicator
+ []
+
+[15 <./images/sensorAnnexes.PNG> <./images/sensorNode.PNG>]
+<images/hypothesisMaxN.png, id=485, 147.04938pt x 36.63687pt>
 File: images/hypothesisMaxN.png Graphic file (type png)
 <use images/hypothesisMaxN.png>
-Package pdftex.def Info: images/hypothesisMaxN.png  used on input line 102.
+Package pdftex.def Info: images/hypothesisMaxN.png  used on input line 104.
 (pdftex.def)             Requested size: 166.21844pt x 41.41313pt.
-<images/hypothesisProb.png, id=485, 181.17688pt x 38.1425pt>
+<images/hypothesisProb.png, id=486, 181.17688pt x 38.1425pt>
 File: images/hypothesisProb.png Graphic file (type png)
 <use images/hypothesisProb.png>
-Package pdftex.def Info: images/hypothesisProb.png  used on input line 112.
+Package pdftex.def Info: images/hypothesisProb.png  used on input line 114.
 (pdftex.def)             Requested size: 207.77625pt x 43.74304pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [16 <./images/hypothesisMaxN.png>]
-<images/assertCount.PNG, id=494, 471.26062pt x 111.91812pt>
+<images/assertCount.PNG, id=495, 471.26062pt x 111.91812pt>
 File: images/assertCount.PNG Graphic file (type png)
 <use images/assertCount.PNG>
-Package pdftex.def Info: images/assertCount.PNG  used on input line 129.
+Package pdftex.def Info: images/assertCount.PNG  used on input line 130.
 (pdftex.def)             Requested size: 290.88547pt x 69.08112pt.
  [17 <./images/hypothesisProb.png> <./images/assertCount.PNG>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 151.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 152.
  [18]
-Underfull \hbox (badness 10000) in paragraph at lines 190--191
+Underfull \hbox (badness 10000) in paragraph at lines 193--194
 
  []
 
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 219--220
+Underfull \hbox (badness 10000) in paragraph at lines 222--223
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 232--233
+Underfull \hbox (badness 10000) in paragraph at lines 235--236
 
  []
 
 [20]
-Underfull \hbox (badness 10000) in paragraph at lines 250--251
+Underfull \hbox (badness 10000) in paragraph at lines 253--254
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 252--253
+Underfull \hbox (badness 10000) in paragraph at lines 255--256
 
  []
 
 [21] [22]
-<images/probComp1.PNG, id=552, 407.5225pt x 294.60063pt>
+<images/probComp1.PNG, id=553, 407.5225pt x 294.60063pt>
 File: images/probComp1.PNG Graphic file (type png)
 <use images/probComp1.PNG>
-Package pdftex.def Info: images/probComp1.PNG  used on input line 286.
+Package pdftex.def Info: images/probComp1.PNG  used on input line 289.
 (pdftex.def)             Requested size: 170.71652pt x 123.41225pt.
-<images/probComp2.PNG, id=554, 386.44376pt x 297.11pt>
+<images/probComp2.PNG, id=555, 386.44376pt x 297.11pt>
 File: images/probComp2.PNG Graphic file (type png)
 <use images/probComp2.PNG>
-Package pdftex.def Info: images/probComp2.PNG  used on input line 296.
+Package pdftex.def Info: images/probComp2.PNG  used on input line 299.
 (pdftex.def)             Requested size: 170.71652pt x 131.25015pt.
  [23 <./images/probComp1.PNG> <./images/probComp2.PNG>])
 (Conclusion.tex [24]
 Chapter 4.
 ) (Main.bbl [25
 
-]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 5.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-[26
+] [26
 
 ] [27] [28] [29]
 Underfull \hbox (badness 3954) in paragraph at lines 391--397
@@ -1034,6 +1039,9 @@ Package rerunfilecheck Info: File `Main.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 178.
  )
 (\end occurred when \iftrue on line 35 was incomplete) 
@@ -1044,7 +1052,7 @@ Here is how much of TeX's memory you used:
  16775 multiletter control sequences out of 15000+200000
  31477 words of font info for 77 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,18n,40p,1724b,531s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,18n,40p,1508b,531s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 
 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public
 /amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
@@ -1057,7 +1065,7 @@ fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
 e1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/ut
 mb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Main.pdf (37 pages, 647885 bytes).
+Output written on Main.pdf (37 pages, 648514 bytes).
 PDF statistics:
  705 PDF objects out of 1000 (max. 8388607)
  190 named destinations out of 1000 (max. 500000)

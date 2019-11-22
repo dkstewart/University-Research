@@ -17,7 +17,7 @@
 \contentsline {chapter}{\numberline {3}Proposed Approach}{12}{chapter.3}
 \contentsline {section}{\numberline {3.1}The Safety Annex and Fault Modeling}{12}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Implementation}{12}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}The Sensor System}{13}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.2}The Sensor System}{14}{subsection.3.1.2}
 \contentsline {subsection}{\numberline {3.1.3}The Safety Annex for the Sensor System}{14}{subsection.3.1.3}
 \contentsline {subsection}{\numberline {3.1.4}Modeling Dependent Faults}{16}{subsection.3.1.4}
 \contentsline {section}{\numberline {3.2}Verification Capabilities in the Face of Component Failures}{16}{section.3.2}
