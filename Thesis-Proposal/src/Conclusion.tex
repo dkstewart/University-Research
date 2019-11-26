@@ -1,7 +1,17 @@
 \chapter{Conclusion}
 System safety analysis is cruicial in the development of critical systems and the generation of accurate and scalable results is invaluable to the assessment process. Having multiple ways to capture complex dependencies between faults and the behavior of the system in the presence of these faults is important throughout the entire process. The artifacts generated from such analyses that are used in the certification process of such systems must be generated in a scalable way and provide accurate and important information. This project has developed and implemented the Safety Annex for AADL which provides a way to capture complex relationships between faults in a model and analyze their effects behaviorally through either compositional or monolithic analysis. 
 
-Furthermore, we propose the compositional generation of minimal cut sets to be used in the development of various artifacts used in system certification, such as FTA, FMEA, and single point of failure examinations. This generation is done through the collection of proof elements called MIVCs and their transformation. 
+Furthermore, we propose the compositional generation of minimal cut sets to be used in the development of various artifacts used in system certification, such as FTA, probabilistic analysis, and single point of failure examinations. This generation is done through the collection of proof elements called \textit{MIVC}s and their transformation. Lastly, we propose to use the minimal cut sets and resulting fault trees generated through the transformation algorithms to calculate the probability of the top level event, or violation of the safety property.   
 
-Lastly, we propose to use the minimal cut sets and resulting fault trees generated through the transformation algorithms to calculate the probability of the top level event, or violation of the safety property.   
+The timeline for the proposed work is as follows:
+\danielle{Mats, should I include work already done here, or just work that still needs to be done??}
+\begin{description}
+\item[Dec 2019 - Feb 2020:]  Outline and prove probabilistic methods and algorithms for compositional computations.
+\item[Dec 2019 - Feb 2020:] Complete the implementation of both minimal cut set generation and probabilistic computations.  
+\item[Feb - March 2020:]   Complete the implemention of the graphical representation of hierarchical fault trees.
+\item[Dec 2019 - April 2020:]  Write the dissertation.
+\item[May 2020:]  Complete any requested edits on dissertation.
+\item[June 2020:]  Defend dissertation and complete final changes. 
+\end{description}
 
+Upon completion of the proposed research, we will have the theoretical framework of compositional generation of minimal cut sets and associated probabilistic computations, and these will be implemented in the Safety Annex. The Safety Annex will provide safety analysts a way to represent both behavioral and explicit fault modeling in the context of the system model and provide valuable feedback in the development process. The results from the analysis provided by the Safety Annex will be mathematically sound and descriptive enough to use in the certification process for critical systems. 
