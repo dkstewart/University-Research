@@ -8,7 +8,7 @@ The usage of the terms error, failure, and fault are defined in ARP4754A and are
 \section{The Safety Annex and Fault Modeling}
 \subsection{Implementation}
 The Safety Annex is written in Java as a plug-in for the OSATE AADL toolset, which is built on Eclipse.  It is not designed as a stand-alone extension of the language, but works with behavioral contracts specified using the \agree AADL annex~\cite{NFM2012:CoGaMiWhLaLu}. 
-The architecture of the Safety Annex is shown in Figure~\ref{fig:plugin-arch}.
+The architecture of the Safety Annex and related tools is shown in Figure~\ref{fig:plugin-arch}.
 
 \begin{figure}[h!]
 	\begin{center}
@@ -21,11 +21,13 @@ The architecture of the Safety Annex is shown in Figure~\ref{fig:plugin-arch}.
 	%\vspace{-0.1in}
 \end{figure}
 
-\agree contracts are used to define the nominal behaviors of system components as guarantees that hold when assumptions about the values the component's environment are met. When an AADL model is annotated with \agree contracts and the fault model is created using the Safety Annex, the model is transformed through \agree into a \lustre model~\cite{Halbwachs91:IEEE} containing the behavioral extensions defined in the \agree contracts for each system component. 
+A system model is defined and implemented in AADL and \agree contracts are used to define the nominal behaviors of system components as guarantees that hold when assumptions about the values the component's environment are met. The \agree \textit{abstract syntax tree} (AST) reflects the system architecture and the contracts defined on components; this is translated into \lustre~\cite{Halbwachs91:IEEE}, a synchronous dataflow language used by \jkind, an infinite-state model checker for safety properties~\cite{2017arXiv171201222G}.
 
-When an AADL model is annotated with \agree contracts and the fault model is created using the Safety Annex, an extension point between \agree and the Safety Annex allows the fault information to be added to the \agree \textit{abstract syntax tree} (AST). This extended model AST is then translated into \lustre~\cite{Halbwachs91:IEEE}, a synchronous dataflow language used by \jkind, an infinite-state model checker for safety properties~\cite{2017arXiv171201222G}. 
+%When an AADL model is annotated with \agree contracts and the fault model is created using the Safety Annex, the model is transformed through \agree into a \lustre model~\cite{Halbwachs91:IEEE} containing the behavioral extensions defined in the \agree contracts for each system component. The \lustre model is then sent to \jkind for verification.
 
-The fault model extension of the contracts written in \agree allows faults to modify the behavior of component outputs. An example of a portion of a nominal \agree node written in \lustre and its extended contract is shown in Figure~\ref{fig:lustre}. The left column of the figure shows the nominal \lustre pump definition with an \agree contract on the output; and the right column shows the additional local variables for the fault (boxes 1 and 2), the assertion binding the fault value to the nominal value (boxes 3 and 4), and the fault node definition (box 5). Once augmented with fault information, the \agree model follows the standard translation path to the model checker \jkind. 
+When the fault model is created using the Safety Annex, an extension point in \agree allows the fault information to be added to the \agree AST. This extended model AST is then translated into \lustre and verified by \jkind.. 
+
+This extension allows faults to modify the behavior of component outputs. An example of a portion of a nominal \agree node written in \lustre and its extended contract is shown in Figure~\ref{fig:lustre}. The left column of the figure shows the nominal \lustre pump definition with an \agree contract on the output; and the right column shows the additional local variables for the fault (boxes 1 and 2), the assertion binding the fault value to the nominal value (boxes 3 and 4), and the fault node definition (box 5). Once augmented with fault information, the \agree model follows the standard translation path to the model checker \jkind. 
 
 \begin{figure}[h!]
 	\hspace*{-2cm}
@@ -43,7 +45,7 @@ The fault model extension of the contracts written in \agree allows faults to mo
 
 \subsection{The Sensor System}
 \label{sec:sensorExample}
-An example is a helpful guide to illustrate the Safety Annex. A simple sensor system is shown in Figure~\ref{fig:sensorSys}. The top level of the system takes two inputs; environmental pressure and temperature. Each subsystem monitors its corresponding input and will send an shutdown command if the input surpasses some threshold. Each subsystem consists of three sensors. Each subsystem's output is regulated by a majority voter; thus, if the majority of sensors in a subsystem report high temperature (or pressure), the shutdown command is sent. 
+An example is a helpful guide to illustrate the Safety Annex. A simple sensor system is shown in Figure~\ref{fig:sensorSys}. The top level of the system takes two inputs; environmental pressure and temperature. Each subsystem monitors its corresponding input and will send a shutdown command if the input surpasses some threshold. Each subsystem consists of three sensors. Each subsystem's output is regulated by a majority voter; thus, if the majority of sensors in a subsystem report high temperature (or pressure), the shutdown command is sent. 
 
 \begin{figure}[h]
 	%\vspace{-0.956in}
@@ -54,6 +56,7 @@ An example is a helpful guide to illustrate the Safety Annex. A simple sensor sy
 	\label{fig:sensorSys}
 \end{figure}
 
+\noindent
 This example will be referenced intermittently throughout this document.  
 
 \subsection{The Safety Annex for the Sensor System}
@@ -169,7 +172,7 @@ In this calculation, we assume independence among the faults, but in the Safety 
 
 Often it is the case that safety properties contain probabilistic thresholds that must be analyzed during the safety assessment process. This type of fault hypothesis statement and the associated fault analysis supports these requirements.
 
-\section{Generation of Minimal Cut Sets from MIVCs}
+\section{Generation of Minimal Cut Sets from \textit{MIVCs}}
 %\subsection{The General Idea}
 As was previously explained, the MIVCs (Minimal Inductive Validity Cores) are \textit{MUS}s (Minimal Unsatisfiable Subsets) of a constraint system. The \textit{MCS}s (Minimal Correction Sets) can be obtained from all \textit{MUS}s by generating the hitting sets of all \textit{MUS}s. Thus, the \aivcalg algorithm produces all \textit{MUS}s and the hitting set algorithm can transform these into \textit{MCS}s. If the constraint system is defined to take into account faults, these \textit{MCS}s can be transformed into \textit{MinCutSets}. 
 
@@ -190,12 +193,23 @@ The \aivcalg algorithm collects all minimal unsatisfiable subsets of a given tra
 
 We utilize this algorithm by providing not only component contracts constrained to \textit{true} as model elements, but also fault activation literals constrained to \textit{false}, i.e. the faults are inactive. Thus the resulting MIVCs (\textit{MUS}s) will contain the required contracts and constrained fault activation literals necessary to prove the safety property. 
 
-Because of the duality between \textit{MUS}s and \textit{MCS}s, all \textit{MCS}s can be obtained by finding the hitting sets. The \textit{MCS} can be seen to correct the infeasibility of the constraint system and provides the minimal such correction. By removing the constraints from $C$ that are found in any \textit{MCS}, $C$ becomes satisfiable. In terms of our constraint system with fault activation literals, by \textit{activating} the faults in the \textit{MCS} and \textit{violating} the contracts in the \textit{MCS}, we can prove the \textit{negation} of the property $P$. If the contracts in the \textit{MCS} are replaced with the faults that cause its violation, the \textit{MCS} is transformed into a \textit{MinCutSet}.\\
+Because of the duality between \textit{MUS}s and \textit{MCS}s, all \textit{MCS}s can be obtained by finding the hitting sets. The \textit{MCS} can be seen to correct the infeasibility of the constraint system and provides the minimal such correction. By removing the constraints from $C$ that are found in any \textit{MCS}, $C$ becomes satisfiable. In terms of our constraint system with fault activation literals, by \textit{activating} the faults in the \textit{MCS} and \textit{violating} the contracts in the \textit{MCS}, we can prove the \textit{negation} of the property $P$. If the contracts in the \textit{MCS} are replaced with the faults that cause its violation, the \textit{MCS} is transformed into a \textit{MinCutSet}. A high level summary of the steps of this transformation are shown in Figure~\ref{fig:trans}. \\
+
+\begin{figure}[h!]
+	%\vspace{-0.1in}
+	\begin{center}
+		\includegraphics[width=1.0\textwidth]{images/stepsOfTransformation.PNG}
+	\end{center}
+	%\vspace{-0.1in}
+	\caption{Steps of the Transformation Process}
+	\label{fig:trans}
+\end{figure}
 
 \textbf{The Steps of Transformation from \textit{MUS} to \textit{MinCutSet}}
 \begin{enumerate}
 \item Redefine constraint system by adding fault activation literals to the constraint system used by the \aivcalg algorithm. %The MIVC algorithm proceeds compositionally, so the changes to the constraint system must also be factored in on a per-layer basis. For the leaf levels of the system, we add all fault activation literals as model elements for consideration. For all other layers, we provide the guarantees of the layer beneath and if the layer beneath is 
-\item Transform the \textit{MUS}s (MIVCs) into \textit{MCS}s by use of a hitting set algorithm~\cite{murakami2013efficient,gainer2017minimal}. 
+\item Collect all \textit{MUSs} through the \aivcalg algorithm.
+\item Transform the \textit{MUS}s (\textit{MIVCs}) into \textit{MCS}s by use of a hitting set algorithm~\cite{murakami2013efficient,gainer2017minimal}. 
 \item Replace all contracts in the \textit{MCS}s by the faults that cause their violation (\textit{MinCutSets} for that contract). 
 \end{enumerate}
 
@@ -276,7 +290,7 @@ The example should suffice to show the basic outline of the algorithm. The proof
 
 
 \section{Compositional Probabilistic Computations}
-Safety analysis techniques aim at demonstrating that the system meets the requirements necessary for certification and use in the presence of faults. In many domains, there are two main steps to this process: (1) the generation of all minimal cut sets (\textit{MinCutSets}), i.e. the minimal set of faults that lead to a violation of the top level property (known as a \textit{top-level event} or TLE) and (2) the computation of the corresponding fault probability, i.e. the probability of reaching the TLE, given probabilities for the faults in the system. 
+Safety analysis techniques aim at demonstrating that the system meets the requirements necessary for certification and use in the presence of faults. In many domains, there are two main steps to this process: (1) the generation of all minimal cut sets (\textit{MinCutSets}), i.e. the minimal set of faults that lead to a violation of the top level property (known as a \textit{top-level event} or TLE) and (2) the computation of the corresponding fault probability, i.e., the probability of reaching the TLE, given probabilities for the faults in the system. 
 
 The probability of the TLE is used to find the likelihood of the safety hazard that it represents. While evaluation of the fault model with a given probabilistic threshold does provide information on the safety hazards, it is also informative and desirable to find the overall probability of the occurrence of a hazard. 
 
@@ -296,7 +310,7 @@ For a set of \textit{MinCutSets}, $S$, the probability can be computed using the
 
 Due to the independence assumption, $\mathcal{P}(S_1 \cap S_2)$ is computed as $\mathcal{P}(S_1) \cdot   \mathcal{P}(S_2)$. Using this technique, it is theoretically possible to compute the overall probability of a TLE given all \textit{MinCutSets} and an independence assumption, but in the real world of safety analysis this poses some problems, the largest of which is scalability. Given a very large system with many possible faults, it becomes difficult to compute all \textit{MinCutSets} without pruning of any kind. If one is unable to complete such computations, it is not possible to simply compute the probabilities as described above. 
 
-As previously discussed, it is standard practice to consider cut sets only up to a given cardinality. As the cardinality of the cut sets increase, the likelihood of their occurrence decreases and as the system increases in size, the possible combinations of problematic faults will inevitably increase, at times exponentially. In order to simplify these calculations and address the problem of scalability, \textit{MinCutSets} up to a certain cardiality are considered. Everything above that is "safely" ignored, and then specific criteria is used to over-approximate the error. The end result of these computations is above the actual probability (i.e. a safe approximation), but close enough to be significant. 
+As previously discussed, it is standard practice to consider cut sets only up to a given cardinality. As the cardinality of the cut sets increase, the likelihood of their occurrence decreases and as the system increases in size, the possible combinations of problematic faults will inevitably increase, at times exponentially. In order to simplify these calculations and address the problem of scalability, \textit{MinCutSets} up to a certain cardiality are considered. Everything above that is ``safely" ignored, and then specific criteria is used to over-approximate the error. The end result of these computations is above the actual probability (i.e., a safe approximation), but close enough to be significant. 
 
 Another drawback to computing an exact probability of the TLE is the problem of model reliability and exactness. For instance, if two groups of engineers each built a model of the same system, the models may not be equivalent; especially in terms of behavioral properties. Since our approach of computing \textit{MinCutSets} depends on the properties over system components, the calculated top-level probability will change. Different representations of the system will alter the computations.  
 

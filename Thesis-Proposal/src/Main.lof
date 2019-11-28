@@ -1,0 +1,19 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces A simple fault tree\relax }}{5}{figure.caption.5}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Use of the Shared System/Safety Model in the ARP4754A Safety Assessment Process\relax }}{7}{figure.caption.6}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Safety Annex Plug-in Architecture\relax }}{15}{figure.caption.7}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Nominal \texttt {AGREE}\xspace Node and Extension with Faults\relax }}{15}{figure.caption.8}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces A Simple Sensor System\relax }}{16}{figure.caption.9}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces A Pressure Sensor and the \texttt {AGREE}\xspace and Safety Annexes\relax }}{17}{figure.caption.10}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces A Fault Node Definition\relax }}{17}{figure.caption.11}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Max N Faults Analysis Statement\relax }}{18}{figure.caption.12}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Probability Analysis Statement\relax }}{19}{figure.caption.13}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces \texttt {Lustre}\xspace Statement for Fault Count\relax }}{19}{figure.caption.14}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Steps of the Transformation Process\relax }}{22}{figure.caption.15}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Flat Fault Tree for the Sensor Example\relax }}{24}{figure.caption.16}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Hierarchical Fault Tree for the Sensor Example\relax }}{25}{figure.caption.17}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Sample System Contract Part I\relax }}{27}{figure.caption.18}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Sample System Contract Part II\relax }}{27}{figure.caption.19}
+\addvspace {10\p@ }

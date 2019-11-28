@@ -4,8 +4,12 @@ System safety analysis is cruicial in the development of critical systems and th
 Furthermore, we propose the compositional generation of minimal cut sets to be used in the development of various artifacts used in system certification, such as FTA, probabilistic analysis, and single point of failure examinations. This generation is done through the collection of proof elements called \textit{MIVC}s and their transformation. Lastly, we propose to use the minimal cut sets and resulting fault trees generated through the transformation algorithms to calculate the probability of the top level event, or violation of the safety property.   
 
 The timeline for the proposed work is as follows:
-\danielle{Mats, should I include work already done here, or just work that still needs to be done??}
 \begin{description}
+\item[Jan 2017 - Sept 2017:] Preliminary research into integration of fault information into \lustre code and prototype implementation of Safety Annex~\cite{Stewart17:IMBSA}.
+\item[Sept 2017 - Feb 2018:] In depth research into the needs of safety analysts and complex fault modeling capabilities~\cite{SATechReport}.
+\item[March 2018 - March 2019:] Further implementation of various types of fault behavior (dependent faults, asymmetric faults, etc).~\cite{stewart2020safety}.
+\item[March 2019 - Sept 2019:] Research into the theory of the \textit{MinCutSet} transformation and preliminary implementation thereof~\cite{nasaFinalReport}.
+\item[Sept 2019 - Dec 2019:] Drafts of theoretical paper showing \textit{MinCutSet} transformations.
 \item[Dec 2019 - Feb 2020:]  Outline and prove probabilistic methods and algorithms for compositional computations.
 \item[Dec 2019 - Feb 2020:] Complete the implementation of both minimal cut set generation and probabilistic computations.  
 \item[Feb - March 2020:]   Complete the implemention of the graphical representation of hierarchical fault trees.
