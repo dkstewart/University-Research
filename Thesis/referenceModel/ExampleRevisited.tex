@@ -1,0 +1,218 @@
+\subsection{Putting it All Together}\label{sec:exampleRevisited}
+
+In developing the reference model, we have explored a number of relationships
+necessary to model our motivating scenario.  For clarity we illustrate many of
+these constructs and relationships in Figure~\ref{fig:referenceModel}.  Using
+the constructs defined in our reference model, we show an example of the input
+model in Listing~\ref{listing:refModelAppliedToIdealProject}.
+
+% \begin{figure}[htb]
+%     \centering
+%         \includegraphics[width=.47\textwidth]{img/referenceModel}
+%     \caption{An abbreviated set of constructs and relationships in the model. 
+%         For ease of understanding, an additional construct, Work, has been added
+%         to illustrate the complex work relationship.}
+%     \label{fig:referenceModel}
+% \end{figure}
+
+\begin{figure*}[htb]
+    \centering
+        \includegraphics[width=\textwidth]{img/referenceModel-extended-horizontalLegend}
+    \caption{The constructs and relationships in the reference model. 
+        The \textit{work} construct above represents the objects required by
+        the agent to complete some work---that is, perform an activity on a work
+        package.}
+    \label{fig:referenceModel}
+\end{figure*}
+
+
+% We require an action selection criteria, support for reasoning over the
+% completeness of an activity, learning models, and communication generation and
+% handling.  These considerations here as the agent model will vary depending on
+% how much we wish to model for the agent.
+% At minumum, we require an action selection criteria needs additional
+% information, such as action selection criteria.
+
+\lstdefinelanguage{Spec}
+{
+    morekeywords={Agent, Knowledge, Product, Description, Artifact, Type,
+        ValueGroup, Value, WorkPackage, Backlog, Context, Parent, Prerequisites,
+        Activities, Roles, Properties, WorkPackageTypes, ArtifactType,
+        ArtifactSet, Activity, Role, Function, OrganizationStructure,
+        Pausable, Process, Complexity, Generates},
+%
+    morecomment=[l]{//}
+}
+
+\lstset{language=Spec, captionpos=b, multicols=2, basicstyle=\footnotesize,
+frame=single, label={listing:refModelAppliedToIdealProject}} 
+\begin{lstlisting}[float, caption={A subset of our scenario's input
+expressed using the reference model.}] 
+Agent:  aCleverTester 
+  OrganizationStructure: ...
+  Knowledge:
+    testing, level 5
+    java7, level 3
+    jUnit4, level 4
+    androidSDK, level 2
+    androidStudio, level 3
+    ...
+    
+Product:  someApp
+  ArtifactSet:  myArtifactSet
+    Artifact:  app
+      Type:  application
+      Knowledge:  //Skills
+        java7
+        androidSDK
+        androidStudio
+    Artifact:  testSuite
+      Type:  test
+      Knowledge:  //Skills
+        java7
+        androidSDK
+        androidStudio
+        jUnit4
+  ValueGroup:  initialUI
+    Value:  5
+  WorkPackage:  initialView
+    ValueGroup:  initialUI
+    ArtifactSet:  myArtifactSet
+    Complexity:  3
+    Prerequisites: -
+    Knowledge:  //Domain Knowledge
+      -
+    ...
+    
+Process: scrum
+  Backlog:  productBacklog
+  Backlog:  sprintBacklog
+  ...
+  Context:  develop
+    Parent:  sprint
+    Prerequisites:
+      <Agent>.Role == teamMember
+      notEmpty(sprintBacklog)
+    Activities:
+      implementTests
+      ...
+    Roles:  
+      developer  
+      tester
+    Pausable:  true
+    Properties:
+      exitOn(sprintTimeout)
+      pauseOn(scrumMeetingTime)
+  Activity:  implementTests
+    Role:  Tester
+    ArtifactType:  test
+    Knowledge:  //General Skills
+      testing
+    Prerequisites:
+      exists(
+        <WorkPackage>.ArtifactSet
+        ArtifactType: application,
+        Function: <WorkPackage>.name)
+      complete(specifyTests)
+    Generates:  functions
+    ...
+\end{lstlisting}
+
+Let's walk through how a simulation of our scenario's model might progress. 
+For ease of discussion, we assume that the simulation progresses when the
+simulation clock ``ticks''.
+When the simulation starts, each of the six agents assume a role for the scrum context: the four developers---including \texttt{aCleverTester}---assume the
+developer role, the project manager assumes the scrum master role, and the
+customer representative assumes the product owner role.
+The scrum project is initialized---causing the product owner to populate the
+product backlog---and the sprint kick-off meeting is held---populating the
+sprint backlog.  Assume the team communicates with each other and decides that
+when they enter the \texttt{Sprint Execution} context, they will start with the
+\texttt{Develop} child-context.
+
+As a team, they enter the sprint context and the developer agents enter the
+\texttt{Develop} context per the context prerequisites.  At scheduled times, the
+agents suspend existing actions and enter the \texttt{Scrum Meeting} context.
+
+Since there is only one work package that is available for work (i.e.
+not blocked by prerequisites), two agents work on it
+(Figure~\ref{fig:dependencyNetwork}).  Assume these agents are
+\texttt{aCleverTester}, who takes on the role of tester, and one of the
+inexperienced developers takes on the developer role.  Each of these agents work
+on the activities defined for their role
+(Figure~\ref{fig:testActivityNetwork_annotated}), including both of them
+executing the \texttt{Understand Work Package Specification} activity.
+Let's fast forward a bit.  Upon completion of an activity,
+\texttt{aCleverTester} selects an activity to perform by looking at the
+available activities for its role and determines which one it can perform, based
+on the prerequisites.  \texttt{aCleverTester} notices that all of the
+prerequisites have been satisfied for the \texttt{Implement Tests} activity, so
+it performs the \texttt{Implement Tests} activity for the \texttt{initialView}
+work package.  As part of the simulation, \texttt{aCleverTester} determines its
+outputs for the current tick based upon its knowledge levels compared to the
+required knowledge levels, the rules in the activity (e.g. find defect/rework,
+generate latent defect/rework), the work package's properties, and other
+properties of the agent.  If we assume the simulation progresses in discrete
+time intervals (ticks), then the output of the agent at the end of a tick could
+be nothing (i.e. continue to perform the activity for the work package),  the
+newly completed function for the artifact (in this case the \texttt{TestSuite}),
+or other required objects---messages sent to other agents to improve
+knowledge, generate rework items, and discovered defects in any of the previously
+completed function---to complete the work.  Generated defects and, potentially,
+the generated rework are added to the sprint backlog so other agents may work on it.
+
+While working on the project, each agent tracks the amount of time it spent on
+this project, in terms of ticks, meanwhile gaining development skill and domain
+knowledge.  Upon function completion, the work package is marked complete.  The
+process dictates when to award credit for value group completion and in our
+scenario, this is done either during the scrum meeting or upon
+exiting the \texttt{Sprint} context.
+
+Because no other work packages are available and all roles for the
+available work package have been assigned, the other developer agents idle.
+This time is not counted toward their time on the project.  However, when there
+is work available for the idling agents and the agents are available, the agents
+perform work according to their own activity ordering.  If the modeler wishes to
+model preference for particular activity orderings---i.e.
+strategies---our reference model would support this.
+
+In order to simulate requirements changes, we include a special type of agent
+that generates work package changes (including addition and removal) according
+to some specified criteria and arrival rate.  Change requests, modeled as a type
+of communication, may include information about a change to an existing work
+package, changes to the dependency structure, and/or a new work package,
+depending on the change.  It is up to the specific implementation to determine
+if the generator agent holds onto change requests until queried, if the agent
+deposits them into a backlog that other agents can pull from, or if the agent
+notifies others of changes without solicitation.  The product owner enacts these
+changes to the existing work packages in the product backlog if they have not
+been moved to the sprint backlog, otherwise, it schedules rework to change
+completed or in-progress work packages that result in the loss of product
+functionality.  Because we are using agents, it is possible to model behaviors
+in which the product owner agent ignores the prescribed rules and pushes the
+changes on the team mid-sprint, however defining agent behavior will be
+addressed when we discuss developing the simulation framework.
+
+In a scrum process, the sprint retrospective allows the team to improve the
+process based on the team's observation of previous sprints.  While this allows
+for process enhancement in real projects, this is beyond the scope of both our
+model and planned evaluation environment.  However, this meeting does consume
+time and can have non-tangible effects on the team, thus we still include it in
+the model and allow the particular agent implementation to model the
+non-tangible effects, such as morale improvements.
+
+The simulation progresses in much the same way we have described here, and,
+according to some pre-specified condition, the simulation terminates.  The
+simulator then computes and returns the project duration, effort, disaggregated
+effort, product functionality, and defect density.  
+
+Computing the duration and effort metrics is straight-forward.  As mentioned,
+our functionality metric increases when all work packages within a value group
+are completed.  As work packages change, we alter the amount of functionality
+provided by the product, as necessary.
+There are a number of ways to quantify scope decreases.  One such method is to
+reduce it proportional to the loss of complexity within the value group.  We
+allow this to be defined in the input model.
+Defect density is computed by summing up the number of unfixed defects---those
+defects still associated with artifact functions at the end of the
+simulation---and dividing it by the scope.

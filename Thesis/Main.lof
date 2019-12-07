@@ -1,0 +1,24 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces The V Model in System Development\relax }}{5}{figure.caption.4}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces The V Model in Safety Assessment\relax }}{6}{figure.caption.5}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces An AADL System Type: The Pedal Sensor\relax }}{11}{figure.caption.6}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces The Safety Annex for the Pedal Sensor\relax }}{12}{figure.caption.7}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Differences between Safety Annex and EMV2\relax }}{13}{figure.caption.8}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Communication Nodes in Asymmetric Fault Implementation\relax }}{16}{figure.caption.13}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Asymmetric Fault Definition in the Safety Annex\relax }}{16}{figure.caption.14}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Updated PID Example Architecture\relax }}{18}{figure.caption.15}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Description of the Outputs of Each Node in the PID Example\relax }}{18}{figure.caption.16}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Data Implementation in AADL for Node Outputs\relax }}{18}{figure.caption.17}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Fault Definition on Node Outputs for PID Example\relax }}{19}{figure.caption.18}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Fault Node Definition for PID Example\relax }}{19}{figure.caption.19}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Agreement Protocol Contract in AGREE for No Active Faults\relax }}{20}{figure.caption.20}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Agreement Protocol Contract in AGREE Regarding Non-failed Nodes\relax }}{20}{figure.caption.21}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Fault Activation Statement in PID Example\relax }}{21}{figure.caption.22}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Wheel Brake System\relax }}{23}{figure.caption.23}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces AGREE Contract for Top Level Property: Inadvertent Braking\relax }}{24}{figure.caption.24}
+\addvspace {10\p@ }
+\addvspace {10\p@ }

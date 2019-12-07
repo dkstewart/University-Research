@@ -1,0 +1,39 @@
+\subsection{A Motivating Scenario}\label{sec:scenario}
+Before constructing our initial reference model, let's discuss a motivating
+scenario, based on the author's experience, of a process and target project
+environment that we wish to model and ultimately simulate.
+
+A team is going to start a mobile app development project and desires to
+evaluate a set of processes to determine which is going to best fit their needs.
+The project is time constrained.  The product's requirements decomposition is
+partially depicted in Figure~\ref{fig:dependencyNetwork}.  In this illustration,
+smaller boxes represent work packages---a specification of a small piece of
+function---and the larger boxes represent non-overlapping groupings of those
+work packages that will, together, deliver value to the customer upon
+completion---e.g. stories for most agile teams.  In our discussion, work
+packages do not include process activities.  
+%Assume that the team is required to produce a suite of 
+%automated regression tests to support long-term maintenance.
+
+\begin{figure}[htb]
+    \centering
+        \includegraphics[width=0.65\textwidth]{img/workPackageDependencies}
+    \caption{The abbreviated work package dependency network (arrows point to
+        successors).}
+    \label{fig:dependencyNetwork}
+\end{figure}
+
+
+The team is composed of six people: an inexperienced project manager, a
+stakeholder that represents the customer, one experienced developer with an
+affinity for test driven development (TDD), one experienced developer with
+strong testing skills, and two inexperienced developers.
+
+Having seen scrum~\cite{rubin_essential_2012} work for other teams, the project
+manager wishes to model and evaluate this process.  To reduce
+resistance to process adoption, he plans to allow individuals to continue
+to use their preferred personal processes and roles with a common definition of
+``done''.  Thus, one developer would act as a tester for others, one would
+follow TDD, and the remaining developers would determine their own activity
+sequencing, often using the tester to verify their code.
+
