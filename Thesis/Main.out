@@ -10,17 +10,18 @@
 \BOOKMARK [1][-]{section.2.2}{Model Based Safety Assessment}{chapter.2}% 10
 \BOOKMARK [2][-]{subsection.2.2.1}{Suggested Model Based Safety Assessment Process Supported by Formal Methods}{section.2.2}% 11
 \BOOKMARK [1][-]{section.2.3}{Formal Methods in Safety Analysis}{chapter.2}% 12
-\BOOKMARK [1][-]{section.2.4}{Satisfiability and Model Checking}{chapter.2}% 13
-\BOOKMARK [0][-]{chapter.3}{Compositional Minimal Cut Set Generation}{}% 14
-\BOOKMARK [0][-]{chapter.4}{Fault Modeling and the Safety Annex}{}% 15
-\BOOKMARK [1][-]{section.4.1}{Component Fault Modeling}{chapter.4}% 16
-\BOOKMARK [1][-]{section.4.2}{Error Propagation}{chapter.4}% 17
-\BOOKMARK [2][-]{subsection.4.2.1}{Implicit Propagation}{section.4.2}% 18
-\BOOKMARK [2][-]{subsection.4.2.2}{Explicit Propagation}{section.4.2}% 19
-\BOOKMARK [1][-]{section.4.3}{Fault Analysis Statements}{chapter.4}% 20
-\BOOKMARK [1][-]{section.4.4}{Asymmetric Fault Modeling}{chapter.4}% 21
-\BOOKMARK [0][-]{chapter.5}{Case Studies}{}% 22
-\BOOKMARK [1][-]{section.5.1}{Wheel Brake System}{chapter.5}% 23
-\BOOKMARK [0][-]{chapter.6}{Related Work}{}% 24
-\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 25
-\BOOKMARK [0][-]{chapter*.27}{References}{}% 26
+\BOOKMARK [2][-]{subsection.2.3.1}{Formal Validation and Verification}{section.2.3}% 13
+\BOOKMARK [1][-]{section.2.4}{Satisfiability and Model Checking}{chapter.2}% 14
+\BOOKMARK [0][-]{chapter.3}{Compositional Minimal Cut Set Generation}{}% 15
+\BOOKMARK [0][-]{chapter.4}{Fault Modeling and the Safety Annex}{}% 16
+\BOOKMARK [1][-]{section.4.1}{Component Fault Modeling}{chapter.4}% 17
+\BOOKMARK [1][-]{section.4.2}{Error Propagation}{chapter.4}% 18
+\BOOKMARK [2][-]{subsection.4.2.1}{Implicit Propagation}{section.4.2}% 19
+\BOOKMARK [2][-]{subsection.4.2.2}{Explicit Propagation}{section.4.2}% 20
+\BOOKMARK [1][-]{section.4.3}{Fault Analysis Statements}{chapter.4}% 21
+\BOOKMARK [1][-]{section.4.4}{Asymmetric Fault Modeling}{chapter.4}% 22
+\BOOKMARK [0][-]{chapter.5}{Case Studies}{}% 23
+\BOOKMARK [1][-]{section.5.1}{Wheel Brake System}{chapter.5}% 24
+\BOOKMARK [0][-]{chapter.6}{Related Work}{}% 25
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 26
+\BOOKMARK [0][-]{chapter*.29}{References}{}% 27
