@@ -96,16 +96,56 @@ D.~Chen, N.~Mahmud, M.~Walker, L.~Feng, H.~L{\"o}nn, and Y.~Papadopoulos.
   {HiP-HOPS}*}.
 \newblock {\em IFAC Proceedings Volumes}, 46(22):91 -- 96, 2013.
 
+\bibitem{smtInterpol}
+J.~Christ, J.~Hoenicke, and A.~Nutz.
+\newblock Smtinterpol: An interpolating smt solver.
+\newblock In {\em Proceedings of the 19th International Conference on Model
+  Checking Software}, SPIN'12, pages 248--254, Berlin, Heidelberg, 2012.
+  Springer-Verlag.
+
 \bibitem{Cimatti2000}
 A.~Cimatti, E.~Clarke, F.~Giunchiglia, and M.~Roveri.
 \newblock Nusmv: a new symbolic model checker.
 \newblock {\em International Journal on Software Tools for Technology
   Transfer}, 2000.
 
+\bibitem{clarke1981design}
+E.~M. Clarke and E.~A. Emerson.
+\newblock Design and synthesis of synchronization skeletons using branching
+  time temporal logic.
+\newblock In {\em Workshop on Logic of Programs}, pages 52--71. Springer, 1981.
+
+\bibitem{z3}
+L.~De~Moura and N.~Bj{\o}rner.
+\newblock Z3: An efficient smt solver.
+\newblock In {\em Proceedings of the Theory and Practice of Software, 14th
+  International Conference on Tools and Algorithms for the Construction and
+  Analysis of Systems}, TACAS'08/ETAPS'08, pages 337--340, Berlin, Heidelberg,
+  2008. Springer-Verlag.
+
+\bibitem{coq}
+T.~C. development team.
+\newblock {\em The Coq proof assistant reference manual}.
+\newblock LogiCal Project, 2019.
+\newblock Version 8.10.2.
+
 \bibitem{Driscoll-Byzantine-Fault}
 K.~Driscoll, H.~Sivencrona, and P.~Zumsteg.
 \newblock {Byzantine Fault Tolerance, from Theory to Reality}.
 \newblock In {\em SAFECOMP}, LNCS, 2003.
+
+\bibitem{d2008survey}
+V.~D'silva, D.~Kroening, and G.~Weissenbacher.
+\newblock A survey of automated techniques for formal software verification.
+\newblock {\em IEEE Transactions on Computer-Aided Design of Integrated
+  Circuits and Systems}, 27(7):1165--1178, 2008.
+
+\bibitem{yices}
+B.~Dutertre.
+\newblock Yices\"{a}2.2.
+\newblock In {\em Proceedings of the 16th International Conference on Computer
+  Aided Verification - Volume 8559}, pages 737--744, Berlin, Heidelberg, 2014.
+  Springer-Verlag.
 
 \bibitem{historyFTA}
 C.~Ericson.
@@ -124,6 +164,12 @@ P.~Feiler, J.~Hudak, J.~Delange, and D.~Gluch.
   version 2.
 \newblock Technical Report CMU/SEI-2016-TR-009, Software Engineering Institute,
   06 2016.
+
+\bibitem{fraser2009testing}
+G.~Fraser, F.~Wotawa, and P.~E. Ammann.
+\newblock Testing with model checkers: a survey.
+\newblock {\em Software Testing, Verification and Reliability}, 19(3):215--261,
+  2009.
 
 \bibitem{Gudemann:2010:FQQ:1909626.1909813}
 M.~Gudemann and F.~Ortmeier.
@@ -187,6 +233,11 @@ O.~Lisagor, T.~Kelly, and R.~Niu.
 {MRMC: Markov Rewards Model Checker}.
 \newblock http://wwwhome.cs.utwente.nl/~zapreevis/mrmc/.
 
+\bibitem{isabelle}
+T.~Nipkow, M.~Wenzel, and L.~C. Paulson.
+\newblock {\em Isabelle/HOL: A Proof Assistant for Higher-order Logic}.
+\newblock Springer-Verlag, Berlin, Heidelberg, 2002.
+
 \bibitem{NuSMV}
 {NuSMV Model Checker}.
 \newblock http://nusmv.itc.it.
@@ -202,6 +253,12 @@ T.~Prosvirnova, M.~Batteux, P.-A. Brameret, A.~Cherfi, T.~Friedlhuber, J.-M.
   Roussel, and A.~Rauzy.
 \newblock {The {A}lta{R}ica 3.0 Project for Model-Based Safety Assessment}.
 \newblock {\em IFAC}, 46(22), 2013.
+
+\bibitem{queille1982specification}
+J.-P. Queille and J.~Sifakis.
+\newblock Specification and verification of concurrent systems in cesar.
+\newblock In {\em International Symposium on programming}, pages 337--351.
+  Springer, 1982.
 
 \bibitem{RAT}
 {RAT: Requirements Analysis Tool}.
