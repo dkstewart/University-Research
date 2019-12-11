@@ -28,11 +28,9 @@
 \usepackage{flushend}
 \usepackage{cite}
 \usepackage{amsmath}
-\usepackage{amssymb}
 \usepackage{epsfig}
 \usepackage{stmaryrd}
 \usepackage{url}
-\usepackage{amsmath}
 \usepackage{bm}
 \usepackage{amsthm}
 \usepackage{amssymb}
@@ -58,18 +56,8 @@
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
-\newtheorem{theorem}{Theorem}
-\newtheorem{definition}{Definition}
+
 \newcommand{\mkeyword}[1]{\mbox{\texttt{#1}}}
-\DeclareMathOperator{\kuop}{uop}
-\DeclareMathOperator{\kbop}{bop}
-\DeclareMathOperator{\kite}{ite}
-\DeclareMathOperator{\kpre}{pre}
-\DeclareMathOperator{\dom}{dom}
-\DeclareMathOperator{\ktrue}{true}
-\DeclareMathOperator{\kfalse}{false}
-\DeclareMathOperator{\kselect}{select}
-\DeclareMathOperator{\ran}{range}
 \newcommand{\lbb}{[\![}
 \newcommand{\rbb}{]\!]}
 \newcommand{\jkind}{\texttt{JKind}\xspace}
@@ -81,7 +69,15 @@
 \newcommand{\aivcalg}{\texttt{\small{All\_IVCs}}\xspace}
 \newcommand{\danielle}[1]{\textcolor{blue}{#1}}
 \newcommand{\mats}[1]{\textcolor{red}{#1}}
+ 
+\newtheorem{observation}{Observation}
+\renewcommand{\theobservation}{\arabic{observation}.}% #.
 
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem{note}{Note}
 
 %Dealing with dutch names:
 % http://tex.stackexchange.com/questions/40747/bibtex-handling-of-the-dutch-van-name-prefix-with-natbib

@@ -10,6 +10,29 @@
 {AIR 6110}.
 \newblock {Contiguous Aircraft/System Development Process Example}, Dec. 2011.
 
+\bibitem{belov2013core}
+A.~Belov, H.~Chen, A.~Mishchenko, and J.~Marques-Silva.
+\newblock Core minimization in sat-based abstraction.
+\newblock In {\em Proceedings of the Conference on Design, Automation and Test
+  in Europe}, pages 1411--1416. EDA Consortium, 2013.
+
+\bibitem{belov2012towards}
+A.~Belov, I.~Lynce, and J.~Marques-Silva.
+\newblock Towards efficient mus extraction.
+\newblock {\em AI Communications}, 25(2):97--116, 2012.
+
+\bibitem{belov2012muser2}
+A.~Belov and J.~Marques-Silva.
+\newblock Muser2: An efficient mus extractor.
+\newblock {\em Journal on Satisfiability, Boolean Modeling and Computation},
+  8(3-4):123--128, 2012.
+
+\bibitem{bendik2018online}
+J.~Bend{\'\i}k, E.~Ghassabani, M.~Whalen, and I.~{\v{C}}ern{\'a}.
+\newblock Online enumeration of all minimal inductive validity cores.
+\newblock In {\em International Conference on Software Engineering and Formal
+  Methods}, pages 189--204. Springer, 2018.
+
 \bibitem{Bieber04safetyassessment}
 P.~Bieber, C.~Bougnol, C.~Castel, J.~P. Heckmann, C.~Kehren, S.~Metge, and
   C.~Seguin.
@@ -115,6 +138,11 @@ E.~M. Clarke and E.~A. Emerson.
   time temporal logic.
 \newblock In {\em Workshop on Logic of Programs}, pages 52--71. Springer, 1981.
 
+\bibitem{clarke2018model}
+E.~M. Clarke~Jr, O.~Grumberg, D.~Kroening, D.~Peled, and H.~Veith.
+\newblock {\em Model checking}.
+\newblock MIT press, 2018.
+
 \bibitem{z3}
 L.~De~Moura and N.~Bj{\o}rner.
 \newblock Z3: An efficient smt solver.
@@ -165,11 +193,28 @@ P.~Feiler, J.~Hudak, J.~Delange, and D.~Gluch.
 \newblock Technical Report CMU/SEI-2016-TR-009, Software Engineering Institute,
   06 2016.
 
+\bibitem{fitting2012first}
+M.~Fitting.
+\newblock {\em First-order logic and automated theorem proving}.
+\newblock Springer Science \& Business Media, 2012.
+
 \bibitem{fraser2009testing}
 G.~Fraser, F.~Wotawa, and P.~E. Ammann.
 \newblock Testing with model checkers: a survey.
 \newblock {\em Software Testing, Verification and Reliability}, 19(3):215--261,
   2009.
+
+\bibitem{GhassabaniGW16}
+E.~Ghassabani, A.~Gacek, and M.~W. Whalen.
+\newblock Efficient generation of inductive validity cores for safety
+  properties.
+\newblock {\em CoRR}, abs/1603.04276, 2016.
+
+\bibitem{Ghassabani2017EfficientGO}
+E.~Ghassabani, M.~W. Whalen, and A.~Gacek.
+\newblock Efficient generation of all minimal inductive validity cores.
+\newblock {\em 2017 Formal Methods in Computer Aided Design (FMCAD)}, pages
+  31--38, 2017.
 
 \bibitem{Gudemann:2010:FQQ:1909626.1909813}
 M.~Gudemann and F.~Ortmeier.
@@ -221,6 +266,16 @@ M.~Kwiatkowska, G.~Norman, and D.~Parker.
 D.~C. Latham.
 \newblock Department of defense trusted computer system evaluation criteria.
 \newblock 1986.
+
+\bibitem{liffiton2005max}
+M.~H. Liffiton, Z.~Andraus, and K.~Sakallah.
+\newblock From max-sat to min-unsat: Insights and applications.
+\newblock {\em Ann Arbor}, 1001:48109--2122, 2005.
+
+\bibitem{liffiton2016fast}
+M.~H. Liffiton, A.~Previti, A.~Malik, and J.~Marques-Silva.
+\newblock Fast, flexible mus enumeration.
+\newblock {\em Constraints}, 21(2):223--250, 2016.
 
 \bibitem{5979344}
 O.~Lisagor, T.~Kelly, and R.~Niu.
