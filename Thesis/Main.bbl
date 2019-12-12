@@ -108,6 +108,18 @@ M.~Bozzano, A.~Cimatti, and F.~Tapparo.
 \newblock Symbolic fault tree analysis for reactive systems.
 \newblock In {\em ATVA}, 2007.
 
+\bibitem{Bozzano:2010:DSA:1951720}
+M.~Bozzano and A.~Villafiorita.
+\newblock {\em Design and Safety Assessment of Critical Systems}.
+\newblock Auerbach Publications, Boston, MA, USA, 1st edition, 2010.
+
+\bibitem{bozzano2003esacs}
+M.~Bozzano, A.~Villafiorita, O.~{\AA}kerlund, P.~Bieber, C.~Bougnol,
+  E.~B{\"o}de, M.~Bretschneider, A.~Cavallo, C.~Castel, M.~Cifaldi, et~al.
+\newblock Esacs: an integrated methodology for design and safety analysis of
+  complex systems.
+\newblock In {\em Proc. ESREL}, volume 2003. Balkema Publisher, 2003.
+
 \bibitem{bracha1987asynchronous}
 G.~Bracha.
 \newblock Asynchronous byzantine agreement protocols.
@@ -142,6 +154,12 @@ E.~M. Clarke and E.~A. Emerson.
 E.~M. Clarke~Jr, O.~Grumberg, D.~Kroening, D.~Peled, and H.~Veith.
 \newblock {\em Model checking}.
 \newblock MIT press, 2018.
+
+\bibitem{coudert1993fault}
+O.~Coudert and J.~C. Madre.
+\newblock Fault tree analysis: 10/sup 20/prime implicants and beyond.
+\newblock In {\em Annual Reliability and Maintainability Symposium 1993
+  Proceedings}, pages 240--245. IEEE, 1993.
 
 \bibitem{z3}
 L.~De~Moura and N.~Bj{\o}rner.
@@ -222,6 +240,11 @@ M.~Gudemann and F.~Ortmeier.
   safety analysis.
 \newblock In {\em HASE 2010}, 2010.
 
+\bibitem{hinchey2012industrial}
+M.~G. Hinchey and J.~P. Bowen.
+\newblock {\em Industrial-strength formal methods in practice}.
+\newblock Springer Science \& Business Media, 2012.
+
 \bibitem{info17:HaLuHo}
 P.~Hönig, R.~Lunde, and F.~Holzapfel.
 \newblock {Model Based Safety Analysis with smartIflow}.
@@ -276,6 +299,13 @@ M.~H. Liffiton, Z.~Andraus, and K.~Sakallah.
 M.~H. Liffiton, A.~Previti, A.~Malik, and J.~Marques-Silva.
 \newblock Fast, flexible mus enumeration.
 \newblock {\em Constraints}, 21(2):223--250, 2016.
+
+\bibitem{liggesmeyer1998improving}
+P.~Liggesmeyer and M.~Rothfelder.
+\newblock Improving system reliability with automatic fault tree generation.
+\newblock In {\em Digest of Papers. Twenty-Eighth Annual International
+  Symposium on Fault-Tolerant Computing (Cat. No. 98CB36224)}, pages 90--99.
+  IEEE, 1998.
 
 \bibitem{5979344}
 O.~Lisagor, T.~Kelly, and R.~Niu.

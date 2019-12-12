@@ -17,7 +17,7 @@
 \contentsline {subsection}{\numberline {2.4.1}UNSAT Cores and Minimal Unsatisfiable Subsets}{12}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}Inductive Validity Cores}{13}{subsection.2.4.2}
 \contentsline {subsection}{\numberline {2.4.3}Ordered Binary Decision Diagrams}{13}{subsection.2.4.3}
-\contentsline {section}{\numberline {2.5}Model Checking in Safety Analysis}{14}{section.2.5}
+\contentsline {section}{\numberline {2.5}Model Checking in Safety Analysis: A Brief History and the State of the Practice}{14}{section.2.5}
 \contentsline {chapter}{\numberline {3}Compositional Minimal Cut Set Generation}{15}{chapter.3}
 \contentsline {chapter}{\numberline {4}Fault Modeling and the Safety Annex}{16}{chapter.4}
 \contentsline {section}{\numberline {4.1}Component Fault Modeling}{16}{section.4.1}
