@@ -19,7 +19,7 @@ In the case of this fault tree, these three events are also the Minimal Cut Sets
 There are two main types of fault tree analysis that we differentiate here as \textit{qualitative} analysis and \textit{quantitative} analysis. In qualitative analysis, the structure of the fault tree is considered and the MinCutSets are a way to indicate which combinations of component failures will cause the system to fail. On the other hand, in quantitative analysis, the probability of the TLE is calculated given the probability of occurrence of the basic events~\cite{0f356f05e72f43018211b36f97c8854a}. 
 
 \subsection{Failure Mode and Effects Analysis}
-Failure Mode and Effects Analysis (FMEA) was one of the first systematic ways of performing dependability analysis and is used throughout the safety critical industries~\cite{rausand2003system,Bozzano:2011:SDP:1992983.1992988}. FMEA provides a structured way to list possible failures and their consequences systemwide. If probabilities of failures are known, quantitative analysis can be performed to estimate system reliability and to assign critical significance to potential failure modes or system components~\cite{MilStandardFMEA}. Constructing an FMEA table is often the first step in the fault tree construction, for it shows possible component failures and hence basic events~\cite{0f356f05e72f43018211b36f97c8854a}. Usually the FMEA is presented in tabular form (FMEA Table) and as seen in Figure~\ref{fig:} \danielle{make figure}, shows the failures, intermediate events, and undesired states of the system (or violated requirements). 
+Failure Mode and Effects Analysis (FMEA) was one of the first systematic ways of performing dependability analysis and is used throughout the safety critical industries~\cite{rausand2003system,Bozzano:2011:SDP:1992983.1992988}. FMEA provides a structured way to list possible failures and their consequences systemwide. If probabilities of failures are known, quantitative analysis can be performed to estimate system reliability and to assign critical significance to potential failure modes or system components~\cite{MilStandardFMEA}. Performing FMEA is often the first step in the fault tree construction, for it shows possible component failures and hence basic events~\cite{0f356f05e72f43018211b36f97c8854a}. Typically, the failure modes of the components at a given level are considered; the objective it to identify the effects of the failure modes at that level - and usually higher levels - of the design. The FMEA results are often presented in tabular form (FMEA Table) and as seen in Figure~\ref{fig:} \danielle{make figure}. FMEA tables vary in form, but almost always include failure mode definitions, the operational mode in which the failure can occur, and possible causes of the failure~\cite{Bozzano:2010:DSA:1951720}.
 
 \subsection{Ordered Binary Decision Diagrams}
 A Binary Decision Diagram (BDD) is a data structure used to encode Boolean formulae.
@@ -31,5 +31,38 @@ As shown in Figure~\ref{fig:bdd}, it is a rooted, directed, acyclic graph with i
 
 BDDs are reduced by the removal of isomorphic subgraphs. The BDD shown on the right of Figure~\ref{fig:bdd} is the reduced form of the BDD on the left.
 
+\subsection{State Machines and Their Verification}
+A finite state machine (or finite state automaton) is a mathematical model of computation and consists of states, represented by nodes, and transitions between them, represented by directed edges. The change from one state to another is called a {\em transition}. The abstract machine can be in exactly one of a finite number of states at a time (hence, finite). An example of a finite state machine is shown in Figure~\ref{} \danielle{make figure}.
+
+An infinite state machine has much more power in representation due to the ability to deal with infinite states. In domains like model checking, this is required since many of the variables used are from infinite domains (e.g., real numbers, integers). The expressive capabilities of set notation and predicate logic allow finite strings to represent these infinite states. For example, the infinite set of integers greater than zero is described succintly as: $\{x \in \mathbb{Z} : x > 0\}$. 
+
+Abstracting a program or system with respect to a state machine is great, but without being able to reason about that abstraction, it is nothing more than slightly interesting. Information commonly required of a state machine representation is if a given state is {\em reachable}. In other words, reachability determines if is there a sequence of transitions that can lead to a given state. 
+
+Model checkers often utilize the expressive power of state machines to verify specifications. One such example important to this thesis is JKind~\cite{2017arXiv171201222G}, an infinite state model checker. Verification of the program is based on {\em k-induction} and property directed reachability using a back-end SMT solver, e.g., Z3~\cite{z3}, SMTInterpol~\cite{smtInterpol}.
+
+\subsubsection{$k$-induction}
+The $k$-induction method was introduced as a technique for SAT-based verification of finite and infinite state transition systems~\cite{sheeran2000checking}. Let $I(s)$ and $T(s, s_0)$ be formulae encoding the initial states and transition relation for a system over sets of propositional state variables $s$ and $s_0$. Additionally, let $P(s)$ be a formula that represents the states satisfying a safety property and $k$ a positive integer. To prove the safety property $P$ by $k$-induction, there are two steps, the base case and the induction case. The base case must show that $P$ holds in all states reachable from an initial state within $k$ steps, or transitions. More formally, the base case must show that the following formula is unsatisfiable:
+
+\begin{center}
+$I(s_1) \land T(s_1, s_2) \land \cdots \land T(s_{k−1}, s_k) \land (\overline{P(s_1)} \lor \cdots \lor \overline{P(s_k)})$
+\end{center}
+
+The induction step must show that whenever $P$ holds in $k$ consecutive states, $s_1, \ldots, s_k$, $P$ also holds in the next state $s_{k+1}$ of the system. This is done by showing that the step case formula is unsatisfiable:
+
+\begin{center}
+$P(s_1) \land T(s_1, s_2) \land \cdots \land P(s_k) \land T(s_{k}, s_{k+1}) \land \overline{P(s_{k+1})}$
+\end{center}
+
+Ever since $k$-induction was introduced for the purpose of verification of state machines, various methods came about of either combining these two proof steps into one~\cite{donaldson2011software} or performing them in parallel~\cite{kahsai2011pkind}. 
+
+\noindent Said a fellow in liquor production\\
+``I’ve a still of ingenious construction\\
+the alcohol boils\\
+through old magnet coils\\
+I’ve dubbed it my Proof by Induction"
+
 \subsection{Transition Systems}
+Informally, a transition system is a model of states and transitions between them. Intuitively, finite automata are like transition systems with additional constraints, for instance, defined start and final states. Transition systems are directed graphs with nodes representing reachable states and edges representing transitions between them. They may also be defined with a mapping function that assigns labels to each node; in the context of model checking, these labels are often properties which must hold in the corresponding state.
+
+Labeled transition systems are used extensively in model checking and will be mentioned within that context in later sections. There is much that could be said about transition systems, but for the purpose of this body of work, it is unnecessary. More information about transition systems and their relation to safety analysis and model checking can be found in the comprehensive book written by Bozzano and Villafiorita, Design and Safety Assessment of Critical Systems~\cite{Bozzano:2010:DSA:1951720}.
 

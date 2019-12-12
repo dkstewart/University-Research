@@ -17,20 +17,21 @@
 \BOOKMARK [2][-]{subsection.2.5.1}{Fault Trees and Minimal Cut Sets}{section.2.5}% 17
 \BOOKMARK [2][-]{subsection.2.5.2}{Failure Mode and Effects Analysis}{section.2.5}% 18
 \BOOKMARK [2][-]{subsection.2.5.3}{Ordered Binary Decision Diagrams}{section.2.5}% 19
-\BOOKMARK [2][-]{subsection.2.5.4}{Transition Systems}{section.2.5}% 20
-\BOOKMARK [1][-]{section.2.6}{Formal Methods in Safety Analysis: A Brief History and the State of the Practice}{chapter.2}% 21
-\BOOKMARK [2][-]{subsection.2.6.1}{Fault Tree Analysis and Binary Decision Diagrams}{section.2.6}% 22
-\BOOKMARK [2][-]{subsection.2.6.2}{Model Checking and Model Based Safety Analysis}{section.2.6}% 23
-\BOOKMARK [0][-]{chapter.3}{Compositional Minimal Cut Set Generation}{}% 24
-\BOOKMARK [0][-]{chapter.4}{Fault Modeling and the Safety Annex}{}% 25
-\BOOKMARK [1][-]{section.4.1}{Component Fault Modeling}{chapter.4}% 26
-\BOOKMARK [1][-]{section.4.2}{Error Propagation}{chapter.4}% 27
-\BOOKMARK [2][-]{subsection.4.2.1}{Implicit Propagation}{section.4.2}% 28
-\BOOKMARK [2][-]{subsection.4.2.2}{Explicit Propagation}{section.4.2}% 29
-\BOOKMARK [1][-]{section.4.3}{Fault Analysis Statements}{chapter.4}% 30
-\BOOKMARK [1][-]{section.4.4}{Asymmetric Fault Modeling}{chapter.4}% 31
-\BOOKMARK [0][-]{chapter.5}{Case Studies}{}% 32
-\BOOKMARK [1][-]{section.5.1}{Wheel Brake System}{chapter.5}% 33
-\BOOKMARK [0][-]{chapter.6}{Related Work}{}% 34
-\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 35
-\BOOKMARK [0][-]{chapter*.35}{References}{}% 36
+\BOOKMARK [2][-]{subsection.2.5.4}{State Machines and Their Verification}{section.2.5}% 20
+\BOOKMARK [2][-]{subsection.2.5.5}{Transition Systems}{section.2.5}% 21
+\BOOKMARK [1][-]{section.2.6}{Formal Methods in Safety Analysis: A Brief History and the State of the Practice}{chapter.2}% 22
+\BOOKMARK [2][-]{subsection.2.6.1}{Fault Tree Analysis and Binary Decision Diagrams}{section.2.6}% 23
+\BOOKMARK [2][-]{subsection.2.6.2}{Model Checking and Model Based Safety Analysis}{section.2.6}% 24
+\BOOKMARK [0][-]{chapter.3}{Compositional Minimal Cut Set Generation}{}% 25
+\BOOKMARK [0][-]{chapter.4}{Fault Modeling and the Safety Annex}{}% 26
+\BOOKMARK [1][-]{section.4.1}{Component Fault Modeling}{chapter.4}% 27
+\BOOKMARK [1][-]{section.4.2}{Error Propagation}{chapter.4}% 28
+\BOOKMARK [2][-]{subsection.4.2.1}{Implicit Propagation}{section.4.2}% 29
+\BOOKMARK [2][-]{subsection.4.2.2}{Explicit Propagation}{section.4.2}% 30
+\BOOKMARK [1][-]{section.4.3}{Fault Analysis Statements}{chapter.4}% 31
+\BOOKMARK [1][-]{section.4.4}{Asymmetric Fault Modeling}{chapter.4}% 32
+\BOOKMARK [0][-]{chapter.5}{Case Studies}{}% 33
+\BOOKMARK [1][-]{section.5.1}{Wheel Brake System}{chapter.5}% 34
+\BOOKMARK [0][-]{chapter.6}{Related Work}{}% 35
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 36
+\BOOKMARK [0][-]{chapter*.36}{References}{}% 37

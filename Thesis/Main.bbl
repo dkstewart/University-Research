@@ -220,6 +220,12 @@ T.~C. development team.
 \newblock LogiCal Project, 2019.
 \newblock Version 8.10.2.
 
+\bibitem{donaldson2011software}
+A.~F. Donaldson, L.~Haller, D.~Kroening, and P.~R{\"u}mmer.
+\newblock Software verification using k-induction.
+\newblock In {\em International Static Analysis Symposium}, pages 351--368.
+  Springer, 2011.
+
 \bibitem{Driscoll-Byzantine-Fault}
 K.~Driscoll, H.~Sivencrona, and P.~Zumsteg.
 \newblock {Byzantine Fault Tolerance, from Theory to Reality}.
@@ -276,6 +282,11 @@ G.~Fraser, F.~Wotawa, and P.~E. Ammann.
 J.~B. FUSSELL.
 \newblock A new methodology for obtaining cut sets for fault trees.
 \newblock {\em Trans. Am. Nucl. Soc.}, 1972.
+
+\bibitem{2017arXiv171201222G}
+A.~{Gacek}, J.~{Backes}, M.~{Whalen}, L.~{Wagner}, and E.~{Ghassabani}.
+\newblock {The JKind Model Checker}.
+\newblock {\em CAV 2018}, 10982, 2018.
 
 \bibitem{ge2015quantitative}
 D.~Ge, M.~Lin, Y.~Yang, R.~Zhang, and Q.~Chou.
@@ -342,6 +353,11 @@ A.~Joshi, S.~P. Miller, M.~Whalen, and M.~P. Heimdahl.
 \newblock {A Proposal for Model-Based Safety Analysis}.
 \newblock In {\em {In Proceedings of 24th Digital Avionics Systems
   Conference}}, 2005.
+
+\bibitem{kahsai2011pkind}
+T.~Kahsai and C.~Tinelli.
+\newblock Pkind: A parallel k-induction based model checker.
+\newblock {\em arXiv preprint arXiv:1111.0372}, 2011.
 
 \bibitem{Katoen:2005:MRM:1114692.1115230}
 J.-P. Katoen, M.~Khattri, and I.~S. Zapreev.
@@ -494,6 +510,12 @@ S.~N. Semanderes.
 \newblock " elraft" a computer program for the efficient logic reduction
   analysis of fault trees.
 \newblock {\em IEEE Transactions on Nuclear Science}, 18(1):481--487, 1971.
+
+\bibitem{sheeran2000checking}
+M.~Sheeran, S.~Singh, and G.~St{\aa}lmarck.
+\newblock Checking safety properties using induction and a sat-solver.
+\newblock In {\em International conference on formal methods in computer-aided
+  design}, pages 127--144. Springer, 2000.
 
 \bibitem{signoret1998altarica}
 J.-P. Signoret, S.~Lajeunesse, G.~Point, P.~Thomas, A.~Griffault, and A.~Rauzy.

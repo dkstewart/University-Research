@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2018.8.13)  12 DEC 2019 12:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6730 64-bit) (preloaded format=pdflatex 2018.8.13)  12 DEC 2019 16:55
 entering extended mode
 **./Main.tex
 (Main.tex
@@ -732,6 +732,7 @@ Package: authblk 2001/02/27 1.3 (PWD)
 \c@authors=\count170
 \c@affil=\count171
 )
+   defining Unicode char U+2212 (decimal 8722)
 \c@observation=\count172
 \c@lemma=\count173
 \c@definition=\count174
@@ -960,7 +961,7 @@ LaTeX Warning: Reference `chap:background' on page 3 undefined on input line 47
 ) (Preliminaries.tex [3]
 Chapter 2.
 (CriticalSysDev.tex
-<images/v1.png, id=300, 406.51875pt x 247.92625pt>
+<images/v1.png, id=305, 406.51875pt x 247.92625pt>
 File: images/v1.png Graphic file (type png)
 <use images/v1.png>
 Package pdftex.def Info: images/v1.png  used on input line 11.
@@ -968,7 +969,7 @@ Package pdftex.def Info: images/v1.png  used on input line 11.
  [4
 
 ]
-<images/v2.png, id=307, 431.6125pt x 256.96pt>
+<images/v2.png, id=312, 431.6125pt x 256.96pt>
 File: images/v2.png Graphic file (type png)
 <use images/v2.png>
 Package pdftex.def Info: images/v2.png  used on input line 19.
@@ -990,7 +991,7 @@ Overfull \hbox (1.48396pt too wide) in paragraph at lines 41--42
  []
 
 Excluding 'comment' comment.) (MBSA.tex
-<images/process3.png, id=321, 963.6pt x 542.025pt>
+<images/process3.png, id=326, 963.6pt x 542.025pt>
 File: images/process3.png Graphic file (type png)
 <use images/process3.png>
 Package pdftex.def Info: images/process3.png  used on input line 12.
@@ -1003,7 +1004,7 @@ LaTeX Font Info:    Try loading font information for OT1+pcr on input line 18.
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 ) [11])
 (artifactsAndFormalizations.tex
-<images/introFT2.pdf, id=417, 318.18875pt x 178.6675pt>
+<images/introFT2.pdf, id=422, 318.18875pt x 178.6675pt>
 File: images/introFT2.pdf Graphic file (type pdf)
 <use images/introFT2.pdf>
 Package pdftex.def Info: images/introFT2.pdf  used on input line 11.
@@ -1016,33 +1017,38 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: Reference `fig:' on page 13 undefined on input line 22.
 
-<images/bdd.png, id=436, 431.11063pt x 173.14688pt>
-File: images/bdd.png Graphic file (type png)
-<use images/bdd.png>
-Package pdftex.def Info: images/bdd.png  used on input line 27.
-(pdftex.def)             Requested size: 332.44325pt x 133.52165pt.
 [13 <./images/introFT2.pdf
 
 pdfTeX warning: pdflatex.exe (file ./images/introFT2.pdf): PDF inclusion: inval
 id other resource which is no dict (key 'ProcSets', type <array>); ignored.
->]) (modelCheckingInSA.tex [14 <./images/bdd.png>] [15] [16] [17]))
-(CompositionalMCSGen.tex [18]
+>]
+<images/bdd.png, id=458, 431.11063pt x 173.14688pt>
+File: images/bdd.png Graphic file (type png)
+<use images/bdd.png>
+Package pdftex.def Info: images/bdd.png  used on input line 27.
+(pdftex.def)             Requested size: 332.44325pt x 133.52165pt.
+
+
+LaTeX Warning: Reference `' on page 14 undefined on input line 35.
+
+[14 <./images/bdd.png>] [15]) (modelCheckingInSA.tex [16] [17] [18] [19]))
+(CompositionalMCSGen.tex [20]
 Chapter 3.
 
-LaTeX Warning: Reference `chap:mcsGen' on page 19 undefined on input line 2.
+LaTeX Warning: Reference `chap:mcsGen' on page 21 undefined on input line 2.
 
-) (FaultModeling.tex [19
+) (FaultModeling.tex [21
 
 ]
 Chapter 4.
 
-LaTeX Warning: Reference `chap:faultModeling' on page 20 undefined on input lin
+LaTeX Warning: Reference `chap:faultModeling' on page 22 undefined on input lin
 e 2.
 
-[20
+[22
 
 ]
-<images/system_sensor.pdf, id=591, 597.55246pt x 845.07718pt>
+<images/system_sensor.pdf, id=619, 597.55246pt x 845.07718pt>
 File: images/system_sensor.pdf Graphic file (type pdf)
 <use images/system_sensor.pdf>
 Package pdftex.def Info: images/system_sensor.pdf  used on input line 24.
@@ -1052,8 +1058,8 @@ Overfull \hbox (122.41798pt too wide) in paragraph at lines 24--26
  [] 
  []
 
-[21 <./images/system_sensor.pdf>]
-<images/safetyannex_sensorfault.pdf, id=615, 597.55246pt x 845.07718pt>
+[23 <./images/system_sensor.pdf>]
+<images/safetyannex_sensorfault.pdf, id=642, 597.55246pt x 845.07718pt>
 File: images/safetyannex_sensorfault.pdf Graphic file (type pdf)
 <use images/safetyannex_sensorfault.pdf>
 Package pdftex.def Info: images/safetyannex_sensorfault.pdf  used on input line
@@ -1068,15 +1074,15 @@ Overfull \hbox (122.41798pt too wide) in paragraph at lines 40--42
 
 pdfTeX warning: pdflatex.exe (file ./images/Comparison_with_EMV2.pdf): PDF incl
 usion: found PDF version <1.6>, but at most version <1.5> allowed
-<images/Comparison_with_EMV2.pdf, id=618, 794.97pt x 614.295pt>
+<images/Comparison_with_EMV2.pdf, id=645, 794.97pt x 614.295pt>
 File: images/Comparison_with_EMV2.pdf Graphic file (type pdf)
 <use images/Comparison_with_EMV2.pdf>
 Package pdftex.def Info: images/Comparison_with_EMV2.pdf  used on input line 64
 .
 (pdftex.def)             Requested size: 415.55249pt x 313.76733pt.
-[22 <./images/safetyannex_sensorfault.pdf>] [23 <./images/Comparison_with_EMV2.
+[24 <./images/safetyannex_sensorfault.pdf>] [25 <./images/Comparison_with_EMV2.
 pdf, page is rotated 90 degrees>]
-<images/hw_fault2.png, id=715, 294.09875pt x 55.70813pt>
+<images/hw_fault2.png, id=743, 294.09875pt x 55.70813pt>
 File: images/hw_fault2.png Graphic file (type png)
 <use images/hw_fault2.png>
 Package pdftex.def Info: images/hw_fault2.png  used on input line 93.
@@ -1087,14 +1093,14 @@ Package caption Warning: \label without proper reference on input line 97.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:hwFault' on page 24 undefined on input line 107.
+LaTeX Warning: Reference `fig:hwFault' on page 26 undefined on input line 107.
 
-<images/hw_prop_stmt.png, id=717, 511.41063pt x 87.82813pt>
+<images/hw_prop_stmt.png, id=745, 511.41063pt x 87.82813pt>
 File: images/hw_prop_stmt.png Graphic file (type png)
 <use images/hw_prop_stmt.png>
 Package pdftex.def Info: images/hw_prop_stmt.png  used on input line 113.
 (pdftex.def)             Requested size: 415.55249pt x 71.36552pt.
-<images/hypothesisMaxN.png, id=718, 147.04938pt x 36.63687pt>
+<images/hypothesisMaxN.png, id=746, 147.04938pt x 36.63687pt>
 File: images/hypothesisMaxN.png Graphic file (type png)
 <use images/hypothesisMaxN.png>
 Package pdftex.def Info: images/hypothesisMaxN.png  used on input line 134.
@@ -1102,84 +1108,84 @@ Package pdftex.def Info: images/hypothesisMaxN.png  used on input line 134.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/hypothesisProb.png, id=719, 181.17688pt x 38.1425pt>
+<images/hypothesisProb.png, id=747, 181.17688pt x 38.1425pt>
 File: images/hypothesisProb.png Graphic file (type png)
 <use images/hypothesisProb.png>
 Package pdftex.def Info: images/hypothesisProb.png  used on input line 145.
 (pdftex.def)             Requested size: 207.77625pt x 43.74304pt.
-[24 <./images/hw_fault2.png> <./images/hw_prop_stmt.png>] (Byzantine.tex
-<images/commNodes.png, id=733, 496.35437pt x 325.215pt>
+[26 <./images/hw_fault2.png> <./images/hw_prop_stmt.png>] (Byzantine.tex
+<images/commNodes.png, id=760, 496.35437pt x 325.215pt>
 File: images/commNodes.png Graphic file (type png)
 <use images/commNodes.png>
 Package pdftex.def Info: images/commNodes.png  used on input line 10.
 (pdftex.def)             Requested size: 415.55249pt x 272.27557pt.
 
-[25 <./images/hypothesisMaxN.png> <./images/hypothesisProb.png>]
-<images/asymFaultDef.png, id=743, 404.00937pt x 81.80562pt>
+[27 <./images/hypothesisMaxN.png> <./images/hypothesisProb.png>]
+<images/asymFaultDef.png, id=770, 404.00937pt x 81.80562pt>
 File: images/asymFaultDef.png Graphic file (type png)
 <use images/asymFaultDef.png>
 Package pdftex.def Info: images/asymFaultDef.png  used on input line 15.
 (pdftex.def)             Requested size: 415.55249pt x 84.14462pt.
- [26 <./images/commNodes.png> <./images/asymFaultDef.png>]
+ [28 <./images/commNodes.png> <./images/asymFaultDef.png>]
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 30.
-<images/PIDArch.png, id=754, 563.60562pt x 197.73875pt>
+<images/PIDArch.png, id=781, 563.60562pt x 197.73875pt>
 File: images/PIDArch.png Graphic file (type png)
 <use images/PIDArch.png>
 Package pdftex.def Info: images/PIDArch.png  used on input line 37.
 (pdftex.def)             Requested size: 415.55249pt x 145.79636pt.
-<images/NodeOutputsPID.png, id=756, 527.47063pt x 89.83563pt>
+<images/NodeOutputsPID.png, id=783, 527.47063pt x 89.83563pt>
 File: images/NodeOutputsPID.png Graphic file (type png)
 <use images/NodeOutputsPID.png>
 Package pdftex.def Info: images/NodeOutputsPID.png  used on input line 45.
 (pdftex.def)             Requested size: 373.99469pt x 63.696pt.
- [27]
-<images/PIDNodeData.png, id=763, 250.43562pt x 87.82813pt>
+ [29]
+<images/PIDNodeData.png, id=790, 250.43562pt x 87.82813pt>
 File: images/PIDNodeData.png Graphic file (type png)
 <use images/PIDNodeData.png>
 Package pdftex.def Info: images/PIDNodeData.png  used on input line 52.
 (pdftex.def)             Requested size: 290.88547pt x 102.0254pt.
-<images/PIDFaultNode.png, id=766, 374.90062pt x 181.67876pt>
+<images/PIDFaultNode.png, id=793, 374.90062pt x 181.67876pt>
 File: images/PIDFaultNode.png Graphic file (type png)
 <use images/PIDFaultNode.png>
 Package pdftex.def Info: images/PIDFaultNode.png  used on input line 60.
 (pdftex.def)             Requested size: 373.99469pt x 181.25137pt.
- [28 <./images/PIDArch.png> <./images/NodeOutputsPID.png> <./images/PIDNodeData
+ [30 <./images/PIDArch.png> <./images/NodeOutputsPID.png> <./images/PIDNodeData
 .png>]
-<images/PIDFaultDef.png, id=774, 473.77pt x 142.5325pt>
+<images/PIDFaultDef.png, id=802, 473.77pt x 142.5325pt>
 File: images/PIDFaultDef.png Graphic file (type png)
 <use images/PIDFaultDef.png>
 Package pdftex.def Info: images/PIDFaultDef.png  used on input line 65.
 (pdftex.def)             Requested size: 373.99469pt x 112.51895pt.
-<images/PIDContract1.png, id=777, 410.03188pt x 66.2475pt>
+<images/PIDContract1.png, id=805, 410.03188pt x 66.2475pt>
 File: images/PIDContract1.png Graphic file (type png)
 <use images/PIDContract1.png>
 Package pdftex.def Info: images/PIDContract1.png  used on input line 77.
 (pdftex.def)             Requested size: 373.99469pt x 60.42885pt.
-<images/PIDCOntract2.png, id=778, 396.48125pt x 201.75375pt>
+<images/PIDCOntract2.png, id=806, 396.48125pt x 201.75375pt>
 File: images/PIDCOntract2.png Graphic file (type png)
 <use images/PIDCOntract2.png>
 Package pdftex.def Info: images/PIDCOntract2.png  used on input line 82.
 (pdftex.def)             Requested size: 373.99469pt x 190.31657pt.
- [29 <./images/PIDFaultNode.png> <./images/PIDFaultDef.png>]
-<images/PID_faultActivationStmt.png, id=786, 391.96437pt x 110.4125pt>
+ [31 <./images/PIDFaultNode.png> <./images/PIDFaultDef.png>]
+<images/PID_faultActivationStmt.png, id=814, 391.96437pt x 110.4125pt>
 File: images/PID_faultActivationStmt.png Graphic file (type png)
 <use images/PID_faultActivationStmt.png>
 Package pdftex.def Info: images/PID_faultActivationStmt.png  used on input line
  98.
 (pdftex.def)             Requested size: 373.99469pt x 105.35625pt.
- [30 <./images/PIDContract1.png> <./images/PIDCOntract2.png>])) (CaseStudies.te
-x [31 <./images/PID_faultActivationStmt.png>]
+ [32 <./images/PIDContract1.png> <./images/PIDCOntract2.png>])) (CaseStudies.te
+x [33 <./images/PID_faultActivationStmt.png>]
 Chapter 5.
 
-LaTeX Warning: Reference `chap:caseStudies' on page 32 undefined on input line 
+LaTeX Warning: Reference `chap:caseStudies' on page 34 undefined on input line 
 2.
 
 (WBS.tex
 
-LaTeX Warning: Reference `wbs' on page 32 undefined on input line 2.
+LaTeX Warning: Reference `wbs' on page 34 undefined on input line 2.
 
-<images/wbs_arch4_diagram.pdf, id=810, 1281.78876pt x 638.385pt>
+<images/wbs_arch4_diagram.pdf, id=837, 1281.78876pt x 638.385pt>
 File: images/wbs_arch4_diagram.pdf Graphic file (type pdf)
 <use images/wbs_arch4_diagram.pdf>
 Package pdftex.def Info: images/wbs_arch4_diagram.pdf  used on input line 7.
@@ -1187,47 +1193,47 @@ Package pdftex.def Info: images/wbs_arch4_diagram.pdf  used on input line 7.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[32
+[34
 
-] [33 <./images/wbs_arch4_diagram.pdf>]
-<images/inadvertent_braking.png, id=990, 347.2975pt x 88.33pt>
+] [35 <./images/wbs_arch4_diagram.pdf>]
+<images/inadvertent_braking.png, id=1017, 347.2975pt x 88.33pt>
 File: images/inadvertent_braking.png Graphic file (type png)
 <use images/inadvertent_braking.png>
 Package pdftex.def Info: images/inadvertent_braking.png  used on input line 49.
 
 (pdftex.def)             Requested size: 290.88547pt x 73.98508pt.
-)) (RelatedWork.tex [34 <./images/inadvertent_braking.png>]
+)) (RelatedWork.tex [36 <./images/inadvertent_braking.png>]
 Chapter 6.
-[35
+[37
 
 ]
 
-LaTeX Warning: Citation `info8010007' on page 36 undefined on input line 27.
+LaTeX Warning: Citation `info8010007' on page 38 undefined on input line 27.
 
 
-LaTeX Warning: Citation `info8010007' on page 36 undefined on input line 28.
+LaTeX Warning: Citation `info8010007' on page 38 undefined on input line 28.
 
-[36]) (Conclusion.tex [37]
+[38]) (Conclusion.tex [39]
 Chapter 7.
-[38
+[40
 
-]) (Main.bbl [39] [40
+]) (Main.bbl [41] [42
 
-] [41] [42] [43] [44] [45] [46]
-Underfull \hbox (badness 3954) in paragraph at lines 511--517
+] [43] [44] [45] [46] [47] [48]
+Underfull \hbox (badness 3954) in paragraph at lines 533--539
 \OT1/ptm/m/n/10.95 chi-tec-tural mod-el-ing and anal-y-sis for safety en-gi-nee
 r-ing (AMASE), NASA fi-
  []
 
-[47])
+[49])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 183.
- [48]
+ [50]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 183.
  (Main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 183.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 183.
 Package rerunfilecheck Info: File `Main.out' has not changed.
-(rerunfilecheck)             Checksum: CB575A30549692A6E0E22F20806E1D75;2740.
+(rerunfilecheck)             Checksum: 0CC4DFEFE591621F7DE32097AE9D269B;2832.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1239,10 +1245,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 183.
  )
 (\end occurred when \iftrue on line 35 was incomplete) 
 Here is how much of TeX's memory you used:
- 13680 strings out of 492973
- 205962 string characters out of 3135897
- 340290 words of memory out of 3000000
- 16959 multiletter control sequences out of 15000+200000
+ 13701 strings out of 492973
+ 206315 string characters out of 3135897
+ 341126 words of memory out of 3000000
+ 16972 multiletter control sequences out of 15000+200000
  44471 words of font info for 74 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,7n,40p,2039b,494s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1255,13 +1261,14 @@ nts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
 lm/lmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/P
 rogram Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/
-fonts/type1/urw/times/utmri8a.pfb>
-Output written on Main.pdf (55 pages, 1165058 bytes).
+public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/sy
+mbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/urw/times/utmri8a.pfb>
+Output written on Main.pdf (57 pages, 1179345 bytes).
 PDF statistics:
- 1188 PDF objects out of 1200 (max. 8388607)
- 222 named destinations out of 1000 (max. 500000)
- 439 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1220 PDF objects out of 1440 (max. 8388607)
+ 230 named destinations out of 1000 (max. 500000)
+ 447 words of extra memory for PDF output out of 10000 (max. 10000000)
 

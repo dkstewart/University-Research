@@ -19,25 +19,27 @@
 \contentsline {subsection}{\numberline {2.5.1}Fault Trees and Minimal Cut Sets}{12}{subsection.2.5.1}
 \contentsline {subsection}{\numberline {2.5.2}Failure Mode and Effects Analysis}{13}{subsection.2.5.2}
 \contentsline {subsection}{\numberline {2.5.3}Ordered Binary Decision Diagrams}{14}{subsection.2.5.3}
-\contentsline {subsection}{\numberline {2.5.4}Transition Systems}{14}{subsection.2.5.4}
-\contentsline {section}{\numberline {2.6}Formal Methods in Safety Analysis: A Brief History and the State of the Practice}{14}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}Fault Tree Analysis and Binary Decision Diagrams}{15}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}Model Checking and Model Based Safety Analysis}{15}{subsection.2.6.2}
-\contentsline {subsubsection}{AltaRica}{16}{section*.11}
-\contentsline {subsubsection}{FSAP, xSAP, and COMPASS}{17}{section*.12}
-\contentsline {subsubsection}{SmartIFlow}{17}{section*.13}
-\contentsline {subsubsection}{SAML}{18}{section*.14}
-\contentsline {subsubsection}{Error Model Annex for AADL}{18}{section*.15}
-\contentsline {chapter}{\numberline {3}Compositional Minimal Cut Set Generation}{19}{chapter.3}
-\contentsline {chapter}{\numberline {4}Fault Modeling and the Safety Annex}{20}{chapter.4}
-\contentsline {section}{\numberline {4.1}Component Fault Modeling}{20}{section.4.1}
-\contentsline {section}{\numberline {4.2}Error Propagation}{22}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Implicit Propagation}{22}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Explicit Propagation}{23}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Fault Analysis Statements}{24}{section.4.3}
-\contentsline {section}{\numberline {4.4}Asymmetric Fault Modeling}{25}{section.4.4}
-\contentsline {chapter}{\numberline {5}Case Studies}{32}{chapter.5}
-\contentsline {section}{\numberline {5.1}Wheel Brake System}{32}{section.5.1}
-\contentsline {chapter}{\numberline {6}Related Work}{35}{chapter.6}
-\contentsline {chapter}{\numberline {7}Conclusion}{38}{chapter.7}
-\contentsline {chapter}{References}{40}{chapter*.35}
+\contentsline {subsection}{\numberline {2.5.4}State Machines and Their Verification}{14}{subsection.2.5.4}
+\contentsline {subsubsection}{$k$-induction}{15}{section*.11}
+\contentsline {subsection}{\numberline {2.5.5}Transition Systems}{16}{subsection.2.5.5}
+\contentsline {section}{\numberline {2.6}Formal Methods in Safety Analysis: A Brief History and the State of the Practice}{16}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Fault Tree Analysis and Binary Decision Diagrams}{17}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Model Checking and Model Based Safety Analysis}{17}{subsection.2.6.2}
+\contentsline {subsubsection}{AltaRica}{18}{section*.12}
+\contentsline {subsubsection}{FSAP, xSAP, and COMPASS}{19}{section*.13}
+\contentsline {subsubsection}{SmartIFlow}{19}{section*.14}
+\contentsline {subsubsection}{SAML}{20}{section*.15}
+\contentsline {subsubsection}{Error Model Annex for AADL}{20}{section*.16}
+\contentsline {chapter}{\numberline {3}Compositional Minimal Cut Set Generation}{21}{chapter.3}
+\contentsline {chapter}{\numberline {4}Fault Modeling and the Safety Annex}{22}{chapter.4}
+\contentsline {section}{\numberline {4.1}Component Fault Modeling}{22}{section.4.1}
+\contentsline {section}{\numberline {4.2}Error Propagation}{24}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Implicit Propagation}{24}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Explicit Propagation}{25}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Fault Analysis Statements}{26}{section.4.3}
+\contentsline {section}{\numberline {4.4}Asymmetric Fault Modeling}{27}{section.4.4}
+\contentsline {chapter}{\numberline {5}Case Studies}{34}{chapter.5}
+\contentsline {section}{\numberline {5.1}Wheel Brake System}{34}{section.5.1}
+\contentsline {chapter}{\numberline {6}Related Work}{37}{chapter.6}
+\contentsline {chapter}{\numberline {7}Conclusion}{40}{chapter.7}
+\contentsline {chapter}{References}{42}{chapter*.36}
