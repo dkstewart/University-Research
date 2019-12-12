@@ -6,28 +6,38 @@
 \contentsline {section}{\numberline {2.1}Safety Critical Systems Development}{4}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}The V Model}{4}{subsection.2.1.1}
 \contentsline {subsection}{\numberline {2.1.2}Traditional Safety Assessment Process}{5}{subsection.2.1.2}
-\contentsline {subsection}{\numberline {2.1.3}Fault Trees and Minimal Cut Sets}{7}{subsection.2.1.3}
-\contentsline {section}{\numberline {2.2}Model Based Safety Assessment}{8}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Suggested Model Based Safety Assessment Process Supported by Formal Methods}{9}{subsection.2.2.1}
-\contentsline {section}{\numberline {2.3}Formal Methods of Validation and Verification}{10}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Formal Validation and Verification}{10}{subsection.2.3.1}
-\contentsline {subsubsection}{Formal Specification}{10}{section*.8}
-\contentsline {subsubsection}{Formal Verification}{11}{section*.9}
-\contentsline {section}{\numberline {2.4}Satisfiability}{12}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}UNSAT Cores and Minimal Unsatisfiable Subsets}{12}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Inductive Validity Cores}{13}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}Ordered Binary Decision Diagrams}{13}{subsection.2.4.3}
-\contentsline {section}{\numberline {2.5}Model Checking in Safety Analysis: A Brief History and the State of the Practice}{14}{section.2.5}
-\contentsline {chapter}{\numberline {3}Compositional Minimal Cut Set Generation}{15}{chapter.3}
-\contentsline {chapter}{\numberline {4}Fault Modeling and the Safety Annex}{16}{chapter.4}
-\contentsline {section}{\numberline {4.1}Component Fault Modeling}{16}{section.4.1}
-\contentsline {section}{\numberline {4.2}Error Propagation}{18}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Implicit Propagation}{18}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Explicit Propagation}{19}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Fault Analysis Statements}{20}{section.4.3}
-\contentsline {section}{\numberline {4.4}Asymmetric Fault Modeling}{21}{section.4.4}
-\contentsline {chapter}{\numberline {5}Case Studies}{28}{chapter.5}
-\contentsline {section}{\numberline {5.1}Wheel Brake System}{28}{section.5.1}
-\contentsline {chapter}{\numberline {6}Related Work}{31}{chapter.6}
-\contentsline {chapter}{\numberline {7}Conclusion}{34}{chapter.7}
-\contentsline {chapter}{References}{36}{chapter*.30}
+\contentsline {section}{\numberline {2.2}Model Based Safety Assessment}{7}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Suggested Model Based Safety Assessment Process Supported by Formal Methods}{7}{subsection.2.2.1}
+\contentsline {section}{\numberline {2.3}Formal Methods of Validation and Verification}{8}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Formal Validation and Verification}{9}{subsection.2.3.1}
+\contentsline {subsubsection}{Formal Specification}{9}{section*.7}
+\contentsline {subsubsection}{Formal Verification}{9}{section*.8}
+\contentsline {section}{\numberline {2.4}Satisfiability}{10}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}UNSAT Cores and Minimal Unsatisfiable Subsets}{11}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Inductive Validity Cores}{11}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.5}Artifacts, Data Structures, and Other Formalizations}{12}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Fault Trees and Minimal Cut Sets}{12}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Failure Mode and Effects Analysis}{13}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Ordered Binary Decision Diagrams}{14}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}Transition Systems}{14}{subsection.2.5.4}
+\contentsline {section}{\numberline {2.6}Formal Methods in Safety Analysis: A Brief History and the State of the Practice}{14}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Fault Tree Analysis and Binary Decision Diagrams}{15}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Model Checking and Model Based Safety Analysis}{15}{subsection.2.6.2}
+\contentsline {subsubsection}{AltaRica}{16}{section*.11}
+\contentsline {subsubsection}{FSAP, xSAP, and COMPASS}{17}{section*.12}
+\contentsline {subsubsection}{SmartIFlow}{17}{section*.13}
+\contentsline {subsubsection}{SAML}{18}{section*.14}
+\contentsline {subsubsection}{Error Model Annex for AADL}{18}{section*.15}
+\contentsline {chapter}{\numberline {3}Compositional Minimal Cut Set Generation}{19}{chapter.3}
+\contentsline {chapter}{\numberline {4}Fault Modeling and the Safety Annex}{20}{chapter.4}
+\contentsline {section}{\numberline {4.1}Component Fault Modeling}{20}{section.4.1}
+\contentsline {section}{\numberline {4.2}Error Propagation}{22}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Implicit Propagation}{22}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Explicit Propagation}{23}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Fault Analysis Statements}{24}{section.4.3}
+\contentsline {section}{\numberline {4.4}Asymmetric Fault Modeling}{25}{section.4.4}
+\contentsline {chapter}{\numberline {5}Case Studies}{32}{chapter.5}
+\contentsline {section}{\numberline {5.1}Wheel Brake System}{32}{section.5.1}
+\contentsline {chapter}{\numberline {6}Related Work}{35}{chapter.6}
+\contentsline {chapter}{\numberline {7}Conclusion}{38}{chapter.7}
+\contentsline {chapter}{References}{40}{chapter*.35}

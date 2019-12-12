@@ -6,9 +6,22 @@
 \newblock {\em Requirements for Safety Related Software in Defence Equipment,
   Ministry of Defence}, 1999.
 
+\bibitem{aerospace2012sae}
+S.~Aerospace.
+\newblock Sae as5506b: Architecture analysis \& design language (aadl) standard
+  document.
+\newblock {\em SAE International}, 2012.
+
 \bibitem{AIR6110}
 {AIR 6110}.
 \newblock {Contiguous Aircraft/System Development Process Example}, Dec. 2011.
+
+\bibitem{banov2019new}
+R.~Banov, Z.~{\v{S}}imi{\'c}, and D.~Grgi{\'c}.
+\newblock A new heuristics for the event ordering in binary decision diagram
+  applied in fault tree analysis.
+\newblock {\em Proceedings of the Institution of Mechanical Engineers, Part O:
+  Journal of Risk and Reliability}, page 1748006X19879305, 2019.
 
 \bibitem{belov2013core}
 A.~Belov, H.~Chen, A.~Mishchenko, and J.~Marques-Silva.
@@ -75,6 +88,12 @@ M.~Bozzano, A.~Cimatti, J.-P. Katoen, V.~Y. Nguyen, T.~Noll, and M.~Roveri.
 \newblock In {\em Computer Safety, Reliability, and Security}. Springer Berlin
   Heidelberg, 2009.
 
+\bibitem{Bozzano:2011:SDP:1992983.1992988}
+M.~Bozzano, A.~Cimatti, J.-P. Katoen, V.~Y. Nguyen, T.~Noll, and M.~Roveri.
+\newblock Safety, dependability and performance analysis of extended aadl
+  models.
+\newblock {\em Comput. J.}, 54(5), May 2011.
+
 \bibitem{criticalembeddedsystems}
 M.~Bozzano, A.~Cimatti, J.-P. Katoen, V.~Yen~Nguyen, T.~Noll, and M.~Roveri.
 \newblock Model-based codesign of critical embedded systems.
@@ -108,6 +127,13 @@ M.~Bozzano, A.~Cimatti, and F.~Tapparo.
 \newblock Symbolic fault tree analysis for reactive systems.
 \newblock In {\em ATVA}, 2007.
 
+\bibitem{bozzano2003improving}
+M.~Bozzano and A.~Villafiorita.
+\newblock Improving system reliability via model checking: The fsap/nusmv-sa
+  safety analysis platform.
+\newblock In {\em International Conference on Computer Safety, Reliability, and
+  Security}, pages 49--62. Springer, 2003.
+
 \bibitem{Bozzano:2010:DSA:1951720}
 M.~Bozzano and A.~Villafiorita.
 \newblock {\em Design and Safety Assessment of Critical Systems}.
@@ -125,11 +151,24 @@ G.~Bracha.
 \newblock Asynchronous byzantine agreement protocols.
 \newblock {\em Information and Computation}, 75(2):130--143, 1987.
 
+\bibitem{bryant1986graph}
+R.~E. Bryant.
+\newblock Graph-based algorithms for boolean function manipulation.
+\newblock {\em Computers, IEEE Transactions on}, 100(8):677--691, 1986.
+
 \bibitem{CHEN201391}
 D.~Chen, N.~Mahmud, M.~Walker, L.~Feng, H.~L{\"o}nn, and Y.~Papadopoulos.
 \newblock {Systems Modeling with {EAST-ADL} for Fault Tree Analysis through
   {HiP-HOPS}*}.
 \newblock {\em IFAC Proceedings Volumes}, 46(22):91 -- 96, 2013.
+
+\bibitem{chiappini1999formal}
+A.~Chiappini, A.~Cimatti, C.~Porzia, G.~Rotondo, R.~Sebastiani, P.~Traverso,
+  and A.~Villafiorita.
+\newblock Formal specification and development of a safety-critical train
+  management system.
+\newblock In {\em International Conference on Computer Safety, Reliability, and
+  Security}, pages 410--419. Springer, 1999.
 
 \bibitem{smtInterpol}
 J.~Christ, J.~Hoenicke, and A.~Nutz.
@@ -137,6 +176,12 @@ J.~Christ, J.~Hoenicke, and A.~Nutz.
 \newblock In {\em Proceedings of the 19th International Conference on Model
   Checking Software}, SPIN'12, pages 248--254, Berlin, Heidelberg, 2012.
   Springer-Verlag.
+
+\bibitem{cimatti2000industrial}
+A.~Cimatti.
+\newblock Industrial applications of model checking.
+\newblock In {\em Summer School on Modeling and Verification of Parallel
+  Processes}, pages 153--168. Springer, 2000.
 
 \bibitem{Cimatti2000}
 A.~Cimatti, E.~Clarke, F.~Giunchiglia, and M.~Roveri.
@@ -204,6 +249,11 @@ C.~Ericson.
 \newblock System design and analysis document information.
 \newblock {\em FAA Advisory Circular 25}, 2002.
 
+\bibitem{feiler2017automated}
+P.~Feiler and J.~Delange.
+\newblock Automated fault tree analysis from aadl models.
+\newblock {\em ACM SIGAda Ada Letters}, 36(2):39--46, 2017.
+
 \bibitem{EMV2}
 P.~Feiler, J.~Hudak, J.~Delange, and D.~Gluch.
 \newblock Architecture fault modeling and analysis with the error model annex,
@@ -221,6 +271,17 @@ G.~Fraser, F.~Wotawa, and P.~E. Ammann.
 \newblock Testing with model checkers: a survey.
 \newblock {\em Software Testing, Verification and Reliability}, 19(3):215--261,
   2009.
+
+\bibitem{10020219108}
+J.~B. FUSSELL.
+\newblock A new methodology for obtaining cut sets for fault trees.
+\newblock {\em Trans. Am. Nucl. Soc.}, 1972.
+
+\bibitem{ge2015quantitative}
+D.~Ge, M.~Lin, Y.~Yang, R.~Zhang, and Q.~Chou.
+\newblock Quantitative analysis of dynamic fault trees using improved
+  sequential binary decision diagrams.
+\newblock {\em Reliability Engineering \& System Safety}, 142:289--299, 2015.
 
 \bibitem{GhassabaniGW16}
 E.~Ghassabani, A.~Gacek, and M.~W. Whalen.
@@ -250,10 +311,19 @@ P.~Hönig, R.~Lunde, and F.~Holzapfel.
 \newblock {Model Based Safety Analysis with smartIflow}.
 \newblock {\em Information}, 8(1), 2017.
 
-\bibitem{info8010007}
-P.~H{\"o}nig, R.~Lunde, and F.~Holzapfel.
-\newblock {Model Based Safety Analysis with smartIflow}.
-\newblock {\em Information}, 8(1), 2017.
+\bibitem{honig2014new}
+P.~H{\"o}nig and R.~Lunde.
+\newblock A new modeling approach for automated safety analysis based on
+  information flows.
+\newblock In {\em Proceedings of the 25th International Workshop on Principles
+  of Diagnosis (DX14), Graz, Austria}, pages 8--11, 2014.
+
+\bibitem{jiang2018algebraic}
+W.~Jiang, S.~Zhou, L.~Ye, D.~Zhao, J.~Tian, W.~E. Wong, and J.~Xiang.
+\newblock An algebraic binary decision diagram for analysis of dynamic fault
+  tree.
+\newblock In {\em 2018 5th International Conference on Dependable Systems and
+  Their Applications (DSA)}, pages 44--51. IEEE, 2018.
 
 \bibitem{Joshi05:SafeComp}
 A.~Joshi and M.~P. Heimdahl.
@@ -314,6 +384,13 @@ O.~Lisagor, T.~Kelly, and R.~Niu.
 \newblock In {\em The Proceedings of 2011 9th International Conference on
   Reliability, Maintainability and Safety}, 2011.
 
+\bibitem{liu2016research}
+Y.~Liu, G.~Shen, F.~Wang, J.~Si, and Z.~Wang.
+\newblock Research on aadl model for qualitative safety analysis of embedded
+  systems.
+\newblock {\em International Journal of Multimedia and Ubiquitous Engineering},
+  11(6):153--170, 2016.
+
 \bibitem{MRMC}
 {MRMC: Markov Rewards Model Checker}.
 \newblock http://wwwhome.cs.utwente.nl/~zapreevis/mrmc/.
@@ -327,6 +404,12 @@ T.~Nipkow, M.~Wenzel, and L.~C. Paulson.
 {NuSMV Model Checker}.
 \newblock http://nusmv.itc.it.
 
+\bibitem{point1999altarica}
+G.~Point and A.~Rauzy.
+\newblock {A}lta{R}ica: Constraint automata as a description language.
+\newblock {\em Journal Europ\'een des Syst\`emes Automatis\'es},
+  33(8--9):1033--1052, 1999.
+
 \bibitem{prasad2005survey}
 M.~R. Prasad, A.~Biere, and A.~Gupta.
 \newblock A survey of recent advances in sat-based formal verification.
@@ -339,6 +422,14 @@ T.~Prosvirnova, M.~Batteux, P.-A. Brameret, A.~Cherfi, T.~Friedlhuber, J.-M.
 \newblock {The {A}lta{R}ica 3.0 Project for Model-Based Safety Assessment}.
 \newblock {\em IFAC}, 46(22), 2013.
 
+\bibitem{prosvirnova2013compilationfaulttrees}
+T.~Prosvirnova and A.~Rauzy.
+\newblock Altarica 3.0 project: Compiling guarded transition systems into fault
+  trees.
+\newblock In {\em Proceedings of the European Safety and Reliability
+  conference, ESREL 2013}, Amsterdam, The Netherlands, September-October 2013.
+  CRC Press.
+
 \bibitem{queille1982specification}
 J.-P. Queille and J.~Sifakis.
 \newblock Specification and verification of concurrent systems in cesar.
@@ -348,6 +439,39 @@ J.-P. Queille and J.~Sifakis.
 \bibitem{RAT}
 {RAT: Requirements Analysis Tool}.
 \newblock http://rat.itc.it.
+
+\bibitem{rausand2003system}
+M.~Rausand and A.~H{\o}yland.
+\newblock {\em System reliability theory: models, statistical methods, and
+  applications}, volume 396.
+\newblock John Wiley \& Sons, 2003.
+
+\bibitem{rauzy1993new}
+A.~Rauzy.
+\newblock New algorithms for fault trees analysis.
+\newblock {\em Reliability Engineering \& System Safety}, 40(3):203--211, 1993.
+
+\bibitem{aralia1996computation}
+A.~Rauzy.
+\newblock Computation of prime implicants of a fault tree within aralia.
+\newblock {\em Reliability Engineering and System Safety}, 1996.
+
+\bibitem{rauzy2007assessment}
+A.~Rauzy, J.~Gauthier, and X.~Leduc.
+\newblock Assessment of large automatically generated fault trees by means of
+  binary decision diagrams.
+\newblock {\em Proceedings of the Institution of Mechanical Engineers, Part O:
+  Journal of Risk and Reliability}, 221(2):95--105, 2007.
+
+\bibitem{reay2002fault}
+K.~A. Reay and J.~D. Andrews.
+\newblock A fault tree analysis strategy using binary decision diagrams.
+\newblock {\em Reliability engineering \& system safety}, 78(1):45--56, 2002.
+
+\bibitem{reese1997software}
+J.~D. Reese and N.~G. Leveson.
+\newblock Software deviation analysis: A “safeware” technique.
+\newblock In {\em AIChe 31st Annual Loss Prevention Symposium}. Citeseer, 1997.
 
 \bibitem{0f356f05e72f43018211b36f97c8854a}
 E.~Ruijters and M.~Stoelinga.
@@ -364,6 +488,24 @@ E.~Ruijters and M.~Stoelinga.
 {SAE ARP4754A}.
 \newblock {Guidelines for Development of Civil Aircraft and Systems}, December
   2010.
+
+\bibitem{semanderes1971elraft}
+S.~N. Semanderes.
+\newblock " elraft" a computer program for the efficient logic reduction
+  analysis of fault trees.
+\newblock {\em IEEE Transactions on Nuclear Science}, 18(1):481--487, 1971.
+
+\bibitem{signoret1998altarica}
+J.-P. Signoret, S.~Lajeunesse, G.~Point, P.~Thomas, A.~Griffault, and A.~Rauzy.
+\newblock The {A}ltarica {L}anguage.
+\newblock In Lydersen, Hansen, and Sandtorv, editors, {\em Proceedings of
+  European Safety and Reliability Association Conference, ESREL'98}, pages
+  1327--1334, Trondheim, Norway, June 1998. Balkerna, Rotterdam.
+
+\bibitem{sinnamon1997new}
+R.~M. Sinnamon and J.~Andrews.
+\newblock New approaches to evaluating fault trees.
+\newblock {\em Reliability Engineering \& System Safety}, 58(2):89--96, 1997.
 
 \bibitem{nasaFinalReport}
 D.~Stewart, J.~Liu, M.~Heimdahl, M.~Whalen, D.~Cofer, and M.~Peterson.
@@ -394,5 +536,16 @@ D.~Stewart, J.~Liu, M.~Whalen, D.~Cofer, and M.~Peterson.
 D.~Stewart, M.~Whalen, D.~Cofer, and M.~P. Heimdahl.
 \newblock {Architectural Modeling and Analysis for Safety Engineering}.
 \newblock In {\em {IMBSA 2017}}, pages 97--111, 2017.
+
+\bibitem{MilStandardFMEA}
+{U.S. Department of Defense}.
+\newblock {Procedures for performing a failure mode, effects and criticality
+  analysis (MIL-P-1629A)}, 1949.
+
+\bibitem{vesely1981fault}
+W.~Vesely, F.~Goldberg, N.~Roberts, and D.~Haasl.
+\newblock Fault tree handbook-nureg-0492209.
+\newblock Technical report, Technical report, US Nuclear Regulatory Commission,
+  1981.
 
 \end{thebibliography}
