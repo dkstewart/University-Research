@@ -1,0 +1,32 @@
+\section{Definitions}
+The Boolean Satisfiability (SAT) problem attempts to determine if there exists a total truth assignment to a given propositional formula, that evaluates to TRUE. Generally, a propositional formula is any combination of the disjunction and conjunction of literals (as an example, $a$ and $\neg a$ are literals). For a given unsatisfiable problem, solvers try to generate a proof of unsatisfiability; this is generally more useful than a proof of satisfiability. Such a proof is dependent on identifying a subset of clauses that make the problem unsatisfiable (UNSAT). 
+
+SAT solvers in model checking work over a constraint system to determine satisfiability. A \textit{constraint system} $C$ is an ordered set of $n$ abstract constraints $\{C_1, C_2, ..., C_n\}$ over a set of variables. The constraint $C_i$ restricts the allowed assignments of these variables in some way~\cite{liffiton2016fast}. Given a constraint system, we require some method of determining, for any subset $S \subseteq C$, whether $S$ is \textit{satisfiable} (SAT) or \textit{unsatisfiable} (UNSAT). When a subset $S$ is SAT, this means that there exists an assignment allowed by all $C_i \in S$; when no such assignment exists, $S$ is considered UNSAT. Given a constraint system $C$, there are certain subsets of $C$ that are of interest in terms of satisfiability. Definitions 2-4 are taken from research by Liffiton et al.,~\cite{liffiton2016fast}. 
+
+\begin{definition} : A Minimal Unsatisfiable Subset (MUS) $M$ of a constraint system $C$ is a subset $M \subseteq C$ such that $M$ is unsatisfiable and $\forall c \in M$ : $M \setminus \{c\}$ is satisfiable. 
+\end{definition}
+\noindent
+An MUS can be intuitively understood as the minimal explanation of the constraint systems infeasability. 
+\begin{definition} : A Minimal Correction Set (MCS) $M$ of a constraint system $C$ is a subset $M\subseteq C$ such that $C \setminus M$ is satisfiable and $\forall S \subset M$ : $C \setminus S$ is unsatisfiable. 
+\end{definition}
+\noindent
+A MCS can be seen to ``correct'' the infeasability of the constraint system by the removal from $C$ the constraints found in an MCS.
+
+A duality exists between the MUSs of a constraint system and the MCSs as established by Reiter \cite{reiter1987theory}. This duality is defined in terms of \textit{Minimal Hitting Sets} (\textit{MHS}). A hitting set of a collection of sets $A$ is a set $H$ such that every set in $A$ is ``hit'' by $H$; $H$ contains at least one element from every set in $A$. Every MUS of a constraint system is a minimal hitting set of the system's MCSs, and likewise every MCS is a minimal hitting set of the system's MUSs~\cite{liffiton2016fast, reiter1987theory, de1987diagnosing}.
+\begin{definition}: Given a collection of sets $K$, a hitting set for $K$ is a set $H \subseteq \cup_{S \in K} S$ such that $H \cap S \neq \emptyset$ for each $S  \in K$. A hitting set for $K$ is minimal if and only if no proper subset of it is a hitting set for $K$. 
+\end{definition}
+\noindent
+Since we are interested in sets of active faults that cause violation of the safety property, we turn our attention to Minimal Cut Sets. Though these have been previously defined, for convenience the definition is provided again. 
+\begin{definition}
+A \textit{Minimal Cut Set} (MinCutSet) is a minimal collection of faults that lead to the violation of the safety property. Furthermore, any subset of a MinCutSet will not cause this property violation. 
+\end{definition}
+\noindent
+We define a minimal cut set consistently with much of the research in this field~\cite{0f356f05e72f43018211b36f97c8854a,historyFTA}.
+
+%\subsection{Inductive Validity Cores}
+%Given a complex model, it is often useful to extract traceability information related to the proof, in other words, which portions of the model were necessary to construct the proof. An algorithm was introduced to provide Minimal Inductive Validity Cores (\textit{MIVCs}) as a way to determine the minimal model elements necessary for the inductive proof of a safety property for a sequential system~\cite{GhassabaniGW16}. Given a safety property, a model checker can be invoked in order to construct a proof of the property. The MIVC generation algorithm can extract traceability information from that proof process and return a minimal set of the model elements required in order to prove the property. Later research extended this algorithm in order to produce all such minimal sets of MIVC elements; this is the \aivcalg algorithm~\cite{Ghassabani2017EfficientGO,bendik2018online}.
+
+%This algorithm is of interest to us for the following reason. All MIVCs are MUSs of a constraint system that consists of the assumptions and contracts of system components and the negation of the safety property of interest. The set of all \textit{MIVCs} then contains the minimal explanation of the constraint systems infeasibility in terms of the negation of the safety property; hence, these are the minimal model elements necessary to proof the safety property.
+
+
+

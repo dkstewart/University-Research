@@ -1,0 +1,14 @@
+\subsection{Compositional Model Checking}
+\label{compModelChecking}
+Compositional analysis of systems was introduced in order to address the scalability of model checking large software systems~\cite{pnueli1985transition, heckel1998compositional, NFM2012:CoGaMiWhLaLu}. Normally, a SAT solver will flatten the hierarchical system model and use all model elements from all layers in order to find proof of a safety property. The analysis can alternatively be performed compositionally following the architecture hierarchy such that analysis at a higher level is based on the components at the next lower level and conducted layer by layer; the components of a system are organized hierarchically and each layer of the architecture is viewed a system. The idea is to partition the formal analysis of a system architecture into verification tasks that correspond into the decomposition of the architecture. 
+
+\subsubsection{Assume-Guarantee Reasoning Environment}
+The Assume-Guarantee Reasoning Environment (AGREE)~\cite{cofer2012compositional} provides a way to perform compositional verification on models that are defined using the Architecture Analysis and Design Language (AADL)~\cite{aerospace2012sae}. 
+
+A component contract in an assume-guarantee reasoning environment is an assume-guarantee pair. Intuitively, the meaning of a pair is: if the assumption is true, then the component will ensure that the guarantee is true. The formulation of AGREE uses LTL operators $G$ (globally), $H$ (historically), and $Z$ (in the previous instant).
+
+Formally, a component contract is an assume-guarantee pair $(A,P)$ for propositions $A, P$. The meaning of a pair is that a component is required to meet it's guarantee only if its assumptions have been true up to the current instant~\cite{cofer2012compositional}. Stated as an LTL formula, this is $G(H(A) \implies P)$. 
+
+Each architectural layer is viewed as a system with inputs, outputs, and components. A system $S$ can be described as its own contract $(A_S, P_S)$ and the contracts of its components $C_S$. Thus, $S = (A_S, P_S, C_S)$. For each layer, the proof consists of demonstrating that the system guarantee is provable given the guarantees of its direct subcomponents and the system assumptions, or more formally prove $G(H(A_S) \implies P_S)$ given $G(H(A_C) \implies P_C)$ for each component $C$ in the system.  
+
+This proof is performed one layer at a time starting from the top level of the system. When compared to monolithic analysis (i.e., analysis of the flattened model composed of all components), the compositional approach allows the analysis to scale to much larger systems~\cite{NFM2012:CoGaMiWhLaLu}. AGREE utilizes the JKind model checker~\cite{2017arXiv171201222G}, an infinite state $k$-induction model checker. Verification of the program is performed using a back-end SMT solver, e.g., Z3~\cite{z3}, SMTInterpol~\cite{smtInterpol}. 
