@@ -53,6 +53,7 @@
 \usepackage[autostyle]{csquotes}
 \usepackage[]{algorithm2e}
 \usepackage{authblk}
+\setlist[description]{leftmargin=\parindent,labelindent=\parindent}
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
@@ -67,8 +68,8 @@
 \newcommand{\unsat}{\texttt{UNSAT}\xspace}
 \newcommand{\sat}{\texttt{SAT}\xspace}
 \newcommand{\aivcalg}{\texttt{\small{All\_IVCs}}\xspace}
-\newcommand{\danielle}[1]{\textcolor{blue}{#1}}
-\newcommand{\mats}[1]{\textcolor{red}{#1}}
+\newcommand{\danielle}[1]{\textcolor{purple}{#1}}
+\newcommand{\mats}[1]{\textcolor{blue}{#1}}
  
 \newtheorem{observation}{Observation}
 \renewcommand{\theobservation}{\arabic{observation}.}% #.
@@ -147,17 +148,31 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CONTENT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Input the sectons here using \input{fileName}
+% Input the sections here using \input{fileName}
 %%%
-
 
 \input{Introduction}
 \input{Preliminaries} 
+    %\input{BackgroundJustification}
+    %\input{CriticalSysDev}
+        %\input{MBSA}
+        %\input{crisysArtifacts}
+    %\input{FormalMethods}
+        %\input{formalVV} 
+        %\input{satisfiabilityBackground}
+        %\input{artifactsAndFormalizations}
+        %\input{compositionalMC}
+        %\input{modelCheckingInSA}
+\input{FaultModeling}
 \input{CompositionalMCSGen} 
-\input{FaultModeling} 
+    %\input{backgroundMinCutSet}
+    %\input{formalizationMinCutSet}
+    %\input{algorithms}
+\input{Granularity}
 \input{CaseStudies}
-\input{RelatedWork}
-\input{Conclusion} % Summary of contributions
+    %\input{WBS}
+    %\input{pid}
+\input{Conclusion} 
 
 % \printglossary[title={LIST OF TERMS}, toctitle={List of Terms}]
 

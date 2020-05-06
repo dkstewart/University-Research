@@ -1,16 +1,103 @@
 \chapter{Fault Modeling and the Safety Annex}
-\ref{chap:faultModeling}
-\danielle{This chapter covers modeling techniques/needs, the safety annex, and its capabilities.}
+\label{chap:faultModeling}
+Early on in Section 2.2.1, a model-based safety assessment process was proposed. This process was backed by formal methods and incorporates a shared model into the development and safety analysis processes. A high level description of this cyclical process is shown in Figure~\ref{fig:SACycle} for your convenience. 
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=\textwidth]{images/SACycle.PNG}
+	\end{center}
+	\caption{Proposed Steps of the Safety Assessment Process}
+	\label{fig:SACycle}
+\end{figure}
+
+There are certain capabilities that are required in order to fully perform all steps of this process. In beginning this research, we outlined what those pieces were and investigated related work to determine if a gap still existed. Based on the related work summary found in Section 2.7, it is clear that this work fills certain gaps that no previous research has addressed:
+
+\begin{description}[nosep]
+
+    \item[Shared model] using a language expressive enough to describe HW and SW components.
+    \item[Flexible error propagations] through both behavioral and explicit means.
+    \item[Flexible fault modeling] with support for a/symmetric faults, in/dependent faults, etc.
+    \item[Model checker] used to assess and verify the design with or without faults active.
+    \item[Ability to generate artifacts] used in the safety assessment process.
+\end{description}
+
+In previous chapters, we discussed how a model checker can be used to generate minimal cut sets in a compositional fashion. In this chapter, the fault modeling process using the Safety Annex for the Architecture Analysis and Design Language (AADL)~\cite{AADL_Standard} is described. The Safety Annex was developed with these two broad ideas in mind: (1) how this supports the proposed safety assessment process, and (2) what missing pieces need to be addressed in order to support safety analysts. 
+
+\section{Fault, Failure, and Error Terminology}
+The usage of the terms error, failure, and fault are defined in ARP4754A and are described here for ease of understanding~\cite{SAE:ARP4754A}. An \textit{error} is a mistake made in implementation, design, or requirements. A \textit{fault} is the manifestation of an error and a \textit{failure} is an event that occurs when the delivered service of a system deviates from correct behavior. If a fault is activated under the right circumstances, that fault can lead to a failure. The terminology used in the Error Model Annex version 2 for AADL (EMV2)~\cite{EMV2}, differs slightly for an error: an error is a corrupted state caused by a fault. The error propagates through a system and can manifest as a failure. In this dissertation, we use the ARP4754A terminology with the added definition of \textit{error propagation} as used in EMV2. An error is a mistake made in design or code and an error propagation is the propagation of the corrupted state caused by an active fault. 
+
+\section{Implementation of the Safety Annex}
+The Safety Annex is written in Java as a plug-in for the OSATE AADL toolset, which is built on Eclipse.  It is not designed as a stand-alone extension of the language, but works with behavioral contracts specified using the AGREE annex for AADL~\cite{NFM2012:CoGaMiWhLaLu}. 
+The architecture of the Safety Annex is shown in Figure~\ref{fig:plugin-arch}.
+
+\begin{figure}[h]
+	\begin{center}
+		%\includegraphics[trim=0 400 430 0,clip,width=0.85\textwidth]{images/arch.png}
+		\includegraphics[width=\textwidth]{images/arch.png}
+	\end{center}
+	%\vspace{-0.2in}
+	\caption{Safety Annex Plug-in Architecture}
+	\label{fig:plugin-arch}
+	%\vspace{-0.2in}
+\end{figure}
+
+AGREE contracts are used to define the nominal behaviors of system components as {\em guarantees} that hold when {\em assumptions} about the values the component's environment are met. When an AADL model is annotated with AGREE contracts and the fault model is created using the Safety Annex, the model is transformed through AGREE into a Lustre model~\cite{Halbwachs91:IEEE} containing the behavioral extensions defined in the AGREE contracts for each system component. 
+
+When performing fault analysis, the Safety Annex extends the AGREE contracts to allow faults to modify the behavior of component inputs and outputs. An example of a portion of an initial AGREE node and its extended contract is shown in Figure~\ref{fig:lustre}. The left column of the figure shows the nominal Lustre pump definition is shown with an AGREE contract on the output; and the right column shows the additional local variables for the fault (boxes 1 and 2), the assertion binding the fault value to the nominal value (boxes 3 and 4), and the fault node definition (box 5). Once augmented with fault information, the AGREE model (translated into the Lustre dataflow language~\cite{Halbwachs91:IEEE}) follows the standard translation path to the model checker JKind~\cite{2017arXiv171201222G}, an infinite-state model checker for safety properties. 
+
+\begin{figure}[h!]
+	%\hspace*{-2cm}
+	%\vspace{-0.3in} 
+	\begin{center}
+		%\includegraphics[trim=0 690 -10 70,clip,width=1.5\dimexpr\textwidth-2cm\relax]{images/lustre.pdf}
+		\includegraphics[scale=0.3]{images/lustre.jpg}
+		%\caption{Nominal AGREE node and its extension with faults}
+		\caption{Nominal AGREE Node and Extension with Faults}
+		\label{fig:lustre}
+	\end{center}
+	%\vspace{-0.3in}
+\end{figure}
+
+There are two different types of fault analysis that can be performed on a fault model. The Safety Annex plugin intercepts the AGREE program and add fault model information to the model depending on which form of fault analysis is being run.
+
+\textbf{Verification in the Presence of Faults}: This analysis returns one counterexample when fault activation per the fault hypothesis can cause violation of a property. The augmentation from Safety Annex to the AGREE program includes traceability information so that when counterexamples are displayed to users, the active faults for each component are visualized.
+
+\textbf{Generate Minimal Cut Sets}: This analysis collects all minimal set of fault combinations that can cause violation of a property. As described in Chapter~\ref{chap:mcsGen}, the first step of MinCutSet generation is to collect the minimal IVCs for each property. Given the compositional nature of the verification, each level of the system is extended in a slightly different way. The leaf nodes of a system contribute only constrained faults to the \aivcalg algorithm as shown in Figure~\ref{fig:ivcElements1}. 
+
+\begin{figure}[h!]
+	\hspace*{-2cm}
+	\vspace{-0.1in} 
+	\begin{center}
+		\includegraphics[scale=0.5]{images/ivcElements1.png}
+	\caption{IVC Elements used for Consideration in a Leaf Layer of a System}
+		\label{fig:ivcElements1}
+	\end{center}
+\end{figure}
+
+In the non-leaf layers of the program, both contracts and constrained faults are considered as shown in Figure~\ref{fig:ivcElements2}. The reason for this is that the contracts are used to prove the properties at the next highest level and are necessary for the verification of the properties. 
+
+\begin{figure}[h!]
+	\hspace*{-2cm}
+	\vspace{-0.1in} 
+	\begin{center}
+		\includegraphics[scale=0.5]{images/ivcElements2.png}
+	\caption{IVC Elements used for Consideration in a Middle Layer of a System}
+		\label{fig:ivcElements2}
+	\end{center}
+\end{figure}
+
+The \aivcalg algorithm returns the minimal set of these elements necessary to prove the properties. This equates to any contracts or inactive faults that must be present in order for the verification of properties in the model. From here, we transform all MIVCs into minimal cut sets.
+
 
 \section{Component Fault Modeling}
-The usage of the terms error, failure, and fault are defined in ARP4754A and are described here for ease of understanding~\cite{SAE:ARP4754A}. An \textit{error} is a mistake made in implementation, design, or requirements. A \textit{fault} is the manifestation of an error and a \textit{failure} is an event that occurs when the delivered service of a system deviates from correct behavior. If a fault is activated under the right circumstances, that fault can lead to a failure. The terminology used in EMV2 differs slightly for an error: an error is a corrupted state caused by a fault. The error propagates through a system and can  manifest as a failure. In this report, we use the ARP4754A terminology with the added definition of \textit{error propagation} as used in EMV2. An error is a mistake made in design or code and an error propagation is the propagation of the corrupted state caused by an active fault. 
-
-The Safety Annex is used to add possible faulty behaviors to a component model. Within the AADL component instance model, an annex is added which contain the fault definitions for the given component. The flexibility of the fault definitions allows the user to define numerous types of fault \textit{nodes} by utilizing the AGREE node syntax. A library of common fault nodes has been written and is available in the project GitHub repository~\cite{SAGithub}. Examples of such faults include valves being stuck open or closed, output of a software component being nondeterministic, or power being cut off.  When the fault analysis requires fault definitions that are more complex, these nodes can easily be written and used in the model. 
+The Safety Annex is used to add possible faulty behaviors to a component model. Within the AADL component instance model, an annex is added which contain the fault definitions for the given component. The flexibility of the fault definitions allows the user to define numerous types of fault \textit{nodes} by utilizing the AGREE node syntax. %A library of common fault nodes has been written and is available in the project GitHub repository~\cite{SAGithub}. 
+Examples of such faults include valves being stuck open or closed, output of a software component being nondeterministic, or power being cut off.  When the fault analysis requires fault definitions that are more complex, these nodes can easily be written and used in the model. 
 
 When a fault is activated by its specified triggering conditions, it modifies the output of the component. This faulty behavior may violate the contracts of other components in the system, including assumptions of downstream components. The impact of a fault is computed by the AGREE model checker when the safety analysis is run on the fault model. 
 
-The majority of faults that are connected to outputs of components are known as \textit{symmetric}. That is, whatever components receive this faulty output will receive the same faulty output value. Thus, this output is seen symmetrically. An alternative fault type is \textit{asymmetric}. This pertains to a component with a 1-n output: one output which is sent to many receiving components. This fault can present itself differently to the receiving components. For instance, in a boolean setting, one component might see a true value and the rest may see false. This is also possible to model using the keyword \textit{asymmetric}. For more information on fault definitions and modeling possibilities, we refer readers to the Safety Annex Users Guide\cite{SAGithub}.
+The majority of faults that are connected to outputs of components are known as \textit{symmetric}. That is, whatever components receive this faulty output will receive the same faulty output value. Thus, this output is seen symmetrically. An alternative fault type is \textit{asymmetric}. This pertains to a component with a 1-n output: one output which is sent to many receiving components. This fault can present itself differently to the receiving components. For instance, in a boolean setting, one component might see a true value and the rest may see false. This is also possible to model using the keyword \textit{asymmetric}. For more details on fault definitions and fault modeling capabilities, we refer readers to the Safety Annex Users Guide\cite{SAGithub}.
 
+\danielle{Need to either explain the example here or use a different example than WBS. WBS is used A LOT in this section, so perhaps a short description is okay...}
 As an illustration of fault modeling using the Safety Annex, we look at one of the components important to the inadvertent braking property: the brake pedal. When the mechanical pedal is pressed, a sensor reads this information and passes an electronic signal to the BSCU which then commands hydraulic pressure to the wheels. 
 
 %Figure~\ref{fig:sensor} 
@@ -48,6 +135,9 @@ The Safety Annex definition for this fault is shown in Figure~\ref{fig:sensorFau
 The WBS fault model expressed in the Safety Annex contains a total of 33 different fault types and 141 fault instances. The large number of fault instances is due to the redundancy in the system design and its replication to control 8 wheels.
 
 \section{Error Propagation}
+As systems become larger and more complex, it can be difficult knowing all possible error propagations within a model; using a purely explicit approach to error propagation is difficult. To this end, we developed the Safety Annex to primarily use \textit{behavioral} propagation. In this approach, the faults are attached to a component's output and ``turned on" in a manner of speaking. The effects and propagation of the active fault is revealed through the behavioral contracts of the system by use of the model checker. 
+
+This section outlines the Safety Annex approach to implicit error propagation and also describes how one can model an explicit propagation by defining dependent faults. 
 
 \subsection{Implicit Propagation}
 In the Safety Annex approach, faults are captured as faulty behaviors that augment the system behavioral model in AGREE contracts. No explicit %fault
@@ -57,9 +147,9 @@ On the contrary, in the AADL Error Model Annex, Version 2 (EMV2)~\cite{EMV2} app
 error propagation provided in the Safety Annex and the explicit %failure 
 error propagation provided in EMV2, we use a simplified behavioral flow from the WBS example using code fragments from EMV2, AGREE, and the Safety Annex. 
 
-\begin{figure}[t]
-	\hspace*{-2cm}
-	\vspace{-0.19in}
+\begin{figure}[h]
+	%\hspace*{-2cm}
+%	\vspace{-0.19in}
 	\centering
 	\includegraphics[trim=0 9 0 5,clip,width=\textwidth]{images/Comparison_with_EMV2.pdf}
 	%\vspace{-0.3in}
@@ -88,12 +178,12 @@ failures on other faults, behavioral or non behavioral. The explicit propagation
 To better model %HW dependent faults 
 faults at the system level dependent on HW failures, a fault model element is introduced called a \textit{hardware fault}. Users are not required to specify behavioral effects for the HW faults, nor are data ports necessary on which to apply the fault definition. An example of a model component fault declaration is shown below:
 \begin{figure}[h!]
-	\vspace{-0.1in}
+	%\vspace{-0.1in}
 	\begin{center}
 	\includegraphics[width=.6\textwidth]{images/hw_fault2.png}
 	\end{center}
-	\vspace{-0.3in}
-	%\caption{Hardware Fault Definition}
+	\vspace{-0.1in}
+	\caption{Hardware Fault Definition}
 	\label{fig:hwFault}
 	%\vspace{-0.2in}
 	%\vspace{-0.1in}
@@ -101,19 +191,17 @@ faults at the system level dependent on HW failures, a fault model element is in
 
 Users specify dependencies between the HW component faults and faults that are defined in other components, either HW or SW. The hardware fault then acts as a trigger for dependent faults. This allows a simple propagation from the faulty HW component to the SW components that rely on it, affecting the behavior on the outputs of the affected SW components.
 
-%As an example, we will look yet again at the WBS. 
-In the WBS example, assume that both the green and blue hydraulic pumps are located in the same compartment in the aircraft and an explosion in this compartment rendered both pumps inoperable.
-%An accident took place and the green (normal) hydraulic pump took the force of an explosion. When the green hydraulic pump exploded, the pump shrapnel flew into the blue pump and it became from then on unoperable. 
-The HW fault definition can be modeled first in the green hydraulic pump component as shown in Figure~\ref{fig:hwFault}. The activation of this fault triggers the activation of related faults as seen in the \textit{propagate\_to} statement shown below. % in Figure~\ref{fig:hwFaultProp}. 
+In the WBS example, assume that both the green and blue hydraulic pumps are located in the same compartment in the aircraft and an explosion in this compartment rendered both pumps inoperable. 
+The HW fault definition can be modeled first in the green hydraulic pump component as shown in Figure~\ref{fig:hwFault}. The activation of this fault triggers the activation of related faults as seen in the \textit{propagate\_to} statement shown in Figure~\ref{fig:hwFaultProp}. 
 Notice that these pumps need not be connected through a data port in order to specify this propagation. %Furthermore, the probability of the HW fault activation can be specified. 
 
 \begin{figure}[h!]
-	\vspace{-0.1in}
+	%\vspace{-0.1in}
 	\begin{center}
 		\includegraphics[width=1.0\textwidth]{images/hw_prop_stmt.png}
 	\end{center}
-	\vspace{-0.3in}
-	%\caption{Hardware Fault Propagation Statement}
+	\vspace{-0.1in}
+	\caption{Hardware Fault Propagation Statement}
 	\label{fig:hwFaultProp}
 	%\vspace{-0.2in}
 	%\vspace{-0.1in}
