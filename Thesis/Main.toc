@@ -21,25 +21,25 @@
 \contentsline {subsection}{\numberline {2.5.3}Ordered Binary Decision Diagrams}{14}{subsection.2.5.3}
 \contentsline {subsection}{\numberline {2.5.4}State Machines and Their Verification}{14}{subsection.2.5.4}
 \contentsline {subsubsection}{$k$-induction}{15}{section*.11}
-\contentsline {subsection}{\numberline {2.5.5}Transition Systems}{16}{subsection.2.5.5}
-\contentsline {section}{\numberline {2.6}Formal Methods in Safety Analysis: A Brief History and the State of the Practice}{16}{section.2.6}
+\contentsline {subsection}{\numberline {2.5.5}Transition Systems}{17}{subsection.2.5.5}
+\contentsline {section}{\numberline {2.6}Formal Methods in Safety Analysis: A Brief History and the State of the Practice}{17}{section.2.6}
 \contentsline {subsection}{\numberline {2.6.1}Fault Tree Analysis and Binary Decision Diagrams}{17}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}Model Checking and Model Based Safety Analysis}{17}{subsection.2.6.2}
-\contentsline {subsubsection}{AltaRica}{18}{section*.12}
+\contentsline {subsection}{\numberline {2.6.2}Model Checking and Model Based Safety Analysis}{18}{subsection.2.6.2}
+\contentsline {subsubsection}{AltaRica}{19}{section*.12}
 \contentsline {subsubsection}{FSAP, xSAP, and COMPASS}{19}{section*.13}
-\contentsline {subsubsection}{SmartIFlow}{19}{section*.14}
+\contentsline {subsubsection}{SmartIFlow}{20}{section*.14}
 \contentsline {subsubsection}{SAML}{20}{section*.15}
-\contentsline {subsubsection}{Error Model Annex for AADL}{20}{section*.16}
-\contentsline {chapter}{\numberline {3}Compositional Minimal Cut Set Generation}{21}{chapter.3}
-\contentsline {chapter}{\numberline {4}Fault Modeling and the Safety Annex}{22}{chapter.4}
-\contentsline {section}{\numberline {4.1}Component Fault Modeling}{22}{section.4.1}
-\contentsline {section}{\numberline {4.2}Error Propagation}{24}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Implicit Propagation}{24}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Explicit Propagation}{25}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Fault Analysis Statements}{26}{section.4.3}
-\contentsline {section}{\numberline {4.4}Asymmetric Fault Modeling}{27}{section.4.4}
-\contentsline {chapter}{\numberline {5}Case Studies}{34}{chapter.5}
-\contentsline {section}{\numberline {5.1}Wheel Brake System}{34}{section.5.1}
-\contentsline {chapter}{\numberline {6}Related Work}{37}{chapter.6}
-\contentsline {chapter}{\numberline {7}Conclusion}{40}{chapter.7}
-\contentsline {chapter}{References}{42}{chapter*.36}
+\contentsline {subsubsection}{Error Model Annex for AADL}{21}{section*.16}
+\contentsline {chapter}{\numberline {3}Compositional Minimal Cut Set Generation}{22}{chapter.3}
+\contentsline {chapter}{\numberline {4}Fault Modeling and the Safety Annex}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}Component Fault Modeling}{23}{section.4.1}
+\contentsline {section}{\numberline {4.2}Error Propagation}{25}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Implicit Propagation}{25}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Explicit Propagation}{26}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Fault Analysis Statements}{27}{section.4.3}
+\contentsline {section}{\numberline {4.4}Asymmetric Fault Modeling}{28}{section.4.4}
+\contentsline {chapter}{\numberline {5}Case Studies}{35}{chapter.5}
+\contentsline {section}{\numberline {5.1}Wheel Brake System}{35}{section.5.1}
+\contentsline {chapter}{\numberline {6}Related Work}{38}{chapter.6}
+\contentsline {chapter}{\numberline {7}Conclusion}{41}{chapter.7}
+\contentsline {chapter}{References}{43}{chapter*.36}
