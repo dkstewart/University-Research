@@ -1,4 +1,9 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{100}
+
+\bibitem{SAE}
+{SAE International}.
+\newblock \url{https://www.sae.org/}.
+\newblock Accessed: 2010-11-19.
 
 \bibitem{standard1999}
 { Defence Standard}.
@@ -6,15 +11,18 @@
 \newblock {\em Requirements for Safety Related Software in Defence Equipment,
   Ministry of Defence}, 1999.
 
-\bibitem{aerospace2012sae}
-S.~Aerospace.
-\newblock Sae as5506b: Architecture analysis \& design language (aadl) standard
-  document.
-\newblock {\em SAE International}, 2012.
-
 \bibitem{AIR6110}
 {AIR 6110}.
 \newblock {Contiguous Aircraft/System Development Process Example}, Dec. 2011.
+
+\bibitem{AADL_Standard}
+{AS5506C}.
+\newblock {Architecture Analysis \& Design Language (AADL)}, Jan. 2017.
+
+\bibitem{QFCS15:backes}
+J.~Backes, D.~Cofer, S.~Miller, and M.~W. Whalen.
+\newblock {Requirements Analysis of a Quad-Redundant Flight Control System}.
+\newblock In {\em {NFM}}, volume 9058 of {\em LNCS}, pages 82--96, 2015.
 
 \bibitem{banov2019new}
 R.~Banov, Z.~{\v{S}}imi{\'c}, and D.~Grgi{\'c}.
@@ -59,12 +67,6 @@ P.~Bieber, C.~Bougnol, C.~Castel, J.-P. H.~C. Kehren, S.~Metge, and C.~Seguin.
 \newblock In {\em Building the Information Society}, pages 505--510. Springer,
   2004.
 
-\bibitem{BieberERTS2018}
-P.~Bieber, J.-L. Farges, X.~Pucel, L.-M. S{\`e}jeau, and C.~Seguin.
-\newblock Model - based safety analysis for co-assessment of operation and
-  system safety: application to specific operations of unmanned aircraft.
-\newblock In {\em ERTS2}, 2018.
-
 \bibitem{DBLP:conf/tacas/BittnerBCCGGMMZ16}
 B.~Bittner, M.~Bozzano, R.~Cavada, A.~Cimatti, M.~Gario, A.~Griggio,
   C.~Mattarei, A.~Micheli, and G.~Zampedri.
@@ -81,6 +83,11 @@ M.~Bozzano, A.~Cimatti, A.~Griggio, and C.~Mattarei.
 \newblock {Efficient Anytime Techniques for Model-Based Safety Analysis}.
 \newblock In {\em Computer Aided Verification}, 2015.
 
+\bibitem{criticalembeddedsystems}
+M.~Bozzano, A.~Cimatti, J.-P. Katoen, V.~Y. Nguyen, T.~Noll, and M.~Roveri.
+\newblock Model-based codesign of critical embedded systems.
+\newblock In {\em ACES-MB@ MoDELS}, 2009.
+
 \bibitem{10.1007/978-3-642-04468-7_15}
 M.~Bozzano, A.~Cimatti, J.-P. Katoen, V.~Y. Nguyen, T.~Noll, and M.~Roveri.
 \newblock {The COMPASS Approach: Correctness, Modelling and Performability of
@@ -93,11 +100,6 @@ M.~Bozzano, A.~Cimatti, J.-P. Katoen, V.~Y. Nguyen, T.~Noll, and M.~Roveri.
 \newblock Safety, dependability and performance analysis of extended aadl
   models.
 \newblock {\em Comput. J.}, 54(5), May 2011.
-
-\bibitem{criticalembeddedsystems}
-M.~Bozzano, A.~Cimatti, J.-P. Katoen, V.~Yen~Nguyen, T.~Noll, and M.~Roveri.
-\newblock Model-based codesign of critical embedded systems.
-\newblock 507, 2009.
 
 \bibitem{symbAltaRica}
 M.~Bozzano, A.~Cimatti, O.~Lisagor, C.~Mattarei, S.~Mover, M.~Roveri, and
@@ -121,11 +123,6 @@ M.~Bozzano, A.~Cimatti, M.~Roveri, J.~P. Katoen, V.~Y. Nguyen, and T.~Noll.
 \newblock Codesign of dependable systems: A component-based modeling language.
 \newblock In {\em 2009 7th IEEE/ACM International Conference on Formal Methods
   and Models for Co-Design}, 2009.
-
-\bibitem{10.1007/978-3-540-75596-8-13}
-M.~Bozzano, A.~Cimatti, and F.~Tapparo.
-\newblock Symbolic fault tree analysis for reactive systems.
-\newblock In {\em ATVA}, 2007.
 
 \bibitem{bozzano2003improving}
 M.~Bozzano and A.~Villafiorita.
@@ -156,12 +153,6 @@ R.~E. Bryant.
 \newblock Graph-based algorithms for boolean function manipulation.
 \newblock {\em Computers, IEEE Transactions on}, 100(8):677--691, 1986.
 
-\bibitem{CHEN201391}
-D.~Chen, N.~Mahmud, M.~Walker, L.~Feng, H.~L{\"o}nn, and Y.~Papadopoulos.
-\newblock {Systems Modeling with {EAST-ADL} for Fault Tree Analysis through
-  {HiP-HOPS}*}.
-\newblock {\em IFAC Proceedings Volumes}, 46(22):91 -- 96, 2013.
-
 \bibitem{chiappini1999formal}
 A.~Chiappini, A.~Cimatti, C.~Porzia, G.~Rotondo, R.~Sebastiani, P.~Traverso,
   and A.~Villafiorita.
@@ -172,7 +163,7 @@ A.~Chiappini, A.~Cimatti, C.~Porzia, G.~Rotondo, R.~Sebastiani, P.~Traverso,
 
 \bibitem{smtInterpol}
 J.~Christ, J.~Hoenicke, and A.~Nutz.
-\newblock Smtinterpol: An interpolating smt solver.
+\newblock {SMTInterpol: An interpolating SMT solver}.
 \newblock In {\em Proceedings of the 19th International Conference on Model
   Checking Software}, SPIN'12, pages 248--254, Berlin, Heidelberg, 2012.
   Springer-Verlag.
@@ -200,19 +191,42 @@ E.~M. Clarke~Jr, O.~Grumberg, D.~Kroening, D.~Peled, and H.~Veith.
 \newblock {\em Model checking}.
 \newblock MIT press, 2018.
 
+\bibitem{cofer2012compositional}
+D.~Cofer, A.~Gacek, S.~Miller, M.~W. Whalen, B.~LaValley, and L.~Sha.
+\newblock Compositional verification of architectural models.
+\newblock In {\em NASA Formal Methods Symposium}, pages 126--140. Springer,
+  2012.
+
+\bibitem{NFM2012:CoGaMiWhLaLu}
+D.~D. Cofer, A.~Gacek, S.~P. Miller, M.~W. Whalen, B.~LaValley, and L.~Sha.
+\newblock {Compositional Verification of Architectural Models}.
+\newblock In {\em NFM 2012}, volume 7226, pages 126--140, April 2012.
+
 \bibitem{coudert1993fault}
 O.~Coudert and J.~C. Madre.
 \newblock Fault tree analysis: 10/sup 20/prime implicants and beyond.
 \newblock In {\em Annual Reliability and Maintainability Symposium 1993
   Proceedings}, pages 240--245. IEEE, 1993.
 
+\bibitem{de1987diagnosing}
+J.~De~Kleer and B.~C. Williams.
+\newblock Diagnosing multiple faults.
+\newblock {\em Artificial intelligence}, 32(1):97--130, 1987.
+
 \bibitem{z3}
 L.~De~Moura and N.~Bj{\o}rner.
-\newblock Z3: An efficient smt solver.
+\newblock {Z3: an efficient SMT solver}.
 \newblock In {\em Proceedings of the Theory and Practice of Software, 14th
   International Conference on Tools and Algorithms for the Construction and
-  Analysis of Systems}, TACAS'08/ETAPS'08, pages 337--340, Berlin, Heidelberg,
-  2008. Springer-Verlag.
+  Analysis of Systems}, TACAS '08/ETAPS '08, pages 337--340, Berlin,
+  Heidelberg, 2008. Springer-Verlag.
+
+\bibitem{SEI:AADL}
+J.~Delange, P.~Feiler, D.~P. Gluch, and J.~Hudak.
+\newblock {{AADL} Fault Modeling and Analysis Within an {ARP4761} Safety
+  Assessment}.
+\newblock Technical Report CMU/SEI-2014-TR-020, Software Engineering Institute:
+  Carnegie Mellon University, October 2014.
 
 \bibitem{coq}
 T.~C. development team.
@@ -260,6 +274,12 @@ P.~Feiler and J.~Delange.
 \newblock Automated fault tree analysis from aadl models.
 \newblock {\em ACM SIGAda Ada Letters}, 36(2):39--46, 2017.
 
+\bibitem{FeilerModelBasedEngineering2012}
+P.~Feiler and D.~Gluch.
+\newblock {\em Model-Based Engineering with AADL: An Introduction to the {SAE}
+  Architecture Analysis \& Design Language}.
+\newblock Addison-Wesley Professional, 2012.
+
 \bibitem{EMV2}
 P.~Feiler, J.~Hudak, J.~Delange, and D.~Gluch.
 \newblock Architecture fault modeling and analysis with the error model annex,
@@ -288,11 +308,29 @@ A.~{Gacek}, J.~{Backes}, M.~{Whalen}, L.~{Wagner}, and E.~{Ghassabani}.
 \newblock {The JKind Model Checker}.
 \newblock {\em CAV 2018}, 10982, 2018.
 
+\bibitem{gainer2017minimal}
+A.~Gainer-Dewar and P.~Vera-Licona.
+\newblock The minimal hitting set generation problem: algorithms and
+  computation.
+\newblock {\em SIAM Journal on Discrete Mathematics}, 31(1):63--100, 2017.
+
+\bibitem{gay2016effect}
+G.~Gay, A.~Rajan, M.~Staats, M.~Whalen, and M.~P. Heimdahl.
+\newblock The effect of program and model structure on the effectiveness of
+  mc/dc test adequacy coverage.
+\newblock {\em ACM Transactions on Software Engineering and Methodology
+  (TOSEM)}, 25(3):1--34, 2016.
+
 \bibitem{ge2015quantitative}
 D.~Ge, M.~Lin, Y.~Yang, R.~Zhang, and Q.~Chou.
 \newblock Quantitative analysis of dynamic fault trees using improved
   sequential binary decision diagrams.
 \newblock {\em Reliability Engineering \& System Safety}, 142:289--299, 2015.
+
+\bibitem{ghassabani_2018}
+E.~Ghassabani.
+\newblock {\em Inductive validity cores}.
+\newblock PhD thesis, 2018.
 
 \bibitem{GhassabaniGW16}
 E.~Ghassabani, A.~Gacek, and M.~W. Whalen.
@@ -312,6 +350,23 @@ M.~Gudemann and F.~Ortmeier.
   safety analysis.
 \newblock In {\em HASE 2010}, 2010.
 
+\bibitem{Halbwachs91:IEEE}
+N.~Halbwachs, P.~Caspi, P.~Raymond, and D.~Pilaud.
+\newblock {The Synchronous Dataflow Programming Language Lustre}.
+\newblock In {\em {IEEE}}, volume 79(9), pages 1305--1320, 1991.
+
+\bibitem{hammer}
+W.~Hammer.
+\newblock Product safety management and engineering.
+\newblock Prentice Hall, 1972.
+
+\bibitem{heckel1998compositional}
+R.~Heckel.
+\newblock Compositional verification of reactive systems specified by graph
+  transformation.
+\newblock In {\em International Conference on Fundamental Approaches to
+  Software Engineering}, pages 138--153. Springer, 1998.
+
 \bibitem{hinchey2012industrial}
 M.~G. Hinchey and J.~P. Bowen.
 \newblock {\em Industrial-strength formal methods in practice}.
@@ -328,6 +383,11 @@ P.~H{\"o}nig and R.~Lunde.
   information flows.
 \newblock In {\em Proceedings of the 25th International Workshop on Principles
   of Diagnosis (DX14), Graz, Austria}, pages 8--11, 2014.
+
+\bibitem{info8010007}
+P.~H{\"o}nig, R.~Lunde, and F.~Holzapfel.
+\newblock {Model Based Safety Analysis with smartIflow}.
+\newblock {\em Information}, 8(1), 2017.
 
 \bibitem{jiang2018algebraic}
 W.~Jiang, S.~Zhou, L.~Ye, D.~Zhao, J.~Tian, W.~E. Wong, and J.~Xiang.
@@ -373,8 +433,13 @@ M.~Kwiatkowska, G.~Norman, and D.~Parker.
 
 \bibitem{deptOfDefense}
 D.~C. Latham.
-\newblock Department of defense trusted computer system evaluation criteria.
-\newblock 1986.
+\newblock Department of defense trusted computer system evaluation criteria,
+  1986.
+
+\bibitem{levesonWhitePaper}
+N.~Leveson.
+\newblock White paper on approaches to safety engineering.
+\newblock http://sunnyday.mit.edu/caib/concepts.pdf, 2003.
 
 \bibitem{liffiton2005max}
 M.~H. Liffiton, Z.~Andraus, and K.~Sakallah.
@@ -407,9 +472,29 @@ Y.~Liu, G.~Shen, F.~Wang, J.~Si, and Z.~Wang.
 \newblock {\em International Journal of Multimedia and Ubiquitous Engineering},
   11(6):153--170, 2016.
 
+\bibitem{manolios2019model}
+P.~Manolios, K.~Siu, M.~Noorman, and H.~Liao.
+\newblock A model-based framework for analyzing the safety of system
+  architectures.
+\newblock In {\em 2019 Annual Reliability and Maintainability Symposium
+  (RAMS)}, pages 1--8. IEEE, 2019.
+
+\bibitem{mattarei2016scalable}
+C.~Mattarei.
+\newblock {\em Scalable Safety and Reliability Analysis via Symbolic Model
+  Checking: Theory and Applications}.
+\newblock PhD thesis, Ph. D. thesis, University of Trento, Trento, Italy, p 2,
+  2016.
+
 \bibitem{MRMC}
 {MRMC: Markov Rewards Model Checker}.
 \newblock http://wwwhome.cs.utwente.nl/~zapreevis/mrmc/.
+
+\bibitem{murakami2013efficient}
+K.~Murakami and T.~Uno.
+\newblock Efficient algorithms for dualizing large-scale hypergraphs.
+\newblock In {\em 2013 Proceedings of the Fifteenth Workshop on Algorithm
+  Engineering and Experiments (ALENEX)}, pages 1--13. SIAM, 2013.
 
 \bibitem{isabelle}
 T.~Nipkow, M.~Wenzel, and L.~C. Paulson.
@@ -419,6 +504,13 @@ T.~Nipkow, M.~Wenzel, and L.~C. Paulson.
 \bibitem{NuSMV}
 {NuSMV Model Checker}.
 \newblock http://nusmv.itc.it.
+
+\bibitem{pnueli1985transition}
+A.~Pnueli.
+\newblock In transition from global to modular temporal reasoning about
+  programs.
+\newblock In {\em Logics and models of concurrent systems}, pages 123--144.
+  Springer, 1985.
 
 \bibitem{point1999altarica}
 G.~Point and A.~Rauzy.
@@ -445,6 +537,12 @@ T.~Prosvirnova and A.~Rauzy.
 \newblock In {\em Proceedings of the European Safety and Reliability
   conference, ESREL 2013}, Amsterdam, The Netherlands, September-October 2013.
   CRC Press.
+
+\bibitem{prosvirnova2015automated}
+T.~Prosvirnova and A.~Rauzy.
+\newblock Automated generation of minimal cut sets from altarica 3.0 models.
+\newblock {\em International Journal of Critical Computer-Based Systems},
+  6(1):50--80, 2015.
 
 \bibitem{queille1982specification}
 J.-P. Queille and J.~Sifakis.
@@ -489,11 +587,22 @@ J.~D. Reese and N.~G. Leveson.
 \newblock Software deviation analysis: A “safeware” technique.
 \newblock In {\em AIChe 31st Annual Loss Prevention Symposium}. Citeseer, 1997.
 
+\bibitem{reiter1987theory}
+R.~Reiter.
+\newblock A theory of diagnosis from first principles.
+\newblock {\em Artificial intelligence}, 32(1):57--95, 1987.
+
 \bibitem{0f356f05e72f43018211b36f97c8854a}
 E.~Ruijters and M.~Stoelinga.
 \newblock Fault tree analysis: A survey of the state-of-the-art in modeling,
   analysis and tools.
 \newblock {\em Computer science review}, 15-16:29--62, 5 2015.
+
+\bibitem{aerospace2012sae}
+{SAE Aerospace}.
+\newblock {SAE AS5506B: Architecture Analysis \& Design Language (AADL)
+  standard document}.
+\newblock {\em SAE International}, 2012.
 
 \bibitem{SAE:ARP4761}
 {SAE ARP 4761}.
@@ -507,13 +616,13 @@ E.~Ruijters and M.~Stoelinga.
 
 \bibitem{semanderes1971elraft}
 S.~N. Semanderes.
-\newblock " elraft" a computer program for the efficient logic reduction
+\newblock {ELRAFT}: A computer program for the efficient logic reduction
   analysis of fault trees.
 \newblock {\em IEEE Transactions on Nuclear Science}, 18(1):481--487, 1971.
 
 \bibitem{sheeran2000checking}
 M.~Sheeran, S.~Singh, and G.~St{\aa}lmarck.
-\newblock Checking safety properties using induction and a sat-solver.
+\newblock Checking safety properties using induction and a {SAT}-solver.
 \newblock In {\em International conference on formal methods in computer-aided
   design}, pages 127--144. Springer, 2000.
 
@@ -529,6 +638,11 @@ R.~M. Sinnamon and J.~Andrews.
 \newblock New approaches to evaluating fault trees.
 \newblock {\em Reliability Engineering \& System Safety}, 58(2):89--96, 1997.
 
+\bibitem{sistla1985complexity}
+A.~P. Sistla and E.~M. Clarke.
+\newblock The complexity of propositional linear temporal logics.
+\newblock {\em Journal of the ACM (JACM)}, 32(3):733--749, 1985.
+
 \bibitem{nasaFinalReport}
 D.~Stewart, J.~Liu, M.~Heimdahl, M.~Whalen, D.~Cofer, and M.~Peterson.
 \newblock Architectural modeling and analysis for safety engineering {(AMASE)},
@@ -541,18 +655,12 @@ D.~Stewart, J.~Liu, M.~Heimdahl, M.~Whalen, D.~Cofer, and M.~Peterson.
 D.~Stewart, J.~Liu, M.~Heimdahl, M.~Whalen, D.~Cofer, and M.~Peterson.
 \newblock {The Safety Annex for Architecture Analysis and Design Language}.
 \newblock In {\em 10th Edition European Congress Embedded Real Time Systems},
-  to appear 2020.
+  Jan 2020.
 
 \bibitem{SAGithub}
 D.~Stewart, J.~Liu, M.~Whalen, D.~Cofer, and M.~Peterson.
 \newblock Safety annex for aadl repository.
 \newblock \url{https://github.com/loonwerks/AMASE}, 2018.
-
-\bibitem{SATechReport}
-D.~Stewart, J.~Liu, M.~Whalen, D.~Cofer, and M.~Peterson.
-\newblock {Safety Annex for Architecture Analysis Design and Analysis
-  Language}.
-\newblock Technical Report 18-007, University of Minnesota, March 2018.
 
 \bibitem{Stewart17:IMBSA}
 D.~Stewart, M.~Whalen, D.~Cofer, and M.~P. Heimdahl.

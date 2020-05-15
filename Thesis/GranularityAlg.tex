@@ -1,0 +1,32 @@
+\section{Algorithms and Results}
+\danielle{Introduce the section and give outline or brief summary of what it includes.}
+
+\subsection{Algorithms}
+As described in section \danielle{whatever section I outline activation literals}, the IVC algorithm requires specific model elements to be considered for analysis. In that section, the additional elements of fault activation literals were added to the IVC analysis. In this case, we look at both the guarantees and the faults that are added for IVC consideration. 
+
+The simplest restructuring that could be done on the model was to split any guarantees containing an $\land$ at the highest level of the binary Boolean statement and create additional guarantees from this split. For instance, if GUARANTEE0 = A and B, then split this into GUARANTEE1 = A, GUARANTEE2 = B. This provided an easy way to test that our assumption was correct regarding the types of minimal cut sets generated given various forms of contracts. Algorithm~\ref{alg:splitAnd} shows this process. 
+
+\begin{algorithm}[h]
+\SetKwFunction{FMain}{$splitOnAnd$}
+ \SetKwProg{Fn}{Function}{:}{}
+
+	\Fn{\FMain{expression}}{
+		Program $P$ \;
+		Guarantees $list_G$ \;
+		\For{all $g \in list_G$}{
+			\If{binary statement with operator $\land$}{
+			    insert into $P$ $\rightarrow$ new guarantee (left) \;
+			    insert into $P$ $\rightarrow$ new guarantee (right) \;
+				splitOnAnd(left) \;
+				splitOnAnd(right) \;
+			} %end if there exists AND in G
+		}%end for all g in P
+	}
+	\caption{Split guarantees on logical AND operator}
+	\label{alg:splitAnd}
+\end{algorithm}
+
+\subsection{Results}
+
+
+\subsection{Discussion}

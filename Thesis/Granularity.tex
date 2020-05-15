@@ -1,52 +1,39 @@
 \chapter{Granularity}
 \label{chap:granularity}
+As anyone in requirements engineering would state, the way requirements are stated matters. In the AADL/AGREE/Safety Annex approach of system development and safety assessment of models, we capture these requirements in \emph{guarantees} and \emph{assumptions} for the system components and the safety property is written as a top level guarantee or lemma. The process of verification proceeds by attempting to prove the safety property by use of the guarantees and assumptions at the lower system levels. A question that has come up in previous research work is how the formulation of the guarantees can affect the IVC analysis results~\cite{ghassabani_2018}. 
+
 As described in Chapter~\ref{chap:prelim}, a transition relation is considered to be a conjunction of Boolean formulas. The granularity of these formulas will substantially affect the analysis results. Depending on how contracts are specified in the model, it is possible to have a ``complete" specification, i.e., all of the equations in the model are required to determine the validity of the property. However, in certain cases, subexpressions of equations may be irrelevant. If the equation is decomposed into smaller pieces, this incompleteness becomes visible and the model is no longer completely covered.\footnote{Simply put, coverage is a metric that determines how well properties cover the design of a model.} It is often the case that splitting an equation of the model into more conjuncts, or equivalently, making the model more \textit{granular}, leads to lower coverage of the model. This would be reflected in the IVCs generated for a given safety property; the IVCs in a more granular model would theoretically reflect only the necessary equations required for property verification, and thus would provide more specific analysis results.
 
-Granularity has been previously discussed by Ghassabani~\cite{ghassabani_2018}, but to our knowledge has not been discussed in any other previous work -- in particular related to minimal cut set generation. Since IVC generation is a required first step of our minimal cut set algorithms, it is important to discuss how the granularity of the model will affect the cut sets generated through this approach. 
+Interestingly, similar but opposite work has been done in test case generation, specifically \emph{Modified Condition and Decision Coverage} (MC/DC). It was found that MC/DC over implementations with structurally complex Boolean expressions are generally larger and more effective than MC/DC over functionally equivalent but structurally simpler implementations~\cite{gay2016effect}. An automated technique called \emph{inlining} provides a restructuring of the model by inlining simpler Boolean expressions into a single, now more complex, expression. An example of an unlined implementation is: 
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=1.0]{images/uninlinedEx.PNG}
+	\end{center}
+	\vspace{-1.5em}
+	%\caption{Uninlined implementation example}
+	%\label{fig:uninlined}
+\end{figure}
+
+And the associated inlined implementation is: 
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=1.0]{images/inlined.PNG}
+	\end{center}
+	\vspace{-1.5em}
+	%%\caption{Inlined implementation example}
+%	\label{fig:inlined}
+\end{figure}
+
+Inlining results in a behaviorally equivalent implementation with different structure. The reason MC/DC provides much greater coverage in terms of test case generation is because MC/DC on an inlined system will require specific combinations of input that will not be required to achieve coverage of the noninlined system~\cite{gay2016effect}. 
+
+Inductive validity cores, on the other hand, attempt to answer a different kind of question about the model than test coverage. In the IVC case, the goal is to find the minimal sets of model elements that contribute to a proof of a safety property. When these model elements are pulled from the model in terms of guarantees and assumptions, the \emph{granularity} of these logical statements matters in the opposite way. Instead of making the contracts more complex (inlining), the interest here is to simplify the contracts (un-inlining). In this way, the IVCs are more specific with regard to the requirement parts.
+
+Granularity of contracts for IVCs has been previously discussed by Ghassabani~\cite{ghassabani_2018}, but to our knowledge has not been discussed in any other previous work -- in particular related to minimal cut set generation. Since IVC generation is a required first step of our minimal cut set algorithms, it is important to discuss how the granularity of the model will affect the cut sets generated through this approach. 
 
 As described in Chapter~\ref{chap:mcsGen}, the backend model checker used in this transformation is \jkind which performs $k$-induction over a transition system defined with a Lustre program. Ghassabani did a preliminary investigation of granularity within the context of the Lustre language which provides a nice formalism for this discussion because it is top-level conjunctive, equational, and \textit{referentially transparent}~\cite{Halbwachs91:IEEE}. This means that the behavior of a Lustre program is defined by a system of equations and any subexpression on the right side of an equation can be extracted and assigned a fresh variable\footnote{A fresh variable is a variable with an identifier that has not been used within the program.} which is substituted into the original equation without changing the meaning of the program. In this context, \textit{granular refinement} is defined as an extraction of a subexpression into a new equation assigning a fresh variable. 
 
-\section{Illustrative Example of Granularity}
-To see how different representations of the system will alter the IVC and MinCutSet computations, let us examine a simple sensor example system built by engineer A. The top level safety property states: 
-\begin{center}
-    \textit{If environmental temperature reaches 90 degrees, then system reports high temperature.}
-\end{center}
 
-The direct subcomponent is the temperature sensor system which contains two outputs: (1) a high temp indicator, and (2) the actual temperature. Engineer A chose to write the supporting contract in the temperature subsystem as follows: 
-\begin{center}
-    $(T \geq 90 \implies temp\_high) \land (temp\_indicator = T)$ 
-\end{center}
-  
-The example temp sensor system is shown in Figure~\ref{fig:granularityEx1}.  
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=14cm]{images/granularityEx1.PNG}
-\caption{Temp Sensor System Contract Part I} \label{fig:granularityEx1}
-\end{center}
-\end{figure}
-
-The safety property at the top level requires the contract $g_A$ for proof of validity. Thus, the \aivcalg will contain the contract $g_A$ as an IVC. 
-
-There are two faults defined for the temperature subsystem; one for each of the outputs. Fault $f_1$ affects the $temp\_high$ output and fault $f_2$ affects the $temp\_out$ output. Since each of these faults will violate the contract $g_A$, each of them will be found in the \textit{MinCutSets} for $G_A$.
-
-Now assume that Figure~\ref{fig:granularityEx2} was the system representation built by engineer B. 
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=14cm]{images/granularityEx2.PNG}
-\caption{Temp Sensor System Contract Part II} \label{fig:granularityEx2}
-\end{center}
-\end{figure} 
-
-The behavior and architecture of the system is the same, but the contract for the subsystem is more \textit{granular}; it is stated as two separate contracts:
-\begin{center}
-    $ g_A = (T \geq 90 \implies temp\_high)$ \\ 
-    $ g_B = (temp\_indicator = T)$ 
-\end{center}
-
-Since $g_B$ is not required for the proof of the system safety property, only $g_A$ is found in the \textit{IVC}s and thus only $f_1$ will be seen in the \textit{MinCutSets} for this particular contract. 
-
-In this simple example, it is easy to see how the granularity of the contracts may greatly affect the results of analysis.
-
-\section{Algorithms and Testing Results}
+\input{GranularityEx}
+\input{GranularityAlg}

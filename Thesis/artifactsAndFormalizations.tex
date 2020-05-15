@@ -45,7 +45,7 @@ Informally, a transition system is a model of states and transitions between the
 
 Labeled transition systems are used extensively in model checking and will be mentioned within that context in later sections. There is much that could be said about transition systems, but for the purpose of this body of work, it is unnecessary. More information about transition systems and their relation to safety analysis and model checking can be found in the comprehensive book written by Bozzano and Villafiorita, Design and Safety Assessment of Critical Systems~\cite{Bozzano:2010:DSA:1951720}.
 
-\subsubsubsection{$k$-induction}
+\textbf{$k$-induction}
 \label{subsubsec:kInd}
 The $k$-induction method was introduced as a technique for SAT-based verification of finite and infinite state transition systems~\cite{sheeran2000checking}. Let $I(s)$ and $T(s, s_0)$ be formulae encoding the initial states and transition relation for a system over sets of propositional state variables $s$ and $s_0$. Additionally, let $P(s)$ be a formula that represents the states satisfying a safety property and $k$ a positive integer. To prove the safety property $P$ by $k$-induction, there are two steps, the base case and the induction case. The base case must show that $P$ holds in all states reachable from an initial state within $k$ steps, or transitions. More formally, the base case must show that the following formula is unsatisfiable:
 
@@ -70,7 +70,7 @@ I’ve dubbed it my Proof by Induction"\\
 \textit{- Author unknown}
 \end{center}
 
-\subsubsubsection{Linear Temporal Logic}
+\textbf{Linear Temporal Logic}
 Temporal logic can be used to express properties of reactive systems~\cite{Bozzano:2010:DSA:1951720}. System properties are usually classified into two main categories: {\em safety} properties and {\em liveness} properties. Safety properties express the idea that ``nothing bad ever happens" where liveness properties state that ``something good will eventually happen." 
 
 An example of a safety property is: ``it is never the case that the brake pedal is pressed and no hydraulic pressure is supplied at the wheel." A liveness property, on the other hand, could state: ``eventually the process will complete it's execution." 
