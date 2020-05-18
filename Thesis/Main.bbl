@@ -67,6 +67,13 @@ P.~Bieber, C.~Bougnol, C.~Castel, J.-P. H.~C. Kehren, S.~Metge, and C.~Seguin.
 \newblock In {\em Building the Information Society}, pages 505--510. Springer,
   2004.
 
+\bibitem{bieber2002combination}
+P.~Bieber, C.~Castel, and C.~Seguin.
+\newblock Combination of fault tree analysis and model checking for safety
+  assessment of complex system.
+\newblock In {\em European Dependable Computing Conference}, pages 19--31.
+  Springer, 2002.
+
 \bibitem{DBLP:conf/tacas/BittnerBCCGGMMZ16}
 B.~Bittner, M.~Bozzano, R.~Cavada, A.~Cimatti, M.~Gario, A.~Griggio,
   C.~Mattarei, A.~Micheli, and G.~Zampedri.
@@ -112,6 +119,11 @@ M.~Bozzano, A.~Cimatti, C.~Mattarei, and S.~Tonetta.
 \newblock Formal safety assessment via contract-based design.
 \newblock In {\em Automated Technology for Verification and Analysis}, 2014.
 
+\bibitem{contractBasedDesign}
+M.~Bozzano, A.~Cimatti, C.~Mattarei, and S.~Tonetta.
+\newblock Formal safety assessment via contract-based design.
+\newblock In {\em Automated Technology for Verification and Analysis}, 2014.
+
 \bibitem{DBLP:conf/cav/BozzanoCPJKPRT15}
 M.~Bozzano, A.~Cimatti, A.~F. Pires, D.~Jones, G.~Kimberly, T.~Petri,
   R.~Robinson, and S.~Tonetta.
@@ -123,6 +135,11 @@ M.~Bozzano, A.~Cimatti, M.~Roveri, J.~P. Katoen, V.~Y. Nguyen, and T.~Noll.
 \newblock Codesign of dependable systems: A component-based modeling language.
 \newblock In {\em 2009 7th IEEE/ACM International Conference on Formal Methods
   and Models for Co-Design}, 2009.
+
+\bibitem{symbFTA}
+M.~Bozzano, A.~Cimatti, and F.~Tapparo.
+\newblock Symbolic fault tree analysis for reactive systems.
+\newblock In {\em ATVA}, 2007.
 
 \bibitem{bozzano2003improving}
 M.~Bozzano and A.~Villafiorita.
@@ -220,13 +237,6 @@ L.~De~Moura and N.~Bj{\o}rner.
   International Conference on Tools and Algorithms for the Construction and
   Analysis of Systems}, TACAS '08/ETAPS '08, pages 337--340, Berlin,
   Heidelberg, 2008. Springer-Verlag.
-
-\bibitem{SEI:AADL}
-J.~Delange, P.~Feiler, D.~P. Gluch, and J.~Hudak.
-\newblock {{AADL} Fault Modeling and Analysis Within an {ARP4761} Safety
-  Assessment}.
-\newblock Technical Report CMU/SEI-2014-TR-020, Software Engineering Institute:
-  Carnegie Mellon University, October 2014.
 
 \bibitem{coq}
 T.~C. development team.
@@ -486,6 +496,12 @@ C.~Mattarei.
 \newblock PhD thesis, Ph. D. thesis, University of Trento, Trento, Italy, p 2,
   2016.
 
+\bibitem{miller1954applying}
+C.~Miller.
+\newblock Applying lessons learned in accident investigations to design through
+  a systems safety concept.
+\newblock Flight Safety Foundation seminar, Santa Fe, NM, 1954.
+
 \bibitem{MRMC}
 {MRMC: Markov Rewards Model Checker}.
 \newblock http://wwwhome.cs.utwente.nl/~zapreevis/mrmc/.
@@ -592,6 +608,12 @@ R.~Reiter.
 \newblock A theory of diagnosis from first principles.
 \newblock {\em Artificial intelligence}, 32(1):57--95, 1987.
 
+\bibitem{fta:survey}
+E.~Ruijters and M.~Stoelinga.
+\newblock Fault tree analysis: A survey of the state-of-the-art in modeling,
+  analysis and tools.
+\newblock {\em Computer science review}, 15-16:29--62, 5 2015.
+
 \bibitem{0f356f05e72f43018211b36f97c8854a}
 E.~Ruijters and M.~Stoelinga.
 \newblock Fault tree analysis: A survey of the state-of-the-art in modeling,
@@ -613,6 +635,12 @@ E.~Ruijters and M.~Stoelinga.
 {SAE ARP4754A}.
 \newblock {Guidelines for Development of Civil Aircraft and Systems}, December
   2010.
+
+\bibitem{schafer2003combining}
+A.~Sch{\"a}fer.
+\newblock Combining real-time model-checking and fault tree analysis.
+\newblock In {\em International Symposium of Formal Methods Europe}, pages
+  522--541. Springer, 2003.
 
 \bibitem{semanderes1971elraft}
 S.~N. Semanderes.
