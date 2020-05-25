@@ -382,11 +382,6 @@ M.~G. Hinchey and J.~P. Bowen.
 \newblock {\em Industrial-strength formal methods in practice}.
 \newblock Springer Science \& Business Media, 2012.
 
-\bibitem{info17:HaLuHo}
-P.~Hönig, R.~Lunde, and F.~Holzapfel.
-\newblock {Model Based Safety Analysis with smartIflow}.
-\newblock {\em Information}, 8(1), 2017.
-
 \bibitem{honig2014new}
 P.~H{\"o}nig and R.~Lunde.
 \newblock A new modeling approach for automated safety analysis based on
@@ -396,6 +391,11 @@ P.~H{\"o}nig and R.~Lunde.
 
 \bibitem{info8010007}
 P.~H{\"o}nig, R.~Lunde, and F.~Holzapfel.
+\newblock {Model Based Safety Analysis with smartIflow}.
+\newblock {\em Information}, 8(1), 2017.
+
+\bibitem{info17:HaLuHo}
+P.~Hönig, R.~Lunde, and F.~Holzapfel.
 \newblock {Model Based Safety Analysis with smartIflow}.
 \newblock {\em Information}, 8(1), 2017.
 

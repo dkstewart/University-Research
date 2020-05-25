@@ -1,4 +1,6 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: Main.aux
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Main.aux
 The style file: abbrv.bst
 Database file #1: noAbbreviations.bib
 Database file #2: biblio.bib
@@ -6,4 +8,45 @@ Warning--to sort, need author or key in SAE
 Warning--empty school in ghassabani_2018
 Warning--empty booktitle in hammer
 Warning--empty booktitle in miller1954applying
+You've used 122 entries,
+            2118 wiz_defined-function locations,
+            1198 strings with 26334 characters,
+and the built_in function-call counts, 43304 in all, are:
+= -- 4205
+> -- 2188
+< -- 42
++ -- 880
+- -- 741
+* -- 2843
+:= -- 7020
+add.period$ -- 387
+call.type$ -- 122
+change.case$ -- 723
+chr.to.int$ -- 0
+cite$ -- 126
+duplicate$ -- 1740
+empty$ -- 3416
+format.name$ -- 741
+if$ -- 9252
+int.to.chr$ -- 0
+int.to.str$ -- 122
+missing$ -- 111
+newline$ -- 605
+num.names$ -- 244
+pop$ -- 930
+preamble$ -- 1
+purify$ -- 612
+quote$ -- 0
+skip$ -- 1257
+stack$ -- 0
+substring$ -- 2170
+swap$ -- 476
+text.length$ -- 42
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 474
+warning$ -- 4
+while$ -- 386
+width$ -- 125
+write$ -- 1319
 (There were 4 warnings)
