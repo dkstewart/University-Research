@@ -4,49 +4,50 @@ The top-level auxiliary file: Main.aux
 The style file: abbrv.bst
 Database file #1: noAbbreviations.bib
 Database file #2: biblio.bib
+Warning--I didn't find a database entry for "ozzano:2010:DSA:1951720"
 Warning--to sort, need author or key in SAE
 Warning--empty school in ghassabani_2018
 Warning--empty booktitle in hammer
 Warning--empty booktitle in miller1954applying
-You've used 122 entries,
+You've used 127 entries,
             2118 wiz_defined-function locations,
-            1198 strings with 26334 characters,
-and the built_in function-call counts, 43304 in all, are:
-= -- 4205
-> -- 2188
-< -- 42
-+ -- 880
-- -- 741
-* -- 2843
-:= -- 7020
-add.period$ -- 387
-call.type$ -- 122
-change.case$ -- 723
+            1222 strings with 27116 characters,
+and the built_in function-call counts, 44863 in all, are:
+= -- 4350
+> -- 2267
+< -- 43
++ -- 912
+- -- 767
+* -- 2930
+:= -- 7278
+add.period$ -- 403
+call.type$ -- 127
+change.case$ -- 747
 chr.to.int$ -- 0
-cite$ -- 126
-duplicate$ -- 1740
-empty$ -- 3416
-format.name$ -- 741
-if$ -- 9252
+cite$ -- 131
+duplicate$ -- 1811
+empty$ -- 3545
+format.name$ -- 767
+if$ -- 9588
 int.to.chr$ -- 0
-int.to.str$ -- 122
-missing$ -- 111
-newline$ -- 605
-num.names$ -- 244
-pop$ -- 930
+int.to.str$ -- 127
+missing$ -- 120
+newline$ -- 630
+num.names$ -- 254
+pop$ -- 977
 preamble$ -- 1
-purify$ -- 612
+purify$ -- 635
 quote$ -- 0
-skip$ -- 1257
+skip$ -- 1301
 stack$ -- 0
-substring$ -- 2170
-swap$ -- 476
-text.length$ -- 42
+substring$ -- 2228
+swap$ -- 491
+text.length$ -- 43
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 474
+type$ -- 486
 warning$ -- 4
-while$ -- 386
-width$ -- 125
-write$ -- 1319
-(There were 4 warnings)
+while$ -- 399
+width$ -- 130
+write$ -- 1371
+(There were 5 warnings)

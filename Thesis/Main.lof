@@ -1,46 +1,46 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces The V Model in System Development\relax }}{8}{figure.caption.9}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces The V Model in Safety Assessment\relax }}{9}{figure.caption.10}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Use of the Shared System/Safety Model in the ARP4754A Safety Assessment Process\relax }}{10}{figure.caption.11}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Proposed Steps of the Safety Assessment Process\relax }}{12}{figure.caption.12}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces A simple fault tree\relax }}{21}{figure.caption.21}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Binary Decision Diagrams of the Formula $a \lor (b \land c)$\relax }}{22}{figure.caption.24}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces The V Model in System Development\relax }}{9}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces The V Model in Safety Assessment\relax }}{11}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Use of the Shared System/Safety Model in the ARP4754A Safety Assessment Process\relax }}{12}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Proposed Steps of the Safety Assessment Process\relax }}{14}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces A simple fault tree\relax }}{23}{figure.caption.22}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Binary Decision Diagrams of the Formula $a \lor (b \land c)$\relax }}{24}{figure.caption.25}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Proposed Steps of the Safety Assessment Process\relax }}{27}{figure.caption.28}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces An AADL System Type: The Pedal Sensor\relax }}{30}{figure.caption.29}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces The Safety Annex for the Pedal Sensor\relax }}{30}{figure.caption.30}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Differences between Safety Annex and EMV2\relax }}{31}{figure.caption.31}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Hardware Fault Definition\relax }}{32}{figure.caption.32}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Hardware Fault Propagation Statement\relax }}{33}{figure.caption.33}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Communication Nodes in Asymmetric Fault Implementation\relax }}{35}{figure.caption.36}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Asymmetric Fault Definition in the Safety Annex\relax }}{35}{figure.caption.37}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Safety Annex Plug-in Architecture\relax }}{36}{figure.caption.38}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Nominal AGREE Node and Extension with Faults\relax }}{37}{figure.caption.39}%
-\contentsline {figure}{\numberline {3.11}{\ignorespaces IVC Elements used for Consideration in a Leaf Layer of a System\relax }}{38}{figure.caption.40}%
-\contentsline {figure}{\numberline {3.12}{\ignorespaces IVC Elements used for Consideration in a Middle Layer of a System\relax }}{38}{figure.caption.41}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Proposed Steps of the Safety Assessment Process\relax }}{29}{figure.caption.29}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces An AADL System Type: The Pedal Sensor\relax }}{32}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces The Safety Annex for the Pedal Sensor\relax }}{32}{figure.caption.31}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Differences between Safety Annex and EMV2\relax }}{33}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Hardware Fault Definition\relax }}{34}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Hardware Fault Propagation Statement\relax }}{35}{figure.caption.34}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Communication Nodes in Asymmetric Fault Implementation\relax }}{37}{figure.caption.37}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Asymmetric Fault Definition in the Safety Annex\relax }}{37}{figure.caption.38}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Safety Annex Plug-in Architecture\relax }}{38}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Nominal AGREE Node and Extension with Faults\relax }}{39}{figure.caption.40}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces IVC Elements used for Consideration in a Leaf Layer of a System\relax }}{40}{figure.caption.41}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces IVC Elements used for Consideration in a Middle Layer of a System\relax }}{40}{figure.caption.42}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Steps of the Transformation Process\relax }}{44}{figure.caption.42}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces IVC Elements used for Consideration in a Leaf Layer of a System\relax }}{46}{figure.caption.44}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces IVC Elements used for Consideration in a Middle Layer of a System\relax }}{47}{figure.caption.45}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Steps of the Transformation Process\relax }}{46}{figure.caption.43}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces IVC Elements used for Consideration in a Leaf Layer of a System\relax }}{48}{figure.caption.45}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces IVC Elements used for Consideration in a Middle Layer of a System\relax }}{49}{figure.caption.46}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Tempurature Sensor System\relax }}{52}{figure.caption.51}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Temp Sensor System Contract Part I\relax }}{53}{figure.caption.52}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Temp Sensor System Contract Part II\relax }}{54}{figure.caption.53}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Tempurature Sensor System\relax }}{54}{figure.caption.52}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Temp Sensor System Contract Part I\relax }}{55}{figure.caption.53}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Temp Sensor System Contract Part II\relax }}{56}{figure.caption.54}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Simplified Two-wheel Wheel Brake System\relax }}{56}{figure.caption.55}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces AGREE Contract for Top Level Property: Inadvertent Braking\relax }}{58}{figure.caption.56}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Detailed Output of MinCutSets\relax }}{63}{figure.caption.65}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Tally Output of MinCutSets\relax }}{64}{figure.caption.66}%
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Example SOTERIA Fault Tree\relax }}{64}{figure.caption.67}%
-\contentsline {figure}{\numberline {6.6}{\ignorespaces AGREE counterexample for inadvertent braking safety property\relax }}{65}{figure.caption.69}%
-\contentsline {figure}{\numberline {6.7}{\ignorespaces Changes in the architectural model for fault mitigation\relax }}{66}{figure.caption.70}%
-\contentsline {figure}{\numberline {6.8}{\ignorespaces Updated PID Example Architecture\relax }}{67}{figure.caption.71}%
-\contentsline {figure}{\numberline {6.9}{\ignorespaces Description of the Outputs of Each Node in the PID Example\relax }}{67}{figure.caption.72}%
-\contentsline {figure}{\numberline {6.10}{\ignorespaces Data Implementation in AADL for Node Outputs\relax }}{68}{figure.caption.73}%
-\contentsline {figure}{\numberline {6.11}{\ignorespaces Fault Definition on Node Outputs for PID Example\relax }}{68}{figure.caption.74}%
-\contentsline {figure}{\numberline {6.12}{\ignorespaces Fault Node Definition for PID Example\relax }}{69}{figure.caption.75}%
-\contentsline {figure}{\numberline {6.13}{\ignorespaces Agreement Protocol Contract in AGREE for No Active Faults\relax }}{69}{figure.caption.76}%
-\contentsline {figure}{\numberline {6.14}{\ignorespaces Agreement Protocol Contract in AGREE Regarding Non-failed Nodes\relax }}{70}{figure.caption.77}%
-\contentsline {figure}{\numberline {6.15}{\ignorespaces Fault Activation Statement in PID Example\relax }}{70}{figure.caption.78}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Simplified Two-wheel Wheel Brake System\relax }}{58}{figure.caption.56}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces AGREE Contract for Top Level Property: Inadvertent Braking\relax }}{60}{figure.caption.57}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Detailed Output of MinCutSets\relax }}{65}{figure.caption.66}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Tally Output of MinCutSets\relax }}{66}{figure.caption.67}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Example SOTERIA Fault Tree\relax }}{66}{figure.caption.68}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces AGREE counterexample for inadvertent braking safety property\relax }}{67}{figure.caption.70}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Changes in the architectural model for fault mitigation\relax }}{68}{figure.caption.71}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Updated PID Example Architecture\relax }}{69}{figure.caption.72}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Description of the Outputs of Each Node in the PID Example\relax }}{69}{figure.caption.73}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Data Implementation in AADL for Node Outputs\relax }}{70}{figure.caption.74}%
+\contentsline {figure}{\numberline {6.11}{\ignorespaces Fault Definition on Node Outputs for PID Example\relax }}{70}{figure.caption.75}%
+\contentsline {figure}{\numberline {6.12}{\ignorespaces Fault Node Definition for PID Example\relax }}{71}{figure.caption.76}%
+\contentsline {figure}{\numberline {6.13}{\ignorespaces Agreement Protocol Contract in AGREE for No Active Faults\relax }}{71}{figure.caption.77}%
+\contentsline {figure}{\numberline {6.14}{\ignorespaces Agreement Protocol Contract in AGREE Regarding Non-failed Nodes\relax }}{72}{figure.caption.78}%
+\contentsline {figure}{\numberline {6.15}{\ignorespaces Fault Activation Statement in PID Example\relax }}{72}{figure.caption.79}%
 \addvspace {10\p@ }

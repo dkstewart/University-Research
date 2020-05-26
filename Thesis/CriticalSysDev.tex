@@ -12,6 +12,21 @@ The development of safety critical systems is theoretically guided by the V mode
         \caption{\label{fig:v1} The V Model in System Development}
 \end{figure}
 
+\subsection{Model Based System Engineering and AADL}
+Model-Based System Engineering (MBSE) designates engineering practices in which models of the system under development are central artifacts throughout the product's life cycle. These models help to define, design, analyze, and document the system under development~\cite{FeilerModelBasedEngineering2012}. 
+
+Although models are not a perfect representation of the system, they provide knowledge and feedback in a faster and more cost-effective way than implementation alone; furthermore, they allow for simulation of complex interactions and serve as a guide for system implementation~\cite{INCOSE}. Depending on the modeling language, it is also possible to generate implementation code directly from the model itself, e.g.,~\cite{friedenthal2014practical,AADL_Standard,dabney2004mastering}. 
+
+There are a number of modeling languages used in practice, for example SysML~\cite{friedenthal2014practical}, SCADE~\cite{abdulla2004designing}, Simulink~\cite{dabney2004mastering}, and AADL~\cite{FeilerModelBasedEngineering2012}. In this dissertation, we focus on one of these modeling languges: the Architecture Analysis and Design Language (AADL)~\cite{FeilerModelBasedEngineering2012}.
+
+\subsubsection{Architecture Analysis and Design Language}
+We are using the Architectural Analysis and Design Language (AADL) to construct system architecture models.  AADL is an SAE International standard language that provides a unifying framework for describing the system architecture for performance-critical, embedded, real-time systems~\cite{AADL_Standard,FeilerModelBasedEngineering2012}. From its conception, AADL has been designed for the design and construction of avionics systems.  Rather than being merely descriptive, AADL models can be made specific enough to support system-level code generation.  Thus, results from analyses conducted, including the new safety analysis proposed here, correspond to the system that will be built from the model.  
+ 
+An AADL model describes a system in terms of a hierarchy of components and their interconnections, where each component can either represent a logical entity (e.g., application software functions, data) or a physical entity (e.g., buses, processors). An AADL model can be extended with language annexes to provide a richer set of modeling elements for various system design and analysis needs (e.g., performance-related characteristics, configuration settings, dynamic behaviors). The language definition is sufficiently rigorous to support formal analysis tools that allow for early phase error/fault detection.
+
+For these reasons, we chose this modeling language as a foundational element of the model-based safety assessment research conducted for this dissertation.
+
+
 \subsection{Traditional Safety Assessment Process}
 ARP4754A, the Guidelines for Development of Civil Aircraft and Systems~\cite{SAE:ARP4754A}, provides guidance on applying development assurance at each hierarchical level throughout the development life cycle of highly-integrated/complex aircraft systems. It has been recognized by the Federal Aviation Administration (FAA) as an acceptable method to establish the assurance process. The safety assessment process is a starting point at each hierarchical level of the development life cycle and is tightly coupled with the system development and verification processes. It is used to show compliance with certification requirements and for meeting a company's internal safety standards. 
 
@@ -41,7 +56,6 @@ or independence of functions within the design, i.e. if elements are shown as in
 \item[Aircraft Safety Assessment (ASA)/System Safety Assessment (SSA)] verifies that the system (or aircraft), as implemented, meets the safety requirements specified by the PSSA.
 
 \end{description}
-\danielle{AADL/agree}
 
 \input{MBSA}
 \input{crisysArtifacts}

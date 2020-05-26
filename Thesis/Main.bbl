@@ -11,6 +11,12 @@
 \newblock {\em Requirements for Safety Related Software in Defence Equipment,
   Ministry of Defence}, 1999.
 
+\bibitem{abdulla2004designing}
+P.~A. Abdulla, J.~Deneux, G.~St{\aa}lmarck, H.~{\AA}gren, and O.~{\AA}kerlund.
+\newblock Designing safe, reliable systems using scade.
+\newblock In {\em International Symposium On Leveraging Applications of Formal
+  Methods, Verification and Validation}, pages 115--129. Springer, 2004.
+
 \bibitem{AIR6110}
 {AIR 6110}.
 \newblock {Contiguous Aircraft/System Development Process Example}, Dec. 2011.
@@ -225,6 +231,11 @@ O.~Coudert and J.~C. Madre.
 \newblock In {\em Annual Reliability and Maintainability Symposium 1993
   Proceedings}, pages 240--245. IEEE, 1993.
 
+\bibitem{dabney2004mastering}
+J.~B. Dabney and T.~L. Harman.
+\newblock {\em Mastering simulink}.
+\newblock Pearson, 2004.
+
 \bibitem{de1987diagnosing}
 J.~De~Kleer and B.~C. Williams.
 \newblock Diagnosing multiple faults.
@@ -307,6 +318,11 @@ G.~Fraser, F.~Wotawa, and P.~E. Ammann.
 \newblock Testing with model checkers: a survey.
 \newblock {\em Software Testing, Verification and Reliability}, 19(3):215--261,
   2009.
+
+\bibitem{friedenthal2014practical}
+S.~Friedenthal, A.~Moore, and R.~Steiner.
+\newblock {\em A practical guide to SysML: the systems modeling language}.
+\newblock Morgan Kaufmann, 2014.
 
 \bibitem{10020219108}
 J.~B. FUSSELL.
@@ -398,6 +414,12 @@ P.~H{\"o}nig, R.~Lunde, and F.~Holzapfel.
 P.~Hönig, R.~Lunde, and F.~Holzapfel.
 \newblock {Model Based Safety Analysis with smartIflow}.
 \newblock {\em Information}, 8(1), 2017.
+
+\bibitem{INCOSE}
+{INCOSE}.
+\newblock {\em {Systems engineering handbook: A guide for system life cycle
+  processes and activities}}.
+\newblock {John Wiley and Sons, Inc}, 2015.
 
 \bibitem{jiang2018algebraic}
 W.~Jiang, S.~Zhou, L.~Ye, D.~Zhao, J.~Tian, W.~E. Wong, and J.~Xiang.
@@ -607,6 +629,11 @@ J.~D. Reese and N.~G. Leveson.
 R.~Reiter.
 \newblock A theory of diagnosis from first principles.
 \newblock {\em Artificial intelligence}, 32(1):57--95, 1987.
+
+\bibitem{roland1990system}
+H.~E. Roland and B.~Moriarty.
+\newblock {\em System safety engineering and management}.
+\newblock John Wiley \& Sons, 1990.
 
 \bibitem{fta:survey}
 E.~Ruijters and M.~Stoelinga.
