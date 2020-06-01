@@ -1,0 +1,46 @@
+\subsubsection{Transformation Algorithm for Max $N$ Analysis}
+The Safety Annex provides the capability to weave faults into a nominal model and perform verification of a fault model~\cite{stewart2020safety}. One can specify a type of verification in what is called a \textit{fault hypothesis statement}. These come in two forms: maximum number of faults or probabilistic analysis. This restricts the number of faults (or probability of occurrence) and verification is run with this restriction in mind. Thus, if a max 2 fault hypothesis is specified, two or fewer faults may be active at once. 
+
+Given a top level fault hypothesis statement of maximum $N$ faults, the transformation algorithm filters out any \textit{MinCutSets} of cardinality greater than $N$. To enhance scalability, this is performed during the transformation algorithm.If the number of faults in an intermediate set $I$ exceeds $N$, any further replacement of remaining contracts in that intermediate set can never decrease the total number of faults in $I$. Thus, this intermediate set is eliminated from consideration.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

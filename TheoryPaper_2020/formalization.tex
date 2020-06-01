@@ -1,0 +1,74 @@
+\section{Formalization}
+\label{sec:formalization}
+Given an initial state $I$ and a transition relation $T$ consisting of conjunctive constraints as defined in section~\ref{sec:prelim}. The nominal guarantees of the system, $G$, consist of conjunctive constraints $g \in G$. Given no faults, each $g$ is one of the transition constraints $T_i$ where:
+
+\begin{gather}
+T_n = g_1 \land  g_2 \land \cdots \land g_n
+\label{eq:Tn}
+\end{gather}
+
+We assume the property holds of the nominal relation $(I,T_n) \vdash P$. 
+
+Given that our focus is on safety analysis in the presence of faults, let the faults in the system be the set $F$. A fault $f \in F$ is a deviation from the normal constraint imposed by a guarantee. For the purposes of this paper, each guarantee has an associated fault. Without loss of generality, we associate a single fault and an associated fault probability with a guarantee. Each fault $f_i$ is associated with an \emph{activation literal}, $af_i$, that determines whether the fault is active or inactive. 
+
+To consider the system under the presence of faults, consider a set $GF$ of modified guarantees in the presence of faults and let a mapping be defined from activation literals $af_i \in AF$ to these modified guarantees $gf_i \in GF$. 
+\begin{center}
+$\sigma : AF \rightarrow GF$ \\
+$gf_i = \sigma(af_i) =$ if $af_i$ then $f_i$ else $g_i$
+\end{center}
+
+The transition system is composed of the set of modified guarantees $GF$ and a set of conjunctions assigning each of the activation literals $af_i \in AF$ to false: 
+
+\begin{gather}
+T = gf_1 \land gf_2 \land \cdots \land gf_n \land \neg af_1 \land \neg af_2 \land \cdots \land \neg af_n
+\label{eq:T}
+\end{gather}
+
+\begin{lemma} If $(I,T_n) \vdash P$ for $T_n$ defined in equation~\ref{eq:Tn}, then $(I,T) \vdash P$ for $T$ defined in equation~\ref{eq:T}.
+\begin{proof}
+By application of successive evaluations of $\sigma$ on each constrained activation literal $\neg af_i$, the result is immediate.
+\end{proof}
+\end{lemma}
+
+Consider the elements of $T$ as a set $GF \cup AF$, where $GF$ are the potentially faulty guarantees and $AF$ consists of the activation literals that determine whether a guarantee is faulty. This is a set that is considered by a SAT-solver for satisfiability during the $k$-induction procedures. The posited problem is thus: $GF \land AF \land \neg P$ for the safety property in question. Recall, if this is an \emph{unsatisfiable} constraint system, then $(I,T) \vdash P$. On the other hand, if it is \emph{satisfiable}, then we know that given the constraints in $GF$ and $AF$, $P$ is not provable. These are the exact constraints we wish to find. 
+
+\subsection{Transform the MIVCs into Minimal Cut Sets}
+The \aivcalg algorithm collects all {\em minimal unsatisfiable subsets} (MUSs) of a given transition system in terms of the \textit{negation} of the top level property~\cite{Ghassabani2017EfficientGO,bendik2018online}. Formally, an MUS of a constraint system $C$ is a set $M \subseteq C$ such that $M$ is unsatisfiable and $\forall c \in M$ : $M \setminus \{c\}$ is satisfiable. The MUSs are the minimal explanation of the infeasibility of this constraint system; equivalently, these are the minimal sets of model elements necessary for proof of the safety property.
+
+Returning to our running example, this can be illustrated by the following. Given the constraint system $C = \{g_p, g_t, g_r, \neg P\}$, a minimal explanation of the infeasability of this system is the set $\{g_p, g_t, g_r,\}$. If all three guarantees hold, then $P$ is provable. 
+
+A related set is a {\em minimal correction set} (MCS); a MCS $M$ of a constraint system $C$ is a subset $M\subseteq C$ such that $C \setminus M$ is satisfiable and $\forall S \subset M$ : $C \setminus S$ is unsatisfiable. A MCS can be seen to ``correct'' the infeasability of the constraint system by the removal from $C$ the constraints found in an MCS.
+
+In the case of an UNSAT system, we may ask: what will correct this unsatisfiability? Returning to the PWR example, we can find the MCSs of the constraint system: $MCS_1 = \{g_t\}$, $MCS_2 = \{g_p\}$, $MCS_3 = \{g_r\}$. If any single guarantee is violated, a shut down from that subsystem will not get sent when it should and the safety property $P$ will be violated. 
+
+A duality exists between the MUSs of a constraint system and the MCSs as established by Reiter \cite{reiter1987theory}. This duality is defined in terms of \textit{Minimal Hitting Sets} (\textit{MHS}). A hitting set of a collection of sets $A$ is a set $H$ such that every set in $A$ is ``hit'' by $H$; $H$ contains at least one element from every set in $A$. Every MUS of a constraint system is a minimal hitting set of the system's MCSs, and likewise every MCS is a minimal hitting set of the system's MUSs~\cite{liffiton2016fast, reiter1987theory, de1987diagnosing}.
+
+For the PWR top level constraint system, it can be seen that each of the MCSs intersected with the MUS is nonempty. 
+
+Since we are interested in sets of active faults that cause violation of the safety property, we turn our attention to Minimal Cut Sets. A \textit{Minimal Cut Set} (MinCutSet) is a minimal collection of faults that lead to the violation of the safety property. Furthermore, any subset of a MinCutSet will not cause this property violation. %We define a minimal cut set consistently with much of the research in this field~\cite{fta:survey,historyFTA}.
+In this running example, the critical guarantees were seen in the first (top) layer of compositional analysis; the violation of the guarantees found in the MCSs provided a minimal set of supporting contracts that contribute to a top level event (violation of a safety property). We desire to compute the minimal cut sets and so a natural question is how to get from a minimal set of violated guarantees to the faults that cause their violation. 
+
+\subsection{Compositionality}
+Compositional analysis proceeds from the top layer downward through the architecture of the system model. Faults are defined on leaf level components. Any middle level analysis will provide the MCSs in terms of violated guarantees, which are not valid elements of a minimal cut set. The lowest level of analysis will contain the faults $f_i$ that violate guarantees $g_i$. 
+
+For illustration, the PWR lowest level of analysis is performed per sensor subsystem. We focus on the temperature subsystem which has the guarantee under analysis $g_t = temp > T_t \iff SHUTDOWN$. Each leaf level component (temperature sensors) have associated fault $f_{ti}: $ fail low. Due to the majority voting mechanism, the MIVCs show all possible pairs of faults restricted to \emph{false}. This means, if any combination of two faults do not occur, then the guarantee at the temperature sensor subsystem level is satisfied. 
+\begin{gather*}
+		MIVC_1(g_t) = \{\neg f_{t1}, \neg f_{t2}\} \\
+		MIVC_2(g_t) = \{\neg f_{t1}, \neg f_{t3}\} \\
+		MIVC_3(g_t) = \{\neg f_{t2}, \neg f_{t3}\}
+\end{gather*}
+
+
+The hitting set algorithm produces the following MCSs; if any two faults occur, then the guarantee cannot be proven.
+\begin{gather*}
+		MCS_1(leaf) = \{\neg f_{t1}, \neg f_{t2}\} \\
+		MCS_2(leaf) = \{\neg f_{t1}, \neg f_{t3}\} \\
+		MCS_3(leaf) = \{\neg f_{t2}, \neg f_{t3}\}
+\end{gather*}
+
+And now we have the information required to determine the faults that cause the violation of guarantees at upper levels. 
+
+
+
+
+

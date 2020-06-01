@@ -1,0 +1,29 @@
+\subsubsection{Probabilistic Analysis Algorithm}
+\label{sec:probAlg}
+The second type of hypothesis statement restricts the cut sets by use of a probabilistic threshold. Any cut sets with probability higher than a given ``fault hypothesis statement"~\cite{stewart2020safety} are removed from consideration. (The fault hypothesis statement gives a probabilistic threshold for a safety property under consideration.) The allowable combinations of faults are calculated before the transformation algorithm begins; this allows for a pruning of intermediate sets during the transformation. If the faults within an intermediate set are not a subset of any allowable combination, that set is pruned from consideration. This eliminates unnecessary combinations while performing the algorithm, thus increasing performance and diminishing the problem of combinatorial explosions in the size of minimal cut sets for larger models. 
+
+%In order to calculate allowable combinations, the probabilities of the combined faults are compared with the probabilistic threshold. In algorithm~\ref{alg:comb}, we assume independence among the faults, but in the Safety Annex it is possible to define dependence between faults using a fault propagation statement. After the possible fault combinations are computed using Algorithm~\ref{alg:comb}, the triggered dependent faults are added to the combination as appropriate while ignoring their respective probabilities.
+
+\begin{comment}
+\begin{algorithm}[H]
+	% \KwData{this text}
+	% \KwResult{how to write algorithm with \LaTeX2e }
+	$\mathcal{F} = \{\}$ : fault combinations above threshold \;
+	$\mathcal{Q}$ : faults, $q_i$, arranged with probability high to low \;
+	$\mathcal{R} = \mathcal{Q}$ , with $r \in \mathcal{R}$\;
+	\While{$\mathcal{Q} \neq \{\} \land \mathcal{R} \neq \{\}$ }{
+		$q =$ removePriorityElement($\mathcal{Q}$) \;
+		\For{$i=0:|\mathcal{R}|$}{
+			$prob = q \times r_i$ \;
+			\eIf{prob $<$ threshold}{
+				removeTail($\mathcal{R}, i:|\mathcal{R}|$)\;
+			}{
+				add($\{q, r_i\}, \mathcal{Q}$)\;
+				add($\{q, r_i\}, \mathcal{F}$)\;
+			} % end if else
+		} % end for
+	} % end while
+	\caption{Allowable Fault Combinations Algorithm}
+	\label{alg:comb}
+\end{algorithm}
+\end{comment}
