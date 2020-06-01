@@ -23,6 +23,7 @@ written as $\reach \Rightarrow P$ for short. When this is the case, we
 write $(I, T)\vdash P$.
 
 \subsection{Induction}
+\danielle{This section  is likely far longer than what it needs to be for this paper. We really just need a brief intro on induction before hitting sec 3.2. Will do a shortening - just wanted to write it all out for my own sake (and thesis sake). But I think we still need a paragraph linking transition systems to the SAT problem. Easy to do without all this verbage.}
 For an arbitrary transition system $(I, T)$, computing reachability
 can be very expensive or even impossible. Thus, we need a more
 effective way of checking if a safety property $P$ is satisfied by the
@@ -90,13 +91,13 @@ Boolean Satisfiability (SAT) solvers attempt to determine if there exists a tota
 
 SAT solvers in model checking work over a constraint system to determine satisfiability. A \textit{constraint system} $C$ is an ordered set of $n$ abstract constraints $\{C_1, C_2, ..., C_n\}$ over a set of variables. The constraint $C_i$ restricts the allowed assignments of these variables in some way~\cite{liffiton2016fast}. Given a constraint system, we require some method of determining, for any subset $S \subseteq C$, whether $S$ is \textit{satisfiable} (SAT) or \textit{unsatisfiable} (UNSAT). When a subset $S$ is SAT, this means that there exists an assignment allowed by all $C_i \in S$; when no such assignment exists, $S$ is considered UNSAT. 
 
-There are several ways of translating a propositional formula into clauses such that satisfiability is preserved~\cite{een2003temporal}. By performing this translation, $k$-inductive model checkers are able to utilize parallel SAT-solving engines to glean information about the proof of a safety property at each inductive step. Expression of the base and induction steps of a temporal induction proof is straightforward. As an example, we look at an arbitrary base case from Figure~\ref{fig:k-induction}.
+There are several ways of translating a propositional formula into clauses such that satisfiability is preserved~\cite{een2003temporal}. By performing this translation, $k$-inductive model checkers are able to utilize parallel SAT-solving engines to glean information about the proof of a safety property at each inductive step. Expression of the base and induction steps of a temporal induction proof as SAT problems is straightforward. As an example, we look at an arbitrary base case from Figure~\ref{fig:k-induction}.
 
 \begin{gather*}
 I(s_0) \land T(s_0, s_1) \land \cdots \land T(s_{k-2}, s_{k-1})
 \land \neg P(s_{k-1})
 \end{gather*}
 
-When proving correctness it is shown that the formulas are \emph{unsatisfiable}. If an $n^{th}$ inductive-step is unsatisfiable, that means following an $n$-step trace where the property holds, there exists no next state where it fails. 
+When proving correctness it is shown that the formulas are \emph{unsatisfiable}. If an $n^{th}$ inductive-step is unsatisfiable, that means following an $n$-step trace where the property holds, there exists no next state where it fails, i.e., the property $P$ is provable.
 
 \input{implBackground}

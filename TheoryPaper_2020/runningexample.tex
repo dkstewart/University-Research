@@ -52,8 +52,20 @@ Two faults are defined with the safety annex for each sensor in the system. An e
 
 The Safety Annex provides a way to weave the faults into the nominal model by use of the \emph{inputs} and \emph{outputs} keywords. This allows users to define a fault and attach it to the output of a component. If the fault is active, the error can then in essence violate the guarantees of this component and possibly the assumptions of downstream components~\cite{stewart2020safety}. The activation of a fault is not up to the user, but instead left up to the backend model checker, JKind, to determine if the activation of this fault will cause violation of higher level guarantees. If so, it can be activated during the analysis.
 
-For simplicity, throughout this paper we refer only to faults that fail high. This is to keep the example and results described concise. For ease of reference, a table is provided giving model elements of interest in the sensor example. We refer to these throughout this section. Note: the thresholds vary for pressure, temperature, and radiation. These are given as constants $T_p$, $T_t$, and $T_r$ respectively. We also do not list all guarantees and assumptions that are in the model, but only the ones of interest for this analysis.
+For simplicity, throughout this paper we refer only to faults that fail high. This is to keep the example and results described concise. For ease of reference, a table is provided giving model elements of interest in the sensor example. We refer to these throughout this section. Note: the thresholds vary for pressure, temperature, and radiation. These are given as constants $T_p$, $T_t$, and $T_r$ respectively. The shutdown command is defined notationally as $S$.  The faults are shown as ``fail low" which correspond to the temp (or pressure or radiation) being high, but the sensor reports safe ranges. We also do not list all guarantees and assumptions that are in the model, but only the ones of interest for this analysis. \danielle{Still messing around with how to display this in a way that it isn't messy, doesn't take up a ton of space, and am not currently happy with this approach. But I really hated the tables. Too much info for what is actually needed. Will keep working on this.}
 
+\begin{description}[parsep=0.3ex]
+ \item[PWR System:] $P = ((temp$ $>$ $T_t)$ $\lor$ $ (pressure$ $>$ $ T_p)$  $\lor$ $ (radiation$ $>$ $ T_r)) \iff S$\\
+ \item[Temp Subsystem]: $G_t = temp$ $>$ $ T_t \iff S$\\
+ \item[Pressure Subsystem:] $G_p = pressure$ $>$ $ T_p \iff S$\\
+ \item[Radiation Subsystem:] $G_r = radiation$ $>$ $ T_r \iff S$\\
+ \item[Temp Sensors (3):] $g_p = pressure$ $>$ $ T_p \iff S$, Fault $f_{ti}$: fails low for $i = 1, 2, 3$.\\
+\item[Pressure Sensors (3):] $g_r = radiation$ $>$ $ T_r \iff S$, Fault $f_{pi}$: fails low for $i = 1, 2, 3$. \\
+ \item[Radiation Sensors (3):] $g_r = radiation$ $>$ $ T_r \iff S$, Fault $f_{ri}$: fails low for $i = 1, 2, 3$\\
+ \end{description}
+
+
+\begin{comment}
 \begin{center}
 \resizebox{0.5\textwidth}{!}{%
     \begin{tabular}{ | c | c | c |}
@@ -62,11 +74,11 @@ For simplicity, throughout this paper we refer only to faults that fail high. Th
       \hline
       ReactorSys & Top &  \makecell{Safety Property $P$: \\ $((temp$ $>$ $T_t)$ $\lor$ $ (pressure$ $>$ $ T_p)$  $\lor$ $ (radiation$ $>$ $ T_r))$ \\ $\iff SHUTDOWN$}    \\
       \hline
-      TempSys & Leaf  &  \makecell{Guarantee $g_t$: \\  $temp$ $>$ $ T_t \iff SHUTDOWN$}   \\
+      TempSys & Leaf  &  \makecell{Guarantee $G_t$: \\  $temp$ $>$ $ T_t \iff SHUTDOWN$}   \\
       \hline
-      PressureSys & Leaf  &  \makecell{Guarantee $g_p$: \\ $pressure$ $>$ $ T_p \iff SHUTDOWN$}    \\
+      PressureSys & Leaf  &  \makecell{Guarantee $G_p$: \\ $pressure$ $>$ $ T_p \iff SHUTDOWN$}    \\
 	\hline
-      RadiationSys & Leaf  &  \makecell{Guarantee $g_r$: \\ $radiation$ $>$ $ T_r \iff SHUTDOWN$}   \\
+      RadiationSys & Leaf  &  \makecell{Guarantee $G_r$: \\ $radiation$ $>$ $ T_r \iff SHUTDOWN$}   \\
       \hline
     \end{tabular}}
   \end{center}
@@ -87,7 +99,7 @@ For simplicity, throughout this paper we refer only to faults that fail high. Th
   \end{center}
 
 
-\begin{comment}
+
 \subsection{Using this Example in the Generation of Minimal Cut Sets}
 Step by step, we outline how minimal cut sets are generated through the \aivcalg algorithm using the sensor system as an example. For ease of reference, a table is provided giving model elements of interest in the sensor example. We refer to these throughout this section. Note: the thresholds vary for pressure, temperature, and radiation. These are given as constants $T_p$, $T_t$, and $T_r$ respectively. We also do not list all guarantees and assumptions that are in the model, but only the ones of interest for this analysis.
 
