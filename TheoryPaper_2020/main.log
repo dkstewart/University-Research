@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  1 JUN 2020 14:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  10 JUN 2020 08:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -766,113 +766,144 @@ LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <9> not available
 
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]) (./run
 ningexample.tex
-<images/sensorSys.PNG, id=13, 543.02875pt x 273.02pt>
-File: images/sensorSys.PNG Graphic file (type png)
-<use images/sensorSys.PNG>
-Package pdftex.def Info: images/sensorSys.PNG  used on input line 9.
-(pdftex.def)             Requested size: 238.49342pt x 119.90837pt.
+<images/sensorSysAADL.png, id=13, 683.55376pt x 469.755pt>
+File: images/sensorSysAADL.png Graphic file (type png)
+<use images/sensorSysAADL.png>
+Package pdftex.def Info: images/sensorSysAADL.png  used on input line 8.
+(pdftex.def)             Requested size: 238.49342pt x 163.89346pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[2]
-<images/sensorGuar.PNG, id=18, 315.1775pt x 69.76062pt>
+<images/sensorGuar.PNG, id=15, 315.1775pt x 69.76062pt>
 File: images/sensorGuar.PNG Graphic file (type png)
 <use images/sensorGuar.PNG>
-Package pdftex.def Info: images/sensorGuar.PNG  used on input line 25.
-(pdftex.def)             Requested size: 198.7425pt x 43.9888pt.
+Package pdftex.def Info: images/sensorGuar.PNG  used on input line 26.
+(pdftex.def)             Requested size: 238.49342pt x 52.78761pt.
+[2]
+
+LaTeX Warning: Reference `fig:sensorSysContracts' on page 3 undefined on input 
+line 34.
+
+
+LaTeX Warning: File `images/sensorSysContracts.png' not found on input line 39.
+
+
+
+! Package pdftex.def Error: File `images/sensorSysContracts.png' not found: usi
+ng draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.39 ...\textwidth]{images/sensorSysContracts.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 <images/tempSensorFault.PNG, id=19, 473.77pt x 95.35625pt>
 File: images/tempSensorFault.PNG Graphic file (type png)
 <use images/tempSensorFault.PNG>
-Package pdftex.def Info: images/tempSensorFault.PNG  used on input line 45.
-(pdftex.def)             Requested size: 317.98921pt x 64.00328pt.
-
+Package pdftex.def Info: images/tempSensorFault.PNG  used on input line 55.
+(pdftex.def)             Requested size: 357.73407pt x 72.00298pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[3 <./images/sensorSys.PNG> <./images/sensorGuar.PNG>]
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
+[3 <./images/sensorSysAADL.png> <./images/sensorGuar.PNG>]
+Underfull \hbox (badness 10000) in paragraph at lines 68--69
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 59--60
+Underfull \hbox (badness 10000) in paragraph at lines 69--70
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--61
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
+
+ []
+
+[4 <./images/tempSensorFault.PNG>]
+Underfull \hbox (badness 10000) in paragraph at lines 71--72
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 72--73
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--63
+Underfull \hbox (badness 10000) in paragraph at lines 73--74
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--64
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
+
+ []
+
+Excluding 'comment' comment.) (./preliminaries.tex (./implBackground.tex)
+[5] [6] Excluding 'comment' comment.) (./formalization.tex [7] [8]
+Excluding 'comment' comment. Excluding 'comment' comment.)
+(./Implementation.tex
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 71--72
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 64--65
+Underfull \hbox (badness 10000) in paragraph at lines 75--76
 
  []
 
-Excluding 'comment' comment.) (./preliminaries.tex [4 <./images/tempSensorFault
-.PNG>] [5] (./implBackground.tex [6])) (./formalization.tex [7] [8]
-Excluding 'comment' comment.) (./Implementation.tex [9]
-Underfull \vbox (badness 2050) has occurred while \output is active []
+) (./related_work.tex [10]) (./conclusion.tex) (./main.bbl [11] [12] [13])
+[14] (./main.aux)
 
- [10]
-Underfull \hbox (badness 10000) in paragraph at lines 62--63
-
- []
+LaTeX Warning: There were undefined references.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 66--67
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
- []
-
-) (./related_work.tex [11]) (./conclusion.tex) (./main.bbl [12] [13]) [14]
-(./main.aux) ) 
+ ) 
 Here is how much of TeX's memory you used:
- 9587 strings out of 480608
- 136102 string characters out of 5903631
- 428482 words of memory out of 5000000
- 25242 multiletter control sequences out of 15000+600000
+ 9619 strings out of 480608
+ 136777 string characters out of 5903631
+ 430481 words of memory out of 5000000
+ 25260 multiletter control sequences out of 15000+600000
  562261 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  46i,27n,49p,1634b,662s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}<
-/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
-usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
-sr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr
-/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/l
-ocal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/loc
-al/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local
-/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
-xlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texli
-ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/
-2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
-020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/202
-0/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2020/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2020/tex
-mf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2020/texmf-dist/
-fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type
-1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/time
-s/utmri8a.pfb>
-Output written on main.pdf (14 pages, 350263 bytes).
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
+xlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
+live/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texli
+ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive
+/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2
+020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/202
+0/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2020/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2020/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2020/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2020/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2020/texmf-dist/fo
+nts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type
+1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/time
+s/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.
+pfb>
+Output written on main.pdf (14 pages, 532575 bytes).
 PDF statistics:
- 130 PDF objects out of 1000 (max. 8388607)
- 89 compressed objects within 1 object stream
+ 126 PDF objects out of 1000 (max. 8388607)
+ 86 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

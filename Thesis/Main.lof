@@ -20,27 +20,30 @@
 \contentsline {figure}{\numberline {3.11}{\ignorespaces IVC Elements used for Consideration in a Leaf Layer of a System\relax }}{40}{figure.caption.41}%
 \contentsline {figure}{\numberline {3.12}{\ignorespaces IVC Elements used for Consideration in a Middle Layer of a System\relax }}{40}{figure.caption.42}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Steps of the Transformation Process\relax }}{46}{figure.caption.43}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces IVC Elements used for Consideration in a Leaf Layer of a System\relax }}{48}{figure.caption.45}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces IVC Elements used for Consideration in a Middle Layer of a System\relax }}{49}{figure.caption.46}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Pressurized Water Reactor Sensor System\relax }}{43}{figure.caption.43}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Sensor System Safety Property\relax }}{44}{figure.caption.44}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Fault on Temperature Sensor Defined in the Safety Annex for AADL\relax }}{45}{figure.caption.45}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces $k$-induction formulas: $k$ base cases and one inductive step\relax }}{47}{figure.caption.46}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces IVC Elements used for Consideration in a Leaf Layer of a System\relax }}{52}{figure.caption.48}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces IVC Elements used for Consideration in a Middle Layer of a System\relax }}{53}{figure.caption.49}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Tempurature Sensor System\relax }}{54}{figure.caption.52}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Temp Sensor System Contract Part I\relax }}{55}{figure.caption.53}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Temp Sensor System Contract Part II\relax }}{56}{figure.caption.54}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Tempurature Sensor System\relax }}{59}{figure.caption.55}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Temp Sensor System Contract Part I\relax }}{60}{figure.caption.56}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Temp Sensor System Contract Part II\relax }}{61}{figure.caption.57}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Simplified Two-wheel Wheel Brake System\relax }}{58}{figure.caption.56}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces AGREE Contract for Top Level Property: Inadvertent Braking\relax }}{60}{figure.caption.57}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Detailed Output of MinCutSets\relax }}{65}{figure.caption.66}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Tally Output of MinCutSets\relax }}{66}{figure.caption.67}%
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Example SOTERIA Fault Tree\relax }}{66}{figure.caption.68}%
-\contentsline {figure}{\numberline {6.6}{\ignorespaces AGREE counterexample for inadvertent braking safety property\relax }}{67}{figure.caption.70}%
-\contentsline {figure}{\numberline {6.7}{\ignorespaces Changes in the architectural model for fault mitigation\relax }}{68}{figure.caption.71}%
-\contentsline {figure}{\numberline {6.8}{\ignorespaces Updated PID Example Architecture\relax }}{69}{figure.caption.72}%
-\contentsline {figure}{\numberline {6.9}{\ignorespaces Description of the Outputs of Each Node in the PID Example\relax }}{69}{figure.caption.73}%
-\contentsline {figure}{\numberline {6.10}{\ignorespaces Data Implementation in AADL for Node Outputs\relax }}{70}{figure.caption.74}%
-\contentsline {figure}{\numberline {6.11}{\ignorespaces Fault Definition on Node Outputs for PID Example\relax }}{70}{figure.caption.75}%
-\contentsline {figure}{\numberline {6.12}{\ignorespaces Fault Node Definition for PID Example\relax }}{71}{figure.caption.76}%
-\contentsline {figure}{\numberline {6.13}{\ignorespaces Agreement Protocol Contract in AGREE for No Active Faults\relax }}{71}{figure.caption.77}%
-\contentsline {figure}{\numberline {6.14}{\ignorespaces Agreement Protocol Contract in AGREE Regarding Non-failed Nodes\relax }}{72}{figure.caption.78}%
-\contentsline {figure}{\numberline {6.15}{\ignorespaces Fault Activation Statement in PID Example\relax }}{72}{figure.caption.79}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Simplified Two-wheel Wheel Brake System\relax }}{63}{figure.caption.59}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces AGREE Contract for Top Level Property: Inadvertent Braking\relax }}{65}{figure.caption.60}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Detailed Output of MinCutSets\relax }}{70}{figure.caption.69}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Tally Output of MinCutSets\relax }}{71}{figure.caption.70}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Example SOTERIA Fault Tree\relax }}{71}{figure.caption.71}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces AGREE counterexample for inadvertent braking safety property\relax }}{72}{figure.caption.73}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Changes in the architectural model for fault mitigation\relax }}{73}{figure.caption.74}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Updated PID Example Architecture\relax }}{74}{figure.caption.75}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Description of the Outputs of Each Node in the PID Example\relax }}{74}{figure.caption.76}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Data Implementation in AADL for Node Outputs\relax }}{75}{figure.caption.77}%
+\contentsline {figure}{\numberline {6.11}{\ignorespaces Fault Definition on Node Outputs for PID Example\relax }}{75}{figure.caption.78}%
+\contentsline {figure}{\numberline {6.12}{\ignorespaces Fault Node Definition for PID Example\relax }}{76}{figure.caption.79}%
+\contentsline {figure}{\numberline {6.13}{\ignorespaces Agreement Protocol Contract in AGREE for No Active Faults\relax }}{76}{figure.caption.80}%
+\contentsline {figure}{\numberline {6.14}{\ignorespaces Agreement Protocol Contract in AGREE Regarding Non-failed Nodes\relax }}{77}{figure.caption.81}%
+\contentsline {figure}{\numberline {6.15}{\ignorespaces Fault Activation Statement in PID Example\relax }}{77}{figure.caption.82}%
 \addvspace {10\p@ }

@@ -25,7 +25,7 @@
 \contentsline {subsubsection}{SmartIFlow}{17}{section*.16}%
 \contentsline {subsubsection}{SAML}{18}{section*.17}%
 \contentsline {subsubsection}{Error Model Annex for AADL}{18}{section*.18}%
-\contentsline {section}{\numberline {2.3}Formal Methods of Verification and Validation}{18}{section.2.3}%
+\contentsline {section}{\numberline {2.3}Formal Methods in Verification and Validation}{18}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Formal Validation and Verification}{19}{subsection.2.3.1}%
 \contentsline {subsubsection}{Formal Specification}{19}{section*.19}%
 \contentsline {subsubsection}{Formal Verification}{19}{section*.20}%
@@ -53,30 +53,38 @@
 \contentsline {section}{\numberline {3.6}Implementation of the Safety Annex}{38}{section.3.6}%
 \contentsline {chapter}{\numberline {4}Compositional Minimal Cut Set Generation}{41}{chapter.4}%
 \contentsline {section}{\numberline {4.1}The High Level Idea and Approach}{42}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Definitions}{43}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Formalization of the Method}{44}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Implementation and Algorithms}{47}{section.4.4}%
-\contentsline {subsubsection}{Implementation}{48}{section*.44}%
-\contentsline {subsubsection}{Algorithms}{49}{section*.47}%
-\contentsline {subsubsection}{Pruning to Address Scalability}{51}{section*.49}%
-\contentsline {chapter}{\numberline {5}Granularity}{52}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Illustrative Example}{54}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Algorithms and Results}{56}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Algorithms}{56}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Results}{57}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Discussion}{57}{subsection.5.2.3}%
-\contentsline {chapter}{\numberline {6}Case Studies}{58}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Wheel Brake System}{58}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Nominal Model Analysis}{60}{subsection.6.1.1}%
-\contentsline {subsection}{\numberline {6.1.2}Fault Model Analysis}{60}{subsection.6.1.2}%
-\contentsline {subsubsection}{Verification in the Presence of Faults: Max N Analysis}{61}{section*.59}%
-\contentsline {subsubsection}{Verification in the Presence of Faults: Probabilistic Analysis}{62}{section*.60}%
-\contentsline {subsubsection}{Generate Minimal Cut Sets: Max N Analysis}{63}{section*.61}%
-\contentsline {subsubsection}{Generate Minimal Cut Sets: Probabilistic Analysis}{64}{section*.63}%
-\contentsline {subsubsection}{Results from Generate Minimal Cut Sets}{64}{section*.65}%
-\contentsline {subsubsection}{Use of Analysis Results to Drive Design Change}{66}{section*.69}%
-\contentsline {section}{\numberline {6.2}Process ID Example}{68}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}The Agreement Protocol Implementation in AGREE}{68}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Nominal and Fault Model Analysis}{71}{subsection.6.2.2}%
-\contentsline {chapter}{\numberline {7}Conclusion}{74}{chapter.7}%
-\contentsline {chapter}{References}{75}{chapter*.80}%
+\contentsline {section}{\numberline {4.2}Running Example}{43}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}PWR Nominal Model}{44}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}PWR Fault Model}{44}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Preliminaries for Minimal Cut Set Generation}{46}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Induction}{46}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}The SAT Problem}{47}{subsection.4.3.2}%
+\contentsline {section}{\numberline {4.4}Formalization of the Method}{48}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Top Layer of Compositional Analysis}{49}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Leaf Layer of Compositional Analysis}{50}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Transforming MCS into Minimal Cut Set}{51}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}Implementation and Algorithms}{52}{section.4.5}%
+\contentsline {subsubsection}{Implementation}{52}{section*.47}%
+\contentsline {subsubsection}{Algorithms}{53}{section*.50}%
+\contentsline {subsubsection}{Pruning to Address Scalability}{55}{section*.52}%
+\contentsline {chapter}{\numberline {5}Granularity}{57}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Illustrative Example}{59}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Algorithms and Results}{61}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Algorithms}{61}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Results}{62}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Discussion}{62}{subsection.5.2.3}%
+\contentsline {chapter}{\numberline {6}Case Studies}{63}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Wheel Brake System}{63}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Nominal Model Analysis}{65}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Fault Model Analysis}{65}{subsection.6.1.2}%
+\contentsline {subsubsection}{Verification in the Presence of Faults: Max N Analysis}{66}{section*.62}%
+\contentsline {subsubsection}{Verification in the Presence of Faults: Probabilistic Analysis}{67}{section*.63}%
+\contentsline {subsubsection}{Generate Minimal Cut Sets: Max N Analysis}{68}{section*.64}%
+\contentsline {subsubsection}{Generate Minimal Cut Sets: Probabilistic Analysis}{69}{section*.66}%
+\contentsline {subsubsection}{Results from Generate Minimal Cut Sets}{69}{section*.68}%
+\contentsline {subsubsection}{Use of Analysis Results to Drive Design Change}{71}{section*.72}%
+\contentsline {section}{\numberline {6.2}Process ID Example}{73}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}The Agreement Protocol Implementation in AGREE}{73}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Nominal and Fault Model Analysis}{76}{subsection.6.2.2}%
+\contentsline {chapter}{\numberline {7}Conclusion}{79}{chapter.7}%
+\contentsline {chapter}{References}{80}{chapter*.83}%

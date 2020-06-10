@@ -35,7 +35,12 @@
 \newlabel{chap:intro}{{1}{1}{Introduction}{chapter.1}{}}
 \citation{Joshi05:Dasc,CAV2015:BoCiGrMa,info17:HaLuHo,5979344,Gudemann:2010:FQQ:1909626.1909813}
 \citation{symbAltaRica,DBLP:conf/tacas/BittnerBCCGGMMZ16,info8010007,Gudemann:2010:FQQ:1909626.1909813}
+\citation{lisagor2010failure}
+\citation{EMV2,Joshi05:SafeComp,DBLP:conf/tacas/BittnerBCCGGMMZ16}
+\citation{lisagor2011model}
+\citation{Stewart17:IMBSA}
 \citation{DBLP:conf/tacas/BittnerBCCGGMMZ16,stewart2020safety}
+\citation{minato2001zero,vesely1981fault,jung2008fast,matuzas2015dynamic,Bieber04safetyassessment}
 \citation{Joshi05:SafeComp,CAV2015:BoCiGrMa,10.1007/978-3-319-11936-6-7}
 \citation{AADL_Standard,FeilerModelBasedEngineering2012}
 \citation{Stewart17:IMBSA,stewart2020safety}
@@ -49,8 +54,6 @@
 \@writefile{toc}{\contentsline {paragraph}{Explored how the formal specification of requirements can change analysis results.}{6}{section*.7}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Demonstrated the objectives of this proposal by use of case studies.}{6}{section*.8}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {1.2}Structure of this Document}{6}{section.1.2}\protected@file@percent }
-\newlabel{chap:faultModeling}{{1.2}{6}{Structure of this Document}{section.1.2}{}}
-\newlabel{chap:granularity}{{1.2}{7}{Structure of this Document}{section.1.2}{}}
 \citation{SAE:ARP4761,SAE:ARP4754A}
 \citation{SAE:ARP4754A}
 \@writefile{toc}{\contentsline {chapter}{\numberline {2}Preliminaries and Related Work}{8}{chapter.2}\protected@file@percent }
@@ -136,8 +139,8 @@
 \citation{deptOfDefense,standard1999,prasad2005survey}
 \@writefile{toc}{\contentsline {subsubsection}{SAML}{18}{section*.17}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Error Model Annex for AADL}{18}{section*.18}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.3}Formal Methods of Verification and Validation}{18}{section.2.3}\protected@file@percent }
-\newlabel{sec:fm}{{2.3}{18}{Formal Methods of Verification and Validation}{section.2.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Formal Methods in Verification and Validation}{18}{section.2.3}\protected@file@percent }
+\newlabel{sec:fm}{{2.3}{18}{Formal Methods in Verification and Validation}{section.2.3}{}}
 \citation{hinchey2012industrial}
 \citation{fitting2012first}
 \citation{clarke2018model}
@@ -260,145 +263,163 @@
 \newlabel{fig:ivcElements1}{{3.11}{40}{IVC Elements used for Consideration in a Leaf Layer of a System\relax }{figure.caption.41}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.12}{\ignorespaces IVC Elements used for Consideration in a Middle Layer of a System\relax }}{40}{figure.caption.42}\protected@file@percent }
 \newlabel{fig:ivcElements2}{{3.12}{40}{IVC Elements used for Consideration in a Middle Layer of a System\relax }{figure.caption.42}{}}
+\citation{fta:survey,rauzy1993new,historyFTA,Bozzano:2010:DSA:1951720,rausand2003system}
 \citation{aerospace2012sae}
 \citation{AADL_Standard,FeilerModelBasedEngineering2012}
 \citation{NFM2012:CoGaMiWhLaLu}
+\citation{Halbwachs91:IEEE}
+\citation{2017arXiv171201222G}
 \@writefile{toc}{\contentsline {chapter}{\numberline {4}Compositional Minimal Cut Set Generation}{41}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
 \newlabel{chap:mcsGen}{{4}{41}{Compositional Minimal Cut Set Generation}{chapter.4}{}}
-\citation{Halbwachs91:IEEE}
-\citation{2017arXiv171201222G}
 \citation{Stewart17:IMBSA,stewart2020safety,nasaFinalReport}
 \citation{GhassabaniGW16,Ghassabani2017EfficientGO,bendik2018online}
 \@writefile{toc}{\contentsline {section}{\numberline {4.1}The High Level Idea and Approach}{42}{section.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Running Example}{43}{section.4.2}\protected@file@percent }
+\newlabel{sec:example}{{4.2}{43}{Running Example}{section.4.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Pressurized Water Reactor Sensor System\relax }}{43}{figure.caption.43}\protected@file@percent }
+\newlabel{fig:sensorSys}{{4.1}{43}{Pressurized Water Reactor Sensor System\relax }{figure.caption.43}{}}
+\citation{stewart2020safety}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}PWR Nominal Model}{44}{subsection.4.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Sensor System Safety Property\relax }}{44}{figure.caption.44}\protected@file@percent }
+\newlabel{fig:shutdownGuar}{{4.2}{44}{Sensor System Safety Property\relax }{figure.caption.44}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}PWR Fault Model}{44}{subsection.4.2.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Fault on Temperature Sensor Defined in the Safety Annex for AADL\relax }}{45}{figure.caption.45}\protected@file@percent }
+\newlabel{fig:tempSensorFault}{{4.3}{45}{Fault on Temperature Sensor Defined in the Safety Annex for AADL\relax }{figure.caption.45}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Preliminaries for Minimal Cut Set Generation}{46}{section.4.3}\protected@file@percent }
+\newlabel{sec:prelimMCS}{{4.3}{46}{Preliminaries for Minimal Cut Set Generation}{section.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Induction}{46}{subsection.4.3.1}\protected@file@percent }
+\newlabel{eq:1-ind-base}{{4.1}{46}{Induction}{equation.4.3.1}{}}
+\newlabel{eq:1-ind-step}{{4.2}{46}{Induction}{equation.4.3.2}{}}
 \citation{liffiton2016fast}
-\citation{liffiton2016fast}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces $k$-induction formulas: $k$ base cases and one inductive step\relax }}{47}{figure.caption.46}\protected@file@percent }
+\newlabel{fig:k-induction}{{4.4}{47}{$k$-induction formulas: $k$ base cases and one inductive step\relax }{figure.caption.46}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}The SAT Problem}{47}{subsection.4.3.2}\protected@file@percent }
+\citation{een2003temporal}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Formalization of the Method}{48}{section.4.4}\protected@file@percent }
+\newlabel{eq:Tn}{{4.3}{48}{Formalization of the Method}{equation.4.4.3}{}}
+\citation{Ghassabani2017EfficientGO,bendik2018online}
 \citation{reiter1987theory}
 \citation{liffiton2016fast,reiter1987theory,de1987diagnosing}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Definitions}{43}{section.4.2}\protected@file@percent }
-\citation{0f356f05e72f43018211b36f97c8854a,historyFTA}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Formalization of the Method}{44}{section.4.3}\protected@file@percent }
-\citation{Ghassabani2017EfficientGO,bendik2018online}
-\newlabel{def:constraintsystem}{{7}{45}{}{definition.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Steps of the Transformation Process\relax }}{46}{figure.caption.43}\protected@file@percent }
-\newlabel{fig:trans}{{4.1}{46}{Steps of the Transformation Process\relax }{figure.caption.43}{}}
-\newlabel{lem:minCorrSet1}{{1}{46}{}{lemma.1}{}}
-\newlabel{lem:corrSet}{{2}{47}{}{lemma.2}{}}
-\newlabel{lem:minCorrSet}{{3}{47}{}{lemma.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Implementation and Algorithms}{47}{section.4.4}\protected@file@percent }
-\newlabel{sec:algs}{{4.4}{47}{Implementation and Algorithms}{section.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Top Layer of Compositional Analysis}{49}{subsection.4.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Leaf Layer of Compositional Analysis}{50}{subsection.4.4.2}\protected@file@percent }
+\newlabel{eq:sigma}{{4.4.2}{50}{Leaf Layer of Compositional Analysis}{subsection.4.4.2}{}}
+\newlabel{eq:T}{{4.4}{50}{Leaf Layer of Compositional Analysis}{equation.4.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.3}Transforming MCS into Minimal Cut Set}{51}{subsection.4.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Implementation and Algorithms}{52}{section.4.5}\protected@file@percent }
+\newlabel{sec:algs}{{4.5}{52}{Implementation and Algorithms}{section.4.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Implementation}{52}{section*.47}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces IVC Elements used for Consideration in a Leaf Layer of a System\relax }}{52}{figure.caption.48}\protected@file@percent }
+\newlabel{fig:ivcElements1}{{4.5}{52}{IVC Elements used for Consideration in a Leaf Layer of a System\relax }{figure.caption.48}{}}
 \citation{liffiton2016fast,gainer2017minimal,murakami2013efficient}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces IVC Elements used for Consideration in a Leaf Layer of a System\relax }}{48}{figure.caption.45}\protected@file@percent }
-\newlabel{fig:ivcElements1}{{4.2}{48}{IVC Elements used for Consideration in a Leaf Layer of a System\relax }{figure.caption.45}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Implementation}{48}{section*.44}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces IVC Elements used for Consideration in a Middle Layer of a System\relax }}{49}{figure.caption.46}\protected@file@percent }
-\newlabel{fig:ivcElements2}{{4.3}{49}{IVC Elements used for Consideration in a Middle Layer of a System\relax }{figure.caption.46}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Algorithms}{49}{section*.47}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces IVC Elements used for Consideration in a Middle Layer of a System\relax }}{53}{figure.caption.49}\protected@file@percent }
+\newlabel{fig:ivcElements2}{{4.6}{53}{IVC Elements used for Consideration in a Middle Layer of a System\relax }{figure.caption.49}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Algorithms}{53}{section*.50}\protected@file@percent }
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces MinCutSets Generation Algorithm\relax }}{54}{algocf.1}\protected@file@percent }
+\newlabel{alg:generation_alg}{{1}{54}{Algorithms}{algocf.1}{}}
 \citation{Ghassabani2017EfficientGO,murakami2013efficient}
-\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces MinCutSets Generation Algorithm\relax }}{50}{algocf.1}\protected@file@percent }
-\newlabel{alg:generation_alg}{{1}{50}{Algorithms}{algocf.1}{}}
-\newlabel{eq:bound}{{4.2}{50}{Algorithms}{equation.4.4.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Pruning to Address Scalability}{51}{section*.49}\protected@file@percent }
+\newlabel{eq:bound}{{4.5}{55}{Algorithms}{equation.4.5.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Pruning to Address Scalability}{55}{section*.52}\protected@file@percent }
 \citation{ghassabani_2018}
 \citation{gay2016effect}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Granularity}{52}{chapter.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Granularity}{57}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{chap:granularity}{{5}{52}{Granularity}{chapter.5}{}}
+\newlabel{chap:granularity}{{5}{57}{Granularity}{chapter.5}{}}
 \citation{gay2016effect}
 \citation{ghassabani_2018}
 \citation{Halbwachs91:IEEE}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Illustrative Example}{54}{section.5.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Tempurature Sensor System\relax }}{54}{figure.caption.52}\protected@file@percent }
-\newlabel{fig:sensorGran1}{{5.1}{54}{Tempurature Sensor System\relax }{figure.caption.52}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Temp Sensor System Contract Part I\relax }}{55}{figure.caption.53}\protected@file@percent }
-\newlabel{fig:granularityEx1}{{5.2}{55}{Temp Sensor System Contract Part I\relax }{figure.caption.53}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Temp Sensor System Contract Part II\relax }}{56}{figure.caption.54}\protected@file@percent }
-\newlabel{fig:granularityEx2}{{5.3}{56}{Temp Sensor System Contract Part II\relax }{figure.caption.54}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Algorithms and Results}{56}{section.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Algorithms}{56}{subsection.5.2.1}\protected@file@percent }
-\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces Split guarantees on logical AND operator\relax }}{57}{algocf.2}\protected@file@percent }
-\newlabel{alg:splitAnd}{{2}{57}{Algorithms}{algocf.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Results}{57}{subsection.5.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Discussion}{57}{subsection.5.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Illustrative Example}{59}{section.5.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Tempurature Sensor System\relax }}{59}{figure.caption.55}\protected@file@percent }
+\newlabel{fig:sensorGran1}{{5.1}{59}{Tempurature Sensor System\relax }{figure.caption.55}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Temp Sensor System Contract Part I\relax }}{60}{figure.caption.56}\protected@file@percent }
+\newlabel{fig:granularityEx1}{{5.2}{60}{Temp Sensor System Contract Part I\relax }{figure.caption.56}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Temp Sensor System Contract Part II\relax }}{61}{figure.caption.57}\protected@file@percent }
+\newlabel{fig:granularityEx2}{{5.3}{61}{Temp Sensor System Contract Part II\relax }{figure.caption.57}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Algorithms and Results}{61}{section.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Algorithms}{61}{subsection.5.2.1}\protected@file@percent }
+\@writefile{loa}{\contentsline {algocf}{\numberline {2}{\ignorespaces Split guarantees on logical AND operator\relax }}{62}{algocf.2}\protected@file@percent }
+\newlabel{alg:splitAnd}{{2}{62}{Algorithms}{algocf.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Results}{62}{subsection.5.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Discussion}{62}{subsection.5.2.3}\protected@file@percent }
 \citation{AIR6110}
 \citation{DBLP:conf/cav/BozzanoCPJKPRT15,10.1007/978-3-319-11936-6-7,CAV2015:BoCiGrMa,Joshi05:SafeComp}
 \citation{Stewart17:IMBSA}
 \citation{DBLP:conf/cav/BozzanoCPJKPRT15}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Case Studies}{58}{chapter.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Case Studies}{63}{chapter.6}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{chap:caseStudies}{{6}{58}{Case Studies}{chapter.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Wheel Brake System}{58}{section.6.1}\protected@file@percent }
-\newlabel{sec:wbs}{{6.1}{58}{Wheel Brake System}{section.6.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Simplified Two-wheel Wheel Brake System\relax }}{58}{figure.caption.56}\protected@file@percent }
-\newlabel{fig:wbs}{{6.1}{58}{Simplified Two-wheel Wheel Brake System\relax }{figure.caption.56}{}}
+\newlabel{chap:caseStudies}{{6}{63}{Case Studies}{chapter.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Wheel Brake System}{63}{section.6.1}\protected@file@percent }
+\newlabel{sec:wbs}{{6.1}{63}{Wheel Brake System}{section.6.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Simplified Two-wheel Wheel Brake System\relax }}{63}{figure.caption.59}\protected@file@percent }
+\newlabel{fig:wbs}{{6.1}{63}{Simplified Two-wheel Wheel Brake System\relax }{figure.caption.59}{}}
 \citation{cofer2012compositional,QFCS15:backes}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces AGREE Contract for Top Level Property: Inadvertent Braking\relax }}{60}{figure.caption.57}\protected@file@percent }
-\newlabel{fig:inadvertent_braking}{{6.2}{60}{AGREE Contract for Top Level Property: Inadvertent Braking\relax }{figure.caption.57}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Nominal Model Analysis}{60}{subsection.6.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Fault Model Analysis}{60}{subsection.6.1.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Safety Properties of WBS\relax }}{61}{table.caption.58}\protected@file@percent }
-\newlabel{tab:safetyProperties}{{6.1}{61}{Safety Properties of WBS\relax }{table.caption.58}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Verification in the Presence of Faults: Max N Analysis}{61}{section*.59}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Verification in the Presence of Faults: Probabilistic Analysis}{62}{section*.60}\protected@file@percent }
-\@writefile{loa}{\contentsline {algocf}{\numberline {3}{\ignorespaces Monolithic Probability Analysis\relax }}{63}{algocf.3}\protected@file@percent }
-\newlabel{alg:prob_monolithic}{{3}{63}{Verification in the Presence of Faults: Probabilistic Analysis}{algocf.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Generate Minimal Cut Sets: Max N Analysis}{63}{section*.61}\protected@file@percent }
-\newlabel{sec:maxN_generate}{{12}{63}{Generate Minimal Cut Sets: Max N Analysis}{section*.61}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces WBS MinCutSet Analysis Results for Cardinality $c$\relax }}{64}{table.caption.62}\protected@file@percent }
-\newlabel{tab:wbs_maxN_results}{{6.2}{64}{WBS MinCutSet Analysis Results for Cardinality $c$\relax }{table.caption.62}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Generate Minimal Cut Sets: Probabilistic Analysis}{64}{section*.63}\protected@file@percent }
-\newlabel{sec:prob_generate}{{12}{64}{Generate Minimal Cut Sets: Probabilistic Analysis}{section*.63}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Results from Generate Minimal Cut Sets}{64}{section*.65}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces AGREE Contract for Top Level Property: Inadvertent Braking\relax }}{65}{figure.caption.60}\protected@file@percent }
+\newlabel{fig:inadvertent_braking}{{6.2}{65}{AGREE Contract for Top Level Property: Inadvertent Braking\relax }{figure.caption.60}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Nominal Model Analysis}{65}{subsection.6.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Fault Model Analysis}{65}{subsection.6.1.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Safety Properties of WBS\relax }}{66}{table.caption.61}\protected@file@percent }
+\newlabel{tab:safetyProperties}{{6.1}{66}{Safety Properties of WBS\relax }{table.caption.61}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Verification in the Presence of Faults: Max N Analysis}{66}{section*.62}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Verification in the Presence of Faults: Probabilistic Analysis}{67}{section*.63}\protected@file@percent }
+\@writefile{loa}{\contentsline {algocf}{\numberline {3}{\ignorespaces Monolithic Probability Analysis\relax }}{68}{algocf.3}\protected@file@percent }
+\newlabel{alg:prob_monolithic}{{3}{68}{Verification in the Presence of Faults: Probabilistic Analysis}{algocf.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Generate Minimal Cut Sets: Max N Analysis}{68}{section*.64}\protected@file@percent }
+\newlabel{sec:maxN_generate}{{12}{68}{Generate Minimal Cut Sets: Max N Analysis}{section*.64}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces WBS MinCutSet Analysis Results for Cardinality $c$\relax }}{69}{table.caption.65}\protected@file@percent }
+\newlabel{tab:wbs_maxN_results}{{6.2}{69}{WBS MinCutSet Analysis Results for Cardinality $c$\relax }{table.caption.65}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Generate Minimal Cut Sets: Probabilistic Analysis}{69}{section*.66}\protected@file@percent }
+\newlabel{sec:prob_generate}{{12}{69}{Generate Minimal Cut Sets: Probabilistic Analysis}{section*.66}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Results from Generate Minimal Cut Sets}{69}{section*.68}\protected@file@percent }
 \citation{manolios2019model}
-\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces WBS MinCutSet Results for Probabilistic Analysis\relax }}{65}{table.caption.64}\protected@file@percent }
-\newlabel{tab:wbs_prob_results}{{6.3}{65}{WBS MinCutSet Results for Probabilistic Analysis\relax }{table.caption.64}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Detailed Output of MinCutSets\relax }}{65}{figure.caption.66}\protected@file@percent }
-\newlabel{fig:detailedMCS}{{6.3}{65}{Detailed Output of MinCutSets\relax }{figure.caption.66}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Tally Output of MinCutSets\relax }}{66}{figure.caption.67}\protected@file@percent }
-\newlabel{fig:tallyMCS}{{6.4}{66}{Tally Output of MinCutSets\relax }{figure.caption.67}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces Example SOTERIA Fault Tree\relax }}{66}{figure.caption.68}\protected@file@percent }
-\newlabel{fig:soteriaFT}{{6.5}{66}{Example SOTERIA Fault Tree\relax }{figure.caption.68}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Use of Analysis Results to Drive Design Change}{66}{section*.69}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces AGREE counterexample for inadvertent braking safety property\relax }}{67}{figure.caption.70}\protected@file@percent }
-\newlabel{fig:counterexample}{{6.6}{67}{AGREE counterexample for inadvertent braking safety property\relax }{figure.caption.70}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces WBS MinCutSet Results for Probabilistic Analysis\relax }}{70}{table.caption.67}\protected@file@percent }
+\newlabel{tab:wbs_prob_results}{{6.3}{70}{WBS MinCutSet Results for Probabilistic Analysis\relax }{table.caption.67}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Detailed Output of MinCutSets\relax }}{70}{figure.caption.69}\protected@file@percent }
+\newlabel{fig:detailedMCS}{{6.3}{70}{Detailed Output of MinCutSets\relax }{figure.caption.69}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Tally Output of MinCutSets\relax }}{71}{figure.caption.70}\protected@file@percent }
+\newlabel{fig:tallyMCS}{{6.4}{71}{Tally Output of MinCutSets\relax }{figure.caption.70}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces Example SOTERIA Fault Tree\relax }}{71}{figure.caption.71}\protected@file@percent }
+\newlabel{fig:soteriaFT}{{6.5}{71}{Example SOTERIA Fault Tree\relax }{figure.caption.71}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Use of Analysis Results to Drive Design Change}{71}{section*.72}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces AGREE counterexample for inadvertent braking safety property\relax }}{72}{figure.caption.73}\protected@file@percent }
+\newlabel{fig:counterexample}{{6.6}{72}{AGREE counterexample for inadvertent braking safety property\relax }{figure.caption.73}{}}
 \citation{SAGithub}
 \citation{bracha1987asynchronous,Driscoll-Byzantine-Fault}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces Changes in the architectural model for fault mitigation\relax }}{68}{figure.caption.71}\protected@file@percent }
-\newlabel{fig:sensorsystem}{{6.7}{68}{Changes in the architectural model for fault mitigation\relax }{figure.caption.71}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Process ID Example}{68}{section.6.2}\protected@file@percent }
-\newlabel{sec:pid}{{6.2}{68}{Process ID Example}{section.6.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}The Agreement Protocol Implementation in AGREE}{68}{subsection.6.2.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces  Updated PID Example Architecture\relax }}{69}{figure.caption.72}\protected@file@percent }
-\newlabel{fig:PIDArch}{{6.8}{69}{Updated PID Example Architecture\relax }{figure.caption.72}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.9}{\ignorespaces  Description of the Outputs of Each Node in the PID Example\relax }}{69}{figure.caption.73}\protected@file@percent }
-\newlabel{fig:NodeOutputsPID}{{6.9}{69}{Description of the Outputs of Each Node in the PID Example\relax }{figure.caption.73}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.10}{\ignorespaces  Data Implementation in AADL for Node Outputs\relax }}{70}{figure.caption.74}\protected@file@percent }
-\newlabel{fig:PIDNodeData}{{6.10}{70}{Data Implementation in AADL for Node Outputs\relax }{figure.caption.74}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.11}{\ignorespaces  Fault Definition on Node Outputs for PID Example\relax }}{70}{figure.caption.75}\protected@file@percent }
-\newlabel{fig:PIDFaultNode}{{6.11}{70}{Fault Definition on Node Outputs for PID Example\relax }{figure.caption.75}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.12}{\ignorespaces  Fault Node Definition for PID Example\relax }}{71}{figure.caption.76}\protected@file@percent }
-\newlabel{fig:PIDFaultDef}{{6.12}{71}{Fault Node Definition for PID Example\relax }{figure.caption.76}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.13}{\ignorespaces  Agreement Protocol Contract in AGREE for No Active Faults\relax }}{71}{figure.caption.77}\protected@file@percent }
-\newlabel{fig:PIDContract1}{{6.13}{71}{Agreement Protocol Contract in AGREE for No Active Faults\relax }{figure.caption.77}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Nominal and Fault Model Analysis}{71}{subsection.6.2.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.14}{\ignorespaces  Agreement Protocol Contract in AGREE Regarding Non-failed Nodes\relax }}{72}{figure.caption.78}\protected@file@percent }
-\newlabel{fig:PIDContract2}{{6.14}{72}{Agreement Protocol Contract in AGREE Regarding Non-failed Nodes\relax }{figure.caption.78}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.15}{\ignorespaces  Fault Activation Statement in PID Example\relax }}{72}{figure.caption.79}\protected@file@percent }
-\newlabel{fig:PID_faultActivationStmt}{{6.15}{72}{Fault Activation Statement in PID Example\relax }{figure.caption.79}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces Changes in the architectural model for fault mitigation\relax }}{73}{figure.caption.74}\protected@file@percent }
+\newlabel{fig:sensorsystem}{{6.7}{73}{Changes in the architectural model for fault mitigation\relax }{figure.caption.74}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Process ID Example}{73}{section.6.2}\protected@file@percent }
+\newlabel{sec:pid}{{6.2}{73}{Process ID Example}{section.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}The Agreement Protocol Implementation in AGREE}{73}{subsection.6.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces  Updated PID Example Architecture\relax }}{74}{figure.caption.75}\protected@file@percent }
+\newlabel{fig:PIDArch}{{6.8}{74}{Updated PID Example Architecture\relax }{figure.caption.75}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.9}{\ignorespaces  Description of the Outputs of Each Node in the PID Example\relax }}{74}{figure.caption.76}\protected@file@percent }
+\newlabel{fig:NodeOutputsPID}{{6.9}{74}{Description of the Outputs of Each Node in the PID Example\relax }{figure.caption.76}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.10}{\ignorespaces  Data Implementation in AADL for Node Outputs\relax }}{75}{figure.caption.77}\protected@file@percent }
+\newlabel{fig:PIDNodeData}{{6.10}{75}{Data Implementation in AADL for Node Outputs\relax }{figure.caption.77}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.11}{\ignorespaces  Fault Definition on Node Outputs for PID Example\relax }}{75}{figure.caption.78}\protected@file@percent }
+\newlabel{fig:PIDFaultNode}{{6.11}{75}{Fault Definition on Node Outputs for PID Example\relax }{figure.caption.78}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.12}{\ignorespaces  Fault Node Definition for PID Example\relax }}{76}{figure.caption.79}\protected@file@percent }
+\newlabel{fig:PIDFaultDef}{{6.12}{76}{Fault Node Definition for PID Example\relax }{figure.caption.79}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.13}{\ignorespaces  Agreement Protocol Contract in AGREE for No Active Faults\relax }}{76}{figure.caption.80}\protected@file@percent }
+\newlabel{fig:PIDContract1}{{6.13}{76}{Agreement Protocol Contract in AGREE for No Active Faults\relax }{figure.caption.80}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Nominal and Fault Model Analysis}{76}{subsection.6.2.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.14}{\ignorespaces  Agreement Protocol Contract in AGREE Regarding Non-failed Nodes\relax }}{77}{figure.caption.81}\protected@file@percent }
+\newlabel{fig:PIDContract2}{{6.14}{77}{Agreement Protocol Contract in AGREE Regarding Non-failed Nodes\relax }{figure.caption.81}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.15}{\ignorespaces  Fault Activation Statement in PID Example\relax }}{77}{figure.caption.82}\protected@file@percent }
+\newlabel{fig:PID_faultActivationStmt}{{6.15}{77}{Fault Activation Statement in PID Example\relax }{figure.caption.82}{}}
 \citation{SAGithub}
 \bibstyle{abbrv}
 \bibdata{noAbbreviations,biblio}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusion}{74}{chapter.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusion}{79}{chapter.7}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{chap:conclusion}{{7}{74}{Conclusion}{chapter.7}{}}
+\newlabel{chap:conclusion}{{7}{79}{Conclusion}{chapter.7}{}}
 \bibcite{SAE}{1}
 \bibcite{standard1999}{2}
 \bibcite{abdulla2004designing}{3}
@@ -410,7 +431,7 @@
 \bibcite{belov2012towards}{9}
 \bibcite{belov2012muser2}{10}
 \bibcite{bendik2018online}{11}
-\@writefile{toc}{\contentsline {chapter}{References}{75}{chapter*.80}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{References}{80}{chapter*.83}\protected@file@percent }
 \bibcite{Bieber04safetyassessment}{12}
 \bibcite{bieber2004safety}{13}
 \bibcite{bieber2002combination}{14}
@@ -477,53 +498,58 @@
 \bibcite{Joshi05:SafeComp}{75}
 \bibcite{Joshi07:Hase}{76}
 \bibcite{Joshi05:Dasc}{77}
-\bibcite{kahsai2011pkind}{78}
-\bibcite{Katoen:2005:MRM:1114692.1115230}{79}
-\bibcite{CAV2011:KwNoPa}{80}
-\bibcite{deptOfDefense}{81}
-\bibcite{levesonWhitePaper}{82}
-\bibcite{liffiton2005max}{83}
-\bibcite{liffiton2016fast}{84}
-\bibcite{liggesmeyer1998improving}{85}
-\bibcite{5979344}{86}
-\bibcite{liu2016research}{87}
-\bibcite{manolios2019model}{88}
-\bibcite{mattarei2016scalable}{89}
-\bibcite{miller1954applying}{90}
-\bibcite{MRMC}{91}
-\bibcite{murakami2013efficient}{92}
-\bibcite{isabelle}{93}
-\bibcite{NuSMV}{94}
-\bibcite{pnueli1985transition}{95}
-\bibcite{point1999altarica}{96}
-\bibcite{prasad2005survey}{97}
-\bibcite{PROSVIRNOVA2013127}{98}
-\bibcite{prosvirnova2013compilationfaulttrees}{99}
-\bibcite{prosvirnova2015automated}{100}
-\bibcite{queille1982specification}{101}
-\bibcite{RAT}{102}
-\bibcite{rausand2003system}{103}
-\bibcite{rauzy1993new}{104}
-\bibcite{aralia1996computation}{105}
-\bibcite{rauzy2007assessment}{106}
-\bibcite{reay2002fault}{107}
-\bibcite{reese1997software}{108}
-\bibcite{reiter1987theory}{109}
-\bibcite{roland1990system}{110}
-\bibcite{fta:survey}{111}
-\bibcite{0f356f05e72f43018211b36f97c8854a}{112}
-\bibcite{aerospace2012sae}{113}
-\bibcite{SAE:ARP4761}{114}
-\bibcite{SAE:ARP4754A}{115}
-\bibcite{schafer2003combining}{116}
-\bibcite{semanderes1971elraft}{117}
-\bibcite{sheeran2000checking}{118}
-\bibcite{signoret1998altarica}{119}
-\bibcite{sinnamon1997new}{120}
-\bibcite{sistla1985complexity}{121}
-\bibcite{nasaFinalReport}{122}
-\bibcite{stewart2020safety}{123}
-\bibcite{SAGithub}{124}
-\bibcite{Stewart17:IMBSA}{125}
-\bibcite{MilStandardFMEA}{126}
-\bibcite{vesely1981fault}{127}
+\bibcite{jung2008fast}{78}
+\bibcite{kahsai2011pkind}{79}
+\bibcite{Katoen:2005:MRM:1114692.1115230}{80}
+\bibcite{CAV2011:KwNoPa}{81}
+\bibcite{deptOfDefense}{82}
+\bibcite{levesonWhitePaper}{83}
+\bibcite{liffiton2005max}{84}
+\bibcite{liffiton2016fast}{85}
+\bibcite{liggesmeyer1998improving}{86}
+\bibcite{lisagor2010failure}{87}
+\bibcite{5979344}{88}
+\bibcite{lisagor2011model}{89}
+\bibcite{liu2016research}{90}
+\bibcite{manolios2019model}{91}
+\bibcite{mattarei2016scalable}{92}
+\bibcite{matuzas2015dynamic}{93}
+\bibcite{miller1954applying}{94}
+\bibcite{minato2001zero}{95}
+\bibcite{MRMC}{96}
+\bibcite{murakami2013efficient}{97}
+\bibcite{isabelle}{98}
+\bibcite{NuSMV}{99}
+\bibcite{pnueli1985transition}{100}
+\bibcite{point1999altarica}{101}
+\bibcite{prasad2005survey}{102}
+\bibcite{PROSVIRNOVA2013127}{103}
+\bibcite{prosvirnova2013compilationfaulttrees}{104}
+\bibcite{prosvirnova2015automated}{105}
+\bibcite{queille1982specification}{106}
+\bibcite{RAT}{107}
+\bibcite{rausand2003system}{108}
+\bibcite{rauzy1993new}{109}
+\bibcite{aralia1996computation}{110}
+\bibcite{rauzy2007assessment}{111}
+\bibcite{reay2002fault}{112}
+\bibcite{reese1997software}{113}
+\bibcite{reiter1987theory}{114}
+\bibcite{roland1990system}{115}
+\bibcite{fta:survey}{116}
+\bibcite{0f356f05e72f43018211b36f97c8854a}{117}
+\bibcite{aerospace2012sae}{118}
+\bibcite{SAE:ARP4761}{119}
+\bibcite{SAE:ARP4754A}{120}
+\bibcite{schafer2003combining}{121}
+\bibcite{semanderes1971elraft}{122}
+\bibcite{sheeran2000checking}{123}
+\bibcite{signoret1998altarica}{124}
+\bibcite{sinnamon1997new}{125}
+\bibcite{sistla1985complexity}{126}
+\bibcite{nasaFinalReport}{127}
+\bibcite{stewart2020safety}{128}
+\bibcite{SAGithub}{129}
+\bibcite{Stewart17:IMBSA}{130}
+\bibcite{MilStandardFMEA}{131}
+\bibcite{vesely1981fault}{132}

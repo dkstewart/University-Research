@@ -14,7 +14,7 @@
 \BOOKMARK [1][-]{section.2.2}{Formal Methods in Safety Analysis: A Brief History and the State of the Practice}{chapter.2}% 14
 \BOOKMARK [2][-]{subsection.2.2.1}{Fault Tree Analysis}{section.2.2}% 15
 \BOOKMARK [2][-]{subsection.2.2.2}{Model Checking in Model Based Safety Analysis}{section.2.2}% 16
-\BOOKMARK [1][-]{section.2.3}{Formal Methods of Verification and Validation}{chapter.2}% 17
+\BOOKMARK [1][-]{section.2.3}{Formal Methods in Verification and Validation}{chapter.2}% 17
 \BOOKMARK [2][-]{subsection.2.3.1}{Formal Validation and Verification}{section.2.3}% 18
 \BOOKMARK [2][-]{subsection.2.3.2}{Satisfiability}{section.2.3}% 19
 \BOOKMARK [2][-]{subsection.2.3.3}{UNSAT Cores and Minimal Unsatisfiable Subsets}{section.2.3}% 20
@@ -34,21 +34,29 @@
 \BOOKMARK [1][-]{section.3.6}{Implementation of the Safety Annex}{chapter.3}% 34
 \BOOKMARK [0][-]{chapter.4}{Compositional Minimal Cut Set Generation}{}% 35
 \BOOKMARK [1][-]{section.4.1}{The High Level Idea and Approach}{chapter.4}% 36
-\BOOKMARK [1][-]{section.4.2}{Definitions}{chapter.4}% 37
-\BOOKMARK [1][-]{section.4.3}{Formalization of the Method}{chapter.4}% 38
-\BOOKMARK [1][-]{section.4.4}{Implementation and Algorithms}{chapter.4}% 39
-\BOOKMARK [0][-]{chapter.5}{Granularity}{}% 40
-\BOOKMARK [1][-]{section.5.1}{Illustrative Example}{chapter.5}% 41
-\BOOKMARK [1][-]{section.5.2}{Algorithms and Results}{chapter.5}% 42
-\BOOKMARK [2][-]{subsection.5.2.1}{Algorithms}{section.5.2}% 43
-\BOOKMARK [2][-]{subsection.5.2.2}{Results}{section.5.2}% 44
-\BOOKMARK [2][-]{subsection.5.2.3}{Discussion}{section.5.2}% 45
-\BOOKMARK [0][-]{chapter.6}{Case Studies}{}% 46
-\BOOKMARK [1][-]{section.6.1}{Wheel Brake System}{chapter.6}% 47
-\BOOKMARK [2][-]{subsection.6.1.1}{Nominal Model Analysis}{section.6.1}% 48
-\BOOKMARK [2][-]{subsection.6.1.2}{Fault Model Analysis}{section.6.1}% 49
-\BOOKMARK [1][-]{section.6.2}{Process ID Example}{chapter.6}% 50
-\BOOKMARK [2][-]{subsection.6.2.1}{The Agreement Protocol Implementation in AGREE}{section.6.2}% 51
-\BOOKMARK [2][-]{subsection.6.2.2}{Nominal and Fault Model Analysis}{section.6.2}% 52
-\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 53
-\BOOKMARK [0][-]{chapter*.80}{References}{}% 54
+\BOOKMARK [1][-]{section.4.2}{Running Example}{chapter.4}% 37
+\BOOKMARK [2][-]{subsection.4.2.1}{PWR Nominal Model}{section.4.2}% 38
+\BOOKMARK [2][-]{subsection.4.2.2}{PWR Fault Model}{section.4.2}% 39
+\BOOKMARK [1][-]{section.4.3}{Preliminaries for Minimal Cut Set Generation}{chapter.4}% 40
+\BOOKMARK [2][-]{subsection.4.3.1}{Induction}{section.4.3}% 41
+\BOOKMARK [2][-]{subsection.4.3.2}{The SAT Problem}{section.4.3}% 42
+\BOOKMARK [1][-]{section.4.4}{Formalization of the Method}{chapter.4}% 43
+\BOOKMARK [2][-]{subsection.4.4.1}{Top Layer of Compositional Analysis}{section.4.4}% 44
+\BOOKMARK [2][-]{subsection.4.4.2}{Leaf Layer of Compositional Analysis}{section.4.4}% 45
+\BOOKMARK [2][-]{subsection.4.4.3}{Transforming MCS into Minimal Cut Set}{section.4.4}% 46
+\BOOKMARK [1][-]{section.4.5}{Implementation and Algorithms}{chapter.4}% 47
+\BOOKMARK [0][-]{chapter.5}{Granularity}{}% 48
+\BOOKMARK [1][-]{section.5.1}{Illustrative Example}{chapter.5}% 49
+\BOOKMARK [1][-]{section.5.2}{Algorithms and Results}{chapter.5}% 50
+\BOOKMARK [2][-]{subsection.5.2.1}{Algorithms}{section.5.2}% 51
+\BOOKMARK [2][-]{subsection.5.2.2}{Results}{section.5.2}% 52
+\BOOKMARK [2][-]{subsection.5.2.3}{Discussion}{section.5.2}% 53
+\BOOKMARK [0][-]{chapter.6}{Case Studies}{}% 54
+\BOOKMARK [1][-]{section.6.1}{Wheel Brake System}{chapter.6}% 55
+\BOOKMARK [2][-]{subsection.6.1.1}{Nominal Model Analysis}{section.6.1}% 56
+\BOOKMARK [2][-]{subsection.6.1.2}{Fault Model Analysis}{section.6.1}% 57
+\BOOKMARK [1][-]{section.6.2}{Process ID Example}{chapter.6}% 58
+\BOOKMARK [2][-]{subsection.6.2.1}{The Agreement Protocol Implementation in AGREE}{section.6.2}% 59
+\BOOKMARK [2][-]{subsection.6.2.2}{Nominal and Fault Model Analysis}{section.6.2}% 60
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 61
+\BOOKMARK [0][-]{chapter*.83}{References}{}% 62

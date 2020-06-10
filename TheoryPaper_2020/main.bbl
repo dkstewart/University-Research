@@ -121,15 +121,6 @@ D.~Stewart, J.~Liu, M.~Heimdahl, M.~Whalen, D.~Cofer, and M.~Peterson, ``{The
   Safety Annex for Architecture Analysis and Design Language},'' in \emph{10th
   Edition European Congress Embedded Real Time Systems}, Jan 2020.
 
-\bibitem{liffiton2016fast}
-M.~H. Liffiton, A.~Previti, A.~Malik, and J.~Marques-Silva, ``Fast, flexible
-  {MUS} enumeration,'' \emph{Constraints}, vol.~21, no.~2, pp. 223--250, 2016.
-
-\bibitem{een2003temporal}
-N.~E{\'e}n and N.~S{\"o}rensson, ``Temporal induction by incremental sat
-  solving,'' \emph{Electronic Notes in Theoretical Computer Science}, vol.~89,
-  no.~4, pp. 543--560, 2003.
-
 \bibitem{NFM2012:CoGaMiWhLaLu}
 D.~D. Cofer, A.~Gacek, S.~P. Miller, M.~W. Whalen, B.~LaValley, and L.~Sha,
   ``{Compositional Verification of Architectural Models},'' in \emph{NFM 2012},
@@ -169,9 +160,35 @@ D.~Stewart, M.~Whalen, D.~Cofer, and M.~P. Heimdahl, ``{Architectural Modeling
   and Analysis for Safety Engineering},'' in \emph{{IMBSA 2017}}, 2017, pp.
   97--111.
 
+\bibitem{een2011efficient}
+N.~Een, A.~Mishchenko, and R.~Brayton, ``Efficient implementation of property
+  directed reachability,'' in \emph{2011 Formal Methods in Computer-Aided
+  Design (FMCAD)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2011, pp.
+  125--134.
+
+\bibitem{kahsai2012incremental}
+T.~Kahsai, P.-L. Garoche, C.~Tinelli, and M.~Whalen, ``Incremental verification
+  with mode variable invariants in state machines,'' in \emph{NASA Formal
+  Methods Symposium}.\hskip 1em plus 0.5em minus 0.4em\relax Springer, 2012,
+  pp. 388--402.
+
+\bibitem{cook1971complexity}
+S.~A. Cook, ``The complexity of theorem-proving procedures,'' in
+  \emph{Proceedings of the third annual ACM symposium on Theory of computing},
+  1971, pp. 151--158.
+
+\bibitem{een2003temporal}
+N.~E{\'e}n and N.~S{\"o}rensson, ``Temporal induction by incremental sat
+  solving,'' \emph{Electronic Notes in Theoretical Computer Science}, vol.~89,
+  no.~4, pp. 543--560, 2003.
+
 \bibitem{reiter1987theory}
 R.~Reiter, ``A theory of diagnosis from first principles,'' \emph{Artificial
   intelligence}, vol.~32, no.~1, pp. 57--95, 1987.
+
+\bibitem{liffiton2016fast}
+M.~H. Liffiton, A.~Previti, A.~Malik, and J.~Marques-Silva, ``Fast, flexible
+  {MUS} enumeration,'' \emph{Constraints}, vol.~21, no.~2, pp. 223--250, 2016.
 
 \bibitem{de1987diagnosing}
 J.~De~Kleer and B.~C. Williams, ``Diagnosing multiple faults,''
