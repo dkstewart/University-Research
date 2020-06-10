@@ -1,28 +1,40 @@
 \section{Running Example}
 \label{sec:example}
-
-To illustrate the generation of minimal cut sets through the use of IVCs, we present a running example of a sensor system in a Pressurized Water Reactor (PWR). In a typical PWR, the core inside of the reactor vessel produces heat. Pressurized water in the primary coolant loop carries the heat to the steam generator. Within the steam generator, heat from the primary coolant loop vaporizes the water in a secondary loop, producing steam. The steamline directs the steam to the main turbine, causing it to turn the turbine generator, which produces electricity. There are a few important factors that must be considered during safety assessment and system design. An unsafe climb in temperature can cause high pressure and hence pipe rupture, and high levels of radiation could indicate a leak of primary coolant. The following sensor system can be thought of as a subsystem within a PWR that monitors these factors. A diagram of the AADL model is shown in Figure~\ref{fig:sensorSys} and represents a highly simplified version of a safety critical system. \danielle{May add cartoon figure demonstrating this model/process later - depending on space. Also can adjust figure placement after rewriting, adding, and cutting is done.}
+We present a running example of a simplified sensor system in a Pressurized Water Reactor (PWR). In a typical PWR, the core inside of the reactor vessel produces heat. Pressurized water in the primary coolant loop carries the heat to the steam generator. Within the steam generator, heat from the primary coolant loop vaporizes the water in a secondary loop, producing steam. The steamline directs the steam to the main turbine, causing it to turn the turbine generator, which produces electricity. There are a few important factors that must be considered during safety assessment and system design. An unsafe climb in temperature can cause high pressure and hence pipe rupture, and high levels of radiation could indicate a leak of primary coolant. 
 
 \begin{figure*}[h!]
 	%\vspace{-2em}
 	\begin{center}
-		\includegraphics[width=0.6\textwidth]{images/sensorSys.PNG}
+		\includegraphics[width=0.6\textwidth]{images/sensorSys.jpg}
 	\end{center}
-	\vspace{-1em}
-	\caption{Pressurized Water Reactor Sensor System}
+	\vspace{-4em}
+	\caption{PWR Sensor System}
 	\label{fig:sensorSys}
 	%\vspace{-2em}
 \end{figure*}
 
-\subsection{PWR Nominal Model}
-The ``top-level" system is an abstraction of the PWR and contains sensor subsystems. The subsystems contain sensors that monitor pressure, temperature, and radiation. Environmental inputs are fed into each sensor in the model and the redundant sensors monitor temperature, pressure, or radiation respectively. If temperature, pressure, or radiation is too high, a shut down command is sent from the sensors to the parent components. 
-
-The temperature, pressure, and radiation sensor subsystems use a voting mechanism on the redundant sensor values and will send a shut down command based on this output. The safety property of interest in this system is: \emph{shut down when and only when we should}; the AGREE guarantee stating this property is shown in Figure~\ref{fig:shutdownGuar}. 
+The following sensor system can be thought of as a subsystem within a PWR that monitors these factors. A diagram of the model is shown in Figure~\ref{fig:sensorSys} and represents a highly simplified version of a safety critical system. The temperature subsystem is shown in Figure~\ref{fig:sensorSubsys}.
 
 \begin{figure*}[h!]
 	%\vspace{-2em}
 	\begin{center}
-		\includegraphics[width=0.5\textwidth]{images/sensorGuar.PNG}
+		\includegraphics[width=0.6\textwidth]{images/sensorSubsys.jpg}
+	\end{center}
+	\vspace{-3em}
+	\caption{PWR Temperature Sensor Subsystem}
+	\label{fig:sensorSubsys}
+	%\vspace{-2em}
+\end{figure*}
+
+The subsystems each contain three sensors that monitor pressure, temperature, and radiation. Environmental inputs are fed into each sensor in the model and the redundant sensors monitor temperature, pressure, or radiation respectively. If temperature, pressure, or radiation is too high, a shut down command is sent from the sensors to the parent components. 
+
+\subsection{PWR Nominal Model}
+The temperature, pressure, and radiation sensor subsystems use a majority voting mechanism on the sensor values and will send a shut down command based on this output. The safety property of interest in this system is: \emph{shut down when and only when we should}; the AGREE guarantee stating this property is shown in Figure~\ref{fig:shutdownGuar}. 
+
+\begin{figure*}[h!]
+	%\vspace{-2em}
+	\begin{center}
+		\includegraphics[width=0.6\textwidth]{images/sensorGuar.PNG}
 	\end{center}
 	\vspace{-2em}
 	\caption{Sensor System Safety Property}
@@ -30,19 +42,17 @@ The temperature, pressure, and radiation sensor subsystems use a voting mechanis
 	%\vspace{-2em}
 \end{figure*}
 
-The safety of the system requires a shut down to take place if the temperature, pressure, or radiation levels become unsafe; thus, a threshold is introduced and if any sensor subsystem reports passing that threshold, a shutdown command is sent. But on the other hand, we do not want to shut down the system if it is not necessary. If a sensor reports high temperature erroneously and a shut down occurs, this costs time and money. 
-
-Supporting guarantees are located in each sensor subsystem and correspond to temperature, pressure, and radiation sending a shut down command if sensed inputs are above a given threshold. Each sensor has a similar guarantee. 
+The safety of the system requires a shut down to take place if the temperature, pressure, or radiation levels become unsafe; thus, a threshold for each subsystem is introduced; if any sensor subsystem reports passing that threshold, a shutdown command is sent. Supporting guarantees are located in each sensor subsystem and correspond to temperature, pressure, and radiation sending a shut down command if sensed inputs are above a given threshold. Each sensor has a similar guarantee. 
 
 \subsection{PWR Fault Model}
-The faults that are of interest in this example system are any one of the sensors failing high or low. If sensors report high and a shut down command is sent, we shut down when we should not. On the other hand, if sensors report low when it should be high, a shut down command is not sent and we do not shut down when we should. For the remainder of this example, we focus on the failures when sensors report low when they should not.
+The faults that are of interest in this example system are any one of the sensors failing high or low. If sensors report high and a shut down command is sent, we shut down when we should not. On the other hand, if sensors report low when it should be high, a shut down command is not sent and we do not shut down when we should. For simplification, we focus on the failures when sensors report low when they should not.
 
-Two faults are defined with the safety annex for each sensor in the system. An example of a temperature sensor fault stuck at high is shown in Figure~\ref{fig:tempSensorFault}.
+A fault is defined for each sensor in the system using the safety annex. An example of a temperature sensor fault stuck at high is shown in Figure~\ref{fig:tempSensorFault}.
 
 \begin{figure*}[h!]
 	\vspace{-2em}
 	\begin{center}
-		\includegraphics[width=0.8\textwidth]{images/tempSensorFault.PNG}
+		\includegraphics[width=0.9\textwidth]{images/tempSensorFault.PNG}
 	\end{center}
 	\vspace{-2em}
 	\caption{Fault on Temperature Sensor Defined in the Safety Annex for AADL}
@@ -50,7 +60,7 @@ Two faults are defined with the safety annex for each sensor in the system. An e
 	\vspace{-2em}
 \end{figure*}
 
-The Safety Annex provides a way to weave the faults into the nominal model by use of the \emph{inputs} and \emph{outputs} keywords. This allows users to define a fault and attach it to the output of a component. If the fault is active, the error can then in essence violate the guarantees of this component and possibly the assumptions of downstream components~\cite{stewart2020safety}. The activation of a fault is not up to the user, but instead left up to the backend model checker, JKind, to determine if the activation of this fault will contribute to a violation of higher level guarantees. If so, it can be activated during the analysis.
+The Safety Annex provides a way to weave the faults into the nominal model by use of the \emph{inputs} and \emph{outputs} keywords. This allows users to define a fault and attach it to the output of a component. If the fault is active, the error can possibly violate the guarantees of this component or the assumptions of downstream components~\cite{stewart2020safety}. The activation of a fault is not up to the user, but instead left up to the model checker, JKind, to determine if the activation of this fault will contribute to a violation of higher level guarantees. If so, it can be activated during the analysis.
 
 For simplicity, throughout this paper we refer only to faults that fail low (i.e., the environmental input is actually high which warrants a shut down command, but the sensor reports that it is within safe ranges). This simplification is presented to keep the example and results described concise. For ease of reference, a table is provided giving model elements of interest in the sensor example. We refer to these throughout this section. Note: the thresholds vary for pressure, temperature, and radiation. These are given as constants $T_p$, $T_t$, and $T_r$ respectively. The shutdown command is defined notationally as $S$.  The faults are shown as ``fail low" which correspond to the temp (or pressure or radiation) being high, but the sensor reports safe ranges. We also do not list all guarantees and assumptions that are in the model, but only the ones of interest for this analysis. \danielle{Still messing around with how to display this in a way that it isn't messy, doesn't take up a ton of space, and am not currently happy with this approach. But I really hated the tables. Too much info for what is actually needed. Will keep working on this.}
 
