@@ -1,0 +1,160 @@
+\section{Preliminaries}
+\label{sec:prelim}
+\newcommand{\bool}[0]{\mathit{bool}}
+\newcommand{\reach}[0]{\mathit{R}}
+\newcommand{\ite}[3]{\mathit{if}\ {#1}\ \mathit{then}\ {#2}\ \mathit{else}\ {#3}}
+
+
+\input{implBackground}
+
+\subsection{Formal Background}
+Given a state space $U$, a transition system $(I,T)$ consists of an
+initial state predicate $I : U \to \bool$ and a transition step
+predicate $T : U \times U \to \bool$.
+We define the notion of
+reachability for $(I, T)$ as the smallest predicate $\reach : U \to
+\bool$ which satisfies the following formulas:
+\begin{gather*}
+  \forall u.~ I(u) \Rightarrow \reach(u) \\
+  \forall u, u'.~ \reach(u) \land T(u, u') \Rightarrow \reach(u')
+\end{gather*}
+A safety property $P : U \to \bool$ is a state predicate. A safety
+property $P$ holds on a transition system $(I, T)$ if it holds on all
+reachable states, i.e., $\forall u.~ \reach(u) \Rightarrow P(u)$,
+written as $\reach \Rightarrow P$ for short. When this is the case, we
+write $(I, T)\vdash P$.
+
+\danielle{Completely cut inductive and SAT descriptions - this paragraph is taken from FMCAD paper. The 2016 paper has more info in induction; I can extend this with that in mind if necessary. Just let me know.}
+
+The idea behind finding an IVC for a given property P~\cite{GhassabaniGW16} is based on inductive proof methods used in SMT-based model checking, such as $\mathit{k}$-induction and IC3/PDR~\cite{een2011efficient, kahsai2012incremental, cook1971complexity}. Generally, an IVC computation technique aims to determine, for any subset $S \subseteq T$, whether $\mathit{P}$ is provable by $\mathit{S}$. Then, a minimal subset that satisfies $\mathit{P}$ is seen as a minimal proof explanation called a minimal Inductive Validity Core. Ghassabani et al. demonstrate that the minimization process is as hard as model checking~\cite{Ghassabani2017EfficientGO}, so finding a minimal inductive validity core may not be possible for some model checking problems. 
+
+\begin{definition}
+Inductive Validity Core (IVC)~\cite{GhassabaniGW16}: $S \subseteq T$ for $(I, T) \vdash P$ is an Inductive Validity Core, denoted by $IVC(P,S)$, iff $(I,S) \vdash P$.
+\end{definition}
+
+\begin{definition}
+Minimal Inductive Validity Core (MIVC)~\cite{Ghassabani2017EfficientGO}: $S \subseteq T$ is a minimal Inductive Validity Core, denoted by $MIVC(P,S)$, iff $IVC(P,S) \land \forall T_i \in S$. $(I, S \setminus \{T_i\}) \not \vdash P$.
+\end{definition}
+
+\danielle{Okay, it seems to me that I *have* to bridge the gap somehow between transition systems and IVCs and constraint systems with their MUSs/MCSs/hitting sets. Without some discussion on how this can occur, it will make little sense to a reader that isn't familiar. So, I placed this conversation in prelim and made them into definitions for later reference.}
+A $\mathit{k}$-induction model checker utilizes parallel SMT-solving engines at each induction step to glean information about the proof of a safety property. The transition formula is translated into clauses such that satisfiability is preserved~\cite{een2003temporal}. The translated system, consisting of the constrained formulas of the transition system and the negation of the property, is often called a \emph{constraint system}. The \aivcalg algorithm collects all {\em minimal unsatisfiable subsets} (MUSs) of a constraint system generated from a transition system at each induction step.~\cite{Ghassabani2017EfficientGO,bendik2018online}. 
+
+\begin{definition}
+A Minimal Unsatisfiable Subset (MUS)~\cite{reiter1987theory}.$M$ of a constraint system $C$ is a set $M \subseteq C$ such that $M$ is unsatisfiable and $\forall c \in M$ : $M \setminus \{c\}$ is satisfiable.
+\end{definition}
+The MUSs are the minimal explanation of the infeasibility of this constraint system; equivalently, these are the minimal sets of model elements necessary for proof of the safety property.
+
+Returning to our running example, this can be illustrated by the following. Given the constraint system $C = \{G_p, G_t, G_r, \neg P\}$, a minimal explanation of the infeasability of this system is the set $\{G_p, G_t, G_r,\}$. If all three guarantees hold, then $P$ is provable. 
+
+A related set is a {\em minimal correction set}: 
+\begin{definition}
+A Minimal Correction Set (MCS)~\cite{reiter1987theory} $M$ of a constraint system $C$ is a subset $M\subseteq C$ such that $C \setminus M$ is satisfiable and $\forall S \subset M$ : $C \setminus S$ is unsatisfiable.
+\end{definition}
+A MCS can be seen to ``correct'' the infeasability of the constraint system by the removal from $C$ the constraints found in an MCS. In the case of an UNSAT system, we may ask: what will correct this unsatisfiability? Returning to the PWR example, we can find the MCSs of the constraint system $C$: $MCS_1 = \{G_t\}$, $MCS_2 = \{G_p\}$, $MCS_3 = \{G_r\}$. If any single guarantee is violated, a shut down from that subsystem will not get sent when it should and the safety property $P$ will be violated. 
+
+A duality exists between the MUSs of a constraint system and the MCSs as established by Reiter \cite{reiter1987theory}. This duality is defined in terms of \textit{Minimal Hitting Sets} (\textit{MHS}). 
+
+\begin{definition}
+A hitting set of a collection of sets $A$ is a set $H$ such that every set in $A$ is ``hit'' by $H$; $H$ contains at least one element from every set in $A$. 
+\end{definition}
+Every MUS of a constraint system is a minimal hitting set of the system's MCSs, and likewise every MCS is a minimal hitting set of the system's MUSs~\cite{liffiton2016fast, reiter1987theory, de1987diagnosing}. For the PWR top level constraint system, it can be seen that each of the MCSs intersected with the MUS is nonempty. This gives the minimal set of guarantees for which, if violated, will cause $P$ to be violated. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{comment}
+
+For an arbitrary transition system $(I, T)$, computing reachability
+can be very expensive or even impossible. Thus, we need a more
+effective way of checking if a safety property $P$ is satisfied by the
+system. The key idea is to over-approximate reachability. If we can
+find an over-approximation that implies the property, then the
+property must hold. Otherwise, the approximation needs to be refined.
+
+A good first approximation for reachability is the property itself.
+That is, we can check if the following formulas hold:
+\begin{gather}
+  \forall s.~ I(s) \Rightarrow P(s)
+  \label{eq:1-ind-base} \\
+  \forall s, s'.~ P(s) \land T(s, s') \Rightarrow P(s')
+  \label{eq:1-ind-step}
+\end{gather}
+If both formulas hold then $P$ is {\em inductive} and holds over the
+system. If (\ref{eq:1-ind-base}) fails to hold, then $P$ is violated
+by an initial state of the system. If (\ref{eq:1-ind-step}) fails to
+hold, then $P$ is too much of an over-approximation and needs to be
+refined.
+
+The JKind model checker used in this research uses {\em
+  $k$-induction} which unrolls the property over $k$ steps of the
+transition system. For example, 1-induction consists of formulas
+(\ref{eq:1-ind-base}) and (\ref{eq:1-ind-step}) above, whereas
+2-induction consists of the following formulas:
+\begin{gather*}
+\forall s.~ I(s) \Rightarrow P(s) \\
+\forall s, s'.~ I(s) \land T(s, s') \Rightarrow P(s') \\
+\forall s, s', s''.~ P(s) \land T(s, s') \land P(s') \land T(s',
+  s'') \Rightarrow P(s'')
+\end{gather*}
+That is, there are two base step checks and one inductive step check.
+In general, for an arbitrary $k$, $k$-induction consists of $k$
+base step checks and one inductive step check as shown in
+Figure~\ref{fig:k-induction} (the universal quantifiers on $s_i$ have
+been elided for space). We say that a property is $k$-inductive if it
+satisfies the $k$-induction constraints for the given value of $k$.
+The hope is that the additional formulas in the antecedent of the
+inductive step make it provable.
+
+\begin{figure}
+\begin{gather*}
+I(s_0) \Rightarrow P(s_0) \\[-2pt]
+%
+\vdots \\[2pt]
+%
+I(s_0) \land T(s_0, s_1) \land \cdots \land T(s_{k-2}, s_{k-1})
+\Rightarrow P(s_{k-1}) \\[2pt]
+%
+P(s_0) \land T(s_0, s_1) \land \cdots \land P(s_{k-1}) \land
+T(s_{k-1}, s_k) \Rightarrow P(s_k)
+\end{gather*}
+\caption{$k$-induction formulas: $k$ base cases and one inductive
+  step}
+\label{fig:k-induction}
+\end{figure}
+
+In practice, inductive model checkers often use a combination of the
+above techniques. Thus, a typical conclusion is of the form ``$P$ with
+lemmas $L_1, \ldots, L_n$ is $k$-inductive''.
+
+\danielle{Cut SAT section, but it seems I still need a bridge between the transition systems here and the constraint system further down. How is this?} Each induction step is sent to an SMT (Satisfiabilty Modulo Theory)-solver to check for \emph{satisfiability}, i.e. there exists a total truth assignment to a given formula that evaluates to true. If there does not exist such an assignment, the formula is considered \emph{unsatisfiable}. %A \emph{constraint system} is a term used to describe the formula with all constraints to the variables. 
+A formula is translated into clauses such that satisfiability is preserved~\cite{een2003temporal} and the $k$-inductive model checker utilizes parallel SMT-solving engines to glean proof information at each inductive step. Expression of the base and induction steps of a temporal induction proof as SAT problems is straightforward (Figure~\ref{fig:k-induction}).
+
+\begin{gather*}
+I(s_0) \land T(s_0, s_1) \land \cdots \land T(s_{k-2}, s_{k-1})
+\land \neg P(s_{k-1})
+\end{gather*}
+
+When proving correctness it is shown that the formulas are \emph{unsatisfiable},i.e., the property $P$ is provable.
+
+\end{comment}
+
+%\subsection{The SAT Problem}
+%Boolean Satisfiability (SAT) solvers attempt to determine if there exists a total truth assignment to a given propositional formula, that evaluates to TRUE. Generally, a propositional formula is any combination of the disjunction and conjunction of literals (as an example, $a$ and $\neg a$ are literals). For a given unsatisfiable problem, solvers try to generate a proof of unsatisfiability; this is generally more useful than a proof of satisfiability. Such a proof is dependent on identifying a subset of clauses that make the problem unsatisfiable (UNSAT). SAT solvers in model checking work over a constraint system to determine satisfiability. A \textit{constraint system} $C$ is an ordered set of $n$ abstract constraints $\{C_1, C_2, ..., C_n\}$ over a set of variables. The constraint $C_i$ restricts the allowed assignments of these variables in some way~\cite{liffiton2016fast}. Given a constraint system, we require some method of determining, for any subset $S \subseteq C$, whether $S$ is \textit{satisfiable} (SAT) or \textit{unsatisfiable} (UNSAT). When a subset $S$ is SAT, this means that there exists an assignment allowed by all $C_i \in S$; when no such assignment exists, $S$ is considered UNSAT. 
+
+%There are several ways of translating a propositional formula into clauses such that satisfiability is preserved~\cite{een2003temporal}. By performing this translation, $k$-inductive model checkers are able to utilize parallel SAT-solving engines to glean information about the proof of a safety property at each inductive step. Expression of the base and induction steps of a temporal induction proof as SAT problems is straightforward. As an example, we look at an arbitrary base case from Figure~\ref{fig:k-induction}.
+
+%\begin{gather*}
+%I(s_0) \land T(s_0, s_1) \land \cdots \land T(s_{k-2}, s_{k-1})
+%\land \neg P(s_{k-1})
+%\end{gather*}
+
+%When proving correctness it is shown that the formulas are \emph{unsatisfiable}. If an $n^{th}$ inductive-step is unsatisfiable, that means following an $n$-step trace where the property holds, there exists no next state where it fails, i.e., the property $P$ is provable.

@@ -1,32 +1,103 @@
-\section{Definitions}
-The Boolean Satisfiability (SAT) problem attempts to determine if there exists a total truth assignment to a given propositional formula, that evaluates to TRUE. Generally, a propositional formula is any combination of the disjunction and conjunction of literals (as an example, $a$ and $\neg a$ are literals). For a given unsatisfiable problem, solvers try to generate a proof of unsatisfiability; this is generally more useful than a proof of satisfiability. Such a proof is dependent on identifying a subset of clauses that make the problem unsatisfiable (UNSAT). 
+\section{Preliminaries for Minimal Cut Set Generation}
+\label{sec:prelimMCS}
+\newcommand{\bool}[0]{\mathit{bool}}
+\newcommand{\reach}[0]{\mathit{R}}
+\newcommand{\ite}[3]{\mathit{if}\ {#1}\ \mathit{then}\ {#2}\ \mathit{else}\ {#3}}
 
-SAT solvers in model checking work over a constraint system to determine satisfiability. A \textit{constraint system} $C$ is an ordered set of $n$ abstract constraints $\{C_1, C_2, ..., C_n\}$ over a set of variables. The constraint $C_i$ restricts the allowed assignments of these variables in some way~\cite{liffiton2016fast}. Given a constraint system, we require some method of determining, for any subset $S \subseteq C$, whether $S$ is \textit{satisfiable} (SAT) or \textit{unsatisfiable} (UNSAT). When a subset $S$ is SAT, this means that there exists an assignment allowed by all $C_i \in S$; when no such assignment exists, $S$ is considered UNSAT. Given a constraint system $C$, there are certain subsets of $C$ that are of interest in terms of satisfiability. Definitions 2-4 are taken from research by Liffiton et al.,~\cite{liffiton2016fast}. 
+In this paper we consider \emph{safety properties} over infinite-state machines. The states are vectors of variables that define the values of state variables. We assume there are a set of legal \emph{initial states} and the safety property is specified as a formula over state variables. A \emph{reachable state space} means that all states are reachable from the initial state. 
 
-\begin{definition} : A Minimal Unsatisfiable Subset (MUS) $M$ of a constraint system $C$ is a subset $M \subseteq C$ such that $M$ is unsatisfiable and $\forall c \in M$ : $M \setminus \{c\}$ is satisfiable. 
-\end{definition}
-\noindent
-An MUS can be intuitively understood as the minimal explanation of the constraint systems infeasability. 
-\begin{definition} : A Minimal Correction Set (MCS) $M$ of a constraint system $C$ is a subset $M\subseteq C$ such that $C \setminus M$ is satisfiable and $\forall S \subset M$ : $C \setminus S$ is unsatisfiable. 
-\end{definition}
-\noindent
-A MCS can be seen to ``correct'' the infeasability of the constraint system by the removal from $C$ the constraints found in an MCS.
+Given a state space $U$, a transition system $(I,T)$ consists of an
+initial state predicate $I : U \to \bool$ and a transition step
+predicate $T : U \times U \to \bool$.
+We define the notion of
+reachability for $(I, T)$ as the smallest predicate $\reach : U \to
+\bool$ which satisfies the following formulas:
+\begin{gather*}
+  \forall u.~ I(u) \Rightarrow \reach(u) \\
+  \forall u, u'.~ \reach(u) \land T(u, u') \Rightarrow \reach(u')
+\end{gather*}
+A safety property $P : U \to \bool$ is a state predicate. A safety
+property $P$ holds on a transition system $(I, T)$ if it holds on all
+reachable states, i.e., $\forall u.~ \reach(u) \Rightarrow P(u)$,
+written as $\reach \Rightarrow P$ for short. When this is the case, we
+write $(I, T)\vdash P$.
 
-A duality exists between the MUSs of a constraint system and the MCSs as established by Reiter \cite{reiter1987theory}. This duality is defined in terms of \textit{Minimal Hitting Sets} (\textit{MHS}). A hitting set of a collection of sets $A$ is a set $H$ such that every set in $A$ is ``hit'' by $H$; $H$ contains at least one element from every set in $A$. Every MUS of a constraint system is a minimal hitting set of the system's MCSs, and likewise every MCS is a minimal hitting set of the system's MUSs~\cite{liffiton2016fast, reiter1987theory, de1987diagnosing}.
-\begin{definition}: Given a collection of sets $K$, a hitting set for $K$ is a set $H \subseteq \cup_{S \in K} S$ such that $H \cap S \neq \emptyset$ for each $S  \in K$. A hitting set for $K$ is minimal if and only if no proper subset of it is a hitting set for $K$. 
-\end{definition}
-\noindent
-Since we are interested in sets of active faults that cause violation of the safety property, we turn our attention to Minimal Cut Sets. Though these have been previously defined, for convenience the definition is provided again. 
-\begin{definition}
-A \textit{Minimal Cut Set} (MinCutSet) is a minimal collection of faults that lead to the violation of the safety property. Furthermore, any subset of a MinCutSet will not cause this property violation. 
-\end{definition}
-\noindent
-We define a minimal cut set consistently with much of the research in this field~\cite{0f356f05e72f43018211b36f97c8854a,historyFTA}.
+\subsection{Induction}
+For an arbitrary transition system $(I, T)$, computing reachability
+can be very expensive or even impossible. Thus, we need a more
+effective way of checking if a safety property $P$ is satisfied by the
+system. The key idea is to over-approximate reachability. If we can
+find an over-approximation that implies the property, then the
+property must hold. Otherwise, the approximation needs to be refined.
 
-%\subsection{Inductive Validity Cores}
-%Given a complex model, it is often useful to extract traceability information related to the proof, in other words, which portions of the model were necessary to construct the proof. An algorithm was introduced to provide Minimal Inductive Validity Cores (\textit{MIVCs}) as a way to determine the minimal model elements necessary for the inductive proof of a safety property for a sequential system~\cite{GhassabaniGW16}. Given a safety property, a model checker can be invoked in order to construct a proof of the property. The MIVC generation algorithm can extract traceability information from that proof process and return a minimal set of the model elements required in order to prove the property. Later research extended this algorithm in order to produce all such minimal sets of MIVC elements; this is the \aivcalg algorithm~\cite{Ghassabani2017EfficientGO,bendik2018online}.
+A good first approximation for reachability is the property itself.
+That is, we can check if the following formulas hold:
+\begin{gather}
+  \forall s.~ I(s) \Rightarrow P(s)
+  \label{eq:1-ind-base} \\
+  \forall s, s'.~ P(s) \land T(s, s') \Rightarrow P(s')
+  \label{eq:1-ind-step}
+\end{gather}
+If both formulas hold then $P$ is {\em inductive} and holds over the
+system. If (\ref{eq:1-ind-base}) fails to hold, then $P$ is violated
+by an initial state of the system. If (\ref{eq:1-ind-step}) fails to
+hold, then $P$ is too much of an over-approximation and needs to be
+refined.
 
-%This algorithm is of interest to us for the following reason. All MIVCs are MUSs of a constraint system that consists of the assumptions and contracts of system components and the negation of the safety property of interest. The set of all \textit{MIVCs} then contains the minimal explanation of the constraint systems infeasibility in terms of the negation of the safety property; hence, these are the minimal model elements necessary to proof the safety property.
+The JKind model checker used in this research uses {\em
+  $k$-induction} which unrolls the property over $k$ steps of the
+transition system. For example, 1-induction consists of formulas
+(\ref{eq:1-ind-base}) and (\ref{eq:1-ind-step}) above, whereas
+2-induction consists of the following formulas:
+\begin{gather*}
+\forall s.~ I(s) \Rightarrow P(s) \\
+\forall s, s'.~ I(s) \land T(s, s') \Rightarrow P(s') \\
+\forall s, s', s''.~ P(s) \land T(s, s') \land P(s') \land T(s',
+  s'') \Rightarrow P(s'')
+\end{gather*}
+That is, there are two base step checks and one inductive step check.
+In general, for an arbitrary $k$, $k$-induction consists of $k$
+base step checks and one inductive step check as shown in
+Figure~\ref{fig:k-induction} (the universal quantifiers on $s_i$ have
+been elided for space). We say that a property is $k$-inductive if it
+satisfies the $k$-induction constraints for the given value of $k$.
+The hope is that the additional formulas in the antecedent of the
+inductive step make it provable.
+
+\begin{figure}
+\begin{gather*}
+I(s_0) \Rightarrow P(s_0) \\[-2pt]
+%
+\vdots \\[2pt]
+%
+I(s_0) \land T(s_0, s_1) \land \cdots \land T(s_{k-2}, s_{k-1})
+\Rightarrow P(s_{k-1}) \\[2pt]
+%
+P(s_0) \land T(s_0, s_1) \land \cdots \land P(s_{k-1}) \land
+T(s_{k-1}, s_k) \Rightarrow P(s_k)
+\end{gather*}
+\caption{$k$-induction formulas: $k$ base cases and one inductive
+  step}
+\label{fig:k-induction}
+\end{figure}
+
+In practice, inductive model checkers often use a combination of the
+above techniques. Thus, a typical conclusion is of the form ``$P$ with
+lemmas $L_1, \ldots, L_n$ is $k$-inductive''.
+
+\subsection{The SAT Problem}
+Boolean Satisfiability (SAT) solvers attempt to determine if there exists a total truth assignment to a given propositional formula, that evaluates to TRUE. Generally, a propositional formula is any combination of the disjunction and conjunction of literals (as an example, $a$ and $\neg a$ are literals). For a given unsatisfiable problem, solvers try to generate a proof of unsatisfiability; this is generally more useful than a proof of satisfiability. Such a proof is dependent on identifying a subset of clauses that make the problem unsatisfiable (UNSAT). 
+
+SAT solvers in model checking work over a constraint system to determine satisfiability. A \textit{constraint system} $C$ is an ordered set of $n$ abstract constraints $\{C_1, C_2, ..., C_n\}$ over a set of variables. The constraint $C_i$ restricts the allowed assignments of these variables in some way~\cite{liffiton2016fast}. Given a constraint system, we require some method of determining, for any subset $S \subseteq C$, whether $S$ is \textit{satisfiable} (SAT) or \textit{unsatisfiable} (UNSAT). When a subset $S$ is SAT, this means that there exists an assignment allowed by all $C_i \in S$; when no such assignment exists, $S$ is considered UNSAT. 
+
+There are several ways of translating a propositional formula into clauses such that satisfiability is preserved~\cite{een2003temporal}. By performing this translation, $k$-inductive model checkers are able to utilize parallel SAT-solving engines to glean information about the proof of a safety property at each inductive step. Expression of the base and induction steps of a temporal induction proof as SAT problems is straightforward. As an example, we look at an arbitrary base case from Figure~\ref{fig:k-induction}.
+
+\begin{gather*}
+I(s_0) \land T(s_0, s_1) \land \cdots \land T(s_{k-2}, s_{k-1})
+\land \neg P(s_{k-1})
+\end{gather*}
+
+When proving correctness it is shown that the formulas are \emph{unsatisfiable}. If an $n^{th}$ inductive-step is unsatisfiable, that means following an $n$-step trace where the property holds, there exists no next state where it fails, i.e., the property $P$ is provable.
 
 
 
