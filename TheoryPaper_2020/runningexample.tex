@@ -36,13 +36,15 @@ The safety of the system requires a shut down to take place if the temperature, 
 \begin{figure*}[h!]
 	%\vspace{-2em}
 	\begin{center}
-		\includegraphics[width=0.6\textwidth]{images/sensorSysContracts.png}
+		\includegraphics[width=1.0\textwidth, trim={0 7.5cm 0 0},clip]{images/PWRFigureContracts.png}
 	\end{center}
-	\vspace{-2em}
+	\vspace{-6em}
 	\caption{Sensor System Nominal and Fault Model Details}
 	\label{fig:sensorSysContracts}
 	%\vspace{-2em}
 \end{figure*}
+
+Note: the thresholds vary for pressure, temperature, and radiation. These are given as constants $T_p$, $T_t$, and $T_r$ respectively. The overall (or ``top level") shutdown command is defined notationally as $S$; each sensor subsystem provides their own shutdown command, $S_p$ for example.  The faults are shown as ``fail low" which correspond to the temp (or pressure or radiation) being high, but the sensor reports safe ranges. We also do not list all guarantees and assumptions that are in the model, but only the ones of interest for the illustration. 
 
 \subsection{PWR Fault Model}
 The faults that are of interest in this example system are any one of the sensors failing high or low. If sensors report high and a shut down command is sent, we shut down when we should not. On the other hand, if sensors report low when it should be high, a shut down command is not sent and we do not shut down when we should. For simplification, we focus on the failures when sensors report low when they should not.
@@ -50,7 +52,7 @@ The faults that are of interest in this example system are any one of the sensor
 A fault is defined for each sensor in the system using the safety annex. An example of a temperature sensor fault stuck at high is shown in Figure~\ref{fig:tempSensorFault}.
 
 \begin{figure*}[h!]
-	\vspace{-2em}
+	%\vspace{-2em}
 	\begin{center}
 		\includegraphics[width=0.9\textwidth]{images/tempSensorFault.PNG}
 	\end{center}
@@ -62,17 +64,7 @@ A fault is defined for each sensor in the system using the safety annex. An exam
 
 The Safety Annex provides a way to weave the faults into the nominal model by use of the \emph{inputs} and \emph{outputs} keywords. This allows users to define a fault and attach it to the output of a component. If the fault is active, the error can possibly violate the guarantees of this component or the assumptions of downstream components~\cite{stewart2020safety}. The activation of a fault is not up to the user, but instead left up to the model checker, JKind, to determine if the activation of this fault will contribute to a violation of higher level guarantees. If so, it can be activated during the analysis.
 
-For simplicity, throughout this paper we refer only to faults that fail low (i.e., the environmental input is actually high which warrants a shut down command, but the sensor reports that it is within safe ranges). This simplification is presented to keep the example and results described concise. For ease of reference, a table is provided giving model elements of interest in the sensor example. We refer to these throughout this section. Note: the thresholds vary for pressure, temperature, and radiation. These are given as constants $T_p$, $T_t$, and $T_r$ respectively. The shutdown command is defined notationally as $S$.  The faults are shown as ``fail low" which correspond to the temp (or pressure or radiation) being high, but the sensor reports safe ranges. We also do not list all guarantees and assumptions that are in the model, but only the ones of interest for this analysis. \danielle{Still messing around with how to display this in a way that it isn't messy, doesn't take up a ton of space, and am not currently happy with this approach. But I really hated the tables. Too much info for what is actually needed. Will keep working on this.}
 
-\begin{description}[parsep=0.3ex]
- \item[PWR System:] $P = ((temp$ $>$ $T_t)$ $\lor$ $ (pressure$ $>$ $ T_p)$  $\lor$ $ (radiation$ $>$ $ T_r)) \iff S$\\
- \item[Temp Subsystem]: $G_t = temp$ $>$ $ T_t \iff S$\\
- \item[Pressure Subsystem:] $G_p = pressure$ $>$ $ T_p \iff S$\\
- \item[Radiation Subsystem:] $G_r = radiation$ $>$ $ T_r \iff S$\\
- \item[Temp Sensors (3):] $g_p = pressure$ $>$ $ T_p \iff S$, Fault $f_{ti}$: fails low for $i = 1, 2, 3$.\\
-\item[Pressure Sensors (3):] $g_r = radiation$ $>$ $ T_r \iff S$, Fault $f_{pi}$: fails low for $i = 1, 2, 3$. \\
- \item[Radiation Sensors (3):] $g_r = radiation$ $>$ $ T_r \iff S$, Fault $f_{ri}$: fails low for $i = 1, 2, 3$\\
- \end{description}
 
 
 \begin{comment}

@@ -14,12 +14,12 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2}Running Example}{2}\protected@file@percent }
 \newlabel{sec:example}{{2}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}PWR Nominal Model}{2}\protected@file@percent }
-\citation{stewart2020safety}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces PWR Sensor System}}{3}\protected@file@percent }
 \newlabel{fig:sensorSys}{{1}{3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Sensor System Safety Property}}{3}\protected@file@percent }
 \newlabel{fig:shutdownGuar}{{2}{3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}PWR Fault Model}{3}\protected@file@percent }
+\citation{stewart2020safety}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Sensor System Nominal and Fault Model Details}}{4}\protected@file@percent }
 \newlabel{fig:sensorSysContracts}{{3}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Fault on Temperature Sensor Defined in the Safety Annex for AADL}}{4}\protected@file@percent }
@@ -33,6 +33,8 @@
 \citation{NFM2012:CoGaMiWhLaLu}
 \citation{Halbwachs91:IEEE}
 \citation{2017arXiv171201222G}
+\citation{2017arXiv171201222G}
+\citation{Halbwachs91:IEEE}
 \citation{Stewart17:IMBSA,stewart2020safety}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Preliminaries}{5}\protected@file@percent }
 \newlabel{sec:prelim}{{3}{5}}
@@ -56,18 +58,23 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Transforming MCS into Minimal Cut Set}{8}\protected@file@percent }
 \newlabel{lemma:cut}{{1}{8}}
 \newlabel{lemma:min}{{2}{8}}
-\citation{liffiton2016fast,gainer2017minimal,murakami2013efficient}
-\citation{Ghassabani2017EfficientGO,murakami2013efficient}
+\citation{Stewart17:IMBSA,stewart2020safety}
+\citation{Ghassabani2017EfficientGO}
+\citation{gainer2017minimal}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Implementation}{9}\protected@file@percent }
 \newlabel{sec:impl}{{5}{9}}
-\newlabel{eq:bound}{{3}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Illustration of Two Layers of Analysis}}{9}\protected@file@percent }
+\newlabel{fig:layers}{{5}{9}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Transform MCS into Minimal Cut Sets}}{10}\protected@file@percent }
+\newlabel{alg:transform_alg}{{1}{10}}
+\citation{Ghassabani2017EfficientGO,murakami2013efficient}
 \citation{bryant1986graph}
 \citation{rauzy1993new}
 \citation{rauzy2008binary}
 \citation{bryant1986graph,rauzy1993new,rauzy2008binary}
-\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces MinCutSets Generation Algorithm}}{10}\protected@file@percent }
-\newlabel{alg:generation_alg}{{1}{10}}
-\@writefile{toc}{\contentsline {subsubsection}{Pruning to Address Scalability}{10}\protected@file@percent }
+\newlabel{eq:bound}{{3}{11}}
+\newlabel{lemma:bound}{{3}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Pruning to Address Scalability}{11}\protected@file@percent }
 \citation{bozzano2015safety}
 \citation{bozzano2015efficient}
 \citation{bieber2002combination,schafer2003combining,bozzano2007symbolic,bozzano2003improving,volk2017fast,Joshi05:SafeComp,bozzano2015efficient,stewart2020safety}
@@ -84,9 +91,9 @@
 \bibcite{SAE:ARP4761}{1}
 \bibcite{SAE:ARP4754A}{2}
 \bibcite{vesely1981fault}{3}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Related Work}{11}\protected@file@percent }
-\newlabel{sec:related_work}{{6}{11}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Related Work}{12}\protected@file@percent }
+\newlabel{sec:related_work}{{6}{12}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion and Future Work}{12}\protected@file@percent }
 \bibcite{fta:survey}{4}
 \bibcite{rauzy1993new}{5}
 \bibcite{historyFTA}{6}

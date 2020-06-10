@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  10 JUN 2020 08:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  10 JUN 2020 13:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -781,129 +781,69 @@ File: images/sensorGuar.PNG Graphic file (type png)
 Package pdftex.def Info: images/sensorGuar.PNG  used on input line 26.
 (pdftex.def)             Requested size: 238.49342pt x 52.78761pt.
 [2]
+<images/PWRFigureContracts.png, id=19, 614.295pt x 794.97pt>
+File: images/PWRFigureContracts.png Graphic file (type png)
+<use images/PWRFigureContracts.png>
+Package pdftex.def Info: images/PWRFigureContracts.png  used on input line 39.
+(pdftex.def)             Requested size: 397.485pt x 376.31502pt.
 
-LaTeX Warning: Reference `fig:sensorSysContracts' on page 3 undefined on input 
-line 34.
-
-
-LaTeX Warning: File `images/sensorSysContracts.png' not found on input line 39.
-
-
-
-! Package pdftex.def Error: File `images/sensorSysContracts.png' not found: usi
-ng draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.39 ...\textwidth]{images/sensorSysContracts.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<images/tempSensorFault.PNG, id=19, 473.77pt x 95.35625pt>
-File: images/tempSensorFault.PNG Graphic file (type png)
-<use images/tempSensorFault.PNG>
-Package pdftex.def Info: images/tempSensorFault.PNG  used on input line 55.
-(pdftex.def)             Requested size: 357.73407pt x 72.00298pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [3 <./images/sensorSysAADL.png> <./images/sensorGuar.PNG>]
-Underfull \hbox (badness 10000) in paragraph at lines 68--69
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 69--70
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 70--71
-
- []
-
-[4 <./images/tempSensorFault.PNG>]
-Underfull \hbox (badness 10000) in paragraph at lines 71--72
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 72--73
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 73--74
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 74--75
-
- []
-
-Excluding 'comment' comment.) (./preliminaries.tex (./implBackground.tex)
-[5] [6] Excluding 'comment' comment.) (./formalization.tex [7] [8]
+<images/tempSensorFault.PNG, id=28, 473.77pt x 95.35625pt>
+File: images/tempSensorFault.PNG Graphic file (type png)
+<use images/tempSensorFault.PNG>
+Package pdftex.def Info: images/tempSensorFault.PNG  used on input line 57.
+(pdftex.def)             Requested size: 357.73407pt x 72.00298pt.
+ [4 <./images/PWRFigureContracts.png> <./images/tempSensorFault.PNG>] Excluding
+ 'comment' comment.)
+(./preliminaries.tex (./implBackground.tex) [5] [6]
+Excluding 'comment' comment.) (./formalization.tex [7] [8]
 Excluding 'comment' comment. Excluding 'comment' comment.)
 (./Implementation.tex
+<images/twoLevels.PNG, id=52, 701.62125pt x 300.12125pt>
+File: images/twoLevels.PNG Graphic file (type png)
+<use images/twoLevels.PNG>
+Package pdftex.def Info: images/twoLevels.PNG  used on input line 12.
+(pdftex.def)             Requested size: 357.73407pt x 153.02776pt.
+ [9 <./images/twoLevels.PNG>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 71--72
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 75--76
-
- []
-
-) (./related_work.tex [10]) (./conclusion.tex) (./main.bbl [11] [12] [13])
-[14] (./main.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+ [10]
+Excluding 'comment' comment.) (./related_work.tex [11]) (./conclusion.tex)
+(./main.bbl [12] [13] [14]) [15] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 9619 strings out of 480608
- 136777 string characters out of 5903631
- 430481 words of memory out of 5000000
- 25260 multiletter control sequences out of 15000+600000
- 562261 words of font info for 99 fonts, out of 8000000 for 9000
+ 9609 strings out of 480608
+ 136545 string characters out of 5903631
+ 428508 words of memory out of 5000000
+ 25261 multiletter control sequences out of 15000+600000
+ 563707 words of font info for 103 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 46i,27n,49p,1634b,662s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
-xlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
-live/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texli
-ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive
-/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2
-020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/202
-0/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2020/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2020/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2020/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2020/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2020/texmf-dist/fo
-nts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type
-1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/time
-s/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.
-pfb>
-Output written on main.pdf (14 pages, 532575 bytes).
+ 38i,21n,39p,1634b,568s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2020/texmf-d
+ist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr6.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr9.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy9.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ti10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
+i7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9
+.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></u
+sr/local/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/t
+exlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/202
+0/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (15 pages, 688116 bytes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
- 86 compressed objects within 1 object stream
+ 139 PDF objects out of 1000 (max. 8388607)
+ 92 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 32 words of extra memory for PDF output out of 10000 (max. 10000000)
 

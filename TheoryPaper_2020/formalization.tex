@@ -68,6 +68,7 @@ Let $M \in \mathit{MonoCuts}$ where $M$ is a mimimal cut set for safety property
 Without loss of generality, let $M = \{f_1, \dots, f_k\}$. Then we know that $g_1  \land \cdots \land g_n  \land \mathit{af}_1 \land \cdots \land \mathit{af}_k \land \neg \mathit{af}_{k+1} \land \cdots \land \neg \mathit{af}_{n} \land \neg P$ is satisfiable. Then $\{\mathit{af}_1, \dots,\mathit{af}_k\}$ is a correction set for the system and can be mapped by $\sigma$ to a minimal cut set by Lemmas \ref{lemma:cut} - \ref{lemma:min}.
 \end{proof}
 \end{theorem}
+\danielle{This isn't quite right... Monolithic takes *all* guarantees in the model in the proof where as compositional takes only that layer. I do not make the distinction in this proof. Will consider this and rewrite.}
 
 
 

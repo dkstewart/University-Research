@@ -2,6 +2,98 @@
 \label{sec:impl}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%            ALGORITHM DETAILS
+In the formalism section, we viewed the problem from the perspective of an arbitary layer of the architectural analysis. This resulted in explicit faults at the leaf level and violated guarantees (``nondeterministic faults") at the middle/top layers. Each MCS generated at each level gives varied insight into the system. In this implementation section, we describe the mapping of the results from an arbitrary layer into the top/mid or leaf layers of analysis. Minimal cut sets traditionally contain explicitly defined faults as elements; to this end, we implemented a compositional mapping from explicit faults to the guarantees they violate. The end result are the minimal cut sets that contribute to a violation of the top level safety property. 
+
+The \aivcalg algorithm requires \emph{IVC elements} to be explicitly added to the Lustre program; these elements are those of consideration for the MIVC analysis. In this implementation, the IVC elements are added differently depending on the layer. In the leaf architectural level, only explicitly defined faults are added to IVC elements. In middle or top layers, supporting guarantees are added. This is shown in Figure~\ref{fig:layers}. 
+
+\begin{figure*}[h!]
+	%\vspace{-2em}
+	\begin{center}
+		\includegraphics[width=0.9\textwidth]{images/twoLevels.PNG}
+	\end{center}
+	\vspace{-2em}
+	\caption{Illustration of Two Layers of Analysis}
+	\label{fig:layers}
+	\vspace{-2em}
+\end{figure*}
+
+The figure shows an arbitrary architecture with two analysis layers: top and leaf. The top layer analysis adds $G$ as IVC element; the leaf layer analysis adds $f_1$ and $f_2$ as IVC elements. The first layer of analysis shows that $G$ supports the proof of $P$, thus is an MIVC. The second layer of analysis shows that \emph{given the model}, if both $f_1$ and $f_2$ are constrained to false, a proof is found for $G$. 
+
+Each explicit fault defined in the safety annex is added to the Lustre program as described in safety annex implementation~\cite{Stewart17:IMBSA,stewart2020safety} and additionally the constrained faults are added as IVC elements for leaf layer analysis. A requirement of the hitting set algorithm is that to find \emph{all} MCSs, \emph{all} MUSs must be known. Ghassabani et al.~\cite{Ghassabani2017EfficientGO} showed that finding all MIVCs is as hard as model checking; and thus cannot always be found. It is a requirement of this analysis that all MIVCs are computed. Once this analysis is complete at each layer, a hitting set algorithm is used to generate the related MCSs~\cite{gainer2017minimal}. Depending on the layer of analysis, the MCSs contain either faulty (or violated) guarantees or explicitly defined faults.
+
+Since minimal cut sets traditionally contain only explicit faults, we aimed to provide minimal cut sets in this format. A mapping is performed from the bottom up which replaces a guarantee with its corresponding cut set. At the leaf level, only constrained faults are in the MCS and thus can be saved as a mapping from the property under proof consideration to the set of \emph{unconstrained} faults that contribute to its violation. In Figure~\ref{fig:layers}, the mapping would be from $G$ to $\{f_1, f_2\}$ showing that the minimal cut set for $G$ is $\{f_1, f_2\}$. 
+
+We continue in this fashion until all MCSs in that layer are processed. Then we move up; if a guarantee is in the MCS, we check for a mapping from that contract to its minimal cut set. If it exists, we perform iterative replacements (a guarantee can have multiple cut sets).  This mapping is shown in Algorithm~\ref{alg:transform_alg}.
+
+\begin{algorithm}[h]
+\DontPrintSemicolon
+\SetKwFunction{Init}{Init}
+\SetKwFunction{Transform}{Transform}
+\SetKwProg{Fn}{Function}{:}{}
+
+\Fn{\Init{$\mathit{List(MCS)}$, $P$}}{
+	\For{all $\mathit{MCS} \in \mathit{List(MCS)}$}{	
+		$\mathit{\overline{MCS}} \gets $ remove constraints from $\mathit{MCS}$\;
+		$\mathit{List(\overline{MCS})} \gets$ append $\mathit{\overline{MCS}}$\; 
+	}
+	$\mathit{map} \gets \mathit{map(P \rightarrow \emptyset)}$\tcp*{from P to list of min cut sets}
+	$\Transform(\mathit{List(\overline{MCS})}, P)$\;
+}
+
+\setcounter{AlgoLine}{0}
+\Fn{\Transform{$\mathit{List(\overline{MCS})}$,$P$, $\mathit{map}$}}{
+	\For{all $\mathit{\overline{MCS}} \in \mathit{List(\overline{MCS})}$}{	
+		\eIf{$\neg \exists g \in \mathit{\overline{MCS}}$}{
+			$\mathit{map(P \rightarrow }$ append $\mathit{\overline{MCS}})$ \;
+		}{
+			\For{all $\mathit{cut(g)}$}{
+				$\mathit{new \overline{MCS}} \gets $ replace $g$ with $\mathit{cut(g)}$\;
+				$\mathit{List(\overline{MCS})} \gets$ append $\mathit{new \overline{MCS}}$\;
+			}			
+		}
+	}
+}
+
+
+%	\caption{Minimal Cut Set Generation Algorithm}
+	\caption{Transform MCS into Minimal Cut Sets}
+	\label{alg:transform_alg}
+\end{algorithm}
+
+The number of replacements $R$ that are made in this algorithm are constrained by the number of minimal cut sets there are for all $\alpha$ contracts within the initial MCS. We call the set of all minimal cut sets for a contract $g$: $\mathit{Cut(g)}$. The following formula defines an upper bound on the number of replacements. The validity of this statement follows directly from the general multiplicative combinatorial principle. 
+
+\begin{lemma}
+The number of replacements $R$ is bounded by the following formula:
+\begin{gather}
+\label{eq:bound}
+  R \leq {\displaystyle \sum_{i=1}^{\alpha} }({\displaystyle \prod_{j=1}^{i} |\mathit{Cut(g_j)}|})  
+\end{gather}
+\begin{proof}
+Assume there exists a $g_i \in \mathit{\overline{MCS}}$. The number of replacements made between $g_i$ and its minimal cut sets is at most $|\mathit{Cut(g_i)}|$. We iteratively perform this replacement for all $\alpha$ contracts in $\mathit{\overline{MCS}}$ and make, in the worst case, $|\mathit{Cut(g_1)}| \times |\mathit{Cut(g_2)}| \times \cdots \times |\mathit{Cut(g_\alpha)}|$ replacements.
+\label{lemma:bound}
+\end{proof}
+\end{lemma}
+
+It is also important to note that the cardinality of $\mathit{List(\overline{MCS})}$ is bounded, i.e. the algorithm terminates. Every new set that is generated through some replacement of a contract with its minimal cut set is added to $\mathit{List(\overline{MCS})}$ in order to continue the replacement process for all contracts in $\mathit{\overline{MCS}}$. 
+\begin{theorem}
+Algorithm~\ref{alg:transform_alg} terminates
+\begin{proof}
+No infinite sets are generated by the \aivcalg or minimal hitting set algorithms~\cite{Ghassabani2017EfficientGO,murakami2013efficient}; therefore, every MCS produced is finite. Thus, every minimal cut set of every contract is finite. Furthermore, a bound exists on the number of additional sets that are added to $List(I)$: \\
+$|\mathit{List(\overline{MCS})}| \leq R$ by lemma~\ref{lemma:bound}.
+\end{proof}
+\end{theorem}
+
+Given that the worst case size in terms of cut set cardinality and number of replacements can grow quickly, we implemented strategies to prune the size of the cut sets and hence the growth of these intermediate sets. 
+
+
+\subsection{Pruning to Address Scalability}
+The safety annex provides the capability to specify a type of verification in what is called a \textit{fault hypothesis statement}. These come in two forms: maximum number of faults or probabilistic analysis. Algorithm~\ref{alg:transform_alg} is the general approach, but the implementation changes slightly depending on which form of analysis is being performed. This pruning improves performance and diminishes the problem of combinatorial explosions in the size of minimal cut sets for larger models. 
+
+\textbf{Max $N$ Analysis Pruning} This statement restricts the number of faults that can be independently active simultaneously and verification is run with this restriction present. For example, if a max 2 fault hypothesis is specified, two or fewer faults may be active at once. In terms of minimal cut sets, this statement restricts the cardinality of minimal cut sets generated to $N$.
+
+If the number of faults in an intermediate set $\mathit{List(\overline{MCS})}$ exceeds the threshold $N$, any further replacement of remaining contracts in that intermediate set can never decrease the total number of faults in $\mathit{List(\overline{MCS})}$; therefore, this intermediate set is eliminated from consideration.
+
+\textbf{Probabilistic Analysis Pruning} The second type of hypothesis statement restricts the cut sets by use of a probabilistic threshold. Any cut sets with combined probability higher than the given probabilistic threshold are removed from consideration. The allowable combinations of faults are calculated before the transformation algorithm begins; this allows for a pruning of intermediate sets during the transformation. If the faults within an intermediate set are not a subset of any allowable combination, that intermediate set is pruned from consideration and no further replacements are made. 
 
 
 
@@ -10,8 +102,27 @@
 
 
 
+\begin{comment}
 
-\danielle{I have some ideas on this section - I want to change it to link back to the example a bit more. Also can simplify the algorithm somewhat. Wait to read this - it will be changing. Focus on the first 4 sections.}
+\setcounter{AlgoLine}{0}
+\Fn{\FindMIVCs{}}{
+	\While{$\mathit{Unexplored} \neq \emptyset$}{
+		%$U_{max} \gets$ a maximal $U_{max} \in \mathit{Unexplored}$\;
+		$U_{\mathit{max}} \gets $ a maximal set $\in \mathit{Unexplored}$\;
+        \eIf{$\Solve(I,U_{\mathit{max}},P)$}{
+			$U_{\mathit{IVC}} \gets \approx((I,U_{\mathit{max}}), P)$\;
+			$\Shrink(U_{\mathit{IVC}})$\;
+		}{
+			$\mathit{Unexplored} \gets \mathit{Unexplored} \setminus \mathit{Sub}(U_{\mathit{max}})$\;			
+		}
+		\While{$\mathit{shrinkingQueue}$ is not empty}{
+			$\mathit{U} \gets \Dequeue(\mathit{shrinkingQueue})$\;
+			$\Shrink(\mathit{U})$\;
+		}
+	}
+}
+
+
 The transformation of MIVCs to MinCutSets can only be performed if \emph{all} MIVCs have been generated. It is a requirement of the minimal hitting set algorithm that all MUSs are used to find the MCSs~\cite{liffiton2016fast,gainer2017minimal,murakami2013efficient}. Thus, once all MIVCs have been found and the minimal hitting set algorithm has completed, the MinCutSet generation can begin. 
 
 The MinCutSet generation algorithm begins with a list of MCSs specific to a property. These MCSs may contain a mixture of fault activation literals constrained to \textit{false} and subcomponent contracts constrained to \textit{true}. We remove all constraints from each MCS and call the resulting sets $I$, for \textit{Intermediate} set.  For each of those contracts in $I$, we check to see if we have previously obtained a MinCutSet for that contract. If so, replacement is performed. If not, we recursively call this algorithm to obtain the list of all MinCutSets associated with this subcomponent contract. At a certain point, there will be no more contracts in the set $I$ in which case we have a minimal cut set for the current property. The reason is because at the lowest levels of the system, the only model elements used in the constraint system analyzed by the \aivcalg algorithm are faults. Thus when the contracts at the lowest level are the safety properties for the \aivcalg algorithm, the MUSs contain only faults (likewise the MCSs). When this cut set is obtained for the lowest level properties, it is stored in a lookup table keyed by the given property. Algorithm~\ref{alg:generation_alg} describes this process.
@@ -76,6 +187,6 @@ If the number of faults in an intermediate set $I$ exceeds the threshold $N$, an
 
 \textbf{Probabilistic Analysis Pruning} The second type of hypothesis statement restricts the cut sets by use of a probabilistic threshold. Any cut sets with combined probability higher than the given probabilistic threshold are removed from consideration. The allowable combinations of faults are calculated before the transformation algorithm begins; this allows for a pruning of intermediate sets during the transformation. If the faults within an intermediate set are not a subset of any allowable combination, that intermediate set is pruned from consideration and no further replacements are made. 
 
-
+\end{comment}
 
 
