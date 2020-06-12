@@ -1,0 +1,43 @@
+\subsection{Mutations and Equation Removers}
+For the development of model-based critical systems, it has been argued that formal proof should be applied to gain higher confidence in the model than with testing alone, e.g.~\cite{hardin2009development,miller2010software,rushby2009software,bozzano2003improving}. This has proven to be an active area of research, but has also shown some missing pieces -- one of which will be of benefit to us in this granularity exploration. When a property is proved valid, no further information is provided about the coverage of the model. One does not know whether the model contains features that are not covered by the properties~\cite{NFM2020Todorov}. Furthermore, we do not know if features \emph{within an IVC element in an MIVC set} are completely covered by the property. To this end, we began to look into mutation coverage to provide an answer. 
+
+A mutation approach described by Todorov et al.~\cite{NFM2020Todorov} consists in mutating a model for which safety properties were proved valid, and trying to prove the same properties on the mutated models (\emph{mutants}). If the mutant is proved to be valid (i.e., it \emph{survived}), the mutant reveals part of the model that is not covered by the properties. We know that portion of the model is not necessary to find a proof. The approach described in this section attempts to use this type of mutant analysis on the contracts of a Lustre model, and thus compare to a granular refinement MIVC approach. 
+
+A brief review of transition systems and some definitions are provided for convenience. 
+
+Given a state space $U$, a transition system $(I,T)$ consists of an
+initial state predicate $I : U \to \bool$ and a transition step
+predicate $T : U \times U \to \bool$.
+We define the notion of
+reachability for $(I, T)$ as the smallest predicate $\reach : U \to
+\bool$ which satisfies the following formulas:
+\begin{gather*}
+  \forall u.~ I(u) \Rightarrow \reach(u) \\
+  \forall u, u'.~ \reach(u) \land T(u, u') \Rightarrow \reach(u')
+\end{gather*}
+A safety property $P : U \to \bool$ is a state predicate. A safety
+property $P$ holds on a transition system $(I, T)$ if it holds on all
+reachable states, i.e., $\forall u.~ \reach(u) \Rightarrow P(u)$,
+written as $\reach \Rightarrow P$ for short. When this is the case, we
+write $(I, T)\vdash P$.
+
+The Lustre model is a set of equations$\{eq_1, \dots,eq_n\}$ and the transition relation $T$ has the structure of being a top level conjunction $T = t_1 \land \cdots \land t_n$ where each $t_i$ is an equality corresponding to $eq_i$. By further abuse of notation, $T$ is identified with the set of its top-level equalities. When an equation is removed from the Lustre model, an equality $t_i$ is removed from $T$ and the transition relation becomes $T\setminus \{t_i\}$. 
+
+\begin{definition}
+Minimal Inductive Validity Core (MIVC)~\cite{Ghassabani2017EfficientGO}: $S \subseteq T$ is a minimal Inductive Validity Core, denoted by $MIVC(P,S)$, iff $IVC(P,S) \land \forall T_i \in S$. $(I, S \setminus \{T_i\}) \not \vdash P$.
+\end{definition}
+
+In this research, we are only interested in minimal sets that satisfy a property $P$; if $(I, T) \vdash P$, then we know $P$ always has at least one MIVC which is not necessarily unique. By computing all MIVCs, we have a complete mapping from the requirements to the design elements; this is called \emph{complete traceability}~\cite{murugesan2016complete}. 
+
+Ghassabani defines two metrics of coverage~\cite{ghassabani2017proof}. 
+
+\begin{definition} \maycov\ : $t \in T$ is covered by $P$ iff $t_i \in $\maycov$(P)$, where \maycov$(P) = \{t_i | \exists S \in AIVC(P) \cdot t_i \in S\}$.
+\end{definition}
+
+\begin{definition} \mustcov\ : $t \in T$ is covered by $P$ iff $t_i \in $\maycov$(P)$, where \maycov$(P) = \{t_i | \forall S \in AIVC(P) \cdot t_i \in S\}$.
+\end{definition}
+
+The \maycov\ elements are relevant to the proof, but may be modified without affecting the satisfaction of $P$, whereas the \mustcov\ elements are absolutely necessary for the proof of $P$. One can view the \mustcov\ set of elements as the intersection of all MIVCs; if a single \mustcov\ element is removed, it ``breaks" all proofs of $P$. 
+
+A mutator is formally a function that mutates any transition predicate $T$ to a set of mutants $\{T^1_{mut}, \dots, T^m_{mut}\}$, where each mutant $T^i_{mut}$ is obtained by applying a change to $T$. A very simple mutator is one that simply removes an equality $t_i$ from $T$, which amounts to removing the corresponding line of code from the Lustre model~\cite{NFM2020Todorov}. Todorov et al.~\cite{NFM2020Todorov} implemented an \emph{equation remover} in JKind which removes equations one by one and replays the proof process in an incremental way. If after removing an equation, the properties are still proved (the mutant survives), it means that the removed equation has no impact on the proof. If the properties do not hold any longer (the mutant is killed), then we know the removed equation is essential for the proof. This mutator computes the minimum \mustcov\ core. 
+
