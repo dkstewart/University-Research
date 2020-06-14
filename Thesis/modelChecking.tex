@@ -1,0 +1,22 @@
+\subsection{Model Checking}
+\label{sec:modelchecking}
+
+\textbf{Linear Temporal Logic}
+Temporal logic can be used to express properties of reactive systems~\cite{Bozzano:2010:DSA:1951720}. System properties are usually classified into two main categories: {\em safety} properties and {\em liveness} properties. Safety properties express the idea that ``nothing bad ever happens" where liveness properties state that ``something good will eventually happen." 
+
+An example of a safety property is: ``it is never the case that the brake pedal is pressed and no hydraulic pressure is supplied at the wheel." A liveness property, on the other hand, could state: ``eventually the process will complete it's execution." 
+
+Traditionally, two types of temporal logic are used in model checking; Computational Tree Logic (CTL), which is based on a branching logic model, and Linear Temporal Logic (LTL), based on a linear representation of time. This research will focus on LTL. 
+
+An LTL formula is built from a set of atomic propositions, logical operators, and basic temporal operators. The formula is evaluated over a linear path or sequence of states, $s_0, s_1, ..., s_i ,s_{i+1},...$. The following temporal operators are provided:
+\begin{itemize}
+    \item Globally (\textbf{G}): $G_p$ is true in a state $s_i$ if and only if $p$ is true in all states $s_j$ with $j \geq i$.
+    
+    \item Finally (\textbf{F}): $F_p$ is true in state $s_i$ if and only if $p$ is true in some state $s_j$ with $j \geq i$.
+    
+    \item Next (\textbf{X}): $X_p$ is true in state $s_i$ if and only if $p$ is true in the state $s_{i+1}$. 
+    
+    \item Until (\textbf{U}): $pUq$ is true in state $s_i$ if and only if $q$ is true in some state $s_j$ with $j \geq i$ and $p$ is true in all states $s_k$ such that $i \leq k < j$.
+\end{itemize}
+
+Other temporal operators can be defined on the basis of the operators above~\cite{sistla1985complexity}. Formal definitions and more information on LTL and CTL can be found in a number of research works~\cite{Bozzano:2010:DSA:1951720, clarke2018model}.

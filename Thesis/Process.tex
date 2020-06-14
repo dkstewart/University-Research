@@ -1,0 +1,55 @@
+\section{The Safety Assessment Process}
+\label{sec:process}
+ARP4754A, the Guidelines for Development of Civil Aircraft and Systems~\cite{SAE:ARP4754A}, provides guidance on applying development assurance at each hierarchical level throughout the development life cycle of highly-integrated/complex aircraft systems. It has been recognized by the Federal Aviation Administration (FAA) as an acceptable method to establish the assurance process. The safety assessment process is a starting point at each hierarchical level of the development life cycle and is tightly coupled with the system development and verification processes. It is used to show compliance with certification requirements and for meeting a company's internal safety standards. 
+
+\begin{figure}[!htb]
+        \center{\includegraphics[width=0.85\textwidth] {images/v2.png}}
+        \caption{\label{fig:v2} The V Model in Safety Assessment}
+\end{figure}
+
+The safety assessment shown in Figure~\ref{fig:v2} integrates each phase of the V model with analyses specific to system hazards and their severity. It also shows how these hazards should be addressed within the design phase. The safety assessment proess is defined in ARP4754A by the following phases:
+
+\begin{description}
+\item[Functional Hazard Assessment (FHA)] examines the functions of the system to identify potential functional failures and classifies the potential hazards associated with them. This includes identification of failure conditions, identifying the effects of those failures, classification of each failure condition, and assignment to safety objectives.
+
+\item[Common Cause Analysis (CCA)] verifies and establishes physical and functional separation, isolation, and independence requirements between subsystems and verifies that these requirements have been met.
+
+\item[Preliminary Aircraft Safety Assessment (PASA)] establishes aircraft safety requirements and provide a preliminary indication that the aircraft can meet those safety requirements.
+
+\item[Preliminary System Safety Assessment (PSSA)] examines the proposed architecture(s) to determine how failures could cause the failure conditions determined by the FHA. The objective is to complete the safety requirements of an aircraft or system and show that the proposed system architecture satisfies the safety requirements. The PSSA is an iterative process that is performed at multiple stages of system development. 
+
+\item[Fault Tree Analysis (FTA)] is performed to find combinations of faults that lead to the violation of a safety requirement. The fault tree itself shows the logical relation between the sets of faults and the violation of a safety requirement.
+
+\item[Common Mode Analysis (CMA)] analyzes designs and implementations for elements that may defeat the redundancy
+or independence of functions within the design, i.e. if elements are shown as independent in FTA, make sure they are truly independent in the system under consideration.
+
+\item[Failure Modes and Effect Analysis (FMEA)] aims at finding the causality relationship between sets of faults, intermediate events, and undesired states in the system. Usually this is represented in tabular form and called an \textit{FMEA table}.
+
+\item[Aircraft Safety Assessment (ASA)/System Safety Assessment (SSA)] verifies that the system (or aircraft), as implemented, meets the safety requirements specified by the PSSA.
+
+\end{description}
+
+\begin{comment}
+\subsection{Proposed Model Based Safety Assessment Process Supported by Formal Methods}
+We propose a model-based safety assessment process backed by formal methods to help safety engineers with early detection of the design issues.  This process uses a single unified model to support both system design and safety analysis; this is shown in Figure~\ref{fig:SACycle1} and is based on the following steps:
+
+\begin{enumerate}
+	\item System engineers capture the critical information in a shared model:  high-level hardware and software architecture, nominal behavior at the component level, and safety requirements at the system level.
+	\item System engineers use a model checker to check that the safety requirements are satisfied by the nominal design model. 
+	\item Safety engineers augment the nominal model with the component failure modes. In addition, safety engineers specify the fault hypothesis for the analysis which corresponds to how many simultaneous faults the system must be able to tolerate.
+	\item Safety engineers use a model checker to analyze if the safety requirements and fault tolerance objectives are satisfied by the design in the presence of faults. If the design does not tolerate the specified number of faults (or probability threshold of fault occurrence), then the tool produces counterexamples or minimal sets of fault combinations that can cause the safety requirement to be violated.
+	\item The safety engineers examine the results to assess the validity of the fault combinations and the fault tolerance level of the system design. If a design change is warranted, the model will be updated with the latest design change and the above process is repeated.
+\end{enumerate}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=\textwidth]{images/SACycle.PNG}
+	\end{center}
+	\caption{Proposed Steps of the Safety Assessment Process}
+	\label{fig:SACycle1}
+\end{figure}
+
+These steps can be viewed as a cyclical process that involves both the system development engineers and the safety engineers of the system. Figure~\ref{fig:SACycle1} shows these steps within the context of the start and end of a project. 
+
+\danielle{Add a bit more information here - pull from the MBSE project for IRAD. Include reasons why this approach is better, how it will help safety analysts, how it benefits the field as a whole. Then lead into the next sections with a statement about model checking, verification, etc.}
+\end{comment}
