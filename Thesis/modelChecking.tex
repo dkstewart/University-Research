@@ -1,6 +1,127 @@
-\subsection{Temporal Logic and Model Checking}
+\subsection{Model Checking}
 \label{sec:modelchecking}
-The requirements have been specified (Section~\ref{sec:formalSpec}), the formal system model has been built (Section~\ref{sec:modeling}), and formal verification is desired (Section~\ref{sec:formalVer}). One of these approaches is called \emph{model checking}. Model checking is an automatic technique for verifying that concurrent systems meet their specified requirements~\cite{clarke2018model}.  
+Model checking is an automatic technique for verifying that concurrent system models meet their specified requirements~\cite{clarke2018model}.  Applying model checking to a system design consists of a few main tasks: \emph{modeling}, \emph{formal specification}, and \emph{formal verification}. The digital and mechanical components of a system can be described in abstract form (modeling), and the requirements of the system and of each component can be specified in formal logic (formal specification). The formal verification of such models take both the architecture and the requirement specification into account when analyzing the behavior and interactions of the components comprising the system. The following sections describe aspects of modeling that are pertinant to this research.
+
+\subsubsection{Modeling}
+\label{sec:modeling}
+\danielle{Add a bit about various modeling languages and what can be done with them.}
+
+\textbf{State Machines}
+A state machine (or state automaton) is a mathematical model of computation and consists of states, represented by nodes, and transitions between them, represented by directed edges. The change from one state to another is called a {\em transition}. State machines may be finite (can only be in a finite number of states at a time) or infinite. %The expressive capabilities of set notation and predicate logic allow finite strings to represent infinite states, which are much more expressive. For example, the infinite set of integers greater than zero is described succinctly as: $\{x \in \mathbb{Z} : x > 0\}$. 
+Model checkers often utilize the expressive power of state machines to verify specifications. One such example important to this thesis is JKind~\cite{2017arXiv171201222G}, an infinite state model checker. Verification of the program is based on {\em k-induction} (see Section~\ref{sec:induction}) and property directed reachability using a back-end SMT solver such as Z3~\cite{z3} or SMTInterpol~\cite{smtInterpol}. 
+
+To reason about state machines, transitions between the states must be defined and analyzed.
+
+\textbf{Transition Systems and Reachability}
+Transition systems are directed graphs with nodes representing reachable states and edges representing transitions between them. In this research we consider \emph{safety properties} over infinite-state machines. The states are vectors of variables that define the values of state variables. We assume there are a set of legal \emph{initial states} and the safety property is specified as a formula over state variables. A \emph{reachable state space} means that all states are reachable from the initial state. 
+
+Given a state space $U$, a transition system $(I,T)$ consists of an
+initial state predicate $I : U \to \bool$ and a transition step
+predicate $T : U \times U \to \bool$.
+We define the notion of
+reachability for $(I, T)$ as the smallest predicate $\reach : U \to
+\bool$ which satisfies the following formulas:
+\begin{gather*}
+  \forall u.~ I(u) \Rightarrow \reach(u) \\
+  \forall u, u'.~ \reach(u) \land T(u, u') \Rightarrow \reach(u')
+\end{gather*}
+A safety property $P : U \to \bool$ is a state predicate. A safety
+property $P$ holds on a transition system $(I, T)$ if it holds on all
+reachable states, i.e., $\forall u.~ \reach(u) \Rightarrow P(u)$,
+written as $\reach \Rightarrow P$ for short. When this is the case, we
+write $(I, T)\vdash P$.
+
+\textbf{Induction}
+For an arbitrary transition system $(I, T)$, computing reachability
+can be very expensive or even impossible. Thus, we need a more
+effective way of checking if a safety property $P$ is satisfied by the
+system. The key idea is to over-approximate reachability. If we can
+find an over-approximation that implies the property, then the
+property must hold. Otherwise, the approximation needs to be refined.
+
+A good first approximation for reachability is the property itself.
+That is, we can check if the following formulas hold:
+\begin{gather}
+  \forall s.~ I(s) \Rightarrow P(s)
+  \label{eq:1-ind-base} \\
+  \forall s, s'.~ P(s) \land T(s, s') \Rightarrow P(s')
+  \label{eq:1-ind-step}
+\end{gather}
+If both formulas hold then $P$ is {\em inductive} and holds over the
+system. If (\ref{eq:1-ind-base}) fails to hold, then $P$ is violated
+by an initial state of the system. If (\ref{eq:1-ind-step}) fails to
+hold, then $P$ is too much of an over-approximation and needs to be
+refined.
+
+The JKind model checker~\cite{2017arXiv171201222G} used in this research uses {\em
+  $k$-induction} which unrolls the property over $k$ steps of the
+transition system. For example, 1-induction consists of formulas
+(\ref{eq:1-ind-base}) and (\ref{eq:1-ind-step}) above, whereas
+2-induction consists of the following formulas:
+\begin{gather*}
+\forall s.~ I(s) \Rightarrow P(s) \\
+\forall s, s'.~ I(s) \land T(s, s') \Rightarrow P(s') \\
+\forall s, s', s''.~ P(s) \land T(s, s') \land P(s') \land T(s',
+  s'') \Rightarrow P(s'')
+\end{gather*}
+That is, there are two base step checks and one inductive step check.
+In general, for an arbitrary $k$, $k$-induction consists of $k$
+base step checks and one inductive step check as shown in
+Figure~\ref{fig:k-induction} (the universal quantifiers on $s_i$ have
+been elided for space). We say that a property is $k$-inductive if it
+satisfies the $k$-induction constraints for the given value of $k$.
+The hope is that the additional formulas in the antecedent of the
+inductive step make it provable.
+
+\begin{figure}
+\begin{gather*}
+I(s_0) \Rightarrow P(s_0) \\[-2pt]
+%
+\vdots \\[2pt]
+%
+I(s_0) \land T(s_0, s_1) \land \cdots \land T(s_{k-2}, s_{k-1})
+\Rightarrow P(s_{k-1}) \\[2pt]
+%
+P(s_0) \land T(s_0, s_1) \land \cdots \land P(s_{k-1}) \land
+T(s_{k-1}, s_k) \Rightarrow P(s_k)
+\end{gather*}
+\caption{$k$-induction formulas: $k$ base cases and one inductive
+  step}
+\label{fig:k-induction}
+\end{figure}
+
+In practice, inductive model checkers often use a combination of the
+above techniques. Thus, a typical conclusion is of the form ``$P$ with
+lemmas $L_1, \ldots, L_n$ is $k$-inductive''.
+
+
+\subsubsection{Formal Specification}
+\label{sec:formalSpec}
+The first step in verifying the correctness of a system is specifying the properties that the system should have~\cite{clarke2018model}. The formal specification process translates the informal system requirements into a mathematical logic to determine if the system design is correct~\cite{hinchey2012industrial}. This process guarantees an unambiguous description of the requirements, which is not possible when using an informal natural language. This formal definition of system requirements includes the system design and its expected behavior as well as the assumptions on the environment in which the system is expected to operate. A design or implementation can never be considered correct in isolation; it is only correct with respect to the specifications. The expected behavior, system design, and environmental assumptions change and are refined as the system goes through the various stages of development~\cite{lamsweerde2000formal}. 
+
+\subsubsection{Formal Verification} 
+\label{sec:formalVer}
+Once we have specified the important properties (formal specification), then a formal model for the system is created; this model captures the properties that must be considered to establish correctness~\cite{clarke2018model}; this process is referred in this dissertation as \emph{formal verification}. Formal verification is the use of proof methods to show that given the environmental assumptions stated in the formal specification, the formal design of the system meets the requirements. The problem can be reduced to that of property checking: given a program $P$ and a specific property, does the program satisfy the given property~\cite{fitting2012first}.  
+
+Model checking was introduced in the early 1980s and consists of exploring the states and transitions of a model~\cite{clarke1981design,queille1982specification}. By representing the system abstractly, a possibly infinite state space is reduced to a finite model.~\cite{d2008survey}. The proofs are generated over an abstract mathematical model of the system, such as finite state machines, labeled transition systems, or timed automata. It takes as input a model of a system and the properties written in formal logic, then explores the state space of the system to determine if the model violates the properties~\cite{clarke2018model,fraser2009testing}. In recent years, model checking takes advantage of abstraction techniques specific to a domain to consider multiple states or transitions in a single operation; this lessens computation time considerably~\cite{d2008survey}. Nevertheless, the biggest limiting factor of model checking is scalability and much of the recent research in this area attempts to address this problem~\cite{clarke2018model}.
+
+Deductive methods of verification consists of generating proof obligations from the specifications of the system and using these obligations in a theorem prover setting. Automated theorem provers have the main objective to show that some statement (conjecture) is a logical consequence of other statements (the axioms and hypotheses). The rules of inference are given as are the set of axioms and hypotheses~\cite{d2008survey,fitting2012first}. Deductive methods of verification include automated theorem provers (e.g., Coq~\cite{coq}, Isabelle~\cite{isabelle}) and satisfiability modulo theories (e.g., SMTInterpol~\cite{smtInterpol}, Z3~\cite{z3}, Yices~\cite{yices}). 
+
+To implement the strategies outlined above, a formal model of the system is required. There are various languages and strategies used to model complex systems. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Temporal logics are useful for specifying complex system requirementss, because they can describe the ordering of events in time without introducing time explicitly. 
 
