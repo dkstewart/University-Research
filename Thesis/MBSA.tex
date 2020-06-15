@@ -11,13 +11,9 @@ The process of creating system models suitable for use in safety assessment clos
 
 Model-based development focuses on electronic components of an embedded system. To perform safety analysis at a system level, in addition to electronic or digital components, one must also consider the environment and mechanical components. Both mechanical and electrical/digital components are necessary to model the system-level faults that are of interest in safety analysis. By combining the models containing digital components (i.e., software and hardware architectures) with models of the mechanical components (i.e., pumps, valves), we create a \emph{nominal model} of the system. The \emph{nominal system behavior} is a model of the system as it behaves in the absence of faults. 
 
-The nominal model can then be augmented with fault behaviors for the various electrical and mechanical components to create the \emph{fault model} of the system. 
+The nominal model can then be augmented with fault behaviors for the various electrical and mechanical components to create the \emph{fault model} of the system. A great advantage to this approach is that the system and safety engineers work off of a \emph{shared model} as shown in Figure~\ref{fig:proposed_safety_process} which leads to a tighter integration between the system and safety engineering processes. Industry practitioners have come to realize the benefits of using models in the safety assessment process, and a revision of the ARP4761 to include Model Based Safety Analysis (MBSA) is under way. 
 
-A great advantage to this approach is that the system and safety engineers work off of a \emph{shared model} as shown in Figure~\ref{fig:proposed_safety_process} which leads to a tighter integration between the system and safety engineering processes. 
-
-Industry practitioners have come to realize the benefits of using models in the safety assessment process, and a revision of the ARP4761 to include Model Based Safety Analysis (MBSA) is under way. 
-
-\textbf{Proposed Model Based Safety Assessment Process Supported by Formal Methods}
+\subsubsection{Proposed Model Based Safety Assessment Process Supported by Formal Methods}
 We propose a model-based safety assessment process backed by formal methods to help safety engineers with early detection of the design issues.  This process uses a single unified model to support both system design and safety analysis; this is shown in Figure~\ref{fig:SACycle1} and is based on the following steps:
 
 \begin{enumerate}
@@ -36,6 +32,4 @@ We propose a model-based safety assessment process backed by formal methods to h
 	\label{fig:SACycle1}
 \end{figure}
 
-These steps can be viewed as a cyclical process that involves both the system development engineers and the safety engineers of the system. Figure~\ref{fig:SACycle1} shows these steps within the context of the start and end of a project. 
-
-\danielle{Add a bit more information here - pull from the MBSE project for IRAD. Include reasons why this approach is better, how it will help safety analysts, how it benefits the field as a whole. Then lead into the next sections with a statement about model checking, verification, etc.}
+These steps can be viewed as a cyclical process that involves both the system development engineers and the safety engineers of the system. Figure~\ref{fig:SACycle1} shows these steps within the context of the start and end of a project. A model that supports both system design and safety analysis must describe both the system design information (e.g., system architecture and functional behavior) and safety-relevant information (e.g., failure modes, failures rates). It must do this in a way that keeps the two types of information distiguishable, yet allows them to interact with each other. The shared model in Figure~\ref{fig:SACycle1} is expected to be created and maintained in sync with the software and hardware design and implementation, and guided by the hazard and probability information from the preliminary system safety assessment. This safety information is then used to drive for design changes if necessary and continues iteratively until the system safety property is satisfied with the desired fault tolerance. 

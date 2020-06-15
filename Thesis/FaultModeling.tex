@@ -1,27 +1,27 @@
 \chapter{Fault Modeling and the Safety Annex}
 \label{chap:faultModeling}
-Early on in Section 2.2.1, a model-based safety assessment process was proposed. This process was backed by formal methods and incorporates a shared model into the development and safety analysis processes. A high level description of this cyclical process is shown in Figure~\ref{fig:SACycle} for your convenience. 
+Early on in Section~\ref{subsec:mbsa}, a model-based safety assessment process was proposed. This process was backed by formal methods and incorporates a shared model into the development and safety analysis processes. A high level description of this cyclical process is shown in Figure~\ref{fig:SACycle} for your convenience. 
 
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[width=\textwidth]{images/SACycle.PNG}
+		\includegraphics[width=\textwidth]{images/process4.PNG}
 	\end{center}
 	\caption{Proposed Steps of the Safety Assessment Process}
 	\label{fig:SACycle}
 \end{figure}
 
-There are certain capabilities that are required in order to fully perform all steps of this process. In beginning this research, we outlined what those pieces were and investigated related work to determine if a gap still existed. Based on the related work summary found in Section 2.7, it is clear that this work fills certain gaps that no previous research has addressed:
+There are certain capabilities that are required in order to fully perform all steps of this process. In beginning this research, we outlined what those pieces were and investigated related work to determine if a gap still existed. Based on the related work summary found in Section~\ref{sec:modelCheckingInSA}, it can be seen that this research attempts to fill certain gaps in the field of safety analysis. 
 
 \begin{description}[nosep]
 
-    \item[Shared model] using a language expressive enough to describe HW and SW components.
+    \item[Shared model] with a language expressive enough to describe HW and SW components.
     \item[Flexible error propagations] through both behavioral and explicit means.
     \item[Flexible fault modeling] with support for a/symmetric faults, in/dependent faults, etc.
     \item[Model checker] used to assess and verify the design with or without faults active.
     \item[Ability to generate artifacts] used in the safety assessment process.
 \end{description}
 
-In previous chapters, we discussed how a model checker can be used to generate minimal cut sets in a compositional fashion. In this chapter, the fault modeling process using the Safety Annex for the Architecture Analysis and Design Language (AADL)~\cite{AADL_Standard} is described. The Safety Annex was developed with these two broad ideas in mind: (1) how this supports the proposed safety assessment process, and (2) what missing pieces need to be addressed in order to support safety analysts. 
+In this chapter, the fault modeling process using the Safety Annex for the Architecture Analysis and Design Language (AADL)~\cite{AADL_Standard} is described. The Safety Annex was developed with these two broad ideas in mind: (1) how this supports the proposed safety assessment process, and (2) what missing pieces need to be addressed in order to provide support for a safety analyst. 
 
 \section{Fault, Failure, and Error Terminology}
 The usage of the terms error, failure, and fault are defined in ARP4754A and are described here for ease of understanding~\cite{SAE:ARP4754A}. An \textit{error} is a mistake made in implementation, design, or requirements. A \textit{fault} is the manifestation of an error and a \textit{failure} is an event that occurs when the delivered service of a system deviates from correct behavior. If a fault is activated under the right circumstances, that fault can lead to a failure. The terminology used in the Error Model Annex version 2 for AADL (EMV2)~\cite{EMV2}, differs slightly for an error: an error is a corrupted state caused by a fault. The error propagates through a system and can manifest as a failure. In this dissertation, we use the ARP4754A terminology with the added definition of \textit{error propagation} as used in EMV2. An error is a mistake made in design or code and an error propagation is the propagation of the corrupted state caused by an active fault. 
