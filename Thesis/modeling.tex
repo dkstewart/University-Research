@@ -30,3 +30,15 @@ $P(s_1) \land T(s_1, s_2) \land \cdots \land P(s_k) \land T(s_{k}, s_{k+1}) \lan
 \end{center}
 
 Ever since $k$-induction was introduced for the purpose of verification of state machines, various methods came about of either combining these two proof steps into one~\cite{donaldson2011software} or performing them in parallel~\cite{kahsai2011pkind}. \\
+
+\danielle{Putting this here for now. Probably cut later.}
+
+\subsubsection{Ordered Binary Decision Diagrams}
+A Binary Decision Diagram (BDD) is a data structure used to encode Boolean formulae.
+\begin{figure}[htbp]
+        \center{\includegraphics[width=0.8\textwidth] {images/bdd.png}}
+        \caption{\label{fig:bdd} Binary Decision Diagrams of the Formula $a \lor (b \land c)$}
+\end{figure}
+As shown in Figure~\ref{fig:bdd}, it is a rooted, directed, acyclic graph with internal decision nodes and two terminal nodes (\textit{true} and \textit{false}). Each of the decision nodes is labeled with a Boolean variable and has two child nodes, low child and high child. The edge from a node to its low child represents the assignment of \textit{false}, likewise the edge to the high child represents the assignment of \textit{true}. The BDD is called \textit{ordered} if different variables appear in the same order on all paths from the root. Intuitively, following a path from the root to the \textit{true} terminal node represents a valid assignment to the Boolean formula (invalid in the case of ending on the \textit{false} terminal node). 
+
+BDDs are reduced by the removal of isomorphic subgraphs. The BDD shown on the right of Figure~\ref{fig:bdd} is the reduced form of the BDD on the left.
