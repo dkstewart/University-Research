@@ -1,15 +1,7 @@
 \chapter{Preliminaries and Related Work}
 \label{chap:prelim}
-As the capabilities of technology grows, so does the complexity and capabilities of mechanical and electrical systems. Many of these systems are safety critical; the loss of correct functioning leads to loss of life, substantial material or environmental damage, or large monetary losses. The development of such complex systems requires a process with clearly defined design and implementation phases which are subdivided into several sub-processes and phases. Certain sets of analyses are required for each of the phases and when the analyses provide satisfactory outcomes, the process transitions into the next phase. 
+Safety analysis plays an important role in the development of critical systems; it is through the safety assessment process that safety engineers and certification authorities are convinced that the system under consideration satisfies its requirements. In this chapter, we describe the high level safety assessment process that is used in the avionics industry, and then we introduce model-based safety assessment as an approach to the safety process. Because the main contributions of this work rely heavily on formal methods of analysis, the background and key ideas of formal methods are presented. This is followed by a brief review of closely related work. 
 
-In general, each field relies on various interpretations of the development process. In the field of aerospace technologies, the Aerospace Recommended Practice (ARP) is what is commonly used. The Society of Automotive Engineers (SAE) is an association of engineers and professionals devoted to the standards that guide the development of transportation systems~\cite{SAE:ARP4761, SAE:ARP4754A}. 
-
-\begin{figure}[!htb]
-        \center{\includegraphics[width=0.85\textwidth] {images/v1.png}}
-        \caption{\label{fig:v1} The V Model in System Development}
-\end{figure}
-
-The development of safety critical systems is theoretically guided by the V model process as defined in ARP4754~\cite{SAE:ARP4754A}. The V model relates steps of the design phase with a post-implementation phase. It describes how the requirements are produced in the design phase and then how those requirements are verified against the implementation in the post-implementation phase. The left side of the V describes the requirements, architecture, and expected component behavior of the system (see Figure~\ref{fig:v1}). The right side of the V describes the evaluation of the system implementation in light of the requirements. 
 
 
 \input{Process}

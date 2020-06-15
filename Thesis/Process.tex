@@ -1,13 +1,24 @@
 \section{The Safety Assessment Process}
 \label{sec:process}
-ARP4754A, the Guidelines for Development of Civil Aircraft and Systems~\cite{SAE:ARP4754A}, provides guidance on applying development assurance at each hierarchical level throughout the development life cycle of highly-integrated/complex aircraft systems. It has been recognized by the Federal Aviation Administration (FAA) as an acceptable method to establish the assurance process. The safety assessment process is a starting point at each hierarchical level of the development life cycle and is tightly coupled with the system development and verification processes. It is used to show compliance with certification requirements and for meeting a company's internal safety standards. 
+As the capabilities of technology grows, so does the complexity and capabilities of mechanical and electrical systems. Many of these systems are safety critical; the loss of correct functioning leads to loss of life, substantial material or environmental damage, or large monetary losses~\cite{SAE}. The development of such complex systems can benefit from a process with clearly defined design and implementation phases, and can further be subdivided into several sub-processes and phases. Analyses can be performed for each of the phases and when the analyses provide satisfactory outcomes, the process transitions into the next phase. 
+
+In general, each field relies on various interpretations of the development process. In the field of aerospace technologies, the Aerospace Recommended Practice (ARP) documents are commonly referenced. The Society of Automotive Engineers (SAE) is an association of engineers and professionals devoted to the standards that guide the development of transportation systems~\cite{SAE:ARP4761, SAE:ARP4754A}. 
+
+\begin{figure}[!htb]
+        \center{\includegraphics[width=0.85\textwidth] {images/v1.png}}
+        \caption{\label{fig:v1} The V Model in System Development}
+\end{figure}
+
+The V model in software engineering, shown in Figure~\ref{fig:v1}, relates steps of the design phase with a post-implementation phase. It describes how the requirements are produced in the design phase and then how those requirements are verified against the implementation in the post-implementation phase. The left side of the V describes high-level design; the requirements of the system drive the design. The right side of the V describes the low-level implementation and testing of each module independently and as a whole. 
+
+ARP4754A, the Guidelines for Development of Civil Aircraft and Systems~\cite{SAE:ARP4754A}, provides guidance on applying development assurance at each hierarchical level throughout the development life cycle of highly-integrated/complex aircraft systems. It has been recognized by the Federal Aviation Administration (FAA) as an acceptable method to establish the safety assurance process. The safety assessment process is a starting point at each hierarchical level of the development life cycle and is tightly coupled with the system development and verification processes. It is used to show compliance with certification requirements and for meeting a company's internal safety standards~\cite{SAE:ARP4754A} . 
 
 \begin{figure}[!htb]
         \center{\includegraphics[width=0.85\textwidth] {images/v2.png}}
         \caption{\label{fig:v2} The V Model in Safety Assessment}
 \end{figure}
 
-The safety assessment shown in Figure~\ref{fig:v2} integrates each phase of the V model with analyses specific to system hazards and their severity. It also shows how these hazards should be addressed within the design phase. The safety assessment proess is defined in ARP4754A by the following phases:
+The safety assessment shown in Figure~\ref{fig:v2} integrates each phase of the V model with analyses specific to system hazards and their severity. It also shows how these hazards should be addressed within the design phase. \danielle{Should I put these definitions in an appendix, leave them, or cut them entirely? The paragraphs following the description has the high level ideas...} The safety assessment process is defined in ARP4754A by the following phases:
 
 \begin{description}
 \item[Functional Hazard Assessment (FHA)] examines the functions of the system to identify potential functional failures and classifies the potential hazards associated with them. This includes identification of failure conditions, identifying the effects of those failures, classification of each failure condition, and assignment to safety objectives.
@@ -28,6 +39,16 @@ or independence of functions within the design, i.e. if elements are shown as in
 \item[Aircraft Safety Assessment (ASA)/System Safety Assessment (SSA)] verifies that the system (or aircraft), as implemented, meets the safety requirements specified by the PSSA.
 
 \end{description}
+
+The safety assessment process includes safety requirements identification (left side of V) and verification (right side of V) supporting the aircraft development activities. The aircraft-level Functional Hazard Analysis (FHA) is conducted at the beginning of the development cycle and is followed by system level Functional Hazard Analysis for individual subsystems. The FHA is followed by the Preliminary System Safety Assessment (PSSA), which derives safety requirements for the subsystems, primarily using Fault Tree Analysis (see Section 2.1.1 for more information on fault trees). The PSSA process iterates throughout the design evolution as potential safety problems are identified and addressed through design changes. Once design and implementation are completed, the System Safety Assessment (SSA) process verifies whether the safety requirements are met in the implemented design. 
+
+Both the preliminary safety assessment and the system safety assessment relies on safety related artifacts that describe the behavior of the system in the presence of faults. These artifacts are used throughout the entire process of development and are ubiquitous in the field of safety analysis. The most important of these for this research are fault trees and minimal cut sets. 
+
+
+
+
+
+
 
 \begin{comment}
 \subsection{Proposed Model Based Safety Assessment Process Supported by Formal Methods}

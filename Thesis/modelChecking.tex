@@ -1,5 +1,9 @@
-\subsection{Model Checking}
+\subsection{Temporal Logic and Model Checking}
 \label{sec:modelchecking}
+The requirements have been specified (Section~\ref{sec:formalSpec}), the formal system model has been built (Section~\ref{sec:modeling}), and formal verification is desired (Section~\ref{sec:formalVer}). One of these approaches is called \emph{model checking}. Model checking is an automatic technique for verifying that concurrent systems meet their specified requirements~\cite{clarke2018model}.  
+
+Temporal logics are useful for specifying complex system requirementss, because they can describe the ordering of events in time without introducing time explicitly. 
+
 
 \textbf{Linear Temporal Logic}
 Temporal logic can be used to express properties of reactive systems~\cite{Bozzano:2010:DSA:1951720}. System properties are usually classified into two main categories: {\em safety} properties and {\em liveness} properties. Safety properties express the idea that ``nothing bad ever happens" where liveness properties state that ``something good will eventually happen." 
