@@ -1,6 +1,6 @@
 \section{Formalization}
 \label{sec:formalization}
-Given an initial state $I$ and a transition relation $T$ consisting of conjunctive constraints as defined in section~\ref{sec:prelim}. The nominal guarantees of the system, $G$, consist of conjunctive constraints $g \in G$. Given no faults (i.e., nominal system), each $g$ is one of the transition constraints $T_i$ where:
+Given an initial state $I$ and a transition relation $T$ consisting of conjunctive constraints as defined in section~\ref{sec:prelim}. The set of all nominal guarantees of the system $G$ consists of conjunctive constraints $g \in G$. Given no faults (i.e., nominal system), each $g$ is one of the transition constraints $T_i$ where:
 
 \begin{gather}
 T_n = g_1 \land  g_2 \land \cdots \land g_n
@@ -13,8 +13,7 @@ We consider an arbitrary layer of analysis of the architecture and assume the pr
 
 To consider the system under the presence of faults, consider a set $GF$ of modified guarantees in the presence of faults and let a mapping be defined from activation literals $\mathit{af}_i \in AF$ to these modified guarantees $\mathit{gf}_i \in GF$. 
 \begin{center}
-$\sigma : AF \rightarrow GF$ \\
-$\mathit{gf}_i = \sigma(\mathit{af}_i) =$ \textit{if} $\mathit{af}_i$ \textit{then} $f_i$ \textit{else} $g_i$\\
+$\mathit{gf}_i =$ \textit{if} $\mathit{af}_i$ \textit{then} $f_i$ \textit{else} $g_i$\\
 \label{eq:sigma}
 \end{center}
 
@@ -27,7 +26,7 @@ T = \mathit{gf}_1 \land \mathit{gf}_2 \land \cdots \land \mathit{gf}_n \land \ne
 
 \begin{theorem} If $(I,T_n) \vdash P$ for $T_n$ defined in equation~\ref{eq:Tn}, then $(I,T) \vdash P$ for $T$ defined in equation~\ref{eq:T}.
 \begin{proof}
-By application of successive evaluations of $\sigma$ on each constrained activation literal $\neg \mathit{af}_i$ and the weakening of the antecedent by introduction of the activation literals, the result is immediate.
+By the mapping of each constrained activation literal $\neg \mathit{af}_i$ to the associated guarantee $g_i$ and the weakening of the antecedent by introduction of the activation literals, the result is immediate.
 \end{proof}
 \end{theorem}
 
@@ -43,7 +42,7 @@ The MIVCs for this subsystem layer correspond to all pairwise combinations of co
 The MCSs for this subsystem layer happen to also correspond to all pairwise combinations of constrained activation literals. If any two sensor faults {\em do} occur, then two of the three sensor guarantees will be violated and the system does not respond to high temperature as required. This would result in the inability to prove $G_t$. (Note: it is not always the case that the MCSs are the same as the MIVCs -- in this case it is due to majority voting on three sensors.)
 
 \subsection{Transforming MCS into Minimal Cut Set}
-The MCSs contain the information needed to find minimal cut sets, but their elements consist of constrained activation literals and/or guarantees. The link between the activation literals, faults, and guarantees is defined through $\sigma$ mapping (equation~\ref{eq:sigma}); $\sigma$ must be applied to each element in an MCS to map back to the associated fault. Without loss of generality, let $MCS = \{\mathit{af}_1, \cdots, \mathit{af}_m\}$. Let $\sigma (MCS) = \{\sigma (\neg \mathit{af}_{1}), \cdots, \sigma (\mathit{af}_{m})\}$ be a mapping where MCS is a minimal correction set with regard to some property $G$ and $MCS  \subseteq AF$. 
+The MCSs contain the information needed to find minimal cut sets, but their elements consist of constrained activation literals and guarantees, whereas minimal cut sets contain faults. An activation literal $\mathit{af}_i$ represents a potentially active fault and $f_i$ is the manifestation of the fault in the transition system. For ease of notation, we define a mapping $\sigma : AF \rightarrow F$ where $\sigma (\mathit{af}_i) = f_i$. Let $MCS = \{\mathit{af}_1, \cdots, \mathit{af}_m\}$ and let $\sigma (MCS) = \{\sigma (\mathit{af}_{1}), \cdots, \sigma (\mathit{af}_{m})\} = \{f_1, \dots, f_m\}$ be a mapping where MCS is a minimal correction set with regard to some property $G$ and $MCS  \subseteq AF$. 
 
 \begin{lemma} $\sigma (MCS)$ is a cut set of $G$. 
 \begin{proof}
@@ -51,6 +50,8 @@ Assume towards contradiction that $\sigma (MCS)$ is not a cut set of $G$. Then $
 \label{lemma:cut}
 \end{proof}
 \end{lemma}
+
+Notice in lemma~\ref{lemma:cut} that the constraint system requires that a subset of the activation literals to be constrained; these faults \textit{do not} occur. This is a subtlety that allows the model checker to choose the assignment for each unconstrained activation literal for each step of the transition system that leads to failure, and may not involve entirely simultaneous failures.
 
 \begin{lemma} $\sigma(MCS)$ is minimal.
 \begin{proof}

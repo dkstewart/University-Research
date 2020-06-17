@@ -24,8 +24,6 @@ reachable states, i.e., $\forall u.~ \reach(u) \Rightarrow P(u)$,
 written as $\reach \Rightarrow P$ for short. When this is the case, we
 write $(I, T)\vdash P$.
 
-\danielle{Completely cut inductive and SAT descriptions - this paragraph is taken from FMCAD paper. The 2016 paper has more info in induction; I can extend this with that in mind if necessary. Just let me know.}
-
 The idea behind finding an IVC for a given property P~\cite{GhassabaniGW16} is based on inductive proof methods used in SMT-based model checking, such as $\mathit{k}$-induction and IC3/PDR~\cite{een2011efficient, kahsai2012incremental, cook1971complexity}. Generally, an IVC computation technique aims to determine, for any subset $S \subseteq T$, whether $\mathit{P}$ is provable by $\mathit{S}$. Then, a minimal subset that satisfies $\mathit{P}$ is seen as a minimal proof explanation called a minimal Inductive Validity Core. Ghassabani et al. demonstrate that the minimization process is as hard as model checking~\cite{Ghassabani2017EfficientGO}, so finding a minimal inductive validity core may not be possible for some model checking problems. 
 
 \begin{definition}
@@ -36,7 +34,6 @@ Inductive Validity Core (IVC)~\cite{GhassabaniGW16}: $S \subseteq T$ for $(I, T)
 Minimal Inductive Validity Core (MIVC)~\cite{Ghassabani2017EfficientGO}: $S \subseteq T$ is a minimal Inductive Validity Core, denoted by $MIVC(P,S)$, iff $IVC(P,S) \land \forall T_i \in S$. $(I, S \setminus \{T_i\}) \not \vdash P$.
 \end{definition}
 
-\danielle{Okay, it seems to me that I *have* to bridge the gap somehow between transition systems and IVCs and constraint systems with their MUSs/MCSs/hitting sets. Without some discussion on how this can occur, it will make little sense to a reader that isn't familiar. So, I placed this conversation in prelim and made them into definitions for later reference.}
 A $\mathit{k}$-induction model checker utilizes parallel SMT-solving engines at each induction step to glean information about the proof of a safety property. The transition formula is translated into clauses such that satisfiability is preserved~\cite{een2003temporal}. The translated system, consisting of the constrained formulas of the transition system and the negation of the property, is often called a \emph{constraint system}. The \aivcalg algorithm collects all {\em minimal unsatisfiable subsets} (MUSs) of a constraint system generated from a transition system at each induction step.~\cite{Ghassabani2017EfficientGO,bendik2018online}. 
 
 \begin{definition}

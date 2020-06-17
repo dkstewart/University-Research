@@ -133,11 +133,11 @@
 %\email{\{dstewar, hiemdahl, mwwhalen\}@umn.edu}}
 
 
-\author{Danielle Stewart\inst{1} \and Mats Heimdahl\inst{1} \and Michael Whalen\inst{1} \and 
+\author{Danielle Stewart\inst{1}  \and Michael Whalen\inst{1} \and Mats Heimdahl\inst{1} \and 
 Jing (Janet) Liu\inst{2} \and Darren Cofer\inst{2}}
 
 \institute{University of Minnesota, Minneapolis, MN, USA,\\
-\email{\{dkstewar, heimdahl, mwwhalen\}@umn.edu} \and Collins Aerospace - Trusted Systems, Cedar Rapids, IO, USA,\\
+\email{\{dkstewar, mwwhalen, heimdahl\}@umn.edu} \and Collins Aerospace - Trusted Systems, Cedar Rapids, IO, USA,\\
 \email{\{jing.liu, darren.cofer\}@collins.com}}
 
 
@@ -145,7 +145,7 @@ Jing (Janet) Liu\inst{2} \and Darren Cofer\inst{2}}
 \maketitle
 
 \begin{abstract}
-Risk and fault analysis are activities that help to ensure that critical systems operate in an expected way, even in the presence of component failures. As critical systems become more dependent on software components, analyses of error propagation through these software components becomes crucial. These analyses should be understandable to the analyst, scalable, and sound, in order to provide sufficient guarantees that the system is safe. A commonly used safety artifact is the set of all \emph{minimal cut sets}, minimal sets of faults that may lead to a violation of a safety property. In this research, we define how minimal cut sets can be derived from certain results of model checking, the Minimal Inductive Validity Cores (MIVCs).  Using a compositional model checking approach, we can incorporate both hardware and software failures and auto-generate safety artifacts.  This research describes a technique for determining the Minimal Cut Sets by the use of MIVCs and producing compositionally derived artifacts that encode pertinent system safety information.  We describe our technique, prove that it is sound, and demonstrate it in an implementation in the OSATE tool suite for AADL. 
+Risk and fault analysis are activities that help to ensure that critical systems operate in an expected way, even in the presence of component failures. As critical systems become more dependent on software components, analyses of error propagation through these software components becomes crucial. These analyses should be understandable to the analyst, scalable, and sound, in order to provide sufficient guarantees that the system is safe. A commonly used safety artifact is the set of all \emph{minimal cut sets}, minimal sets of faults that may lead to a violation of a safety property. In this research, we define how minimal cut sets can be derived from certain results of model checking, the Minimal Inductive Validity Cores (MIVCs).  Using a compositional model checking approach, we can incorporate both hardware and software failures and auto-generate safety artifacts.  This research describes a technique for determining the minimal cut sets by the use of MIVCs and producing compositionally derived artifacts that encode pertinent system safety information.  We describe our technique, prove that it is sound, and demonstrate it in an implementation in the OSATE tool suite for AADL. 
 \end{abstract}
 
 \input{introduction}
