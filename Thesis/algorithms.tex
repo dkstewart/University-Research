@@ -2,7 +2,7 @@
 \label{sec:algs}
 The implementation of this idea requires changing what information the \aivcalg algorithm uses to complete the proofs and generate MUSs. At each layer of analysis, the \aivcalg algorithm views the model as a constraint system consisting of the negation of the property in question (guarantees at lower levels, top-level properties at the highest level), and the supporting guarantees/assumptions from the direct child level. The information provided to this algorithm changes slightly when performing the minimal cut set algorithms.
 
-\subsubsection{Implementation}
+\subsubsection{Implementation in Lustre}
 In this approach, we use the all MIVCs algorithm and provide it a constraint system consisting of the negation of the top level safety property, the contracts of system components, as well as the faults in each layer constrained to false. It then collects the MUSs of this constraint system.
 
 \begin{figure}[htbp]

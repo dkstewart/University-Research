@@ -75,10 +75,8 @@ In monolithic analysis the layers of the model are flattened, which allows a dir
 \subsubsection{Verification in the Presence of Faults: Probabilistic Analysis} 
 Given a probabilistic fault hypothesis, this corresponds to performing analysis with the combinations of faults whose occurrence probability is less than the probability threshold. This is done by inserting assertions that allow those combinations in the Lustre code. If the model checker proves that the safety properties can be violated with any of those combinations, one of such combination will be shown in the counterexample. 
 
-Probabilistic analysis done in this way must utilize the monolithic AGREE option. For compositional probabilistic analysis, see Section~\ref{sec:prob_generate}.
+Probabilistic analysis done in this way must utilize the monolithic AGREE option. For compositional probabilistic analysis, see Chapter~\ref{chap:mcsGen} of this dissertation.
 
-To perform this analysis, it is assumed that the non-hardware faults occur independently and possible combinations of faults are computed and passed to the Lustre model to be checked by the model checker. As seen in Algorithm 1, the computation first removes all faults from consideration that are too unlikely given the probability threshold. The remaining faults are arranged in a priority queue $\mathcal{Q}$ from high to low. Assuming independence in the set of faults, we take a fault with highest probability from the queue (step 5) and attempt to combine the remainder of the faults in $\mathcal{R}$ (step 7). If this combination is lower than the threshold (step 8), then we do not take into consideration this set of faults and instead remove the tail of the remaining faults in $\mathcal{R}$. 
- 
 \begin{algorithm}[H]
 	% \KwData{this text}
 	% \KwResult{how to write algorithm with \LaTeX2e }
@@ -100,6 +98,9 @@ To perform this analysis, it is assumed that the non-hardware faults occur indep
 	\caption{Monolithic Probability Analysis}
 	\label{alg:prob_monolithic}
 \end{algorithm}
+
+To perform this analysis, it is assumed that the non-hardware faults occur independently and possible combinations of faults are computed and passed to the Lustre model to be checked by the model checker. As seen in Algorithm 1, the computation first removes all faults from consideration that are too unlikely given the probability threshold. The remaining faults are arranged in a priority queue $\mathcal{Q}$ from high to low. Assuming independence in the set of faults, we take a fault with highest probability from the queue (step 5) and attempt to combine the remainder of the faults in $\mathcal{R}$ (step 7). If this combination is lower than the threshold (step 8), then we do not take into consideration this set of faults and instead remove the tail of the remaining faults in $\mathcal{R}$. 
+ 
 In this calculation, we assume independence among the faults, but in the Safety Annex it is possible to define dependence between faults using a fault propagation statement. After fault combinations are computed using Algorithm~\ref{alg:prob_monolithic}, the triggered dependent HW faults are added to the combination as appropriate. The dependencies are implemented in the \textit{Verify in the Presence of Faults} options for analysis, but not yet implemented in the \textit{Generate Minimal Cut Sets} analysis options.
 
 \subsubsection{Generate Minimal Cut Sets: Max N Analysis}
@@ -110,60 +111,95 @@ Generate MinCutSet analysis was performed on the Wheel Brake System and results 
 
 \begin{center}
 \begin{table}[htbp]
-    \begin{tabular}{ | l | l | l | l | l | l | l | l |}
+    \begin{tabular}{ | l | l | l | l | l | l | l |}
     \hline
     \textbf{Property} & $\bm{c = 1}$ & $\bm{c = 2}$ & $\bm{c = 3}$ & $\bm{c = 4}$ 
-		& $\bm{c = 5}$ & $\bm{c = 6}$ & $\bm{c = 7+}$  \\ \hline \hline
-    R-0321 & 6 & 0 & 0 & 1& 144&7776 &- \\ \hline
-    R-0322 & 32 & 0 & 0 &0 &0 &0 &- \\ \hline
-    L-0322 & 32 & 0 & 0 &0 &0 &0 &- \\ \hline
-    0323 & 90 & 0 & 0 &0 &0 &0 &- \\ \hline
-    0324 & 8 & 3,401 & 6,800 &66,472 & 435,358&1,892,832 &- \\ \hline
-    0325-WX & 20 & 0 & 0 &0 &0 & 0&- \\ \hline
+		& $\bm{c = 5}$ & $\bm{c = 6}$   \\ \hline \hline
+    R-0321 & 6 & 0 & 0 & 1& 144&7776  \\ \hline
+    R-0322 & 32 & 0 & 0 &0 &0 &0 \\ \hline
+    L-0322 & 32 & 0 & 0 &0 &0 &0  \\ \hline
+    0323 & 90 & 0 & 0 &0 &0 &0 \\ \hline
+    0324 & 8 & 3,401 & 6,800 &66,472 & 435,358&1,892,832 \\ \hline
+    0325-WX & 20 & 0 & 0 &0 &0 & 0\\ \hline
     \end{tabular}
-    \caption{WBS MinCutSet Analysis Results for Cardinality $c$}
+    \caption{WBS Minimal Cut Set Results for Max N Hypothesis}
     \label{tab:wbs_maxN_results}
 \end{table}
 \end{center}
 
-Due to the increasing number of possible fault combinations at $N=6$, the computational time increases quickly. The WBS analysis was only run to $N=6$ for this reason. 
+As can be seen in Table~\ref{tab:wbs_maxN_results}, the number of cut sets increases proportional to the cardinality of the cut sets. Intuitively, this can be understood as simple combinations of faults that can violate the hazard; if more things go wrong in a system at the same time, the more likely the system will crash. 
+
+This example was run on a Intel Core i7 with a 2.80GHz CPU and 16 GB RAM. The analysis time results are given in Table~\ref{tab:analysisTimeWBS}. 
+
+\begin{center}
+\begin{table}[htbp]
+    \begin{tabular}{ | l | l | l | l | l | l | l |}
+    \hline
+    \textbf{Property} & $\bm{c = 1}$ & $\bm{c = 2}$ & $\bm{c = 3}$ & $\bm{c = 4}$ 
+		& $\bm{c = 5}$ & $\bm{c = 6}$   \\ \hline \hline
+    \textbf{Time of Analysis (min)} & 3.2 m & 9.1 m & 25.5 m & 43.9 m & 90.7 m & 210.0 m  \\ \hline
+    \end{tabular}
+    \caption{WBS Minimal Cut Set Time Results for Max N Hypothesis}
+    \label{tab:analysisTimeWBS}
+\end{table}
+\end{center}
+
+Notice that the computation time includes the nominal model analysis through AGREE, the IVC computation time through JKind, and the minimal cut set generation time through the safety annex {\em for all properties} being verified in parallel. The time from cardinality $c = 4$ onward is noticeably increased as the number of cut sets increases exponentially -- likely due to the 8 wheel architecture. 
+
+In practice, it is not likely that an analyst will manually sift through a million or more cut sets, but rather will filter out the combinations that are sufficiently unlikely to occur. A probabilistic approach would be warranted in these situations. 
 
 \subsubsection{Generate Minimal Cut Sets: Probabilistic Analysis}
 \label{sec:prob_generate}
 Both probabilistic analysis and max N analysis use the same minimal cut set generation algorithm, except that in probabilistic analysis, the minimal cut sets are pruned to include only those fault combinations whose probability of simultaneous occurrence exceed the given threshold in the probability hypothesis. Note that with probablistic hypothesis, \textit{Verify in the Presence of Faults} is performed using only monolithic analysis, but generating minimal cut sets is performed using compositional analysis.
 
-
 The probabilistic analysis for the WBS was given a top level threshold of $1.0 \times 10^{-9}$ as stated in AIR6110. The faults associated with various components were all given probability of occurrence compatible with the discussion in this same document. 
+
+\begin{center}
+\begin{table}[htbp]
+    \begin{tabular}{ | l | l | l | l | l | l | l | }
+    \hline
+    \textbf{Property} & $\bm{c = 1}$ & $\bm{c = 2}$ & $\bm{c = 3}$ & $\bm{c = 4}$ 
+		& $\bm{c = 5}$ & $\bm{c = 6}$   \\ \hline \hline
+    R-0321 & 0 & 0 & 0 & 0 & 0 & 0  \\ \hline
+    R-0322 & 32 & 0 & 0 &0 &0 &0  \\ \hline
+    L-0322 & 32 & 0 & 0 & 0 & 0 & 0   \\ \hline
+    0323 & 90 & 0 & 0 & 0 & 0 & 0   \\ \hline
+    0324 & 0 & 1 & 0 & 0 & 0 & 0  \\ \hline
+    0325-WX & 20 & 0 & 0 &0 &0 & 0   \\ \hline
+    \end{tabular}
+    \caption{WBS Minimal Cut Set Results for Probabilistic Hypothesis}
+    \label{tab:wbs_prob_results}
+\end{table}
+\end{center}
 
 As shown in Table~\ref{tab:wbs_prob_results}, the number of allowable combinations drops considerably when given probabilistic threshold as compared to just fault combinations of certain cardinalities. For example, one contract (inadvertent wheel braking of all wheels) had over a million minimal cut sets produced when looking at it in terms of max N analysis, but after taking probabilities into account, it is seen that only one combination of faults can violate this property. (For the full text of the properties, see Table~\ref{tab:safetyProperties}.)
 
 \begin{center}
 \begin{table}[htbp]
-    \begin{tabular}{ | l | l | l | l | l | l | l | l | l |}
+    \begin{tabular}{ | l | l | l | l | l | l | l | }
     \hline
-    \textbf{Property} & $\bm{c = 1}$ & $\bm{c = 2}$ & $\bm{c = 3}$ & $\bm{c = 4}$ 
-		& $\bm{c = 5}$ & $\bm{c = 6}$ & $\bm{c = 7}$ & $\bm{c = 8}$  \\ \hline \hline
-    R-0321 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-    R-0322 & 32 & 0 & 0 &0 &0 &0 &0& 0  \\ \hline
-    L-0322 & 32 & 0 & 0 & 0 & 0 & 0 & 0 & 0  \\ \hline
-    0323 & 90 & 0 & 0 & 0 & 0 & 0 & 0 & 0  \\ \hline
-    0324 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0  \\ \hline
-    0325-WX & 20 & 0 & 0 &0 &0 & 0 & 0 & 0  \\ \hline
+    \textbf{Property} & $\bm{c = 1}$ & $\bm{c = 2}$ & $\bm{c = 3}$ & $\bm{c = 4}$ & $\bm{c = 5}$ & $\bm{c = 6}$   \\ \hline \hline
+    R-0321 ($5.0 \times 10^{-7}$) & 0 & 0 & 0 & 0 & 0 & 0  \\ \hline
+    R-0322 ($5.0 \times 10^{-7}$)  & 32 & 0 & 0 &0 &0 &0  \\ \hline
+    L-0322 ($5.0 \times 10^{-7}$)  & 32 & 0 & 0 & 0 & 0 & 0   \\ \hline
+    0323 ($1.0 \times 10^{-9}$)  & 90 & 0 & 0 & 0 & 0 & 0   \\ \hline
+    0324 ($1.0 \times 10^{-9}$) & 0 & 1 & 0 & 0 & 0 & 0  \\ \hline
+    0325-WX ($1.0 \times 10^{-9}$) & 20 & 0 & 0 &0 &0 & 0   \\ \hline
     \end{tabular}
-    \caption{WBS MinCutSet Results for Probabilistic Analysis}
-    \label{tab:wbs_prob_results}
+    \caption{WBS Minimal Cut Set Time for Probabilistic Hypothesis}
+    \label{tab:analysisTimeWBSProb}
 \end{table}
 \end{center}
 
-\subsubsection{Results from Generate Minimal Cut Sets}
-Results from Generate Minimal Cut Sets analysis can be represented in one of the following forms.
+\subsubsection{Display Results from Generate Minimal Cut Sets}
+Results from Generate Minimal Cut Sets analysis can be represented in one of the following forms. 
 \begin{enumerate}
 \item The minimal cut sets can be presented in text form with the total number per property, cardinality of each, and description strings showing the property and fault information. A sample of this output is shown in Figure~\ref{fig:detailedMCS}. 
 \begin{figure}[htbp]
 	\hspace*{-2cm}
 	\vspace{-0.1in} 
 	\begin{center}
-		\includegraphics[scale=0.7]{images/detailedMCS.png}
+		\includegraphics[scale=0.7]{images/wbsMCSDesc.png}
 	\caption{Detailed Output of MinCutSets}
 		\label{fig:detailedMCS}
 	\end{center}
@@ -174,35 +210,12 @@ Results from Generate Minimal Cut Sets analysis can be represented in one of the
 	\hspace*{-2cm}
 	\vspace{-0.1in} 
 	\begin{center}
-		\includegraphics[scale=0.7]{images/TallyMCS.png}
+		\includegraphics[scale=0.7]{images/wbsMCSTally.png}
 	\caption{Tally Output of MinCutSets}
 		\label{fig:tallyMCS}
 	\end{center}
 \end{figure}
 
-\item The tool can also generate fault tree and minimal cut set information formatted as input to the SOTERIA tool~\cite{manolios2019model} to produce hierarchical fault trees that are consistent with the system architecture/component verification layers, or flat fault trees consist of minimal cut sets only, both in graphical form. A sample graphical fault tree output from the SOTERIA tool is shown in Figure~\ref{fig:soteriaFT}. The SOTERIA tool is also able to compute the probabilities for the top level event from a given fault tree. However, based on experience with the WBS example, our tool was a more scalable solution as it produces minimal cut sets for more complex systems, also in shorter amount of time. The text format of the minimal cut sets seemed anectodally easier to read than the graphical format for larger systems.  
-\begin{comment}
-\begin{figure}[htbp]
-	\hspace*{-2cm}
-	\vspace{-0.1in} 
-	\begin{center}
-		\includegraphics[scale=0.5]{images/soteriaMCS.png}
-	\caption{SOTERIA Output of MinCutSets}
-		\label{fig:soteriaMCS}
-	\end{center}
-\end{figure}
-\end{comment}
-
-\begin{figure}[htbp]
-	%\hspace*{-2cm}
-	\vspace{-0.1in} 
-	\begin{center}
-		\includegraphics[scale=0.2]{images/Soteria_FT.png}
-		\caption{Example SOTERIA Fault Tree}
-		\label{fig:soteriaFT}
-	\end{center}
-%\vspace{-0.5in} 
-\end{figure}
 \end{enumerate}
 
 \subsubsection{Use of Analysis Results to Drive Design Change}
