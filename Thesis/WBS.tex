@@ -66,21 +66,21 @@ There are two main options for fault model analysis using the Safety Annex. The 
 
 We outline here the results of the fault analysis for the WBS. 
 
-\subsubsection{Verification in the Presence of Faults: Max $n$ Analysis}
+\subsubsection{Verification in the Presence of Faults: Max \textit{n} Analysis}
 Using a max number of faults for the hypothesis, the user can constrain the number of simultaneously active faults in the model. The faults are added to the AGREE model for the verification. Given the constraint on the number of possible simultaneously active faults, the model checker attempts to prove the top level properties given these constraints. If this cannot be done, the counterexample provided will show which of the faults ($n$ or less) are active and which contracts are violated. More detail on verification of fault models can be found in Section~\ref{sec:analysisResults}. 
 
 The WBS was verified in the presence of faults given a \texttt{max 1 fault} hypothesis using compositional analysis. The time for complete model analysis was approximately 9 minutes, but a counterexample to top level properties took only around 20 seconds. (Recall that when using compositional verification in the presence of faults, that hypothesis applies to each layer separately -- the results are not rolled up as in the compositional generation of minimal cut sets. The counterexample given in this analysis pertains only to faults and contracts \textit{in a given layer}.) 
 
-The verification in the presence of faults with \texttt{max 1 fault} hypothesis statement  provided a counterexample to the property {\em }. \danielle{finish me}
+The verification in the presence of faults with \texttt{max 1 fault} hypothesis statement provided a counterexample to the property {\em S18-WBS-0325: never inadvertent braking of wheel i}, for $i = 1, \dots 8$. This property is given in Figure~\ref{fig:inadvertent_braking}. The intuition behind the failure is that the pedal was not pressed, the sensor stated that it was pressed, braking was commanded through the digital components, and brake pressure was supplied at the wheel. This sensor fault was a single point of failure with regard to all of the inadvertent braking properties. Later in this section we look at the sensor on the pedal position in closer detail from the lens of architectural design changes led by the analysis results. 
 
 \subsubsection{Verification in the Presence of Faults: Probabilistic Analysis} 
 Given a probabilistic fault hypothesis, this corresponds to performing analysis with the combinations of faults whose occurrence probability is less than the probability threshold. This is done by inserting assertions that allow those combinations in the Lustre code. If the model checker proves that the safety properties can be violated with any of those combinations, one of such combination will be shown in the counterexample. 
 
 Probabilistic analysis done in this way must utilize the monolithic AGREE option. For compositional probabilistic analysis, see Chapter~\ref{chap:mcsGen} of this dissertation and for more details on the probabilistic hypothesis algorithm and analysis results, see Section~\ref{sec:analysisResults}. 
 
-When using the \texttt{max 1 fault} hypothesis statement on the WBS, we found that the sensor was a single point of failure for multiple properties. The probability of this particular sensor failing is given in AIR6110~\cite{tab:safetyProperties} as $1.0 \times 10^{-2}$. The probabilistic hypothesis was set according to the thresholds given per property (see Table~\ref{tab:safetyProperties}) and the analysis was run monolithically on the WBS model. The total time to run verification in the presence of faults using a probabilistic hypothesis with monolithic analysis was approximately 5 minutes. 
+When using the \texttt{max 1 fault} hypothesis statement on the WBS, we found that the sensor was a single point of failure for multiple properties. The probability of this particular sensor failing is given in AIR6110~\cite{AIR6110} as $1.0 \times 10^{-2}$. The probabilistic hypothesis was set according to the thresholds given per property (see Table~\ref{tab:safetyProperties}) and the analysis was run monolithically on the WBS model. The total time to run verification in the presence of faults using a probabilistic hypothesis with monolithic analysis was approximately 5 minutes. 
 
-\danielle{Finish me.}
+\danielle{Add short discussion on results from this analysis.}
 
 \subsubsection{Generate Minimal Cut Sets: Max \textit{n} Analysis}
 \label{sec:maxN_generate}
@@ -168,7 +168,7 @@ As shown in Table~\ref{tab:wbs_prob_results}, the number of allowable combinatio
 \end{table}
 \end{center}
 
-\danielle{Finish entering time results for prob analysis and write discussion about the timing.}
+\danielle{Still need to re-run prob analysis and collect timing results. Cannot find my last run data. :( Will enter times and add a short discussion on these along with a comparison discussion with the max n cardinality timing results.}
 
 \subsubsection{Display Results from Generate Minimal Cut Sets}
 Results from Generate Minimal Cut Sets analysis can be represented in one of the following forms. 
@@ -198,7 +198,10 @@ Results from Generate Minimal Cut Sets analysis can be represented in one of the
 \end{enumerate}
 
 \subsubsection{Use of Analysis Results to Drive Design Change}
-We use a single top level requirement of the WBS: S18-WBS-0323 (Never inadvertent braking with all wheels locked) to illustrate how Safety Annex can be used to detect design flaws and how faults can affect the behavior of the system. 
+\label{sec:designChange}
+We use a single top level requirement of the WBS: {\em S18-WBS-0323: Never inadvertent braking with all wheels locked} to illustrate how Safety Annex can be used to detect design flaws and how faults can affect the behavior of the system. 
+
+Upon running max $n$ compositional fault analysis with $n = 1$, a pedal sensor fault was shown to be a single point of failure for the inadvertent braking properties. 
 \begin{figure}[htbp]
 	%\vspace{-0.2in}
 	\begin{center}
@@ -209,7 +212,7 @@ We use a single top level requirement of the WBS: S18-WBS-0323 (Never inadverten
 	\label{fig:counterexample}
 	%\vspace{-0.2in}
 \end{figure} 
-Upon running max $n$ compositional fault analysis with $n = 1$, a pedal sensor fault was shown to be a single point of failure for the inadvertent braking property. A counterexample is shown in Figure \ref{fig:counterexample} showing the active fault on the pedal sensor. Depending on the goals of the system, the architecture currently modeled, and the mitigation strategies that are desired, various strategies are possible to mitigate the problem.
+A counterexample is shown in Figure \ref{fig:counterexample} showing the active fault on the pedal sensor. Depending on the goals of the system, the architecture currently modeled, and the mitigation strategies that are desired, various strategies are possible to mitigate the problem.
 
 \begin{itemize}
 \item Possible mitigation strategy 1: Monitor system can be added for the sensor: A monitor sub-component can be modeled in which it accesses the mechanical pedal as well as the signal from the sensor. If the monitor finds discrepancies between these values, it can send an indication of invalid sensor value to the top level of the system. In terms of the modeling, this would require a change to the behavioral contracts which use the sensor value. This validity would be taken into account through the means of $valid \land pedal\_sensor\_value$. 
