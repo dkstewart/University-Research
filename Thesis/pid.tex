@@ -2,7 +2,7 @@
 \label{sec:pid}
 The illustration of asymmetric fault implementation can be seen through a simple example where 4 nodes report to each other their own process ID (PID). Each node has a 1-3 connection and thus each node is a candidate for an asymmetric fault. Given this architecture, a top level contract of the system is simply that all nodes report and see the correct PID of all other nodes. Naturally in the absence of faults, this holds. But when one asymmetric fault is introduced on any of the nodes, this contract cannot be verified. What is desired is a protocol in which all nodes agree on a value (correct or arbitrary) for all PIDs. 
 
-\subsection{The Agreement Protocol Implementation in AGREE}
+\subsection{The Agreement Protocol Behavioral Implementation}
 In order to mitigate this problem, special attention must be given to the behavioral model. Using the strategies outlined in previous research~\cite{bracha1987asynchronous,Driscoll-Byzantine-Fault}, the agreement protocol is specified in AGREE to create a model resilient to one active Byzantine fault. 
 
 The objective of the agreement protocol is for all correct (non-failed) nodes to eventually reach agreement on the PID values of the other nodes. There are $n$ nodes, possibly $f$ failed nodes. The protocol requires $n > 3f$ nodes to handle a single fault. The point is to achieve distributed agreement and coordinated decisions.
@@ -66,7 +66,7 @@ These requirements are encoded in AGREE through the use of the following contrac
 
 
 \textbf{Referencing Fault Activation Status}
-To fully implement the agreement protocol, it must be possible to describe whether or not a subcomponent is failed; this is performed through the use of a \textit{fault activation statement}. The user first defines \textit{eq} variables in AGREE that will correspond to specific faults in components. Each of the \textit{eq} variables declared in AGREE (i.e., \textit{n1\_failed, n2\_failed, n3\_failed, n4\_failed}) is linked to the fault activation status of the \textit{Asym\_Fail\_Any\_PID\_To\_Any\_Value} fault defined in a node subcomponent instance of the %top level 
+To fully implement the agreement protocol, it must be possible to describe whether or not a component has failed; this is performed through the use of a \textit{fault activation statement}. The user first defines \textit{eq} variables in AGREE that will correspond to specific faults in components. Each of the \textit{eq} variables declared in AGREE (i.e., \textit{n1\_failed, n2\_failed, n3\_failed, n4\_failed}) is linked to the fault activation status of the \textit{Asym\_Fail\_Any\_PID\_To\_Any\_Value} fault defined in a node subcomponent instance of the %top level 
 AADL system implementation (i.e., \textit{node1}, \textit{node2}, \textit{node3}, \textit{node4}). The fault activation statements for the PID example are shown in Figure~\ref{fig:PID_faultActivationStmt}.
 
 \begin{figure}[!htb]
@@ -75,7 +75,7 @@ AADL system implementation (i.e., \textit{node1}, \textit{node2}, \textit{node3}
 \end{figure}
 
 \subsection{Nominal and Fault Model Analysis}
-The nominal model verification shows that all properties are valid. Upon running verification of the fault model (\textit{Verify in the Presence of Faults}) with one active fault, the first four properties stating that all nodes agree on the correct value (Figure~\ref{fig:PIDContract1}) fail. This is expected since this property is specific to the case when no faults are present in the model. The remaining 4 top level properties (Figure~\ref{fig:PIDContract2}) state that all non-failed nodes reach agreement in two rounds of communication. These are verified valid when any one asymmetric fault is present. This shows that the agreement protocol was successful in eliminating a single point of asymmetric failure from the model. Furthermore, when changing the number of allowed faults to two, these properties do not hold. This is expected given the theoretical result that $3f+1$ nodes are required in order to be resilient to $f$ faults and that $f+1$ rounds of communication are needed for successful protocol implementation.
+The nominal model verification shows that all properties are valid. Upon running verification in the presence of faults with maximum one active fault, the first four properties stating that all nodes agree on the correct value (Figure~\ref{fig:PIDContract1}) fail. This is expected since this property is specific to the case when no faults are present in the model. The remaining 4 top level properties (Figure~\ref{fig:PIDContract2}) state that all non-failed nodes reach agreement in two rounds of communication. These are verified valid when any one asymmetric fault is present. This shows that the agreement protocol was successful in eliminating a single point of asymmetric failure from the model. Furthermore, when changing the number of allowed faults to two, these properties do not hold. This is expected given the theoretical result that $3f+1$ nodes are required in order to be resilient to $f$ faults and that $f+1$ rounds of communication are needed for successful protocol implementation.
 
 A summary of the results follows. 
 \begin{itemize}
@@ -83,4 +83,5 @@ A summary of the results follows.
 	\item Fault model with one active fault: The first four guarantees fail (when no fault is present, all nodes agree: shown in Figure~\ref{fig:PIDContract1}). This is expected if faults are present. The last four guarantees (all non-failed nodes agree) are verified as true with one active fault. 
 	\item Fault model with two active faults: All 8 guarantees fail. This is expected since in order to be resilient up to two active faults ($f=2$), we would need $3f + 1 = 7$ nodes and $f+1 = 3$ rounds of communication. 
 \end{itemize}
-This model is in Github and is called PIDByzantineAgreement~\cite{SAGithub}.
+
+This example illustrates the correct handling of such faults and how to utilize the capabilities of the safety annex to model asymmetric failures. 

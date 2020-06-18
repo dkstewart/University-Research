@@ -62,52 +62,31 @@ The WBS has a total of 13 safety properties at the top level that are supported 
 \end{center} 
 
 \subsection{Fault Model Analysis}
-There are two main options for fault model analysis using the Safety Annex. The first option injects faulty behavior allowed by faulty hypothesis into the AGREE model and returns this model to JKind for analysis. This allows for the activity of faults within the model and traceability information provides a way for users to view a counterexample to a violated contract in the presence of faults. The second option is used to generate minimal cut sets for the model. The model is annotated with fault activation that are constrained to false as well as intermediate level guarantees as model elements for consideration for the all Minimal Inductive Validity Cores (All-MIVCs)
-algorithm. The All-MIVCs traces the minimal set of model elements used to produce minimal cut sets. This subsection presents these options and discusses the analytical results obtained. 
+There are two main options for fault model analysis using the Safety Annex. The first option injects faults into the Lustre program based on the restrictions placed through the fault hypothesis. The Bounded Model Checker (BMC) engine used in JKind will find counterexamples to an invalid property. These counterexamples are returned to the user and include a trace of the system state that causes the violation. This includes any active faults that were part of that violation. The second option is used to generate minimal cut sets for the model. The fault activation literals and supporting guarantees are added to the \texttt{--\%IVC} elements as described in Section~\label{sec:formMCS}, the algorithms generating the cut sets are run (Section~\ref{sec:algs}), and the results are displayed to the user. 
 
-\subsubsection{Verification in the Presence of Faults: Max N Analysis}
-Using a max number of faults for the hypothesis, the user can constrain the number of simultaneously active faults in the model. The faults are added to the AGREE model for the verification. Given the constraint on the number of possible simultaneously active faults, the model checker attempts to prove the top level properties given these constraints. If this cannot be done, the counterexample provided will show which of the faults (N or less) are active and which contracts are violated. 
+We outline here the results of the fault analysis for the WBS. 
 
-The user can choose to perform either compositional or monolithic analysis using a max N fault hypothesis. In compositional analysis, the analysis proceeds in a top down fashion. To prove the top level properties, the properties in the layer directly beneath the top level are used to perform the proof. The analysis proceeds in this manner. Users constrain the maximum number of faults within each layer of the model by specifying the maximum fault hypothesis statement to that layer. If any lower level property failed due to activation of faults, the property verification at the higher level can no longer be trusted because the higher level properties were proved based on the assumption that the direct sub-level contracts are valid. This form of analysis is helpful to see weaknesses in a given layer of the system. 
+\subsubsection{Verification in the Presence of Faults: Max $n$ Analysis}
+Using a max number of faults for the hypothesis, the user can constrain the number of simultaneously active faults in the model. The faults are added to the AGREE model for the verification. Given the constraint on the number of possible simultaneously active faults, the model checker attempts to prove the top level properties given these constraints. If this cannot be done, the counterexample provided will show which of the faults ($n$ or less) are active and which contracts are violated. More detail on verification of fault models can be found in Section~\ref{sec:faultAnalysis}. 
 
-In monolithic analysis the layers of the model are flattened, which allows a direct correspondence between all faults in the model and their effects on the top level properties. As with compositional analysis, a counterexample shows these N or less active faults. 
+The WBS was verified in the presence of faults given a \texttt{max 1 fault} hypothesis using compositional analysis. The time for complete model analysis was approximately 9 minutes, but a counterexample to top level properties took only around 20 seconds. (Recall that when using compositional verification in the presence of faults, that hypothesis applies to each layer separately -- the results are not rolled up as in the compositional generation of minimal cut sets. The counterexample given in this analysis pertains only to faults and contracts \textit{in a given layer}.) 
+
+The verification in the presence of faults with \texttt{max 1 fault} hypothesis statement  provided a counterexample to the property {\em }. \danielle{finish me}
 
 \subsubsection{Verification in the Presence of Faults: Probabilistic Analysis} 
 Given a probabilistic fault hypothesis, this corresponds to performing analysis with the combinations of faults whose occurrence probability is less than the probability threshold. This is done by inserting assertions that allow those combinations in the Lustre code. If the model checker proves that the safety properties can be violated with any of those combinations, one of such combination will be shown in the counterexample. 
 
-Probabilistic analysis done in this way must utilize the monolithic AGREE option. For compositional probabilistic analysis, see Chapter~\ref{chap:mcsGen} of this dissertation.
+Probabilistic analysis done in this way must utilize the monolithic AGREE option. For compositional probabilistic analysis, see Chapter~\ref{chap:mcsGen} of this dissertation and for more details on the probabilistic hypothesis algorithm and analysis results, see Section~\ref{sec:faultAnalysis}. 
 
-\begin{algorithm}[H]
-	% \KwData{this text}
-	% \KwResult{how to write algorithm with \LaTeX2e }
-	$\mathcal{F} = \{\}$ : fault combinations above threshold \;
-	$\mathcal{Q}$ : faults, $q_i$, arranged with probability high to low \;
-	$\mathcal{R} = \mathcal{Q}$ , with $r \in \mathcal{R}$\;
-	\While{$\mathcal{Q} \neq \{\} \land \mathcal{R} \neq \{\}$ }{
-		$q =$ removeTopElement($\mathcal{Q}$) \;
-		\For{$i=0:|\mathcal{R}|$}{
-			$prob = q \times r_i$ \;
-			\eIf{prob $<$ threshold}{
-				removeTail($\mathcal{R}, j=i:|\mathcal{R}|$)\;
-			}{
-				add($\{q, r_i\}, \mathcal{Q}$)\;
-				add($\{q, r_i\}, \mathcal{F}$)\;
-			} % end if else
-		} % end for
-	} % end while
-	\caption{Monolithic Probability Analysis}
-	\label{alg:prob_monolithic}
-\end{algorithm}
+When using the \texttt{max 1 fault} hypothesis statement on the WBS, we found that the sensor was a single point of failure for multiple properties. The probability of this particular sensor failing is given in AIR6110~\cite{} as XX. The probabilistic hypothesis was set according to the thresholds given per property (see Table~\ref{}) and the analysis was run monolithically on the WBS model. The total time to run verification in the presence of faults using a probabilistic hypothesis with monolithic analysis was approximately 5 minutes. 
 
-To perform this analysis, it is assumed that the non-hardware faults occur independently and possible combinations of faults are computed and passed to the Lustre model to be checked by the model checker. As seen in Algorithm 1, the computation first removes all faults from consideration that are too unlikely given the probability threshold. The remaining faults are arranged in a priority queue $\mathcal{Q}$ from high to low. Assuming independence in the set of faults, we take a fault with highest probability from the queue (step 5) and attempt to combine the remainder of the faults in $\mathcal{R}$ (step 7). If this combination is lower than the threshold (step 8), then we do not take into consideration this set of faults and instead remove the tail of the remaining faults in $\mathcal{R}$. 
- 
-In this calculation, we assume independence among the faults, but in the Safety Annex it is possible to define dependence between faults using a fault propagation statement. After fault combinations are computed using Algorithm~\ref{alg:prob_monolithic}, the triggered dependent HW faults are added to the combination as appropriate. The dependencies are implemented in the \textit{Verify in the Presence of Faults} options for analysis, but not yet implemented in the \textit{Generate Minimal Cut Sets} analysis options.
+\danielle{Finish me.}
 
 \subsubsection{Generate Minimal Cut Sets: Max N Analysis}
 \label{sec:maxN_generate}
-As described in Chapter~\ref{chap:mcsGen}, the generation of MinCutSets uses the All-MIVCs algorithm to provide a full enumeration of all minimal set of model elements necessary for the proof of each top-level safety property in the model, and then transforms all MIVCs into all minimal cut sets. In Max N analysis, the minimal cut sets are pruned to include only those with at cardinality less or equal to the max N number specified in the fault hypothesis and displayed to the user.
+As described in Chapter~\ref{chap:mcsGen}, the generation of minimal cut sets uses the \aivcalg algorithm to provide a full enumeration of all minimal set of model elements necessary for the proof of each top-level safety property in the model, and then transforms all MIVCs into all minimal cut sets. In max $n$ analysis, the minimal cut sets are pruned to include only those with at cardinality less than or equal to the number $n$ specified in the fault hypothesis and displayed to the user.
 
-Generate MinCutSet analysis was performed on the Wheel Brake System and results are shown in Table~\ref{tab:wbs_maxN_results}. Notice in Table~\ref{tab:wbs_maxN_results}, the label across the top row refers to the cardinality (C) and the corresponding column shows how many cut sets are generated of that cardinality. When the analysis is run, the user specifies the value N. This gives cut sets of cardinality \textit{less than or equal to} N. (For the full text of the properties, see Table~\ref{tab:safetyProperties}.)
+Generate minimal cut set analysis was performed on the Wheel Brake System and results are shown in Table~\ref{tab:wbs_maxN_results}. Notice in Table~\ref{tab:wbs_maxN_results}, the label across the top row refers to the cardinality (C) and the corresponding column shows how many cut sets are generated of that cardinality. When the analysis is run, the user specifies the value $n$. This gives cut sets of cardinality \textit{less than or equal to} $n$. (For the full text of the properties, see Table~\ref{tab:safetyProperties}.)
 
 \begin{center}
 \begin{table}[htbp]
@@ -150,7 +129,7 @@ In practice, it is not likely that an analyst will manually sift through a milli
 
 \subsubsection{Generate Minimal Cut Sets: Probabilistic Analysis}
 \label{sec:prob_generate}
-Both probabilistic analysis and max N analysis use the same minimal cut set generation algorithm, except that in probabilistic analysis, the minimal cut sets are pruned to include only those fault combinations whose probability of simultaneous occurrence exceed the given threshold in the probability hypothesis. Note that with probablistic hypothesis, \textit{Verify in the Presence of Faults} is performed using only monolithic analysis, but generating minimal cut sets is performed using compositional analysis.
+Both probabilistic analysis and max $n$ analysis use the same underlying minimal cut set generation algorithm (see Section~\ref{sec:algs}), but in probabilistic analysis the minimal cut sets are pruned to include only those fault combinations whose probability of simultaneous occurrence exceed the given threshold in the hypothesis. 
 
 The probabilistic analysis for the WBS was given a top level threshold of $1.0 \times 10^{-9}$ as stated in AIR6110. The faults associated with various components were all given probability of occurrence compatible with the discussion in this same document. 
 
