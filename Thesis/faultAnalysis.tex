@@ -9,14 +9,38 @@ The guarantees in an AGREE contract contain an implicit universal quantifier. Th
 
 These counterexamples provide, in the nominal verification, insights into assumptions and guarantees for each component and how they may be strengthened to support correct behavior. In fault analysis, the counterexamples include active faults. Assuming that the nominal model (the model in the absence of faults) proves the specified properties, if verification in the presence of faults returns a counterexample, it is clear that an active fault caused the violation of the property. Insight into the state of the system when this occurs is invaluable to an analyst. This information can be used in the model-based safety assessment process to drive design changes. 
 
-\subsubsection{Verification in the Presence of Faults: Max N Analysis}
-Using a max number of faults for the hypothesis, the user can constrain the number of simultaneously active faults in the model. The faults are added to the AGREE model for the verification. Given the constraint on the number of possible simultaneously active faults, the model checker attempts to prove the top level properties given these constraints. If this cannot be done, a counterexample is provided that shows which of the faults are active and which contracts are violated. 
+\subsubsection{Verification in the Presence of Faults: Max \textit{n} Analysis}
+Using a max number of faults for the hypothesis, the user can constrain the number of simultaneously active faults in the model. The faults are added to the system subcomponents and a fault hypothesis statement is added to the component implementation. Given the constraint on the number of possible simultaneously active faults, the model checker attempts to prove the top level properties given these constraints. If this cannot be done, a counterexample is provided that shows which of the faults are active and which contracts are violated. We assume that the nominal model properties prove in the absence of faults.
 
 The user can choose to perform either compositional or monolithic analysis using a max $n$ fault hypothesis. In compositional analysis, the analysis proceeds in a top down fashion. To prove the top level properties, the properties in the layer directly beneath the top level are used to perform the proof. The analysis proceeds in this manner. Users constrain the maximum number of faults within each layer of the model by specifying the maximum fault hypothesis statement to that layer. If any lower level property failed due to activation of faults, the property verification at the higher level can no longer be trusted because the higher level properties were proved based on the assumption that the direct sub-level contracts are valid. This form of analysis is helpful to see weaknesses in a given layer of the system. 
 
 In monolithic analysis the layers of the model are flattened, which allows a direct correspondence between all faults in the model and their effects on the top level properties. As with compositional analysis, a counterexample shows these $n$ or less active faults. 
 
-\danielle{Provide examples using PWR}
+Returning to the PWR system example, we wish to see if the faults defined for the sensors contribute to a violation of the top level safety property (shut down occurs when and only when it should). The model has two distinct layers: top level with subsystems as subcomponents and leaf level with sensor subcomponents. If verification in the presence of faults is run compositionally with maximum 2 faults active, the results are as shown in Figure~\ref{fig:maxNPWRVerif}. 
+
+\begin{figure}[h!]
+	%\vspace{-0.1in}
+	%\begin{center}
+		\includegraphics[width=0.8\textwidth]{images/maxNPWRVerif.png}
+	%\end{center}
+	%\vspace{-0.1in}
+	\caption{PWR Verification with Maximum Two Faults Hypothesis}
+	\label{fig:maxNPWRVerif}
+\end{figure}
+
+The top level verification passes because faults are not defined at that level. The leaf level verification, however, does not pass; the property at the subsystem level is violated. Selecting to view the counterexample, we see that two active faults on two sensors will violate the subsystem property. The counterexample spreadsheet view is shown in Figure~\ref{fig:maxNPWRVerifCoex}. 
+
+\begin{figure}[h!]
+	%\vspace{-0.1in}
+	%\begin{center}
+		\includegraphics[width=0.6\textwidth]{images/maxNPWRVerifCoex.png}
+	%\end{center}
+	%\vspace{-0.1in}
+	\caption{PWR Counterexample with Maximum Two-Faults Hypothesis}
+	\label{fig:maxNPWRVerifCoex}
+\end{figure}
+
+A monolithic verification in the presence of faults will show that the top level safety property is violated; the subsystem guarantee directly supports the proof of the top level safety property. 
 
 \subsubsection{Verification in the Presence of Faults: Probabilistic Analysis} 
 Given a probabilistic fault hypothesis, this corresponds to performing analysis with the combinations of faults whose occurrence probability is less than the probability threshold. This is done by inserting assertions that allow those combinations in the Lustre code. If the model checker proves that the safety properties can be violated with any of those combinations, one of such combination will be shown in the counterexample. 
@@ -49,4 +73,32 @@ To perform this analysis, it is assumed that the non-hardware faults occur indep
  
 In this calculation, we assume independence among the faults, but in the Safety Annex it is possible to define dependence between faults using a fault propagation statement. After fault combinations are computed using Algorithm~\ref{alg:prob_monolithic}, the triggered dependent HW faults are added to the combination as appropriate. 
 
-\danielle{Provide examples using PWR}
+In the PWR system, each sensor can fail with probability $1.0 \times 10^{-5}$ and the probabilistic threshold for the system safety property is given as $1.0 \times 10^{-9}$. Running monolithic verification in the presence of faults shows that given the voting mechanism, no faults will violate the safety property. By lowering the probabilistic threshold to $1.0 \times 10^{-10}$, the safety property is violated with two active faults on any sensor subsystem as shown in Figure~\ref{fig:probPWRVerif}.
+
+\begin{figure}[h!]
+	%\vspace{-0.1in}
+	%\begin{center}
+		\includegraphics[width=0.8\textwidth]{images/probPWRVerif.png}
+	%\end{center}
+	%\vspace{-0.1in}
+	\caption{PWR Verification with Probabilistic Hypothesis}
+	\label{fig:probPWRVerif}
+\end{figure}
+
+Figure~\ref{fig:probPWRVerifCoex} shows a portion of the counterexample provided by the model checker for the probabilistic hypothesis of $1.0 \times 10^{-10}$. 
+
+\begin{figure}[h!]
+	%\vspace{-0.1in}
+	%\begin{center}
+		\includegraphics[width=0.6\textwidth]{images/probPWRVerifCoex.png}
+	%\end{center}
+	%\vspace{-0.1in}
+	\caption{PWR Counterexample with Probabilistic Hypothesis}
+	\label{fig:probPWRVerifCoex}
+\end{figure}
+
+The counterexample shows the active faults on the temperature subsystem: two faults are simultaneously active which violates the safety property. 
+
+A benefit of utilizing the capabilities of counterexample generation is to ability for an analyst to view the dynamic behavior of a complex system and be able to understand the signal flow between behaviorally connected components. This aids in the design process when using model-based engineering methods and can greatly assist in design restructuring changes that may need to occur. It can be easy to see through counterexamples when a system is not resilient to a single fault, or when a combination of faults are sufficiently likely to occur together. Using these analysis capabilities support the objective to provide formal feedback to a safety engineer during the analysis of a complex critical system.
+
+Up until this point, we have discussed modeling capabilities and counterexample generation using the safety annex for MBSA, but these counterexamples produce only a single path towards violation; in practice, safety analysts seek to find all minimal paths towards violation in terms of minimal cut sets. Given the analysis capabilities of a model checker in terms of proof cores -- the minimal set of model contracts required for a proof of the safety property -- we turn our attention towards leveraging this capability in terms of potentially active faults. 
