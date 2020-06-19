@@ -1,5 +1,6 @@
-\subsection{Contractual Refinement}
-The simplest restructuring that could be done on the model was to split any guarantees containing an $\land$ at the highest level of the binary Boolean statement and create additional guarantees from this split. For instance, if GUARANTEE0 = A and B, then split this into GUARANTEE1 = A, GUARANTEE2 = B. This provided an easy way to test that our assumption was correct regarding the types of minimal cut sets generated given various forms of contracts. Algorithm~\ref{alg:splitAnd} shows this process. 
+\subsection{Initial Contractual Refinement}
+\label{sec:granularityANDAlg}
+The simplest restructuring that could be done on the model was to split any guarantees containing an $\land$ at the highest level of the binary Boolean statement and create additional guarantees from this refinement. The analysis performed on the model treats all guarantees as a large conjunction. This enables one to automatically split guarantees with expressions containing at the top level a conjunctive operator into two separate expressions. For instance, if $g_0 = A \land B$, then split this into $g_1 = A$, and $g_2 = B$ and insert $g_1$ and $g_2$ into the model. This was an initial probing of a deeper issue and gave a preliminary look into our assumption regarding minimal cut set generation in a model similar to that described in Section~\ref{sec:granularityEx}. Algorithm~\ref{alg:splitAnd} shows this algorithm used in this investigation. 
 
 \begin{algorithm}[h]
 \SetKwFunction{FMain}{$splitOnAnd$}
@@ -21,14 +22,16 @@ The simplest restructuring that could be done on the model was to split any guar
 	\label{alg:splitAnd}
 \end{algorithm}
 
-The sensor encoded into Lustre originally has a single guarantee as shown in Figure~\ref{fig:lustreOneGuar} and the results of Algorithm~\ref{alg:splitAnd} can be seen in Figure~\ref{fig:lustreTwoGuar}. 
-
+The sensor described in Section~\ref{sec:granularityEx} is encoded into Lustre originally had a single guarantee as shown in Figure~\ref{fig:lustreOneGuar} that contained two subexpressions -- one of which was unrelated to the proof of the safety property.
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{images/lustreTwoGuar.PNG}
 \caption{Temp Sensor With Original Guarantee} \label{fig:lustreOneGuar}
 \end{center}
 \end{figure} 
+Given the property \texttt{((env\_temp $>$ 8) $=$ sensor\_high)}, in the first case, \texttt{GUARANTEE0} is an MIVC for the safety property. Since both the fault defined on the temperature indicator and the fault defined on the temperature reading output affect \texttt{GUARANTEE0}, the minimal cut sets contain both faults. 
+
+We then ran the model with Algorithm~\ref{alg:splitAnd}. The results of the algorithm on the Lustre encoding of the temperature sensor can be seen in Figure~\ref{fig:lustreTwoGuar}. 
 
 \begin{figure}[h!]
 \begin{center}
@@ -37,8 +40,9 @@ The sensor encoded into Lustre originally has a single guarantee as shown in Fig
 \end{center}
 \end{figure} 
 
-Given the property \texttt{((env\_temp $>$ 8) $=$ sensor\_high)}, in the first case, \texttt{GUARANTEE0} is the IVC. In the second case, only \texttt{GUARANTEE2} is the IVC for the property. The minimal cut sets produced reflected what we expected and show two faults in the cut set for Figure~\ref{fig:lustreOneGuar} and only the high temp indicator fault for the analysis in Figure~\ref{fig:lustreTwoGuar}. 
+ In the second case, only \texttt{GUARANTEE2} is the IVC for the property. The minimal cut sets produced reflected what we expected and show only the high temperature indicator fault for the analysis in Figure~\ref{fig:lustreTwoGuar}. 
 
-While this algorithm is efficient and quite simple, it only catches the low hanging fruit, so to speak. Due to the logical nature of how the Lustre model is analyzed, all guarantees are viewed as a conjunction; therefore, splitting guarantees into new statements only works on the $\land$ operator. This is sufficient for illustration and an initial test into the problem, but insufficient for full analysis of the issue. 
+While this algorithm is efficient and quite simple, it only catches the low hanging fruit, so to speak. Due to the logical nature of how the Lustre model is analyzed, all guarantees are viewed as a conjunction; therefore, splitting guarantees into new statements only works on the $\land$ operator. This is sufficient for illustration and an initial test into the problem, but cannot provide much decomposition in a general model. 
 
-\danielle{Do some timing results to compare IVC generation and fault analysis with unmodified versions of projects. Put in results section?}
+\subsection{Results of Initial Contractual Refinement}
+\label{sec:resultsAND}
