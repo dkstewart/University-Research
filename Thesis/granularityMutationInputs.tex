@@ -4,15 +4,54 @@ In the early stages of safety analysis on a complex critical system, it is benef
 
 As an example, we look once again at the sensor subsystem of a PWR as outlined in Chapter~\ref{chap:mcsGen}. Given a nominal system model containing the sensor subsystem and a single temperature sensor, we wish to see what model elements -- specifically guarantees -- are the \mustcov\  elements for the program. This tells the analyst that if these guarantees are violated, there are no paths to a proof of the property. 
 
-To this end, we modified the equation remover implemented by Todorov, et al.~\cite{NFM2020Todorov} in JKind in order to collect killed guarantees from the program in Lustre. The results from the modified equation remover shows the following guarantees that are critical to any proof (Figure~\ref{}). 
+To this end, we modified the equation remover implemented by Todorov, et al.~\cite{NFM2020Todorov} in JKind in order to collect killed guarantees from the program in Lustre. The analysis was run on a version of the sensor system with two subsystem guarantees: 
 
-After finding these results, we then defined a fault on the output governed by this guarantee and ran the minimal cut set generation on the fault model. As expected, this fault was in the minimal cut sets. While this example is sufficiently simple to illustrate the point, in complex models there can be multiple guarantees for a single component, many different components in a subsystem all of which are connected in various ways. It is obvious to anyone looking at the sensor subsystem model that this particular fault will violate the property. To this end, we turned our attention to a larger model: the Wheel Brake System as described in Section~\ref{chap:wbs}. At the time of this analysis, there were XX faults defined for XX components throughout the extended system model. The total number of contracts of the nominal model exceeded XXX. We ran this analysis to see if there were other faults that may have been overlooked during the development of the WBS model. 
+\begin{gather*}
+\mathit{(env\_temp > 800) = high\_temp\_indicator}\\
+\mathit{env\_temp = temp\_reading}
+\end{gather*}
 
-A guarantee on the XX component was presented in the mutation analysis: \danielle{FIGURE OF GUARANTEE AND DESCRIPTION}. 
+and one top level property:
+\begin{gather*}
+\mathit{(env\_temp > 800) = temp\_sensor\_high}\\
+\end{gather*}
 
-We defined a fault for the XX component as shown in Figure\danielle{make me}. Running minimal cut set generation with the additional constraint of one active fault, this fault is seen in the minimal cut sets; the violation of the property occurs when this fault is present. 
+It is easy to see that a single subsystem level guarantee is sufficient to prove the property. The results from the modified equation remover shows the following guarantee that is critical to any proof of the safety property (Figure~\ref{fig:guaranteesKilledSensor}). The location referred to in the figure corresponds with the Lustre program line and column number for user reference.
 
-Performing a kind of mutation analysis could be beneficial during the fault modeling process to catch things that may be missed during the fault definition process. The initial foray into mutation testing results show that this has potential for integration into the safety annex. It was also clear that a better representation was needed for large models. In the case of the WBS mutation analysis, over XX guarantees were given as candidates for faults -- many of which already had faults associated with them. By integrating this feature into the fault analysis, these guarantees could be pruned from the output and save the user from pouring through potentially hundreds of guarantees. 
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.8]{images/guaranteesKilledSensor.PNG}
+	\end{center}
+	%\vspace{-1.5em}
+	\caption{Temperature Subsystem Guarantee Killed by Equation Remover}
+	\label{fig:guaranteesKilledSensor}
+\end{figure}
+
+After finding these results, we then defined a fault on the output governed by this guarantee and ran the minimal cut set generation on the fault model. As expected, this fault was in the minimal cut sets. While this example is sufficiently simple to illustrate the point, in complex models there can be multiple guarantees for a single component, many different components in a subsystem all of which are connected in various ways. It is obvious to anyone looking at the sensor subsystem model that this particular fault will violate the property. To this end, we turned our attention to a larger model: the Wheel Brake System as described in Section~\ref{chap:wbs}. At the time of this analysis, there were 33 fault nodes and 141 fault instances defined for 30 component types and 169 component instances throughout the extended system model. The total number of supporting guarantees within the nominal model was 246. We ran this analysis to see if there were other faults that may have been overlooked during the development of the WBS model. 
+
+A guarantee on the hydraulic fuse component of the wheel brake subsystem was presented in a single layer mutation analysis as shown in Figure~\ref{fig:wheelBrakeGuaranteeKilled}. 
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.8]{images/wheelBrakeGuaranteesKilled.PNG}
+	\end{center}
+	%\vspace{-1.5em}
+	\caption{Hydraulic Fuse Guarantee Killed by Equation Remover}
+	\label{fig:wheelBrakeGuaranteeKilled}
+\end{figure}
+
+The guarantee presented governs the output of a hydraulic fuse attached to the wheel brake subsystem in the WBS. The guarantee states that the hydraulic pressure in is equal to the output. A stuck closed fault was defined on this fuse and minimal cut sets were generated for the WBS with cardinality restriction at one. Since this guarantee is a \mustcov\ element of the program, it should be the case that the fault is a single point of failure. The expected results are seen in the minimal cut sets as shown in Figure~\ref{fig:cutSetsWheelBrake}; the violation of the property occurs when this fault is present. 
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.7]{images/cutSetsWheelBrake.PNG}
+	\end{center}
+	%\vspace{-1.5em}
+	\caption{Hydraulic Fuse Fault in Minimal Cut Sets}
+	\label{fig:cutSetsWheelBrake}
+\end{figure}
+
+Performing a kind of mutation analysis could be beneficial during the fault modeling process to catch things that may be missed during the fault definition process. The initial foray into mutation testing results show that this has potential for integration into the safety annex. It was also clear that a better presentation of the results was needed for large models. In the case of the WBS mutation analysis, over 240 guarantees were given as candidates for faults -- many of which already had faults associated with them. By integrating this feature into the fault analysis, these guarantees could be pruned from the output and save the user from pouring through potentially hundreds of guarantees as well as improve mutation engine time by eliminating the fault-associated guarantees from the analysis. Likewise, in the safety annex it is possible to generate the Lustre program if desired, but the common user will not reference the location of a guarantee this way. The location feature would need to be integrated into the safety annex and provide a link to the guarantee within the component AADL file.
 
 \subsection{Node Inputs and Mutation Testing}
 The equation remover mutation also iterates through Lustre node inputs and performs the mutation one input at a time. The node inputs in the Lustre model correspond to the inputs and outputs of an AADL component as shown in Figure~\ref{fig:nodeInputsLustre}. 
