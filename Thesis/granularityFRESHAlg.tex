@@ -1,12 +1,77 @@
-\subsection{Granular Refinement}
+\subsection{Deeper Granular Refinement}
 \label{sec:granularityFRESHAlg}
-Model elements considered for the \aivcalg algorithm are explicitly defined in the Lustre code -- these we call \emph{IVC elements}; the generation of Lustre from an AADL/AGREE model provides guarantees and assumptions as IVC elements and when fault analysis is run using the safety annex, constrained faults are also added to this set. This can be seen in the safety analysis modified Lustre code in Figure~\ref{fig:lustreSensorsSafety} which is nominally the same as Figure~\ref{fig:lustreSensors}, but has faulty information added to outputs and IVC elements\footnote{For more information on safety modified Lustre programs, see Chapter XX, Section XX \danielle{ADD THIS TO IMPL}}. 
+%Model elements considered for the \aivcalg algorithm are explicitly defined in the Lustre code -- these we call \emph{IVC elements}; the generation of Lustre from an AADL/AGREE model provides guarantees and assumptions as IVC elements and when fault analysis is run using the safety annex, constrained faults are also added to this set. This can be seen in the safety analysis modified Lustre code in Figure~\ref{fig:lustreSensorsSafety} which is nominally the same as Figure~\ref{fig:lustreSensors}, but has faulty information added to outputs and IVC elements\footnote{For more information on safety modified Lustre programs, see Chapter XX, Section XX \danielle{ADD THIS TO IMPL}}. 
 
-\danielle{Add figure of lustre code. Highlight IVC elements.}
+%\danielle{Add figure of lustre code. Highlight IVC elements.}
 
-\danielle{Wording in this paragraph.} We explored granularity within the context of the Lustre language; this programming language provides a nice formalism for discussion because it is top-level conjunctive, equational, and \emph{referentially transparent}: the behavior or a Lustre program is defined by a system of equations, and any subexpression on the right side of an equation can be extracted and assigned to a fresh variable which is substituted into the original equation without changing the meaning of a program~\cite{}(69). In this context, we can define a \emph{granular refinement} as an extraction of a subexpression into a new equation assigning a new variable. 
+We explored granularity within the context of the Lustre language; this programming language provides a nice formalism for discussion because it is top-level conjunctive, equational, and \emph{referentially transparent}: the behavior or a Lustre program is defined by a system of equations, and any subexpression on the right side of an equation can be extracted and assigned to a fresh variable which is substituted into the original equation without changing the meaning of a program~\cite{}(69). In this context, we can define a \emph{granular refinement} as an extraction of a subexpression into a new equation assigning a new variable. 
 
 The maximal factorization of the model can be obtained by assigning each instance of a subexpression and each use of an input to its own variable. This results in a \emph{totally decomposed} Lustre model: (1) each computed (non-input) variable is used at most once in the right side of an equation, (2) each equation is either a single operator or a constant expression, and (3) each model input is directly assigned to one or more fresh variables and is not used elsewhere in the model~\cite{ghassabani_2018}.
 
-Ghassabani did a preliminary analysis on maximally factored models for IVC coverage and found that analysis performed ``significantly slower" for proofs and the \ivcmust algorithm. For our purposes in safety analysis, our concern is both the faults and the guarantees in the Lustre model; therefore, we are able to weaken the factorization performed. In this research, a \emph{partially decomposed} Lustre model has the properties that (1) each computed variable is used at most once in the right side of a equation, and (2) each equation is either a single operator or a constant expression. 
+Ghassabani performed a preliminary analysis on maximally factored models for IVC coverage and found that analysis performed significantly slower for proofs and the \ivcmust algorithm. For our purposes in safety analysis, our concern is both the faults and the guarantees in the Lustre model; therefore, we are able to weaken the factorization performed. In this research, a \emph{partially decomposed} Lustre model has the properties that (1) each computed variable is used at most once in the right side of an equation, and (2) each guarantee and associated equation has either a single operator or a constant expression. 
+
+Model elements considered for the \aivcalg algorithm are explicitly defined in the Lustre code -- these we call \emph{IVC elements}; the generation of Lustre from an AADL/AGREE model provides guarantees and assumptions as IVC elements and when fault analysis is run using the safety annex, constrained faults are also added to this set\footnote{For more information on safety modified Lustre programs, see Section~\ref{sec:impl}}. For the purposes of fault analysis and minimal cut set generation, we performed a partial decomposition of the contracts on the guarantees of the model in Lustre. An example of the simplified Lustre code before and after decomposition is shown in Figure~\ref{fig:lustreTwoGuar} and Figure~\ref{fig:lustreDecompGuar}. 
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=.9\textwidth]{images/lustreTwoGuar.PNG}
+\caption{Temp Sensor With Original Guarantee} \label{fig:lustreOneGuar}
+\end{center}
+\end{figure} 
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=.7\textwidth]{images/lustreDecomposedGuarantee.PNG}
+\caption{Temp Sensor With Decomposed Guarantee} \label{fig:lustreDecompGuar}
+\end{center}
+\end{figure} 
+
+The initial guarantee of interest -- \texttt{GUARANTEE0} from Figure~\ref{fig:lustreOneGuar} -- is decomposed and broken down into a series of fresh variables, \texttt{freshVar0} through \texttt{freshVar3} as seen in Figure~\ref{fig:lustreDecompGuar}. The fresh variables are then added to the IVC elements to put them into scope for the \aivcalg algorithm. The partial decomposition of the guarantees was performed according to Algorithm~\ref{alg:decomp}. 
+
+\begin{algorithm}[h]
+\DontPrintSemicolon
+\SetKwFunction{Init}{Init}
+\SetKwFunction{Decompose}{Decompose}
+\SetKwProg{Fn}{Function}{:}{}
+\Fn{\Init{$G$}}{
+	$G$:= guarantee in Lustre node \;
+	$\mathit{newLocalVars} \gets \emptyset$
+	$\mathit{freshVar} \gets \mathit{g.expr}$ \;
+	$\mathit{newGuar} \gets \mathit{freshVar}$ \;	
+	$\mathit{newLocalVars} \gets \mathit{\Decompose(g.expr)}$ \;
+	
+}
+
+\setcounter{AlgoLine}{0}
+\Fn{\Decompose{$\mathit{expr}$}}{
+	$\mathit{freshVars} \gets \emptyset$ \;
+	\eIf{$\mathit{expr}$ is constant $\lor$ has single operator}{
+		\textbf{return} $\mathit{freshVars}$
+	}{
+		$\mathit{freshL} \gets \mathit{expr.left}$ \;
+		$\mathit{freshR} \gets \mathit{expr.right}$ \;
+		$\mathit{freshVars.add(\{freshL, freshR\})}$ \;
+		$\mathit{\Decompose(expr.left)}$ \;
+		$\mathit{\Decompose(expr.right)}$ \;
+	}
+}
+	\caption{Decomposition of Guarantees}
+	\label{alg:decomp}
+\end{algorithm}
+
+The AGREE program is intercepted by the safety annex plugin as described in Section~\ref{sec:impl}. Each guarantee defined in the nodes are decomposed and fresh variables are added to the local variables and their assignment added to local equations. This modified program is returned to AGREE along with the fault model modifications and the MIVCs are computed. As usual, the minimal cut sets are found according to the MIVC results. 
+
+We were interested in three main research questions in this initial experimentation into granularity: 
+
+\begin{description}
+\item [RQ1:] What is the analysis time difference between the nominal model MIVC generation and the decomposed model MIVC generation? Given smaller models with fewer or less complex guarantees, the timing results should not differ greatly, but in a large model with potentially many complex guarantees, the computation time for MIVC generation could increase greatly. 
+
+\item[RQ2:] Do the MIVCs generated reflect a more accurate view of which portions of the guarantee support the proof of the safety property? We expect that the additional granularity would provide more exact coverage of the model in terms of the MIVCs. 
+
+\item[RQ3:] Given the results in RQ2, are there differences in the minimal cut sets generated for a more granular model? If the changes are reflected in the MIVC sets, then we will see corresponding changes in the minimal cut sets. This could provide more exact safety analysis artifacts and additional insight into the specifications and how they impact the analysis results. 
+\end{description}
+
+To address these questions, we ran the analysis with and without granular refinement on the set of XX fault models and compared results as shown in Figure~\ref{fig:}. \danielle{discuss results of timing, then discuss results of IVC elements.}
+
+
 
