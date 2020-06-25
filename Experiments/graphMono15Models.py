@@ -9,8 +9,8 @@ x2 = []
 y2 = []
 
 userhome = os.path.expanduser('~')
-csvfileNominal= os.path.join(userhome, 'git/dkstewart/University-Research/Experiments', 'nominalDataComp.csv')
-csvfileFault= os.path.join(userhome, 'git/dkstewart/University-Research/Experiments', 'faultDataComp.csv')
+csvfileNominal= os.path.join(userhome, 'git/dkstewart/University-Research/Experiments', 'nominalDataMono.csv')
+csvfileFault= os.path.join(userhome, 'git/dkstewart/University-Research/Experiments', 'faultDataMono.csv')
 
 with open(csvfileNominal,'r') as csvfile:
     plots = csv.reader(csvfile, delimiter=',')
