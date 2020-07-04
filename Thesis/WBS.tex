@@ -66,7 +66,7 @@ The WBS has a total of 13 safety properties at the top level that are supported 
 \subsection{Fault Model Analysis}
 There are two main options for fault model analysis using the Safety Annex. The first option injects faults into the Lustre program based on the restrictions placed through the fault hypothesis. The bounded model checker engine used in JKind will find counterexamples to an invalid property. These counterexamples are returned to the user and include a trace of the system state that causes the violation. This includes any active faults that were part of that violation. The second option is used to generate minimal cut sets for the model. The fault activation literals and supporting guarantees are added to the \texttt{--\%IVC} elements as described in Sections~\ref{sec:formMCS} and \ref{sec:algs}, the algorithms generating the cut sets are run (Section~\ref{sec:algs}), and the results are displayed to the user. 
 
-We outline here the results of the fault analysis for the WBS. 
+We outline here the results of the fault analysis for the WBS. All analyses were run on an Intel Core i7 with a 2.80GHz CPU and 16 GB RAM.
 
 \subsubsection{Verification in the Presence of Faults: Max \textit{n} Analysis}
 Using a max number of faults for the hypothesis, the user can constrain the number of simultaneously active faults in the model. The faults are added to the AGREE model for the verification. Given the constraint on the number of possible simultaneously active faults, the model checker attempts to prove the top level properties given these constraints. If this cannot be done, the counterexample provided will show which of the faults ($n$ or less) are active and which contracts are violated. More detail on verification of fault models can be found in Section~\ref{sec:analysisResults}. 
@@ -80,13 +80,13 @@ Given a probabilistic fault hypothesis, this corresponds to performing analysis 
 
 Probabilistic analysis done in this way must utilize the monolithic AGREE option. For compositional probabilistic analysis, see Chapter~\ref{chap:mcsGen} of this dissertation and for more details on the probabilistic hypothesis algorithm and analysis results, see Section~\ref{sec:analysisResults}. 
 
-Recall that when using the \texttt{max 1 fault} hypothesis statement on the WBS, we found that the sensor was a single point of failure for multiple properties. The probability of this particular sensor failing is given in AIR6110~\cite{AIR6110} as $1.0 \times 10^{-2}$. The probabilistic hypothesis was set according to the thresholds given per property (see Table~\ref{tab:safetyProperties}) and the analysis was run monolithically on the WBS model. The total time to generate a counterexample for violated properties using a probabilistic hypothesis with monolithic analysis varied depending on the safety property; the range of times was between 15 seconds and 9 minutes. The variance in times is due to a number of factors such as the complexity of the formula and the probabilistic threshold. The property that took the longest to generate a counterexample for was {\em S18-WBS-0323: never inadvertent braking with all wheels locked shall be less than $1.0 \times 10^{-9}$ per takeoff.} The formula for this property references all 8 wheels and numerous subcomponents, most of which have faults associated with them. The low probability threshold combined with the formula complexity and the exponential increase in fault combinations likely served to make this the longest time in counterexample generation. 
+Recall that when using the \texttt{max 1 fault} hypothesis statement on the WBS, we found that the sensor was a single point of failure for multiple properties. The probability of this particular sensor failing is given in AIR6110~\cite{AIR6110} as $1.0 \times 10^{-2}$. The probabilistic hypothesis was set according to the thresholds given per property (see Table~\ref{tab:safetyProperties}) and the analysis was run monolithically on the WBS model. The total time {\em to generate a counterexample} for violated properties using a probabilistic hypothesis with monolithic analysis varied depending on the safety property; the range of times was between 15 seconds and 9 minutes. The property that took the longest to generate a counterexample for was {\em S18-WBS-0323: never inadvertent braking with all wheels locked shall be less than $1.0 \times 10^{-9}$ per takeoff.} The formula for this property references all 8 wheels and numerous subcomponents, most of which have faults associated with them. The low probability threshold combined with the formula complexity and the exponential increase in fault combinations likely served to make this the longest time in counterexample generation. For a full discussion on probabilistic compositional analysis, see Section~\ref{sec:prob_generate}.
 
 \subsubsection{Generate Minimal Cut Sets: Max \textit{n} Analysis}
 \label{sec:maxN_generate}
 As described in Chapter~\ref{chap:mcsGen}, the generation of minimal cut sets uses the \aivcalg algorithm to provide a full enumeration of all minimal set of model elements necessary for the proof of each top-level safety property in the model, and then transforms all MIVCs into all minimal cut sets. In max $n$ analysis, the minimal cut sets are pruned to include only those with at cardinality less than or equal to the number $n$ specified in the fault hypothesis and displayed to the user.
 
-Generate minimal cut set analysis was performed on the Wheel Brake System and results are shown in Table~\ref{tab:wbs_maxN_results}. Notice in Table~\ref{tab:wbs_maxN_results}, the label across the top row refers to the cardinality (\textit{n}) and the corresponding column shows how many cut sets are generated of that cardinality. When the analysis is run, the user specifies the value \textit{n}. This gives cut sets of cardinality \textit{less than or equal to} \textit{n}. Table~\ref{tab:wbs_maxN_results} shows the total number of cut sets {\em of cardinality n}. The total number of cut sets computed at the given threshold is the sum across a row. (For the full text of the properties, see Table~\ref{tab:safetyProperties}.) The analysis was run on an Intel Core i7 with a 2.80GHz CPU and 16 GB RAM.
+Generate minimal cut set analysis was performed on the Wheel Brake System and results are shown in Table~\ref{tab:wbs_maxN_results}. Notice in Table~\ref{tab:wbs_maxN_results}, the label across the top row refers to the cardinality (\textit{n}) and the corresponding column shows how many cut sets are generated of that cardinality. When the analysis is run, the user specifies the value \textit{n}. This gives cut sets of cardinality less than or equal to \textit{n}. Table~\ref{tab:wbs_maxN_results} shows the total number of cut sets of cardinality \textit{n}. The total number of cut sets computed at the given threshold is the sum across a row. (For the full text of the properties, see Table~\ref{tab:safetyProperties}.) 
 
 
 \begin{table}[htbp]
@@ -108,65 +108,64 @@ Generate minimal cut set analysis was performed on the Wheel Brake System and re
 \end{table}
 
 
-As can be seen in Table~\ref{tab:wbs_maxN_results}, the number of cut sets increases proportional to the cardinality of the cut sets. Intuitively, this can be understood as simple combinations of faults that can violate the hazard; if more things go wrong in a system at the same time, the more likely the system will crash. Property 0324 with a max fault hypothesis of 5 was unable to finish due to an out of memory error. At the time that the error was thrown, the number of cut sets exceeded 1.5 million. In practice, it is not likely that an analyst will manually sift through a million or more cut sets, but rather will filter out the combinations that are sufficiently unlikely to occur. A probabilistic approach would be warranted in these situations. 
+As can be seen in Table~\ref{tab:wbs_maxN_results}, the number of cut sets increases proportional to the cardinality of the cut sets. Intuitively, this can be understood as simple combinations of faults that can violate the hazard; if more things go wrong in a system at the same time, the more likely a property will be violated. Property S18-WBS-0324 with a max fault hypothesis of 5 was unable to finish due to an out of memory error. At the time that the error was thrown, the number of cut sets exceeded 1.5 million. In practice, it is not likely that an analyst will manually sift through a million or more cut sets, but rather will filter out the combinations that are sufficiently unlikely to occur. A probabilistic approach would be warranted in these situations. 
 
-For comparison with the number of minimal cut sets generated per property, we refer to Table~\ref{tab:wbs_maxN_results}\footnote{The property S18-WBS-0325-WX is symmetric for all eight wheels. For readability, we only include wheel one verification timing results in Table~\ref{tab:wbs_mincut}. Likewise for property 0322-L/R.}.
-
-
-\begin{center}
+The next analysis shows the difference between the time it takes to generate all MIVCs and the time it takes to transform those MIVCs into minimal cut sets. Each column of Table~\ref{tab:wbs_mincut} labeled with the value of \textit{n} gives the fault hypothesis threshold for that analysis run. For comparison with the number of minimal cut sets generated per property, we refer to Table~\ref{tab:wbs_maxN_results}\footnote{The property S18-WBS-0325-WX is symmetric for all eight wheels. For readability, we only include wheel one verification timing results in Table~\ref{tab:wbs_mincut}. Likewise for property 0322-L/R.}.
 \begin{table}[htbp]
-    \begin{tabular}{ | l | l | l | l | l | l | l | l |}
+\begin{center}
+    \begin{tabular}{ | l | l | l | l | l | l | l |}
     \hline
-    \textbf{Property} & Nominal & Extended & $n=1$ & $n=2$ & $n=3$ & $n=4$ & $n=5$     \\ \hline \hline
-    0321 & - & 396.417 & 5.913 & 5.468 & 5.61 & 5.636 & 11.925  \\ \hline
-    0322-L & - & 407.078 & 5.931 & 5.435 & 5.302 & 5.268 & 5.243 \\ \hline
-    0323 & - & 412.926 & 6.397 & 6.452 & 6.420  & 5.309 & 5.459\\ \hline
-    0324 & - & 446.610 & 41.334 & 41.744 & 44.062 & 69.142 & -\\ \hline
-    0325-W1 & - & 391.137 & 5.632 & 5.388 &5.359 &5.301 & 5.236 \\ \hline
+    \textbf{Property} &  MIVC Gen & $n=1$ & $n=2$ & $n=3$ & $n=4$ & $n=5$     \\ \hline \hline
+    0321 & 396.417 & 5.913 & 5.468 & 5.61 & 5.636 & 11.925  \\ \hline
+    0322-L  & 407.078 & 5.931 & 5.435 & 5.302 & 5.268 & 5.243 \\ \hline
+    0323 & 412.926 & 6.397 & 6.452 & 6.420  & 5.309 & 5.459\\ \hline
+    0324 & 446.610 & 41.334 & 41.744 & 44.062 & 69.142 & -\\ \hline
+    0325-W1 & 391.137 & 5.632 & 5.388 &5.359 &5.301 & 5.236 \\ \hline
     \end{tabular}
     \caption{WBS Analysis Time in Seconds}
     \label{tab:wbs_mincut}
+    \end{center}
 \end{table}
-\end{center}
-
-The overall time of the algorithms outlined in Chapter~\ref{chap:mcsGen} is quite small compared to the nominal analysis and extended model analysis time. This is not altogether surprising; the nominal and extended analysis is contending with an infinite state model checking problem whereas the algorithms presented to generate minimal cut sets deal with set element algorithms (MHS) and boolean formula manipulation (minimal cut set transformation). 
+The overall time of the algorithms used for minimal cut set generation is quite small compared to the nominal analysis and extended model analysis time. This is not altogether surprising; the nominal and extended analysis is contending with an infinite state model checking problem whereas the algorithms presented to generate minimal cut sets deal with set element algorithms and boolean formula manipulation. The greatest time recorded was for property S18-WBS-0324 at $n = 4$; the reason is clear when comparing this with Table~\ref{tab:wbs_maxN_results}: the total number of minimal cut sets computed for this threshold is 916,349.  
 
 \subsubsection{Generate Minimal Cut Sets: Probabilistic Analysis}
 \label{sec:prob_generate}
 Both probabilistic analysis and max $n$ analysis use the same underlying minimal cut set generation algorithm (see Section~\ref{sec:algs}), but in probabilistic analysis the minimal cut sets are pruned to include only those fault combinations whose probability of simultaneous occurrence exceed the given threshold in the hypothesis. 
 
-The probabilistic analysis for the WBS was given a top level threshold of $1.0 \times 10^{-9}$ as stated in AIR6110. The faults associated with various components were all given probability of occurrence compatible with the discussion in this same document. 
-\begin{center}
+The probabilistic analysis for the WBS was given a top level threshold per property as stated in AIR6110 and shown in Table~\ref{tab:safetyProperties}. The faults associated with various components were all given probability of occurrence according to the AIR6110 document~\cite{AIR6110}. The table shows the property name and associated probability. The generation of minimal cut sets provided all sets that violate that property whose combined probabilities (assuming independence) are greater than the threshold. The number of sets per cardinality are listed in the table. 
+
 \begin{table}[htbp]
+\begin{center}
     \begin{tabular}{ | l | l | l | l | l | l | l | }
     \hline
-    \textbf{Property} & $\bm{c = 1}$ & $\bm{c = 2}$ & $\bm{c = 3}$ & $\bm{c = 4}$ 
-		& $\bm{c = 5}$ & $\bm{c = 6}$   \\ \hline \hline
-    R-0321 & 0 & 0 & 0 & 0 & 0 & 0  \\ \hline
-    R-0322 & 32 & 0 & 0 &0 &0 &0  \\ \hline
-    L-0322 & 32 & 0 & 0 & 0 & 0 & 0   \\ \hline
-    0323 & 90 & 0 & 0 & 0 & 0 & 0   \\ \hline
-    0324 & 0 & 1 & 0 & 0 & 0 & 0  \\ \hline
-    0325-WX & 20 & 0 & 0 &0 &0 & 0   \\ \hline
+    \textbf{Property} & $n=1$ & $n=2$ & $n=3$ & $n=4$ 
+		& $n=5$    \\ \hline \hline
+    0321: $5.0 \times 10^{-7}$ & 7 & 0 & 0 & 256 & 0   \\ \hline
+    0322-R: $5.0 \times 10^{-7}$ & 75 & 0 & 0 &0 &0   \\ \hline
+    0322-L: $5.0 \times 10^{-7}$ & 75 & 0 & 0 & 0 & 0    \\ \hline
+    0323: $1.0 \times 10^{-9}$ & 182 & 0 & 0 & 0 & 0    \\ \hline
+    0324: $1.0 \times 10^{-9}$ & 8 & 3665 & 0 & 0 & 0   \\ \hline
+    0325-W1: $1.0 \times 10^{-9}$ & 33 & 0 & 0 &0 &0    \\ \hline
     \end{tabular}
-    \caption{WBS Minimal Cut Set Results for Probabilistic Hypothesis}
+    \caption{WBS Minimal Cut Set Results for Probabilistic Hypotheses}
     \label{tab:wbs_prob_results}
+    \end{center}
 \end{table}
-\end{center}
-As shown in Table~\ref{tab:wbs_prob_results}, the number of allowable combinations drops considerably when given probabilistic threshold as compared to just fault combinations of certain cardinalities. For example, one contract (inadvertent wheel braking of all wheels) had over a million minimal cut sets produced when looking at it in terms of max N analysis, but after taking probabilities into account, it is seen on Table~\ref{tab:wbs_prob_results} that the likely contributors to a hazard are minimal cut sets of cardinality one. The probabilistic analysis eliminated many thousands of cut sets from consideration.( For the full text of the properties, see Table~\ref{tab:safetyProperties}.)
+
+As shown in Table~\ref{tab:wbs_prob_results}, the number of allowable combinations drops considerably when given probabilistic threshold as compared to just fault combinations of certain cardinalities. For example, one contract (inadvertent wheel braking of all wheels) had over a million minimal cut sets produced when looking at it in terms of max N analysis, but after taking probabilities into account, it is seen on Table~\ref{tab:wbs_prob_results} that the likely contributors to a hazard are minimal cut sets of cardinality one. The probabilistic analysis eliminated many thousands of cut sets from consideration. The total computation time for these runs is given in Table~\ref{tab:analysisTimeWBSProb}.
 
 
 \begin{table}[htbp]
 \begin{center}
     \begin{tabular}{ | l | l | l | l | l | l | l | }
     \hline
-    \textbf{Property} & $\bm{c = 1}$ & $\bm{c = 2}$ & $\bm{c = 3}$ & $\bm{c = 4}$ & $\bm{c = 5}$ & $\bm{c = 6}$   \\ \hline \hline
-    R-0321 ($5.0 \times 10^{-7}$) & 0 & 0 & 0 & 0 & 0 & 0  \\ \hline
-    R-0322 ($5.0 \times 10^{-7}$)  & 32 & 0 & 0 &0 &0 &0  \\ \hline
-    L-0322 ($5.0 \times 10^{-7}$)  & 32 & 0 & 0 & 0 & 0 & 0   \\ \hline
-    0323 ($1.0 \times 10^{-9}$)  & 90 & 0 & 0 & 0 & 0 & 0   \\ \hline
-    0324 ($1.0 \times 10^{-9}$) & 0 & 1 & 0 & 0 & 0 & 0  \\ \hline
-    0325-WX ($1.0 \times 10^{-9}$) & 20 & 0 & 0 &0 &0 & 0   \\ \hline
+    \textbf{Property} & Total Analysis Time   \\ \hline \hline
+    R-0321: $5.0 \times 10^{-7}$ & 433.144 sec  \\ \hline
+    R-0322: $5.0 \times 10^{-7}$  & 431.954 sec  \\ \hline
+    L-0322: $5.0 \times 10^{-7}$  & 429.081 sec    \\ \hline
+    0323: $1.0 \times 10^{-9}$  & 571.216 sec    \\ \hline
+    0324: $1.0 \times 10^{-9}$ & 589.07 sec   \\ \hline
+    0325-W1: $1.0 \times 10^{-9}$ & 430.021 sec    \\ \hline
     \end{tabular}
     \caption{WBS Minimal Cut Set Time for Probabilistic Hypothesis}
     \label{tab:analysisTimeWBSProb}
@@ -174,7 +173,7 @@ As shown in Table~\ref{tab:wbs_prob_results}, the number of allowable combinatio
 \end{table}
 
 
-\danielle{Still need to re-run prob analysis and collect timing results. Cannot find my last run data. :( Will enter times and add a short discussion on these along with a comparison discussion with the max n cardinality timing results.}
+It is clear that the lower probabilistic threshold for properties 0323-0325-WX allowed more fault combinations to be possible which increased computation time. One must also recall property 0324 from the max \textit{n} analysis whose threshold of $n=4$ produced close to a million cut sets of various cardinalities. The pruning according to probabilities cut out many of these sets from consideration; they are sufficiently unlikely to occur together. 
 
 \subsubsection{Display Results from Generate Minimal Cut Sets}
 Results from Generate Minimal Cut Sets analysis can be represented in one of the following forms. 
