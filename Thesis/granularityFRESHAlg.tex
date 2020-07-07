@@ -92,8 +92,43 @@ We were interested in three main research questions regarding the exploration of
 \item[RQ3:] Given the results in RQ2, could more exact minimal cut sets be produced from the MIVCs? If changes are reflected in the MIVC sets, then we will see corresponding changes in the minimal cut sets. This could provide more exact safety analysis artifacts and additional insight into the specifications and how they impact the analysis results. 
 \end{description}
 
-To address these questions, we developed an algorithm that performs a partial decomposition of the equations in the Lustre model. For our purposes in safety analysis and minimal cut set generation, the equations that will be of interest are the guarantees in the nominal model and any associated equations; therefore, we perform the refactorization on equations alone. Algorithm~\ref{} describes the process. 
+To address these questions, we developed an algorithm that performs a partial decomposition of the equations in the Lustre model. For our purposes in safety analysis and minimal cut set generation, the equations that will be of interest are the guarantees in the nominal model and any associated equations; therefore, we perform the refactorization on equations alone. 
 
-Each equation in the Lustre model is refined as shown in Figure~\ref{}. \danielle{show original lustre equation and the refactored equation.} By assigning fresh variables recursively throughout the equations, it allows the MIVC algorithm a deeper insight into the coverage of each piece of the original equation itself. As an example, we look at \danielle{}
+The logical structure of a formula can be viewed as a tree where nodes are arranged in terms of operator precedence. Clearly, it is a requirement to preserve equivalence during refactoring and we do not want to change the semantics of the formula, only the structure. To this end, we isolated branches and subtrees of the structure so that the \aivcalg algorithm can view each subtree of the formula separately. The algorithm we use recursively travels down a formula tree, assigning each subtree as a fresh variable. Figure~\ref{fig:formulaTree} shows the following formula in tree form where \textit{lit} refers to a literal and \textit{const} refers to a constant:
+\begin{gather*}
+((((\mathit{const} \implies \mathit{lit}) \lor \mathit{const}) \iff \mathit{lit} ) \land (\mathit{lit}  \lor \mathit{lit} )) 
+\end{gather*} 
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[level distance = 5em, every node/.style = {shape=rectangle, rounded corners,
+    draw, align=center,
+    top color=white, bottom color=blue!20}]]
+  \tikzstyle{level 1}=[sibling distance=40mm] 
+  \tikzstyle{level 2}=[sibling distance=20mm] 
+  \tikzstyle{level 3}=[sibling distance=20mm] 
+\node {$\land$} 
+    child { node {$\iff$} 
+	  child{ node{$\lor$}  
+ 	    child{node{$\implies$} 
+            	 child{ node{\textit{const}}  } 
+	          child{ node{\textit{lit}}  }   
+ 	    }
+ 	    child{node{\textit{const}}}	  
+	  }
+	  child{ node{\textit{lit}}  }    
+    }
+    child { node {$\lor$}
+      child { node {\textit{lit}} }
+      child { node {\textit{lit}} } } ;
+\end{tikzpicture}
+\end{center}
+\caption{Graphical Representation of a Boolean Formula}
+\label{fig:formulaTree}
+\end{figure}
+
+As seen in Figure~\ref{fig:formulaTree}, the leaf nodes of the tree are constants and literals; these are the base cases in the recursion. Each square node represents a subformula and is a recursive case. The refactored equation is shown in Figure~\ref{}. Each subformula is assigned a fresh variable and added to the equations for the Lustre node. The fresh variables are also assigned to be IVC elements and considered during the \aivcalg algorithm. 
+
+%Each equation in the Lustre model is refined as shown in Figure~\ref{}. \danielle{show original lustre equation and the refactored equation.} By assigning fresh variables recursively throughout the equations, it allows the MIVC algorithm a deeper insight into the coverage of each piece of the original equation itself. As an example, we look at \danielle{}
 
 %Model elements considered for the \aivcalg algorithm can be explicitly defined or the algorithm can take into consideration all equations, inputs, and variables in a program by use of the \texttt{--all-assigned} flag in JKind. In this implementation, we use the \texttt{--all-assigned} parameter on decomposed equations in each node of a Lustre model.
