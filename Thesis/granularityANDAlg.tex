@@ -46,6 +46,17 @@ While this algorithm is efficient and quite simple, it only catches the low hang
 
 \subsection{Results of Initial Contractual Refinement}
 \label{sec:resultsAND}
-The initial contractual refinement was implemented in the safety annex and performed over the AGREE nominal guarantees. We tested the 18 AADL models used in Section~\ref{} and compared the timing results of the generation of minimal cut sets without granular refinement and with this algorithm. The results can be seen in Figure~\ref{}. 
+The initial contractual refinement was implemented in the safety annex and performed over the AGREE nominal guarantees. We tested the 18 AADL models used in Section~\ref{sec:timing} and compared the timing results of compositional verification without granular refinement and with this algorithm. The results can be seen in Figure~\ref{fig:graphGranularityAND}. 
 
-In most cases, the time of analysis is not increased. This is partially due to the size of the model in terms of the number of contracts, but also due to the specifications themselves; if a model does not contain conjunctive contracts, no refinement occurs and the number of contracts in the model remains constant between both forms of analysis. The last three models of the set are all variations on the wheel brake system described in Section~\ref{sec:wbs}. The complexity of the contracts and number of conjunctions used is much higher than the other models and can be seen in the total analysis time using this refinement approach. \danielle{Make figure, finish discussion.}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=.8\textwidth]{images/graphGranularityAND15Models.PNG}
+\caption{Nominal Analysis and Initial Granularity Refinement} \label{fig:graphGranularityAND}
+\end{center}
+\end{figure}
+
+In most cases, the time of analysis is not increased. This is partially due to the size of the model in terms of the number of contracts, but also due to the specifications themselves; if a model does not contain conjunctive contracts, no refinement occurs and the number of contracts in the model remains constant between both forms of analysis. The last three models of the set are all variations on the wheel brake system described in Section~\ref{sec:wbs}. The complexity of the contracts and number of conjunctions used is much higher than the other models and can be seen in the total analysis time using this refinement approach. 
+
+The MIVCs generated using this refinement varied also depending on the model in question. In most cases, there were no differences in MIVC output; the single difference was in the sensor example illustrated in Section~\ref{sec:granularityEx}. The results of the refinement provided the expected outcome and showed only the guarantee that directly contributes to the safety property. 
+
+Because the results of this algorithm is highly dependent on the model and due to the simplistic nature of this initial refinement, we chose to implement a deeper refinement in JKind and this way could view more closely the results of MIVC generation. 
