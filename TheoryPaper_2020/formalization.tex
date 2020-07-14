@@ -1,13 +1,13 @@
 \section{Formalization}
 \label{sec:formalization}
-Given an initial state $I$ and a transition relation $T$ consisting of conjunctive constraints as defined in section~\ref{sec:prelim}. The set of all nominal guarantees of the system $G$ consists of conjunctive constraints $g \in G$. Given no faults (i.e., nominal system), each $g$ is one of the transition constraints $T_i$ where:
+The set of all nominal guarantees of the system $G$ consists of conjunctive constraints $g \in G$. Given no faults (i.e., nominal system) and a transition relation $T$ consisting of conjunctive constraints $T_i$ as defined in section~\ref{sec:prelim}, each $g$ is one of the transition constraints $T_i$ where:
 
 \begin{gather}
-T_n = g_1 \land  g_2 \land \cdots \land g_n
+T = g_1 \land  g_2 \land \cdots \land g_n
 \label{eq:Tn}
 \end{gather}
 
-We consider an arbitrary layer of analysis of the architecture and assume the property holds of the nominal relation $(I,T_n) \vdash P$. Given that our focus is on safety analysis in the presence of faults, let the set of all faults in the system be  denoted as $F$. A fault $f \in F$ is a deviation from the normal constraint imposed by a guarantee. Without loss of generality, we associate a single fault and an associated fault probability with a guarantee. Each fault $f_i$ is associated with an \emph{activation literal}, $\mathit{af}_i$, that determines whether the fault is active or inactive. %Any ``faults" in a mid-layer are simply violated guarantees, or deviations from normal behavior. 
+We consider an arbitrary layer of analysis of the architecture and assume the property holds of the nominal relation $(I,T) \vdash P$. Given that our focus is on safety analysis in the presence of faults, let the set of all faults in the system be  denoted as $F$. A fault $f \in F$ is a deviation from the normal constraint imposed by a guarantee. Without loss of generality, we associate a single fault and an associated fault probability with a guarantee. Each fault $f_i$ is associated with an \emph{activation literal}, $\mathit{af}_i$, that determines whether the fault is active or inactive. %Any ``faults" in a mid-layer are simply violated guarantees, or deviations from normal behavior. 
 
 %The faults in the safety annex are defined on leaf level components. Thus, for the lowest analysis layer, we must take into consideration faults and the guarantees their activation may violate. A fault $f \in F$ is a deviation from the normal constraint imposed by a guarantee. For the purposes of this paper, each guarantee at the leaf layer of analysis has an associated fault. 
 
@@ -20,17 +20,17 @@ $\mathit{gf}_i =$ \textit{if} $\mathit{af}_i$ \textit{then} $f_i$ \textit{else} 
 The transition system is composed of the set of modified guarantees $GF$ and a set of conjunctions assigning each of the activation literals $\mathit{af}_i \in AF$ to false: 
 
 \begin{gather}
-T = \mathit{gf}_1 \land \mathit{gf}_2 \land \cdots \land \mathit{gf}_n \land \neg \mathit{af}_1 \land \neg \mathit{af}_2 \land \cdots \land \neg \mathit{af}_n
+T' = \mathit{gf}_1 \land \mathit{gf}_2 \land \cdots \land \mathit{gf}_n \land \neg \mathit{af}_1 \land \neg \mathit{af}_2 \land \cdots \land \neg \mathit{af}_n
 \label{eq:T}
 \end{gather}
 
-\begin{theorem} If $(I,T_n) \vdash P$ for $T_n$ defined in equation~\ref{eq:Tn}, then $(I,T) \vdash P$ for $T$ defined in equation~\ref{eq:T}.
+\begin{theorem} If $(I,T) \vdash P$ for $T$ defined in equation~\ref{eq:Tn}, then $(I,T') \vdash P$ for $T'$ defined in equation~\ref{eq:T}.
 \begin{proof}
 By the mapping of each constrained activation literal $\neg \mathit{af}_i$ to the associated guarantee $g_i$ and the weakening of the antecedent by introduction of the activation literals, the result is immediate.
 \end{proof}
 \end{theorem}
 
-Consider the elements of $T$ as a set $GF \cup AF$, where $GF$ are the potentially faulty guarantees and $AF$ consists of the activation literals that determine whether a guarantee is faulty. This is a set that is considered by an SMT-solver for satisfiability during the $k$-induction procedures. The posited problem is thus: $GF \land AF \land \neg P$ for the safety property in question. Recall, if this is an \emph{unsatisfiable} constraint system, then $P$ is provable given these constraints. On the other hand, if it is \emph{satisfiable}, then we know that given the constraints in $GF$ and $AF$, $P$ is not provable. These satisfiability constraints contain the information we wish to find. 
+Consider the elements of $T$ as a set $GF \cup AF$, where $GF$ are the potentially faulty guarantees and $AF$ consists of the activation literals that determine whether a guarantee is faulty. This is a set that is considered by an SMT-solver for satisfiability during the model checking engine procedures. The posited problem is thus: $GF \land AF \land \neg P$ for the safety property in question. %Recall, if this is an \emph{unsatisfiable} constraint system, then $P$ is provable given these constraints. On the other hand, if it is \emph{satisfiable}, then we know that given the constraints in $GF$ and $AF$, $P$ is not provable. These satisfiability constraints contain the information we wish to find. 
 
 Let us view this in terms of the PWR system example and focus on the temperature sensor subsystem. The safety property to be proved is $G_t$, the supporting guarantees are found in each of the three temperature sensors, $g_{ti}$. Faults $f_{ti}$ are defined for each sensor. The transition system is: 
 \begin{gather*}
@@ -60,12 +60,12 @@ Assume toward contradiction that $\sigma(MCS)$ is not minimal with regard to $P$
 \end{proof}
 \end{lemma}
 
-Minimal cut sets generated by monolithic analysis look only at explicitly defined faults throughout the architecture and attempt through various techniques to find the minimal violating set for a particular property. In this approach, explicit faults are analyzed as well as supporting guarantees. We view violated guarantees as deviations from nominal behavior and refer to them as ``faulty". Thus, this approach provides an overapproximation of the minimal cut sets compared to a monolithic approach. %Let $\mathit{MonoCuts}$ be the set of all minimal cut sets using a monolithic approach and let $\mathit{CompCuts}$ be the set of minimal cut sets using the above approach. 
+%Minimal cut sets generated by monolithic analysis look only at explicitly defined faults throughout the architecture and attempt through various techniques to find the minimal violating set for a particular property. In this approach, explicit faults are analyzed as well as supporting guarantees. We view violated guarantees as deviations from nominal behavior and refer to them as ``faulty". %Thus, this approach provides an overapproximation of the minimal cut sets compared to a monolithic approach. %Let $\mathit{MonoCuts}$ be the set of all minimal cut sets using a monolithic approach and let $\mathit{CompCuts}$ be the set of minimal cut sets using the above approach. 
 
 %\danielle{Since monolithic approach doesn't factor in the replacement and then conversion back to DNF, we should probably have something here about that. }
 %In a compositional proof, the analysis is performed top down. Given the assumptions, a property $P$ is proven (or disproven) based on the guarantees at the lower level: $gf_1, \dots, gf_n \vdash P$. The next level of analysis iterates through each guarantee and proves it by use of the guarantees $gf'$ at the next lower level: $gf'_1, \dots, gf'_k \vdash gf_1$, and $gf'_1, \dots, gf'_k \vdash gf_2$, and so on. This process continues until the leaf level guarantees been proven and there are no lower level guarantees. A compositional proof is performed from the top hierarchical layer down and the analysis results are composed to form a proof of the system level property. This means that at each intermediate layer, the ``top" level guarantees are subsystem guarantees that require their own proof given the system and component assumptions and the properties of each subcomponent. MIVC generation is performed compositionally in this way as well; the system properties as well as any intermediate layer guarantees each have their own minimal inductive validity cores, and by extension their own minimal correction sets. The formulation described above shows the validity of this approach for a single layer; now we show that these results may be composed. 
 
-A compositional proof is performed from the top hierarchical layer down and the analysis results are composed to form a proof of the system level property. The constraint system for a safety property is given in terms of the properties $gf_i$ of its direct subcomponents. Each of $gf_i$ must in turn be the safety property for a constraint system consisting of the guarantees of {\em its} subcomponents. MIVC generation is generated in this way as well; the system properties as well as any intermediate layer guarantees each have their own minimal inductive validity cores, and by extension their own minimal correction sets. The formulation described above shows the validity of this approach for a single layer; now we show that these results may be composed. 
+A compositional proof is performed starting from the top hierarchical layer down and the analysis results are composed to form a proof of the system level property. The constraint system for a safety property is given in terms of the properties $gf_i$ of its direct subcomponents. Each of $gf_i$ must in turn be the safety property for a constraint system consisting of the guarantees of its subcomponents. MIVC generation is performed in this way as well; the system properties as well as any intermediate layer guarantees each have their own minimal inductive validity cores, and by extension their own minimal correction sets. The formulation described above shows the validity of this approach for a single layer; now we show that these results may be composed. 
 
 Let $C(P)$ be the constraint system associated with a safety property $P$ and $MCS(P)$ be a minimal correction set for $C(P)$:
 \begin{gather*}
@@ -81,11 +81,9 @@ and let an extended constraint system $C_{ext} = C(P) \cup (C(gf_k) \setminus \{
 \begin{proof}
 Assume that it is not satisfiable. Then $\exists S \subset R(P)$ such that $C_{ext} \setminus S$ is satisfiable. Let $af_i \in R(P)$ where $af_i \not \in S$. 
 
-\textit{Case 1} $af_i \in MCS(P)$: by definition of $MCS$, $af_i$ contributes directly to the feasibility of $\neg P$.
+\textit{Case 1} $af_i \in MCS(P)$: by definition of $MCS$, $af_i$ contributes directly to the feasibility of $\neg P$. This contradicts the definition of $MCS(P)$.
 
-\textit{Case 2} $af_i \in MCS(gf_k)$: Then $af_i$ becomes unconstrained in $C_{ext} \setminus R(P)$ and by definition of $MCS(gf_k)$, the unconstrained $af_i$ contributes to the constraint of $gf_k$ to false. Since $gf_k \in MCS(P)$, the unconstrained activation literal $af_i$ contributes to the feasibility of $\neg P$. 
-
-In both cases, we reach a contradiction. 
+\textit{Case 2} $af_i \in MCS(gf_k)$: Then $af_i$ becomes unconstrained in $C_{ext} \setminus R(P)$. But by definition of $MCS(gf_k)$, the unconstrained $af_i$ contributes to the violation of $gf_k$ and is in fact necessary based on the definition of $MCS(gf_k)$. This contradicts the definition of $MCS(P)$.
 
 \label{lemma:corrSet1}
 \end{proof}

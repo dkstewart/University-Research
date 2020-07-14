@@ -5,7 +5,7 @@ We present a running example of a simplified sensor system in a Pressurized Wate
 \begin{figure*}[h!]
 	%\vspace{-2em}
 	\begin{center}
-		\includegraphics[width=0.6\textwidth]{images/sensorSysAADL.png}
+		\includegraphics[width=0.8\textwidth]{images/sensorSysAADL.png}
 	\end{center}
 	\vspace{-2em}
 	\caption{PWR Sensor System}
@@ -21,9 +21,9 @@ The subsystems each contain three sensors that monitor pressure, temperature, an
 The temperature, pressure, and radiation sensor subsystems use a majority voting mechanism on the sensor values and will send a shut down command based on this output. The safety property of interest in this system is: \emph{shut down when and only when we should}; the AGREE guarantee stating this property is shown in Figure~\ref{fig:shutdownGuar}. 
 
 \begin{figure*}[h!]
-	%\vspace{-2em}
+	\vspace{-2em}
 	\begin{center}
-		\includegraphics[width=0.6\textwidth]{images/sensorGuar.PNG}
+		\includegraphics[width=0.7\textwidth]{images/sensorGuar.PNG}
 	\end{center}
 	\vspace{-2em}
 	\caption{Sensor System Safety Property}
@@ -47,7 +47,7 @@ The safety of the system requires a shut down to take place if the temperature, 
 Note: the thresholds vary for pressure, temperature, and radiation. These are given as constants $T_p$, $T_t$, and $T_r$ respectively. The overall (or ``top level") shutdown command is defined notationally as $S$; each sensor subsystem provides their own shutdown command, $S_p$ for example.  The faults are shown as ``fail low" which correspond to the temp (or pressure or radiation) being high, but the sensor reports safe ranges. We also do not list all guarantees and assumptions that are in the model, but only the ones of interest for the illustration. 
 
 \subsection{PWR Fault Model}
-The faults that are of interest in this example system are any one of the sensors failing high or low. If sensors report high and a shut down command is sent, we shut down when we should not. On the other hand, if sensors report low when it should be high, a shut down command is not sent and we do not shut down when we should. For simplification, we focus on the failures when sensors report low when they should not.
+The faults that are of interest in this example system are any one of the sensors failing high or low. If sensors report high and a shut down command is sent, we shut down when we should not. On the other hand, if sensors report low when it should be high, a shut down command is not sent and we do not shut down when we should. From the perspective of safety, a false report of low temperature is the main concern. For simplification in this paper, we focus on the failures when sensors report low when they should not.
 
 A fault is defined for each sensor in the system using the safety annex. An example of a temperature sensor fault stuck at high is shown in Figure~\ref{fig:tempSensorFault}.
 
@@ -62,7 +62,7 @@ A fault is defined for each sensor in the system using the safety annex. An exam
 	\vspace{-2em}
 \end{figure*}
 
-The Safety Annex provides a way to weave the faults into the nominal model by use of the \emph{inputs} and \emph{outputs} keywords. This allows users to define a fault and attach it to the output of a component. If the fault is active, the error can possibly violate the guarantees of this component or the assumptions of downstream components~\cite{stewart2020safety}. The activation of a fault is not up to the user, but instead left up to the model checker, JKind, to determine if the activation of this fault will contribute to a violation of higher level guarantees. If so, it can be activated during the analysis.
+The Safety Annex provides a way to weave the faults into the nominal model by use of the \emph{inputs} and \emph{outputs} keywords. This allows users to define a fault and attach it to the output of a component. The fault shown in Figure~\ref{fig:tempSensorFault} is defined to be a {\em permanent} fault and has probability of occurrence set at $1.0 \times 10^{-5}$. If the fault is active, the error can possibly violate the guarantees of this component or the assumptions of downstream components~\cite{stewart2020safety}. The activation of a fault is not up to the user, but instead left up to the model checker, JKind, to determine if the activation of this fault will contribute to a violation of higher level guarantees. If so, it can be activated during the analysis.
 
 
 

@@ -1,5 +1,4 @@
 \section{Conclusion and Future Work}
-\danielle{Should there be a discussion on other things in future work?}
 We have developed a way to leverage recent research in model checking techniques in order to generate minimal cut sets in a compositional fashion. Using the idea of Inductive Validity Cores (IVCs), which are the minimal model elements necessary for a proof of a safety property, we are able to restate the safety property as a top level event and provide faults of components and their contracts as model elements to the \aivcalg algorithm which provides all minimal IVCs that pertain to this property. These are used to generate minimal cut sets. Future work includes leveraging the system information embedded in this approach to generate hierarchical fault trees as well as perform scalability studies that compare this approach with other non-compositional approaches to MinCutSet generation.  %For more details on the tool, models, and approach, see the technical report~\cite{SATechReport}. 
 To access the algorithm implementation, Safety Annex users manual, or example models, see the repository~\cite{SAGithub}. 
 

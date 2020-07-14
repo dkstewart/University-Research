@@ -22,22 +22,22 @@ A safety property $P : U \to \bool$ is a state predicate. A safety
 property $P$ holds on a transition system $(I, T)$ if it holds on all
 reachable states, i.e., $\forall u.~ \reach(u) \Rightarrow P(u)$,
 written as $\reach \Rightarrow P$ for short. When this is the case, we
-write $(I, T)\vdash P$.
+write $(I, T)\vdash P$. We assume the transition relation has the structure of a top level conjuntion. Given $T(u, u') = T_1(u,u') \land \cdots T_n(u,u')$ we will write $T = \land_{i=1..n}$ for short. By further abuse of notation, $T$ is identified with the set of its top-level conjuncts. Thus, $T_i \in T$ means that $T_i$ is a top-level conjunct of $T$, and $S\subseteq T$ means all top level conjuncts of $S$ are top-level conjuncts of $T$. When a top-level conjunct $T_i$ is removed from $T$, we write $T \setminus \{T_i\}$
 
 The idea behind finding an IVC for a given property P~\cite{GhassabaniGW16} is based on inductive proof methods used in SMT-based model checking, such as $\mathit{k}$-induction and IC3/PDR~\cite{een2011efficient, kahsai2012incremental, cook1971complexity}. Generally, an IVC computation technique aims to determine, for any subset $S \subseteq T$, whether $\mathit{P}$ is provable by $\mathit{S}$. Then, a minimal subset that satisfies $\mathit{P}$ is seen as a minimal proof explanation called a minimal inductive validity core. Ghassabani et al. demonstrate that the minimization process is as hard as model checking~\cite{Ghassabani2017EfficientGO}, so finding a minimal inductive validity core may not be possible for some model checking problems. 
 
 \begin{definition}
-Inductive Validity Core (IVC)~\cite{GhassabaniGW16}: $S \subseteq T$ for $(I, T) \vdash P$ is an Inductive Validity Core, denoted by $IVC(P,S)$, iff $(I,S) \vdash P$.
+Inductive Validity Core (IVC)~\cite{GhassabaniGW16}: $S \subseteq T$ for $(I, T) \vdash P$ is an Inductive Validity Core, denoted by $\mathit{IVC(P,S)}$, iff $\mathit{(I,S)} \vdash P$.
 \end{definition}
 
 \begin{definition}
-Minimal Inductive Validity Core (MIVC)~\cite{Ghassabani2017EfficientGO}: $S \subseteq T$ is a minimal Inductive Validity Core, denoted by $MIVC(P,S)$, iff $IVC(P,S) \land \forall T_i \in S$. $(I, S \setminus \{T_i\}) \not \vdash P$.
+Minimal Inductive Validity Core (MIVC)~\cite{Ghassabani2017EfficientGO}: $S \subseteq T$ is a minimal Inductive Validity Core, denoted by $\mathit{MIVC(P,S)}$, iff $\mathit{IVC(P,S)} \land \forall T_i \in S$. $(I, S \setminus \{T_i\}) \not \vdash P$.
 \end{definition}
 
 A $\mathit{k}$-induction model checker utilizes parallel SMT-solving engines at each induction step to glean information about the proof of a safety property. The transition formula is translated into clauses such that satisfiability is preserved~\cite{een2003temporal}. The translated system, consisting of the constrained formulas of the transition system and the negation of the property, is often called a \emph{constraint system}. The \aivcalg algorithm collects all {\em minimal unsatisfiable subsets} (MUSs) of a constraint system generated from a transition system at each induction step.~\cite{Ghassabani2017EfficientGO,bendik2018online}. 
 
 \begin{definition}
-A Minimal Unsatisfiable Subset (MUS)~\cite{reiter1987theory}.$M$ of a constraint system $C$ is a set $M \subseteq C$ such that $M$ is unsatisfiable and $\forall c \in M$ : $M \setminus \{c\}$ is satisfiable.
+A Minimal Unsatisfiable Subset (MUS)~\cite{reiter1987theory} $M$ of a constraint system $C$ is a set $M \subseteq C$ such that $M$ is unsatisfiable and $\forall c \in M$ : $M \setminus \{c\}$ is satisfiable.
 \end{definition}
 The MUSs are the minimal explanation of the infeasibility of this constraint system; equivalently, these are the minimal sets of model elements necessary for proof of the safety property.
 
@@ -45,16 +45,16 @@ Returning to our running example, this can be illustrated by the following. Give
 
 A related set is a {\em minimal correction set}: 
 \begin{definition}
-A Minimal Correction Set (MCS)~\cite{reiter1987theory} $M$ of a constraint system $C$ is a subset $M\subseteq C$ such that $C \setminus M$ is satisfiable and $\forall S \subset M$ : $C \setminus S$ is unsatisfiable.
+A Minimal Correction Set (MCS)~\cite{reiter1987theory} $M$ of a constraint system $C$ is a subset $M\subseteq C$ such that $C \setminus M$ is satisfiable and $\forall M' \subset M$ : $C \setminus M'$ is unsatisfiable.
 \end{definition}
-A MCS can be seen to ``correct'' the infeasability of the constraint system by the removal from $C$ the constraints found in an MCS. In the case of an UNSAT system, we may ask: what will correct this unsatisfiability? Returning to the PWR example, we can find the MCSs of the constraint system $C$: $MCS_1 = \{G_t\}$, $MCS_2 = \{G_p\}$, $MCS_3 = \{G_r\}$. If any single guarantee is violated, a shut down from that subsystem will not get sent when it should and the safety property $P$ will be violated. 
+A MCS can be seen to ``correct'' the infeasability of the constraint system by the removal from $C$ the constraints found in an MCS. In the case of an UNSAT system, we may ask: what will correct this unsatisfiability? Returning to the PWR example, we can find the MCSs of the constraint system $C$: $\mathit{MCS}_1 = \{G_t\}$, $\mathit{MCS}_2 = \{G_p\}$, $\mathit{MCS}_3 = \{G_r\}$. If any single guarantee is violated, a shut down from that subsystem will not get sent when it should and the safety property $P$ will be violated. 
 
 A duality exists between the MUSs of a constraint system and the MCSs as established by Reiter \cite{reiter1987theory}. This duality is defined in terms of \textit{Minimal Hitting Sets} (\textit{MHS}). 
 
 \begin{definition}
 A hitting set of a collection of sets $A$ is a set $H$ such that every set in $A$ is ``hit'' by $H$; $H$ contains at least one element from every set in $A$. 
 \end{definition}
-Every MUS of a constraint system is a minimal hitting set of the system's MCSs, and likewise every MCS is a minimal hitting set of the system's MUSs~\cite{liffiton2016fast, reiter1987theory, de1987diagnosing}. For the PWR top level constraint system, it can be seen that each of the MCSs intersected with the MUS is nonempty. This gives the minimal set of guarantees for which, if violated, will cause $P$ to be violated. 
+Every MUS of a constraint system is a minimal hitting set of the system's MCSs, and likewise every MCS is a minimal hitting set of the system's MUSs. This is noted in previous work~\cite{liffiton2016fast, de1987diagnosing} and the proof of such is given by Reiter (Theorem 4.4 and Corollary 4.5)~\cite{reiter1987theory}. For the PWR top level constraint system, it can be seen that each of the MCSs intersected with the MUS is nonempty. This gives the minimal set of guarantees for which, if violated, will cause $P$ to be violated. 
 
 
 
