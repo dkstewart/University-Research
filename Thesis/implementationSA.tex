@@ -84,7 +84,7 @@ The architecture of the Safety Annex is shown in Figure~\ref{fig:plugin-arch}.
 	%\vspace{-0.2in}
 \end{figure}
 
-The safety language extension resides in an annex of AADL and the faults defined therein are translated into an abstract syntax tree and inserted into the AGREE program. The AGREE progam contains the building blocks for the translation into Lustre which is the program directly analyzed by JKind.  
+The safety language extension resides in an annex of AADL and the faults defined therein are translated into an abstract syntax tree and inserted into the AGREE program. The AGREE program contains the building blocks for the translation into Lustre which is the program directly analyzed by JKind.  
 
 When performing fault analysis, the fault definitions defined in the safety annex extend the AGREE contracts to allow faults to modify the behavior of component outputs. The temperature sensor subcomponent shown in Figure~\ref{fig:agreeContract} encoded into Lustre is shown in Figure~\ref{fig:lustreTempNode}\footnote{The Lustre code is slightly simplified for readability.}.
 
