@@ -126,6 +126,23 @@ This allows for the possibility of active faults, but when the faults are inacti
 	\label{fig:lustreFaultNode}
 	%\vspace{-0.2in}
 \end{figure}
+ 
+The model elements are translated into Lustre formulae. These are represented in JKind as a transition system, and reasoning is performed using $k$-induction. At each time-step of analysis, every formula in the model is given an assignment based on the constraints over that formula. If every assignment results in a provable property over $k$ steps of induction, the property holds. When performing safety analysis over the model, each fault is defined as an {\em activation literal} and given limited constraint. If the assignment to an activation literal is {\em true}, this corresponds to an active fault and potentially violated guarantee. If that assignment violates a guarantee, then this violation will be reflected in the analysis results. At a system level, it can be seen if a violated guarantee will in turn violate the top level property. Hence it is seen how active faults at leaf level components violate the system level properties. 
+
+This analysis approach allows for implicit propagation of violations throughout the system. It also allows for arbitrary temporal activations of faults. There are no explicit constraints put on faults stating when an activation can occur, which allows the model checking procedure free reign to activate the faults at the worst possible times. If there are dependencies regarding fault activations, these are handled through the use of explicit error propagations.
+
+The main constraint put on the model checker in terms of the activation of faults consist of {\em fault hypothesis statements}. These constrain the model by stating either the number of faults that may be active at once, or the overall probability threshold that is allowed. In the latter case, each fault has an associated probability; assuming independence, the probability of a set of faults occurring should not be less than the threshold defined. 
+
+There are two different types of fault analysis that can be performed on a fault model: verification in the presence of faults or the generation of minimal cut sets. The Safety Annex plugin intercepts the AGREE program and adds fault model information depending on which type of fault analysis is being run. For more information on types of fault analysis, see Section~\ref{sec:analysisResults}.
+
+
+
+
+
+
+
+
+
 
 \begin{comment}
 There are two different types of fault analysis that can be performed on a fault model. The Safety Annex plugin intercepts the AGREE program and add fault model information to the model depending on which form of fault analysis is being run.
