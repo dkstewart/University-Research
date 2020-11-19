@@ -1,52 +1,57 @@
 This is BibTeX, Version 0.99d (TeX Live 2020)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: Main.aux
+A level-1 auxiliary file: implementationSA.aux
+A level-1 auxiliary file: sensorExample.aux
+A level-1 auxiliary file: granularityMutationEq.aux
+A level-1 auxiliary file: granularityMutationInputs.aux
 The style file: abbrv.bst
 Database file #1: noAbbreviations.bib
 Database file #2: biblio.bib
+Warning--I didn't find a database entry for "info8010007"
+Warning--I didn't find a database entry for ""
 Warning--to sort, need author or key in SAE
-Warning--empty school in ghassabani_2018
 Warning--empty booktitle in hammer
 Warning--empty booktitle in miller1954applying
-You've used 132 entries,
+You've used 146 entries,
             2118 wiz_defined-function locations,
-            1244 strings with 27723 characters,
-and the built_in function-call counts, 46545 in all, are:
-= -- 4529
-> -- 2330
-< -- 44
-+ -- 937
-- -- 787
-* -- 3045
-:= -- 7553
-add.period$ -- 419
-call.type$ -- 132
-change.case$ -- 771
+            1324 strings with 31016 characters,
+and the built_in function-call counts, 53015 in all, are:
+= -- 5194
+> -- 2630
+< -- 53
++ -- 1059
+- -- 891
+* -- 3484
+:= -- 8532
+add.period$ -- 467
+call.type$ -- 146
+change.case$ -- 865
 chr.to.int$ -- 0
-cite$ -- 136
-duplicate$ -- 1876
-empty$ -- 3680
-format.name$ -- 787
-if$ -- 9943
+cite$ -- 149
+duplicate$ -- 2130
+empty$ -- 4184
+format.name$ -- 891
+if$ -- 11370
 int.to.chr$ -- 0
-int.to.str$ -- 132
-missing$ -- 124
-newline$ -- 655
-num.names$ -- 264
-pop$ -- 998
+int.to.str$ -- 146
+missing$ -- 134
+newline$ -- 725
+num.names$ -- 292
+pop$ -- 1113
 preamble$ -- 1
-purify$ -- 655
+purify$ -- 734
 quote$ -- 0
-skip$ -- 1347
+skip$ -- 1547
 stack$ -- 0
-substring$ -- 2360
-swap$ -- 506
-text.length$ -- 44
+substring$ -- 2833
+swap$ -- 606
+text.length$ -- 53
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 506
-warning$ -- 4
-while$ -- 418
-width$ -- 135
-write$ -- 1427
-(There were 4 warnings)
+type$ -- 564
+warning$ -- 3
+while$ -- 482
+width$ -- 149
+write$ -- 1588
+(There were 5 warnings)

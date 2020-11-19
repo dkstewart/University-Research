@@ -1,49 +1,80 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces The V Model in System Development\relax }}{9}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces The V Model in System Development\relax }}{10}{figure.caption.10}%
 \contentsline {figure}{\numberline {2.2}{\ignorespaces The V Model in Safety Assessment\relax }}{11}{figure.caption.11}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Use of the Shared System/Safety Model in the ARP4754A Safety Assessment Process\relax }}{12}{figure.caption.12}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Proposed Steps of the Safety Assessment Process\relax }}{14}{figure.caption.13}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces A simple fault tree\relax }}{23}{figure.caption.22}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Binary Decision Diagrams of the Formula $a \lor (b \land c)$\relax }}{24}{figure.caption.25}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces A Simple Fault Tree\relax }}{12}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Use of the Shared System/Safety Model in the ARP4754A Safety Assessment Process\relax }}{14}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Proposed Steps of the Safety Assessment Process\relax }}{16}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Approaches of Related Work\relax }}{23}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Sensor Node Defined in Lustre\relax }}{29}{figure.caption.23}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces $k$-induction formulas: $k$ base cases and one inductive step\relax }}{32}{figure.caption.24}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Proposed Steps of the Safety Assessment Process\relax }}{29}{figure.caption.29}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces An AADL System Type: The Pedal Sensor\relax }}{32}{figure.caption.30}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces The Safety Annex for the Pedal Sensor\relax }}{32}{figure.caption.31}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Differences between Safety Annex and EMV2\relax }}{33}{figure.caption.32}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Hardware Fault Definition\relax }}{34}{figure.caption.33}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Hardware Fault Propagation Statement\relax }}{35}{figure.caption.34}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Communication Nodes in Asymmetric Fault Implementation\relax }}{37}{figure.caption.37}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Asymmetric Fault Definition in the Safety Annex\relax }}{37}{figure.caption.38}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Safety Annex Plug-in Architecture\relax }}{38}{figure.caption.39}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Nominal AGREE Node and Extension with Faults\relax }}{39}{figure.caption.40}%
-\contentsline {figure}{\numberline {3.11}{\ignorespaces IVC Elements used for Consideration in a Leaf Layer of a System\relax }}{40}{figure.caption.41}%
-\contentsline {figure}{\numberline {3.12}{\ignorespaces IVC Elements used for Consideration in a Middle Layer of a System\relax }}{40}{figure.caption.42}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Proposed Steps of the Safety Assessment Process\relax }}{35}{figure.caption.27}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces An AADL Component Type Definition\relax }}{37}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces An AADL Component Implementation Definition\relax }}{38}{figure.caption.29}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces The AGREE Contract for an AADL Component Type\relax }}{39}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces A Counterexample to an Invalid Property\relax }}{40}{figure.caption.31}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Safety Annex Plug-in Architecture\relax }}{41}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Temperature Component in Lustre\relax }}{41}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Temperature Component with Fault in Lustre\relax }}{42}{figure.caption.34}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces A Fault Node in Lustre\relax }}{43}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces PWR Sensor System\relax }}{45}{figure.caption.36}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Sensor System Safety Property\relax }}{46}{figure.caption.38}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces PWR Radiation Sensor\relax }}{48}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces PWR Radiation Sensor Fault\relax }}{48}{figure.caption.40}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces A Fault Node Definition\relax }}{48}{figure.caption.41}%
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Hardware Fault Definition\relax }}{50}{figure.caption.42}%
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Hardware Fault Propagation Statement\relax }}{50}{figure.caption.43}%
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Communication Nodes in Asymmetric Fault Implementation\relax }}{53}{figure.caption.46}%
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Asymmetric Fault Definition in the Safety Annex\relax }}{53}{figure.caption.47}%
+\contentsline {figure}{\numberline {3.19}{\ignorespaces PWR Verification with Maximum Two Faults Hypothesis\relax }}{56}{figure.caption.50}%
+\contentsline {figure}{\numberline {3.20}{\ignorespaces PWR Counterexample with Maximum Two-Faults Hypothesis\relax }}{57}{figure.caption.51}%
+\contentsline {figure}{\numberline {3.21}{\ignorespaces PWR Verification with Probabilistic Hypothesis\relax }}{59}{figure.caption.53}%
+\contentsline {figure}{\numberline {3.22}{\ignorespaces PWR Counterexample with Probabilistic Hypothesis\relax }}{59}{figure.caption.54}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Pressurized Water Reactor Sensor System\relax }}{43}{figure.caption.43}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Sensor System Safety Property\relax }}{44}{figure.caption.44}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Fault on Temperature Sensor Defined in the Safety Annex for AADL\relax }}{45}{figure.caption.45}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces $k$-induction formulas: $k$ base cases and one inductive step\relax }}{47}{figure.caption.46}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces IVC Elements used for Consideration in a Leaf Layer of a System\relax }}{52}{figure.caption.48}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces IVC Elements used for Consideration in a Middle Layer of a System\relax }}{53}{figure.caption.49}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Pressurized Water Reactor Sensor System\relax }}{64}{figure.caption.55}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Sensor System Safety Property\relax }}{64}{figure.caption.56}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Fault on Temperature Sensor Defined in the Safety Annex for AADL\relax }}{65}{figure.caption.57}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces $k$-induction formulas: $k$ base cases and one inductive step\relax }}{68}{figure.caption.58}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces IVC Elements used for Consideration in a Leaf Layer of a System\relax }}{74}{figure.caption.60}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces IVC Elements used for Consideration in a Middle Layer of a System\relax }}{75}{figure.caption.61}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Tempurature Sensor System\relax }}{59}{figure.caption.55}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Temp Sensor System Contract Part I\relax }}{60}{figure.caption.56}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Temp Sensor System Contract Part II\relax }}{61}{figure.caption.57}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Simplified Two-Wheel WBS\relax }}{80}{figure.caption.65}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Safety Property: Inadvertent Braking\relax }}{81}{figure.caption.66}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Detailed Output of Minimal Cut Sets\relax }}{88}{figure.caption.77}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Tally Output of Minimal Cut Sets\relax }}{89}{figure.caption.78}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Counterexample for Inadvertent Braking\relax }}{89}{figure.caption.80}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Architectural Changes for Fault Mitigation\relax }}{90}{figure.caption.81}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Updated PID Example Architecture\relax }}{92}{figure.caption.82}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Description of the Outputs of Each Node in the PID Example\relax }}{92}{figure.caption.83}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Data Implementation in AADL for Node Outputs\relax }}{93}{figure.caption.84}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Fault Definition on Node Outputs for PID Example\relax }}{93}{figure.caption.85}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Fault Node Definition for PID Example\relax }}{93}{figure.caption.86}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Agreement Protocol Contract in AGREE for No Active Faults\relax }}{94}{figure.caption.87}%
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Agreement Protocol Contract in AGREE Regarding Non-failed Nodes\relax }}{94}{figure.caption.88}%
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Fault Activation Statement in PID Example\relax }}{95}{figure.caption.89}%
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Nominal, Extended, and One Fault Verification on 18 Models\relax }}{98}{figure.caption.93}%
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Monolithic and Compositional Probabilistic Fault Analysis for the 4 Wheel Braking System\relax }}{99}{figure.caption.95}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Simplified Two-wheel Wheel Brake System\relax }}{63}{figure.caption.59}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces AGREE Contract for Top Level Property: Inadvertent Braking\relax }}{65}{figure.caption.60}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Detailed Output of MinCutSets\relax }}{70}{figure.caption.69}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Tally Output of MinCutSets\relax }}{71}{figure.caption.70}%
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Example SOTERIA Fault Tree\relax }}{71}{figure.caption.71}%
-\contentsline {figure}{\numberline {6.6}{\ignorespaces AGREE counterexample for inadvertent braking safety property\relax }}{72}{figure.caption.73}%
-\contentsline {figure}{\numberline {6.7}{\ignorespaces Changes in the architectural model for fault mitigation\relax }}{73}{figure.caption.74}%
-\contentsline {figure}{\numberline {6.8}{\ignorespaces Updated PID Example Architecture\relax }}{74}{figure.caption.75}%
-\contentsline {figure}{\numberline {6.9}{\ignorespaces Description of the Outputs of Each Node in the PID Example\relax }}{74}{figure.caption.76}%
-\contentsline {figure}{\numberline {6.10}{\ignorespaces Data Implementation in AADL for Node Outputs\relax }}{75}{figure.caption.77}%
-\contentsline {figure}{\numberline {6.11}{\ignorespaces Fault Definition on Node Outputs for PID Example\relax }}{75}{figure.caption.78}%
-\contentsline {figure}{\numberline {6.12}{\ignorespaces Fault Node Definition for PID Example\relax }}{76}{figure.caption.79}%
-\contentsline {figure}{\numberline {6.13}{\ignorespaces Agreement Protocol Contract in AGREE for No Active Faults\relax }}{76}{figure.caption.80}%
-\contentsline {figure}{\numberline {6.14}{\ignorespaces Agreement Protocol Contract in AGREE Regarding Non-failed Nodes\relax }}{77}{figure.caption.81}%
-\contentsline {figure}{\numberline {6.15}{\ignorespaces Fault Activation Statement in PID Example\relax }}{77}{figure.caption.82}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Tempurature Sensor System\relax }}{106}{figure.caption.101}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Temp Sensor System Contract Part I\relax }}{107}{figure.caption.102}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Temp Sensor System Contract Part II\relax }}{108}{figure.caption.103}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Temp Sensor With Original Guarantee\relax }}{109}{figure.caption.105}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Temp Sensor With Modified Guarantees\relax }}{110}{figure.caption.106}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Nominal Analysis and Initial Granularity Refinement\relax }}{111}{figure.caption.107}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Graphical Representation of a Boolean Formula\relax }}{114}{figure.caption.108}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Refactored Equation with Fresh Variables\relax }}{115}{figure.caption.109}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces The Lustre Model of a Monitor\relax }}{116}{figure.caption.111}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces The Lustre Model of a Monitor After Refactorization\relax }}{117}{figure.caption.112}%
+\contentsline {figure}{\numberline {6.11}{\ignorespaces The MIVC of the Refactored Monitor Model\relax }}{117}{figure.caption.113}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Flat Fault Tree for a Sensor Example\relax }}{120}{figure.caption.116}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Hierarchical Fault Tree for a Sensor Example\relax }}{120}{figure.caption.117}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Sample System Contract Part I\relax }}{123}{figure.caption.118}%
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Sample System Contract Part II\relax }}{124}{figure.caption.119}%
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Temperature Subsystem Guarantee Killed by Equation Remover\relax }}{128}{figure.caption.120}%
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Hydraulic Fuse Guarantee Killed by Equation Remover\relax }}{128}{figure.caption.121}%
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Hydraulic Fuse Fault in Minimal Cut Sets\relax }}{129}{figure.caption.122}%
+\contentsline {figure}{\numberline {7.8}{\ignorespaces An AADL Component and Lustre Node Inputs\relax }}{130}{figure.caption.123}%
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Temperature Node Inputs Killed by Equation Remover\relax }}{130}{figure.caption.124}%
 \addvspace {10\p@ }
