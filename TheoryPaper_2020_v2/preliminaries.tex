@@ -2,81 +2,28 @@
 \label{sec:prelim}
 
 %\input{implBackground}
-To implement the formalism described in Section~\ref{sec:formalism}, we needed to compute minimal cut sets per layer of compositional analysis, transform them into their related Boolean formula, and compose them compositionally. \danielle{Introduce minimal ivcs, Show diagram of breaking each proof path, provide the formalization of ivcs and link them to MUSs and minimal cut sets, implBackground, algorithm}
+To implement the formalism described in Section~\ref{sec:formalization}, we must compute minimal cut sets per layer of analysis, transform them into their related Boolean formula, and compose them. As previously described, Ghassabani et al. developed the \textit{all minimal inductive validity core} algorithm (\aivcalg)~\cite{GhassabaniGW16,Ghassabani2017EfficientGO,bendik2018online}. The \aivcalg algorithm gives the minimal set of contracts required for proof of a safety property. If all of these sets are obtained, we have insight into every proof path for the property. Thus, if we violate at least one contract from every MIVC set, we have in essence ``broken" every proof. 
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[width=0.9\textwidth]{images/mivcBreaking.png}
+	\end{center}
+	\caption{Using MIVCs to derive minimal cut sets}
+	\label{fig:mivcBreaking}
+\end{figure}
 
+In Figure~\ref{fig:mivcBreaking}, we depict this graphically. In the first box (top left), the contracts of the single layer system are $g_1, \dots, g_{13}$. In this example, not all guarantees are needed to prove $P$; one may obtain proof of the property by having only $g_4$ and $g_5$ in the model. The \aivcalg algorithm provides all minimal sets which is shown as the lines running through the guarantees. 
 
+One may attempt to ``break" a proof by violating a guarantee in a single MIVC as shown in the top right of the figure. This does break a proof, but given there are multiple MIVCs, it is not enough. The bottom figure shows our method: violate one guarantee from each MIVC set to ensure that the property can no longer be proven. The hitting sets of all MIVCs produces the minimal cut sets. 
 
-\subsection{Formal Background}
-\begin{comment}
-Given a state space $U$, a transition system $(I,T)$ consists of an
-initial state predicate $I : U \to \bool$ and a transition step
-predicate $T : U \times U \to \bool$.
-We define the notion of
-reachability for $(I, T)$ as the smallest predicate $\reach : U \to
-\bool$ which satisfies the following formulas:
-\begin{gather*}
-  \forall u.~ I(u) \Rightarrow \reach(u) \\
-  \forall u, u'.~ \reach(u) \land T(u, u') \Rightarrow \reach(u')
-\end{gather*}
-A safety property $P : U \to \bool$ is a state predicate. A safety
-property $P$ holds on a transition system $(I, T)$ if it holds on all
-reachable states, i.e., $\forall u.~ \reach(u) \Rightarrow P(u)$,
-written as $\reach \Rightarrow P$ for short. When this is the case, we
-write $(I, T)\vdash P$. We assume the transition relation has the structure of a top level conjuntion. Given $T(u, u') = T_1(u,u') \land \cdots T_n(u,u')$ we will write $T = \land_{i=1..n}$ for short. By further abuse of notation, $T$ is identified with the set of its top-level conjuncts. Thus, $T_i \in T$ means that $T_i$ is a top-level conjunct of $T$, and $S\subseteq T$ means all top level conjuncts of $S$ are top-level conjuncts of $T$. When a top-level conjunct $T_i$ is removed from $T$, we write $T \setminus \{T_i\}$
-\end{comment}
+Next we outline the formal background and toolsuite used in the implementation and then describe the algorithm that is implemented in the safety annex for AADL. 
 
-The idea behind finding an IVC for a given property P~\cite{GhassabaniGW16} is based on inductive proof methods used in SMT-based model checking, such as $\mathit{k}$-induction and IC3/PDR~\cite{een2011efficient, kahsai2012incremental, cook1971complexity}. Generally, an IVC computation technique aims to determine, for any subset $S \subseteq T$, whether $\mathit{P}$ is provable by $\mathit{S}$. Then, a minimal subset that satisfies $\mathit{P}$ is seen as a minimal proof explanation called a minimal inductive validity core. Ghassabani et al. demonstrate that the minimization process is as hard as model checking~\cite{Ghassabani2017EfficientGO}, so finding a minimal inductive validity core may not be possible for some model checking problems. 
-
-\begin{definition}
-Inductive Validity Core (IVC)~\cite{GhassabaniGW16}: $S \subseteq T$ for $(I, T) \vdash P$ is an Inductive Validity Core, denoted by $\mathit{IVC(P,S)}$, iff $\mathit{(I,S)} \vdash P$.
-\end{definition}
-
-\begin{definition}
-Minimal Inductive Validity Core (MIVC)~\cite{Ghassabani2017EfficientGO}: $S \subseteq T$ is a minimal Inductive Validity Core, denoted by $\mathit{MIVC(P,S)}$, iff $\mathit{IVC(P,S)} \land \forall T_i \in S$. $(I, S \setminus \{T_i\}) \not \vdash P$.
-\end{definition}
-
-A $\mathit{k}$-induction model checker utilizes parallel SMT-solving engines at each induction step to glean information about the proof of a safety property. The transition formula is translated into clauses such that satisfiability is preserved~\cite{een2003temporal}. The translated system, consisting of the constrained formulas of the transition system and the negation of the property, is often called a \emph{constraint system}. The \aivcalg algorithm collects all {\em minimal unsatisfiable subsets} (MUSs) of a constraint system generated from a transition system at each induction step.~\cite{Ghassabani2017EfficientGO,bendik2018online}. 
-
-\begin{definition}
-A Minimal Unsatisfiable Subset (MUS)~\cite{reiter1987theory} $M$ of a constraint system $C$ is a set $M \subseteq C$ such that $M$ is unsatisfiable and $\forall c \in M$ : $M \setminus \{c\}$ is satisfiable.
-\end{definition}
-The MUSs are the minimal explanation of the infeasibility of this constraint system; equivalently, these are the minimal sets of model elements necessary for proof of the safety property.
-
-Returning to our running example, this can be illustrated by the following. Given the constraint system $C = \{G_p, G_t, G_r, \neg P\}$, a minimal explanation of the infeasability of this system is the set $\{G_p, G_t, G_r,\}$. If all three guarantees hold, then $P$ is provable. 
-
-A related set is a {\em minimal correction set}: 
-\begin{definition}
-A Minimal Correction Set (MCS)~\cite{reiter1987theory} $M$ of a constraint system $C$ is a subset $M\subseteq C$ such that $C \setminus M$ is satisfiable and $\forall M' \subset M$ : $C \setminus M'$ is unsatisfiable.
-\end{definition}
-A MCS can be seen to ``correct'' the infeasability of the constraint system by the removal from $C$ the constraints found in an MCS. In the case of an UNSAT system, we may ask: what will correct this unsatisfiability? Returning to the PWR example, we can find the MCSs of the constraint system $C$: $\mathit{MCS}_1 = \{G_t\}$, $\mathit{MCS}_2 = \{G_p\}$, $\mathit{MCS}_3 = \{G_r\}$. If any single guarantee is violated, a shut down from that subsystem will not get sent when it should and the safety property $P$ will be violated. 
-
-A duality exists between the MUSs of a constraint system and the MCSs as established by Reiter \cite{reiter1987theory}. This duality is defined in terms of \textit{Minimal Hitting Sets} (\textit{MHS}). 
-
-\begin{definition}
-A hitting set of a collection of sets $A$ is a set $H$ such that every set in $A$ is ``hit'' by $H$; $H$ contains at least one element from every set in $A$. 
-\end{definition}
-Every MUS of a constraint system is a minimal hitting set of the system's MCSs, and likewise every MCS is a minimal hitting set of the system's MUSs. This is noted in previous work~\cite{liffiton2016fast, de1987diagnosing} and the proof of such is given by Reiter (Theorem 4.4 and Corollary 4.5)~\cite{reiter1987theory}. For the PWR top level constraint system, it can be seen that each of the MCSs intersected with the MUS is nonempty. This gives the minimal set of guarantees for which, if violated, will cause $P$ to be violated. 
-
-
-
-
-
-
-
-
-
-
-
-
+\subsection{Background}
+JKind is an open-source industrial infinite-state inductive model checker for safety properties~\cite{2017arXiv171201222G}. Models and properties in JKind are specified in Lustre~\cite{Halbwachs91:IEEE}, a synchronous dataflow language, using the theories of linear real and integer arithmetic. JKind uses SMT-solvers to prove and falsify multiple properties in parallel. The JKind model checker uses {\em
+  $k$-induction} which unrolls the property $P$ over $k$ steps of the
+transition system.
 
 \begin{comment}
-
-For an arbitrary transition system $(I, T)$, computing reachability
-can be very expensive or even impossible. Thus, we need a more
-effective way of checking if a safety property $P$ is satisfied by the
-system. The key idea is to over-approximate reachability. If we can
-find an over-approximation that implies the property, then the
-property must hold. Otherwise, the approximation needs to be refined.
+%For an arbitrary transition system $(I, T)$, computing reachability can be very expensive or even impossible. Thus, we need a more effective way of checking if a safety property $P$ is satisfied by the system. The key idea is to over-approximate reachability. If we can find an over-approximation that implies the property, then the property must hold. Otherwise, the approximation needs to be refined.
 
 A good first approximation for reachability is the property itself.
 That is, we can check if the following formulas hold:
@@ -92,11 +39,10 @@ by an initial state of the system. If (\ref{eq:1-ind-step}) fails to
 hold, then $P$ is too much of an over-approximation and needs to be
 refined.
 
-The JKind model checker used in this research uses {\em
-  $k$-induction} which unrolls the property over $k$ steps of the
-transition system. For example, 1-induction consists of formulas
-(\ref{eq:1-ind-base}) and (\ref{eq:1-ind-step}) above, whereas
-2-induction consists of the following formulas:
+
+The JKind model checker uses {\em
+  $k$-induction} which unrolls the property $P$ over $k$ steps of the
+transition system. For example, 1-induction consists of formulas (\ref{eq:1-ind-base}) and (\ref{eq:1-ind-step}) above, whereas 2-induction consists of the following formulas:
 \begin{gather*}
 \forall s.~ I(s) \Rightarrow P(s) \\
 \forall s, s'.~ I(s) \land T(s, s') \Rightarrow P(s') \\
@@ -132,27 +78,67 @@ T(s_{k-1}, s_k) \Rightarrow P(s_k)
 In practice, inductive model checkers often use a combination of the
 above techniques. Thus, a typical conclusion is of the form ``$P$ with
 lemmas $L_1, \ldots, L_n$ is $k$-inductive''.
-
-\danielle{Cut SAT section, but it seems I still need a bridge between the transition systems here and the constraint system further down. How is this?} Each induction step is sent to an SMT (Satisfiabilty Modulo Theory)-solver to check for \emph{satisfiability}, i.e. there exists a total truth assignment to a given formula that evaluates to true. If there does not exist such an assignment, the formula is considered \emph{unsatisfiable}. %A \emph{constraint system} is a term used to describe the formula with all constraints to the variables. 
-A formula is translated into clauses such that satisfiability is preserved~\cite{een2003temporal} and the $k$-inductive model checker utilizes parallel SMT-solving engines to glean proof information at each inductive step. Expression of the base and induction steps of a temporal induction proof as SAT problems is straightforward (Figure~\ref{fig:k-induction}).
-
-\begin{gather*}
-I(s_0) \land T(s_0, s_1) \land \cdots \land T(s_{k-2}, s_{k-1})
-\land \neg P(s_{k-1})
-\end{gather*}
-
-When proving correctness it is shown that the formulas are \emph{unsatisfiable},i.e., the property $P$ is provable.
-
 \end{comment}
 
-%\subsection{The SAT Problem}
-%Boolean Satisfiability (SAT) solvers attempt to determine if there exists a total truth assignment to a given propositional formula, that evaluates to TRUE. Generally, a propositional formula is any combination of the disjunction and conjunction of literals (as an example, $a$ and $\neg a$ are literals). For a given unsatisfiable problem, solvers try to generate a proof of unsatisfiability; this is generally more useful than a proof of satisfiability. Such a proof is dependent on identifying a subset of clauses that make the problem unsatisfiable (UNSAT). SAT solvers in model checking work over a constraint system to determine satisfiability. A \textit{constraint system} $C$ is an ordered set of $n$ abstract constraints $\{C_1, C_2, ..., C_n\}$ over a set of variables. The constraint $C_i$ restricts the allowed assignments of these variables in some way~\cite{liffiton2016fast}. Given a constraint system, we require some method of determining, for any subset $S \subseteq C$, whether $S$ is \textit{satisfiable} (SAT) or \textit{unsatisfiable} (UNSAT). When a subset $S$ is SAT, this means that there exists an assignment allowed by all $C_i \in S$; when no such assignment exists, $S$ is considered UNSAT. 
+Each step of induction is sent to an SMT (Satisfiabilty Modulo Theory)-solver to check for \emph{satisfiability}, i.e. there exists a total truth assignment to a given formula that evaluates to true. If there does not exist such an assignment, the formula is considered \emph{unsatisfiable}. %A \emph{constraint system} is a term used to describe the formula with all constraints to the variables. 
+A $\mathit{k}$-induction model checker utilizes parallel SMT-solving engines at each induction step to glean information about the proof of a safety property. The transition formula is translated into clauses such that satisfiability is preserved~\cite{een2003temporal}. Expression of the base and induction steps of a temporal induction proof as SAT problems is straightforward and is shown below for step $k$:
 
-%There are several ways of translating a propositional formula into clauses such that satisfiability is preserved~\cite{een2003temporal}. By performing this translation, $k$-inductive model checkers are able to utilize parallel SAT-solving engines to glean information about the proof of a safety property at each inductive step. Expression of the base and induction steps of a temporal induction proof as SAT problems is straightforward. As an example, we look at an arbitrary base case from Figure~\ref{fig:k-induction}.
+\begin{gather*}
+I(s_0) \land T(s_0, s_1) \land \cdots \land T(s_{k-1}, s_{k})
+\land \neg P(s_{k})
+\end{gather*}
 
-%\begin{gather*}
-%I(s_0) \land T(s_0, s_1) \land \cdots \land T(s_{k-2}, s_{k-1})
-%\land \neg P(s_{k-1})
-%\end{gather*}
+When proving correctness it is shown that the formulas are \emph{unsatisfiable},i.e., the property $P$ is provable. The idea behind finding an {\em inductive validity core} (IVC) for a given property $P$~\cite{GhassabaniGW16} is based on inductive proof methods used in SMT-based model checking, such as $\mathit{k}$-induction and IC3/PDR~\cite{een2011efficient, kahsai2012incremental, cook1971complexity}. Generally, an IVC computation technique aims to determine, for any subset $S \subseteq T$, whether $\mathit{P}$ is provable by $\mathit{S}$. A minimal subset that satisfies $\mathit{P}$ is seen as a minimal proof explanation and called a minimal inductive validity core. %Ghassabani et al. demonstrate that the minimization process is as hard as model checking~\cite{Ghassabani2017EfficientGO}, so finding a minimal inductive validity core may not be possible for some model checking problems. 
 
-%When proving correctness it is shown that the formulas are \emph{unsatisfiable}. If an $n^{th}$ inductive-step is unsatisfiable, that means following an $n$-step trace where the property holds, there exists no next state where it fails, i.e., the property $P$ is provable.
+\begin{definition}
+Inductive Validity Core (IVC)~\cite{GhassabaniGW16}: $S \subseteq T$ for $(I, T) \vdash P$ is an Inductive Validity Core, denoted by $\mathit{IVC(P,S)}$, iff $\mathit{(I,S)} \vdash P$.
+\end{definition}
+
+\begin{definition}
+Minimal Inductive Validity Core (MIVC)~\cite{Ghassabani2017EfficientGO}: $S \subseteq T$ is a minimal Inductive Validity Core, denoted by $\mathit{MIVC(P,S)}$, iff $\mathit{IVC(P,S)} \land \forall T_i \in S$. $(I, S \setminus \{T_i\}) \not \vdash P$.
+\end{definition}
+
+The {\em constraint system} consists of the constrained formulas of the transition system and the negation of the property. The \aivcalg algorithm collects all {\em minimal unsatisfiable subsets} (MUSs) of a constraint system generated from a transition system at each induction step~\cite{Ghassabani2017EfficientGO,bendik2018online}. 
+
+\begin{definition}
+A Minimal Unsatisfiable Subset (MUS)~\cite{reiter1987theory} $M$ of a constraint system $C$ is a set $M \subseteq C$ such that $M$ is unsatisfiable and $\forall c \in M$ : $M \setminus \{c\}$ is satisfiable.
+\end{definition}
+The MUSs are the minimal explanation of the infeasibility of this constraint system; equivalently, these are the minimal sets of model elements necessary for proof of the safety property.
+
+Returning to our running example, this can be illustrated by the following. Given the constraint system $C = \{G_p, G_t, G_r, \neg P\}$, a minimal explanation of the infeasability of this system is the set $\{G_p, G_t, G_r,\}$. If all three guarantees hold, then $P$ (the disjunction of these guarantees) is provable. 
+
+In the case of an UNSAT system, we may ask: what will correct this unsatisfiability? A related set answers this question: 
+\begin{definition}
+A Minimal Correction Set (MCS)~\cite{reiter1987theory} $M$ of a constraint system $C$ is a subset $M\subseteq C$ such that $C \setminus M$ is satisfiable and $\forall M' \subset M$ : $C \setminus M'$ is unsatisfiable.
+\end{definition}
+A MCS can be seen to ``correct'' the infeasability of the constraint system by the removal from $C$ the constraints found in an MCS. Returning to the PWR example, the MCSs of the constraint system $C$ are $\mathit{MCS}_1 = \{G_t\}$, $\mathit{MCS}_2 = \{G_p\}$, $\mathit{MCS}_3 = \{G_r\}$. If any single guarantee is violated, a shut down from that subsystem may not get sent when it should and the safety property $P$ will be violated. This corresponds exactly to the definition of a minimal cut set.
+
+For the following definitions, we remind readers of the extended transition system defined in Equation 2 of Section~\ref{sec:formalization} and that the elements of $T$ are the set $\mathit{GF} \cup \mathit{AF}$ for potentially faulty guarantees $\mathit{GF}$ and activation literals $\mathit{AF}$.
+
+\begin{definition}
+A cut set $S$ of a top level event $\neg P$ is a set $S \subseteq \mathit{AF}$ such that $\forall \mathit{af} \in S$, $\mathit{af}$ is constrained to true and $S \cup \{\neg P\}$ is satisfiable.
+\end{definition}
+
+\begin{definition}
+A cut set $S$ is minimal if and only if $\forall \mathit{af} \in S$, $S \setminus \{\mathit{af}\} \cup \{\neg P\}$ is unsatisfiable.
+\end{definition}
+
+We use the notation $\overline{\mathit{MCS}}$ to denote the set $\mathit{MCS}$ with all constraints removed from its elements.
+
+\begin{theorem}
+$\overline{\mathit{MCS}}$ is a minimal cut set of $\neg P$.
+\begin{proof}
+
+\end{proof}
+\end{theorem}
+
+A duality exists between the MUSs of a constraint system and the MCSs as established by Reiter \cite{reiter1987theory}. This duality is defined in terms of \textit{Minimal Hitting Sets} (\textit{MHS}). 
+\begin{definition}
+A hitting set of a collection of sets $A$ is a set $H$ such that every set in $A$ is ``hit'' by $H$; $H$ contains at least one element from every set in $A$. 
+\end{definition}
+Every MUS of a constraint system is a minimal hitting set of the system's MCSs, and likewise every MCS is a minimal hitting set of the system's MUSs. This is noted in previous work~\cite{liffiton2016fast, de1987diagnosing} and the proof of such is given by Reiter (Theorem 4.4 and Corollary 4.5)~\cite{reiter1987theory}. For the PWR top level constraint system, it can be seen that each of the MCSs intersected with the MUS is nonempty. This gives the minimal set of guarantees for which, if violated, will cause $P$ to be violated. 
+
+As described in Section~\ref{sec:formalization}, we extend the transition system with fault activation literals. These literals are constrained to {\em false} and the \aivcalg algorithm is invoked. The constraint system for the PWR example is $C = \{\neg\mathit{af}_p, \neg\mathit{af}_t, \neg\mathit{af}_r, \neg P\}$ for activation literal $\mathit{af}_p$ associated with $G_p$, etc. The hitting sets generated from the MIVC are: $\{\neg\mathit{af}_p\}$, $\{\neg\mathit{af}_t\}$, and $\{\neg\mathit{af}_r\}$ and are the minimal correction sets of the constraint system. The only remaining step is to unconstrain the activation literals and then we continue the composition.
+
+
+

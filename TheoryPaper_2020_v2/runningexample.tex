@@ -17,7 +17,7 @@ The following sensor system can be thought of as a subsystem within a PWR that m
 
 The subsystems each contain three sensors that monitor pressure, temperature, and radiation. Environmental inputs are fed into each sensor in the model and the redundant sensors monitor temperature, pressure, or radiation respectively. If temperature, pressure, or radiation is too high, a shut down command is sent from the sensors to the parent components. 
 
-The temperature, pressure, and radiation sensor subsystems each contan three associated sensors for redundancy. Each sensor reports the associated environmental condition to a majority voter component. If the majority of the sensors reports high, a shut down command is sent to the subsystem. If any subsystem reports a shut down command, the top level system will shut down. Pressure, radiation, and temperature all have associated thresholds for high values which we refer to as $T_p$, $T_r$, and $T_t$ respectively. The safety property $P$ of interest in this system is: \emph{shut down when we should} and is reflected by the shut down command at the top level ({\em Shut\_Down\_Cmd}):
+The temperature, pressure, and radiation sensor subsystems each contain three associated sensors for redundancy. Each sensor reports the associated environmental condition to a majority voter component. If the majority of the sensors reports high, a shut down command is sent to the subsystem. If any subsystem reports a shut down command, the top level system will shut down. Pressure, radiation, and temperature all have associated thresholds for high values which we refer to as $T_p$, $T_r$, and $T_t$ respectively. The safety property $P$ of interest in this system is: \emph{shut down when we should} and is reflected by the shut down command at the top level ({\em Shut\_Down\_Cmd}):
 
 \begin{equation*}
 \begin{split}
@@ -40,9 +40,7 @@ For reference throughout this paper, we provide Figure~\ref{fig:sensorSysContrac
 	%\vspace{-2em}
 \end{figure*}
 
-Note: the thresholds vary for pressure, temperature, and radiation. These are given as constants $T_p$, $T_t$, and $T_r$ respectively. The top level shut down command is given as $S$ and each sensor subsystem provides their own shutdown command, $S_p$ for example.  The faults are shown as ``fail low" which correspond to the environmental condition being high, but the sensor reports safe ranges. We do not show all guarantees and assumptions that are in the model, but only the ones of interest for the illustration. 
-
-Initially, the faults that are of interest in this system are unconstrained guarantees. When a guarantee becomes unconstrained, the output over which it is defined may be faulty. For our purposes in the next section, this situation is what we want to explore. 
+The top level shut down command is given as $S$ and each sensor subsystem provides their own shutdown command, $S_p$ for example.  We do not show all guarantees and assumptions that are in the model, but only the ones of interest for the illustration. Initially, assume that the faults of interest are unconstrained guarantees. When a guarantee becomes unconstrained, the output over which it is defined may be faulty. For our purposes in the next section, this situation is what we want to explore. When we describe the implementaton in Section~\ref{sec:impl}, we define more concrete failure scenarios.
 
 \begin{comment}
 \subsection{PWR Fault Model}
