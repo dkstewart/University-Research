@@ -1,13 +1,13 @@
 \section{Preliminaries}
 \label{sec:prelim}
-\newcommand{\bool}[0]{\mathit{bool}}
-\newcommand{\reach}[0]{\mathit{R}}
-\newcommand{\ite}[3]{\mathit{if}\ {#1}\ \mathit{then}\ {#2}\ \mathit{else}\ {#3}}
+
+%\input{implBackground}
+To implement the formalism described in Section~\ref{sec:formalism}, we needed to compute minimal cut sets per layer of compositional analysis, transform them into their related Boolean formula, and compose them compositionally. \danielle{Introduce minimal ivcs, Show diagram of breaking each proof path, provide the formalization of ivcs and link them to MUSs and minimal cut sets, implBackground, algorithm}
 
 
-\input{implBackground}
 
 \subsection{Formal Background}
+\begin{comment}
 Given a state space $U$, a transition system $(I,T)$ consists of an
 initial state predicate $I : U \to \bool$ and a transition step
 predicate $T : U \times U \to \bool$.
@@ -23,6 +23,7 @@ property $P$ holds on a transition system $(I, T)$ if it holds on all
 reachable states, i.e., $\forall u.~ \reach(u) \Rightarrow P(u)$,
 written as $\reach \Rightarrow P$ for short. When this is the case, we
 write $(I, T)\vdash P$. We assume the transition relation has the structure of a top level conjuntion. Given $T(u, u') = T_1(u,u') \land \cdots T_n(u,u')$ we will write $T = \land_{i=1..n}$ for short. By further abuse of notation, $T$ is identified with the set of its top-level conjuncts. Thus, $T_i \in T$ means that $T_i$ is a top-level conjunct of $T$, and $S\subseteq T$ means all top level conjuncts of $S$ are top-level conjuncts of $T$. When a top-level conjunct $T_i$ is removed from $T$, we write $T \setminus \{T_i\}$
+\end{comment}
 
 The idea behind finding an IVC for a given property P~\cite{GhassabaniGW16} is based on inductive proof methods used in SMT-based model checking, such as $\mathit{k}$-induction and IC3/PDR~\cite{een2011efficient, kahsai2012incremental, cook1971complexity}. Generally, an IVC computation technique aims to determine, for any subset $S \subseteq T$, whether $\mathit{P}$ is provable by $\mathit{S}$. Then, a minimal subset that satisfies $\mathit{P}$ is seen as a minimal proof explanation called a minimal inductive validity core. Ghassabani et al. demonstrate that the minimization process is as hard as model checking~\cite{Ghassabani2017EfficientGO}, so finding a minimal inductive validity core may not be possible for some model checking problems. 
 
