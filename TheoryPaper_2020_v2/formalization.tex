@@ -16,7 +16,7 @@ reachable states, i.e., $\forall u.~ \reach(u) \Rightarrow P(u)$,
 written as $\reach \Rightarrow P$ for short. When this is the case, we
 write $(I, T)\vdash P$. We assume the transition relation has the structure of a top level conjunction. Given $T(u, u') = T_1(u,u') \land \cdots T_n(u,u')$ we will write $T = \land_{i=1..n}$ for short. By further abuse of notation, $T$ is identified with the set of its top-level conjuncts. Thus, $T_i \in T$ means that $T_i$ is a top-level conjunct of $T$, and $S\subseteq T$ means all top level conjuncts of $S$ are top-level conjuncts of $T$. When a top-level conjunct $T_i$ is removed from $T$, we write $T \setminus \{T_i\}$
 
-The set of all nominal guarantees of the system $G$ consists of conjunctive constraints $g \in G$. Given no faults (i.e., nominal system) and a transition relation $T$ consisting of conjunctive constraints $T_i$ as defined in section~\ref{sec:prelim}, each $g$ is one of the transition constraints $T_i$ where:
+The set of all nominal guarantees of the system $G$ consists of conjunctive constraints $g \in G$. Given no faults (i.e., nominal system) and a transition relation $T$ consisting of conjunctive constraints $T_i$, each $g$ is one of the transition constraints $T_i$ where:
 
 \begin{gather}
 T = g_1 \land  g_2 \land \cdots \land g_n
@@ -218,6 +218,7 @@ By inductive assumption and Lemma~\ref{lemma:validForest}, $\phi_F^{n+1}(\mathit
 \label{thm:indForest}
 \end{theorem}
 
+Now that we have the formal foundations laid, we proceed towards the implementation. 
 
 
 

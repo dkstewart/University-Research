@@ -1,4 +1,4 @@
-\section{Preliminaries}
+\section{Preliminaries for the Implementation}
 \label{sec:prelim}
 
 %\input{implBackground}
@@ -140,5 +140,6 @@ Every MUS of a constraint system is a minimal hitting set of the system's MCSs, 
 
 As described in Section~\ref{sec:formalization}, we extend the transition system with fault activation literals. These literals are constrained to {\em false} and the \aivcalg algorithm is invoked. The constraint system for the PWR example is $C = \{\neg\mathit{af}_p, \neg\mathit{af}_t, \neg\mathit{af}_r, \neg P\}$ for activation literal $\mathit{af}_p$ associated with $G_p$, etc. The hitting sets generated from the MIVC are: $\{\neg\mathit{af}_p\}$, $\{\neg\mathit{af}_t\}$, and $\{\neg\mathit{af}_r\}$ and are the minimal correction sets of the constraint system. The only remaining step is to unconstrain the activation literals and then we continue the composition.
 
+\input{implBackground}
 
 
