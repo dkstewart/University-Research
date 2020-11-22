@@ -9,12 +9,36 @@ Language annexes to AADL provide a rich set of modeling elements for various sys
 %One way to structure compositional verification is hierarchically: layers of the system architecture are analyzed independently and their composition demonstrates a system property of interest. Compositional verification partitions the formal analysis of a system architecture into verification tasks that correspond into the decomposition of the architecture~\cite{clarke1989compositional}.  A proof consists of demonstrating that the system property is provable given the contracts of its direct subcomponents and the system assumptions~\cite{cofer2012compositional,clarke1989compositional}. When compared to monolithic analysis (i.e., analysis of the flattened model composed of all components), the compositional approach allows the analysis to scale to much larger systems~\cite{NFM2012:CoGaMiWhLaLu,heckel1998compositional,cofer2012compositional}.
 
 \textbf{Assume Guarantee Reasoning Environment}
-The Assume Guarantee Reasoning Environment (AGREE) is a tool for formal analysis of behaviors in AADL models and supports compositional verification~\cite{NFM2012:CoGaMiWhLaLu}.  It is implemented as an AADL annex and is used to annotate AADL components with formal behavioral contracts. Each component's contracts includes assumptions and guarantees about the component's inputs and outputs respectively. AGREE translates an AADL model and the behavioral contracts into Lustre~\cite{Halbwachs91:IEEE} and then queries the \jkind model checker to conduct the back-end analysis~\cite{2017arXiv171201222G}. 
-\danielle{Example guarantee}
+The Assume Guarantee Reasoning Environment (AGREE) is a tool for formal analysis of behaviors in AADL models and supports compositional verification~\cite{NFM2012:CoGaMiWhLaLu}.  It is implemented as an AADL annex and is used to annotate AADL components with formal behavioral contracts. Each component's contracts includes assumptions and guarantees about the component's inputs and outputs respectively. AGREE translates an AADL model and the behavioral contracts into Lustre~\cite{Halbwachs91:IEEE} and then queries the \jkind model checker to conduct the back-end analysis~\cite{2017arXiv171201222G}. Figure~\ref{fig:property} is the top level system property for the sensor system written in AGREE.
+
+\begin{figure*}[h!]
+	\vspace{-2em}
+	\begin{center}
+		\includegraphics[width=0.7\textwidth]{images/shutdownGuar.PNG}
+	\end{center}
+	\vspace{-2em}
+	\caption{The sensor system level safety property in AGREE}
+	\label{fig:property}
+	%\vspace{-2em}
+\end{figure*}
 
 %\textbf{JKind}
 %JKind is an open-source industrial infinite-state inductive model checker for safety properties~\cite{2017arXiv171201222G}. Models and properties in JKind are specified in Lustre~\cite{Halbwachs91:IEEE}, a synchronous dataflow language, using the theories of linear real and integer arithmetic. JKind uses SMT-solvers to prove and falsify multiple properties in parallel.
 
 \textbf{Safety Annex for AADL}
 The Safety Annex for AADL provides the ability to reason about faults and faulty component behaviors in AADL models~\cite{Stewart17:IMBSA,stewart2020safety}. In the Safety Annex approach, AGREE is used to define the nominal behavior of system components, faults are introduced into the nominal model, and JKind is used to analyze the behavior of the system in the presence of faults. Faults describe deviations from the nominal behavior and are attached to the outputs of components in the system.%The Safety Annex supports behavioral specification of faults and their implicit propagation through behavioral relationships in the model as well as explicit propagation through dependencies. 
-\danielle{Example fault def}
+
+An example of a fault definition on the temperature sensor for the PWR is shown in Figure~\ref{fig:tempSensorFault}.
+
+\begin{figure*}[h!]
+	%\vspace{-2em}
+	\begin{center}
+		\includegraphics[width=0.9\textwidth]{images/tempSensorFault.PNG}
+	\end{center}
+	\vspace{-2em}
+	\caption{Fault on Temperature Sensor Defined in the Safety Annex for AADL}
+	\label{fig:tempSensorFault}
+	\vspace{-2em}
+\end{figure*}
+
+The fault is attached to the \texttt{High\_Temp\_Indicator} output and has a probability of occurrence of $1.0 \times 10^{-5}$. The behavior of the output when the fault is active is to report high temperature. 
