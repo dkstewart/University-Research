@@ -5,9 +5,7 @@
 %In the formalism section, we viewed the problem from the perspective of an arbitary guarantee in the model that can potentially be violated. This resulted in explicit faults at the leaf level and violated guarantees (``nondeterministic faults") at the middle/top layers. Each MCS generated at each level gives insight into the system at that level. In this section, we describe the implementation of compositional generation of minimal cut sets. %Minimal cut sets traditionally contain explicitly defined faults as elements; to this end, we implemented a compositional mapping from explicit faults to the guarantees they violate. The end result are the minimal cut sets that contribute to a violation of the top level safety property. 
 In the formalism, any guarantee in the model had an associated fault activation literal and could be unconstrained. In the implementation, we rely on the fault model created in the safety annex to dictate which guarantees can be violated and how they may fail. Each explicit fault defined in the safety annex is added to the Lustre program as are assocated fault activation literals~\cite{Stewart17:IMBSA,stewart2020safety}. This corresponds to the $f_i$ and $\mathit{af}_i$ described in Section~\ref{sec:formalization}. 
 
-The \aivcalg algorithm requires  specific equations in the Lustre model to be flagged for consideration in the analysis; these we call \emph{IVC algorithm elements}. All equations in the model can be used as IVC algorithm elements or one can specify directly the equations to consider. In this implementation, the IVC algorithm elements are added differently depending on the layer. In the leaf architectural level, fault activation literals are added to the IVC algorithm elements and are constrained to {\em false}. In middle or top layers, supporting guarantees are added. This is shown in Figure~\ref{fig:layers}. 
-
-\begin{figure*}[h!]
+\begin{figure}[h!]
 	%\vspace{-2em}
 	\begin{center}
 		\includegraphics[width=0.9\textwidth]{images/twoLevels.PNG}
@@ -15,16 +13,17 @@ The \aivcalg algorithm requires  specific equations in the Lustre model to be fl
 	\vspace{-2em}
 	\caption{Illustration of Two Layers of Analysis}
 	\label{fig:layers}
-	\vspace{-2em}
-\end{figure*}
+\end{figure}
+
+The \aivcalg algorithm requires  specific equations in the Lustre model to be flagged for consideration in the analysis; these we call \emph{IVC algorithm elements}. All equations in the model can be used as IVC algorithm elements or one can specify directly the equations to consider. In this implementation, the IVC algorithm elements are added differently depending on the layer. In the leaf architectural level, fault activation literals are added to the IVC algorithm elements and are constrained to {\em false}. In middle or top layers, supporting guarantees are added. This is shown in Figure~\ref{fig:layers}. 
 
 The figure shows an arbitrary architecture with two analysis layers: top and leaf. The top layer analysis adds $G$ as IVC algorithm element; the leaf layer analysis adds $f_1$ and $f_2$. 
 
-A requirement of the hitting set algorithm is that to find all MCSs, all MUSs must be known. Ghassabani et al.~\cite{Ghassabani2017EfficientGO} showed that finding all MIVCs is as hard as model checking; and thus cannot always be found. It is a requirement of this analysis that all MIVCs are found. Once the MIVC analysis is complete for a property at a given layer, a hitting set algorithm is used to generate the related MCSs~\cite{gainer2017minimal}. Depending on the layer of analysis, the MCSs contain either guarantees or fault activation literals.
+A requirement of the hitting set algorithm is that to find all MCSs, all MUSs must be known. Ghassabani et al.~\cite{Ghassabani2017EfficientGO} showed that finding all MIVCs is as hard as model checking. It is a requirement of this analysis that all MIVCs are found. Once the MIVC analysis is complete for a property at a given layer, a hitting set algorithm is used to generate the related MCSs~\cite{gainer2017minimal}. Depending on the layer of analysis, the MCSs contain either guarantees or fault activation literals.
 
 %For a safety property $P$, the set of all MCSs are understood as $\lor^{n}_{i=1} MCS_i(P)$; intuitively, this means if all constraints found in any single MCS are removed from the constraint system, $\neg P$ is satisfied. For each element $gf_j \in MCS_i$, this is understood as $\land^{m}_{i=1} gf_i$ and speaks to the minimality of the correction set. Thus the MCSs form a disjunctive normal formula over the safety property at that layer. As the proof proceeds down the hierarchy, each of the subcomponent guarantees become a property to be proven and thus MIVCs/MCSs are generated. The composition of the MCSs consists of replacing a contract in a higher layer MCS with the disjunctive normal formula of its own MCSs. After all replacements have been made, the system property formula is converted back into disjunctive normal form. 
 
-The composition of these results is performed top down and shown in Algorithm~\ref{alg:compose}. For each guarantee found in an MCS, a replacement is made with the guarantees own MCSs. This is done recursively until all replacements have been made (line 7, 8 of Algorithm~\ref{alg:compose}). If on the other hand there are no MCSs for a given guarantee, that guarantee is replaced by its associated fault activation literal (line 10). At the leaf level of analysis, no guarantees have associated MCSs and thus reaches the end of recursion. At that time, the formula is converted back into disjunctive normal form to finish the translation into the traditional fault tree form (line 11). 
+The composition of these results is performed top down and shown in Algorithm~\ref{alg:compose}. For each guarantee found in an MCS, a replacement is made with the guarantees own MCSs. This is done recursively until all replacements have been made (line 7, 8 of Algorithm~\ref{alg:compose}). If on the other hand there are no MCSs for a given guarantee, that guarantee is replaced by its associated fault activation literal (line 10). At the leaf level of analysis, no guarantees have associated MCSs and thus reaches the end of recursion. At that time, the formula is converted back into disjunctive normal form to finish the translation into the traditional fault tree (line 11). 
 
 \begin{algorithm}[h]
 \SetKwFunction{Resolve}{resolve}
@@ -50,7 +49,7 @@ The composition of these results is performed top down and shown in Algorithm~\r
 	\label{alg:compose}
 \end{algorithm}
 
-Algorithm~\ref{alg:compose} provides the outline for the general case of composing fault forests: for each tree in the forest (or each property in a layer), the algorithm is called. In the next subsection, we describe how this general algorithm is adjusted.
+Algorithm~\ref{alg:compose} provides the outline for the general case of composing fault forests: for each each property in a layer, the algorithm is called. Each property may have a corresponding fault tree. The collection of fault trees associated with each property make the forest. In the next subsection, we describe how this general algorithm is adjusted.
 
 \begin{comment}
 \begin{algorithm}[h]
@@ -162,7 +161,7 @@ The number of replacements $r$ is bounded by the following formula:
   r \leq {\displaystyle \sum_{i=1}^{\alpha} }({\displaystyle \prod_{j=1}^{i} |\mathit{Cut(g_j)}|})  
 \end{gather}
 \begin{proof}
-Assume there exists a $g_i \in \mathit{MCS(P)}$. The number of replacements made between $g_i$ and its minimal cut sets is at most $|\mathit{Cut(g_i)}|$. We iteratively perform this replacement for all $\alpha$ contracts in $\mathit{MCS(P)}$ and make, in the worst case, $|\mathit{Cut(g_1)}| \times |\mathit{Cut(g_2)}| \times \cdots \times |\mathit{Cut(g_\alpha)}|$ replacements.
+Assume there exists a $g_i \in \mathit{MCS(P)}$. The number of replacements made for $g_i$ is at most $|\mathit{Cut(g_i)}|$. Iteratively perform this replacement for all $\alpha$ contracts in $\mathit{MCS(P)}$. In the worst case, $|\mathit{Cut(g_1)}| \times |\mathit{Cut(g_2)}| \times \cdots \times |\mathit{Cut(g_\alpha)}|$ replacements are made.
 \label{lemma:bound}
 \end{proof}
 \end{lemma}
