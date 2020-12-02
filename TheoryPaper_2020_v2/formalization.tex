@@ -27,7 +27,7 @@ We consider an arbitrary layer of analysis of the architecture and assume the pr
 
 %The faults in the safety annex are defined on leaf level components. Thus, for the lowest analysis layer, we must take into consideration faults and the guarantees their activation may violate. A fault $f \in F$ is a deviation from the normal constraint imposed by a guarantee. For the purposes of this paper, each guarantee at the leaf layer of analysis has an associated fault. 
 
-To consider the system under the presence of faults, consider a set $GF$ of modified guarantees in the presence of faults and let a mapping be defined from activation literals $\mathit{af}_i \in AF$ to these modified guarantees $\mathit{gf}_i \in GF$. 
+To consider the system in the presence of faults, consider a set $GF$ of modified guarantees in the presence of faults and let a mapping be defined from activation literals $\mathit{af}_i \in AF$ to these modified guarantees $\mathit{gf}_i \in GF$. 
 \begin{center}
 $\mathit{gf}_i =$ \textit{if} $\mathit{af}_i$ \textit{then} $f_i$ \textit{else} $g_i$\\
 \label{eq:sigma}
@@ -54,7 +54,7 @@ Given the extended transition system $T'$, if the $\mathit{af}_i \in \mathit{AF}
 T'(\mathit{NFV}) = \mathit{gf}_1 \land \mathit{gf}_2 \land \cdots \land \mathit{gf}_n \land \bigwedge \{\neg \mathit{af}_i | \mathit{af}_i \in \mathit{NFV} \}
 \end{gather*}
 
-The activation literals constrained to be false in $T'(\mathit{NFV})$ cause their associated guarantees to be valid. In the remainder of this section, we assume that all $\mathit{af}_i \in \mathit{AF}$ are unconstrained and when given a true valuation will violate the associated guarantee. This violation causes the output that the guarantee constrains to become non-deterministic. The Boolean variables in $\mathit{FV}$ correspond to Boolean variables in the fault tree. 
+The activation literals constrained to be false in $\mathit{NFV}$ cause their associated guarantees to be valid. When $\mathit{af}_i \in \mathit{AF}$ are given a true valuation (and thus are in $\mathit{NF}$), the associated guarantee will be violated. This violation causes the output that the guarantee constrains to become non-deterministic. The Boolean variables in $\mathit{FV}$ correspond to Boolean variables in the fault tree. 
 
 %Given the extended transition system in Equation~\ref{eq:T}, if the $\mathit{af}_i \in \mathit{AF}$ are unconstrained and this causes violation of $P$, a counterexample is returned.  This counterexample is a partition of guarantees $\mathit{GF}$ into disjoint sets:  $\mathit{GF} = \mathit{NFV} \cup \mathit{FV}$. The set $\mathit{NFV}$ consists of nonfaulty variables: the associated $\mathit{af}_i$ are mapped to {\em false} in the counterexample, and the set $\mathit{FV}$ consists of faulty variables: the associated $\mathit{af}_i$ are mapped to {\em true} in the counterexample. In the remainder of this section, we assume that all $\mathit{af}_i \in \mathit{AF}$ are nondeterministically unconstrained and when active, cause the associated guarantee to be violated. Thus the output that the guarantee constrains becomes nondeterministic when the associated $\mathit{af}_i$ is true.
 
