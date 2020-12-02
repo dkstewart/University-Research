@@ -6,7 +6,7 @@
 \contentsline {section}{\numberline {1.1}Objectives and Summary of Contributions}{4}{section.1.1}%
 \contentsline {paragraph}{Defined a modeling notation to capture safety information in a shared model.}{5}{section*.5}%
 \contentsline {paragraph}{Defined analysis procedures to verify behavior of the model in the presence of faults.}{5}{section*.6}%
-\contentsline {paragraph}{Provided in depth analysis capabilities that explore system models and compositionally compute minimal cut sets.}{6}{section*.7}%
+\contentsline {paragraph}{Provided in depth analysis capabilities that explore system models and compositionally derive sets of fault trees and associated minimal cut sets.}{6}{section*.7}%
 \contentsline {paragraph}{Explored how the formal specification of requirements can change analysis results.}{6}{section*.8}%
 \contentsline {paragraph}{Demonstrated the objectives of this proposal by use of case studies.}{7}{section*.9}%
 \contentsline {section}{\numberline {1.2}Structure of this Document}{7}{section.1.2}%
@@ -56,7 +56,7 @@
 \contentsline {section}{\numberline {3.8}Verification in the Presence of Faults}{54}{section.3.8}%
 \contentsline {subsubsection}{Counterexamples}{54}{section*.48}%
 \contentsline {subsubsection}{Verification in the Presence of Faults: Max \textit {n} Analysis}{55}{section*.49}%
-\contentsline {subsubsection}{Verification in the Presence of Faults: Probabilistic Analysis}{57}{section*.52}%
+\contentsline {subsubsection}{Verification in the Presence of Faults: Probabilistic Analysis}{56}{section*.52}%
 \contentsline {chapter}{\numberline {4}Compositional Minimal Cut Set Generation}{61}{chapter.4}%
 \contentsline {section}{\numberline {4.1}The High Level Idea and Approach}{62}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Running Example}{63}{section.4.2}%

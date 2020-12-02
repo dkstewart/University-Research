@@ -21,7 +21,7 @@ There are certain capabilities that are required in order to fully perform all s
     \item[Ability to generate artifacts] used in the safety assessment process.
 \end{description}
 
-In this chapter, the fault modeling process using the Safety Annex for the Architecture Analysis and Design Language (AADL)~\cite{AADL_Standard} is described. The Safety Annex was developed with these two broad ideas in mind: (1) how the safety annex can support the proposed safety assessment process, and (2) what are the gaps in current related safety analysis tools that can be closed with this research.
+In this chapter, the fault modeling process using the safety annex for the Architecture Analysis and Design Language (AADL)~\cite{AADL_Standard} is described. The safety annex was developed with these two broad ideas in mind: (1) how this annex can support the proposed safety assessment process, and (2) what are the gaps in current related safety analysis tools that can be closed with this research.
 
 \section{Fault, Failure, and Error Terminology}
 The usage of the terms error, failure, and fault are defined in ARP4754A and are described here for ease of understanding~\cite{SAE:ARP4754A}. An \textit{error} is a mistake made in implementation, design, or requirements. A \textit{fault} is the manifestation of an error and a \textit{failure} is an event that occurs when the delivered service of a system deviates from correct behavior. If a fault is activated under the right circumstances, that fault can lead to a failure. The terminology used in the Error Model Annex version 2 for AADL (EMV2)~\cite{EMV2}, differs slightly for an error: an error is a corrupted state caused by a fault. The error propagates through a system and can manifest as a failure. In this dissertation, we use the ARP4754A terminology with the added definition of \textit{error propagation} as used in EMV2. An error is a mistake made in design or code and an error propagation is the propagation of the corrupted state caused by an active fault. 
@@ -79,19 +79,19 @@ Given the complexity of systems, there are many types of faults that correspond 
 
 
 \section{Error Propagation}
-As systems become larger and more complex, it can be difficult knowing all possible error propagations within a model; using a purely explicit approach to error propagation is difficult. To this end, we developed the Safety Annex to primarily use \textit{behavioral} propagation. In this approach, the faults are attached to a component's output and ``turned on" in a manner of speaking. The effects and propagation of the active fault is revealed through the behavioral contracts of the system by use of the model checker. 
+As systems become larger and more complex, it can be difficult knowing all possible error propagations within a model; using a purely explicit approach to error propagation is difficult. To this end, we developed the safety annex to primarily use \textit{behavioral} propagation. In this approach, the faults are attached to a component's output and ``turned on" in a manner of speaking. The effects and propagation of the active fault is revealed through the behavioral contracts of the system by use of the model checker. 
 
-This section outlines the Safety Annex approach to implicit error propagation and also describes how one can model an explicit propagation by defining dependent faults. 
+This section outlines the safety annex's approach to implicit error propagation and also describes how one can model an explicit propagation by defining dependent faults. 
 
 \subsection{Implicit Propagation}
-In the Safety Annex approach, faults are captured as faulty behaviors that augment the system behavioral model in AGREE contracts. No explicit error propagation is necessary since the faulty behavior itself propagates through the system just as in the nominal system model. The effects of any triggered fault are manifested through analysis of the AGREE contracts. In this way, the safety analysis is closely tied to the behavior model of components and their requirements; the analysis is focused on the system dynamics and interactions. 
+In the approach primarily used in the safety annex, faults are captured as faulty behaviors that augment the system behavioral model in AGREE contracts. No explicit error propagation is necessary since the faulty behavior itself propagates through the system just as in the nominal system model. The effects of any triggered fault are manifested through analysis of the AGREE contracts. In this way, the safety analysis is closely tied to the behavior model of components and their requirements; the analysis is focused on the system dynamics and interactions. 
 
 In the PWR running example, all error propagations are defined implicitly. 
 
 \begin{comment}
 On the contrary, in the AADL Error Model Annex, Version 2 (EMV2)~\cite{EMV2} approach, all errors must be explicitly propagated through each component (by applying fault types on each of the output ports) in order for a component to have an impact on the rest of the system. To illustrate the key differences between implicit %failure
-error propagation provided in the Safety Annex and the explicit %failure 
-error propagation provided in EMV2, we use a simplified behavioral flow from the WBS example using code fragments from EMV2, AGREE, and the Safety Annex. 
+error propagation provided in the safety annex and the explicit %failure 
+error propagation provided in EMV2, we use a simplified behavioral flow from the WBS example using code fragments from EMV2, AGREE, and the safety annex. 
 
 \begin{figure}[h]
 	%\hspace*{-2cm}
@@ -99,16 +99,16 @@ error propagation provided in EMV2, we use a simplified behavioral flow from the
 	\centering
 	\includegraphics[trim=0 9 0 5,clip,width=\textwidth]{images/Comparison_with_EMV2.pdf}
 	%\vspace{-0.3in}
-	\caption{Differences between Safety Annex and EMV2}
+	\caption{Differences between safety annex and EMV2}
 	\label{fig:comparison_with_EMV2}
 	%\vspace{-0.2in}
 \end{figure} 
 
-In this simplified WBS system, the physical signal from the Pedal component is detected by the Sensor and the pedal position value is passed to the Braking System Control Unit (BSCU) components.  The BSCU generates a pressure command to the Valve component which applies hydraulic brake pressure to the Wheels. 
+In this simplified WBS system, the physical signal from the pedal component is detected by the sensor and the pedal position value is passed to the Braking System Control Unit (BSCU) components.  The BSCU generates a pressure command to the valve component which applies hydraulic brake pressure to the wheels. 
 
 In the EMV2 approach (top half of Figure~\ref{fig:comparison_with_EMV2}), the ``NoService'' fault is explicitly propagated through all of the components. These fault types are essentially tokens that do not capture any analyzable behavior. At the system level, analysis tools supporting the EMV2 annex can aggregate the propagation information from different components to compose an overall fault flow diagram or fault tree. 
 
-When a fault is triggered in the Safety Annex (bottom half of Figure~\ref{fig:comparison_with_EMV2}), the output behavior of the Sensor component is modified. In this case the result is a ``stuck at zero'' error. The behavior of the BSCU receives a zero input and proceeds as if the pedal has not been pressed. This will cause the top level system contract to fail: {\em pedal pressed implies brake pressure output is positive}.
+When a fault is triggered in the safety annex (bottom half of Figure~\ref{fig:comparison_with_EMV2}), the output behavior of the sensor component is modified. In this case the result is a ``stuck at zero'' error. The behavior of the BSCU receives a zero input and proceeds as if the pedal has not been pressed. This will cause the top level system contract to fail: {\em pedal pressed implies brake pressure output is positive}.
 \end{comment}
 
 
