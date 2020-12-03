@@ -1,0 +1,19 @@
+\chapter{Composition of Fault Forests}
+\label{chap:compFF}
+Guaranteeing that system safety properties hold in the presence of faults is an important aspect of critical systems development and falls under the discipline of safety analysis. Safety analysis produces various safety related artifacts that are used during development and certification of critical systems~\cite{SAE:ARP4761,SAE:ARP4754A}. Examples include {\em minimal cut sets} -- the minimal sets of faults that may violate a safety property and {\em fault trees} -- the Boolean formula whose literals are minimal cut sets. Since the introduction of minimal cut sets in the field of safety analysis~\cite{vesely1981fault}, much research has been performed to address the generation of these sets and associated formulae~\cite{fta:survey,rauzy1993new,historyFTA}. As critical systems get larger, more minimal cut sets are possible with increasing cardinality. In recent years, symbolic model checking has been used to address scaling the analysis of systems with millions of minimal cut sets~\cite{bieber2002combination,schafer2003combining,fta:survey,symbFTA}. 
+
+The state space explosion problem often prevents formal verification from being used on large systems. This problem can arise from combining parallel processes together and attempting to reason monolithically over them. Compositional reasoning takes advantage of the hierarchical organizaton of a system model. A compositional approach verifies each component of the system in isolation and allows global properties to be inferred about the entire system~\cite{berezin1997compositional}. The {\em assume-guarantee} paradigm is commonly used in compositional reasoning where the assumed behavior of the environment implies the guaranteed behavior of the component ~\cite{NFM2012:CoGaMiWhLaLu}.
+
+Using an assume-guarantee reasoning framework, we extend the definition of the nomimal transition system to allow for unconstrained guarantees. We use this idea to reason about all counterexamples to a proof for each layer of analysis, and then transform the results into a Boolean formula describing the satisfiability of the violation of a property. These results are then composed. 
+
+After we provide the formalization, we describe the implementation in the OSATE tool for the Architecture and Analysis Lanugage (AADL)~\cite{FeilerModelBasedEngineering2012}. AADL has two annexes that are of interest to us: the Assume-Guarantee Reasoning Environment (AGREE)~\cite{NFM2012:CoGaMiWhLaLu} and the safety annex~\cite{stewart2020safety}. AGREE provides the assume-guarantee reasoning required for the transition system extension, and the safety annex allows us to define faults on component outputs. To implement the formalization, we look to recent work in formal verification. Ghassabani et al. developed an algorithm that traces a safety property to a minimal set of model elements necessary for proof; this is called the \textit{all minimal inductive validity core} algorithm (\aivcalg)~\cite{GhassabaniGW16,Ghassabani2017EfficientGO,bendik2018online}. Inductive validity cores produce the minimal set of model elements necessary to prove a property. Each set contains the behavioral contracts -- the requirement specifications for components -- used in a proof. We collect all MIVCs per layer to generate the minimal cut sets and thus the fault trees to be composed.
+
+
+This chapter presents a compositional approach to generating fault forests (sets of fault trees) and associated minimal cut sets, allowing us to reason uniformly about faults in hardware and software and their impact on system properties. 
+
+\input{runningexampleFF}
+\input{formalizationFF}
+\input{preliminariesFF}
+\input{implBackgroundFF}
+\input{implementationFF}
+\input{futureworkFF}

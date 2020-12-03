@@ -1,0 +1,12 @@
+\section{Future Work in Fault Forest Composition}
+We presented a formalism that defines the composition of fault forests by extending the transition system to allow for fault activation literals. This formalism is implemented by leveraging recent research in model checking techniques. Using the idea of minimal inductive validity cores (MIVCs), which are the minimal model elements necessary for a proof of a safety property, we are able to provide fault activation literals as model elements to the \aivcalg algorithm which provides all the MIVCs that pertain to this property. These are used to generate minimal cut sets. 
+
+An overarching goal of this research was to aid a safety analyst in the assessment process, not to replace them. Throughout this research, numerous conversations with safety analysts provided guidance, for instance what format would be most beneficial for the outputs of analysis or how this work could meet their needs. When discussing future work for this chapter, these conversations spring to mind. 
+
+A common artifact used in the certification process is a fault tree. Automated generation of fault trees often produces flat trees: a single root with multiple leaves. This does not show how an error propagates through the system. It is likely that analysts will create fault trees by hand as they explore the behavior of the system in the presence of faults. The safety annex output does not include graphical fault trees, but rather the Boolean expressions that describe them. Given that the analysis is performed compositionally, a hierarchical fault tree would provide meaningful information for each layer of the system. 
+
+We also believe that the minimal correction sets may be directly obtained from the SMT solver. This would eliminate the step of computing minimal inductive validity cores altogether. 
+
+Lastly, we do not explore the composition of probabilities or computing the probability of system failure. Rather we implemented a probabilistic threshold given by the user. This is perfectly sufficient for safety analysis. Each safety property has a hazard classification and associated probability. The probabilistic hypothesis of the safety annex allows for this analysis. Nonetheless, the composition of probabilities is an area that remains to be explored. 
+
+In the next chapter, we describe case studies and apply these analyses to larger scale systems. We discuss timing results, analysis results, and fault modeling strategies. 
