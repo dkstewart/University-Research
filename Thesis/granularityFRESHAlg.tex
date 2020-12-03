@@ -85,16 +85,16 @@ The AGREE program is intercepted by the safety annex plugin as described in Sect
 We were interested in three main research questions regarding the exploration of granularity refinement: 
 
 \begin{description}
-\item[RQ1:] Do the MIVCs generated reflect a more accurate view of which portions of the model support the proof of the safety property? We expect that the additional granularity would provide more exact coverage of the model in terms of the MIVCs. 
+\item[RQ1:] Do the MIVCs generated reflect a more accurate view of which portions of the model support the proof of the safety property? We expect that the additional granularity would provide more exact information regarding which subformulae of a guarantee contribute to proof.
 
 \item [RQ2:] What is the analysis time difference between the nominal model MIVC generation and the decomposed model MIVC generation? Given smaller models with fewer or less complex guarantees, the timing results should not differ greatly, but in a large model with potentially many complex guarantees, the computation time for MIVC generation could increase quickly. 
 
 \item[RQ3:] Given the results in RQ2, could more exact minimal cut sets be produced from the MIVCs? If changes are reflected in the MIVC sets, then we will see corresponding changes in the minimal cut sets. This could provide more exact safety analysis artifacts and additional insight into the specifications and how they impact the analysis results. 
 \end{description}
 
-To address these questions, we developed an algorithm that performs a partial decomposition of the  Lustre model -- a total decomposition of the equations in each node of the Lustre model. For our purposes in safety analysis and minimal cut set generation, the portions of the model that will be of interest are the guarantees (equations) that govern the output of a node and any equations these guarantees may reference; therefore, we perform the refactorization on equations alone. 
+To explore these questions, we developed an algorithm that performs a partial decomposition of the  Lustre model. The partial decomposition of the model is a total decompostion of each equation used in the \aivcalg algorithm. In minimal cut set generation, the portions of the model that will be of interest are the guarantees (Lustre equations) that constrain the output of a node and any equations these guarantees may reference; therefore, we perform the refactorization on equations alone. 
 
-The logical structure of a formula can be viewed as a tree where nodes are arranged in terms of operator precedence. Clearly, it is a requirement to preserve equivalence during refactoring and we do not want to change the semantics of the formula, only the structure. To this end, we isolated branches and subtrees of the structure so that the \aivcalg algorithm can view each subtree of the formula separately. The algorithm we use recursively travels down a formula tree, assigning each subtree as a fresh variable. Figure~\ref{fig:formulaTree} shows the following formula in tree structure where \textit{lit} refers to a literal and \textit{const} refers to a constant:
+The logical structure of a formula can be viewed as a tree where nodes are arranged in terms of operator precedence. Clearly, it is a requirement to preserve equivalence during refactoring and we do not want to change the semantics of the formula, only the structure. To this end, we isolated branches and subtrees of the structure so that the \aivcalg algorithm can view each subtree of the formula separately. The algorithm recursively travels through a formula tree, assigning each subtree as a fresh variable. Figure~\ref{fig:formulaTree} shows the following formula in tree structure where \textit{lit} refers to a literal and \textit{const} refers to a constant:
 \begin{gather*}
 ((((\mathit{const} \implies \mathit{lit}) \lor \mathit{const}) \iff \mathit{lit} ) \land (\mathit{lit}  \lor \mathit{lit} )) 
 \end{gather*} 
@@ -167,7 +167,7 @@ The refactored equation is shown in Figure~\ref{fig:freshVarsRename}. Each subfo
 \end{figure} 
 
 \subsubsection{RQ1}
-To address RQ1, let us present a fictitious monitor component of a system as shown in Figure~\ref{fig:monitorLustre}. There are two components being monitored for validity (component A and B), each of which sends an error indication to the monitor, \texttt{errorCompA} and \texttt{errorCompB}. The monitor calculates  a \texttt{valid} indication if neither error indication is true and when \texttt{output} should be sent. There are two conditions in which the monitor is disabled: when a disable command is explicitly sent or when the system is not in auto mode. The property we wish to show is that the monitor does not calculate both a \texttt{valid} and \texttt{invalid} value simultaneously. 
+To address RQ1, we present a fictitious monitor component of a system as shown in Figure~\ref{fig:monitorLustre}. There are two components being monitored for validity (components A and B), each of which sends an error indication to the monitor, \texttt{errorCompA} and \texttt{errorCompB}. The monitor calculates  a \texttt{valid} indication if neither error indication is true and when \texttt{output} should be sent. There are two conditions in which the monitor is disabled: when a disable command is explicitly sent or when the system is not in auto mode. The property we wish to show is that the monitor does not calculate both a \texttt{valid} and \texttt{invalid} value simultaneously. 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=.8\textwidth]{images/monitorLustre.PNG}
@@ -176,10 +176,10 @@ To address RQ1, let us present a fictitious monitor component of a system as sho
 \end{center}
 \end{figure} 
 
-The MIVC generated for this property consists of the equations $\{$\texttt{valid}, \texttt{invalid}$\}$. Due to the simple nature of this model, it is clear to see that only the error indications from components A and B referenced in equation \texttt{valid} are directly used for the proof of the property, and the branch of \texttt{valid} contianing reference to \texttt{output} is not necessary. Since this equation is not sufficiently granular, the MIVC contains the entire \texttt{valid} equation. After performing the refactorization using fresh variables for the model equations, the Lustre code is transformed into what is shown in Figure~\ref{fig:monitorFreshLustre}. 
+The MIVC generated for this property is: $\{$\texttt{valid}, \texttt{invalid}$\}$. Due to the simple nature of this model, it is clear to see that only the error indications from components A and B referenced in equation \texttt{valid} are directly used for the proof of the property, and the branch of \texttt{valid} that references \texttt{output} is not necessary. Since this equation is not sufficiently granular, the MIVC contains the entire \texttt{valid} equation. After performing the refactorization using fresh variables for the model equations, the Lustre code is transformed into what is shown in Figure~\ref{fig:monitorFreshLustre}. 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=.7\textwidth]{images/monitorFreshLustre.PNG}
+\includegraphics[width=.8\textwidth]{images/monitorFreshLustre.PNG}
 \caption{The Lustre Model of a Monitor After Refactorization} \label{fig:monitorFreshLustre}
 \end{center}
 \end{figure} 
@@ -194,15 +194,17 @@ The equations are broken down into their respective subformulae and refactored s
 
 To preserve semantics of the equations during the decomposition, the original equation must be assigned a fresh variable. The MIVC algorithm captures the original equation in \texttt{FRESHVAR0}, but also provides a trace down the branch of the equation that is required for the proof. In this case, it traces down the left side of the original binary equation (\texttt{valid}) and chooses the fresh variable associated with: \texttt{not(errorCompA and errorCompB)}. This correlates to \texttt{FRESHVAR1}. Instead of only providing the equation \texttt{valid} as an MIVC, this provides a trace through the equation such that the necessary subformula for the proof are found. The third MIVC in this case simply maps back to \texttt{invalid}. 
 
-The MIVCs now provide information on the necessary subformulae of an equation and not only the equation itself. If all branches are required, then all associated fresh variables would be found in those MIVCs. 
+The MIVCs now provide information on the necessary subformulae of an equation and not only the equation itself. If all branches are required, then all associated fresh variables would be found in those MIVCs. As expected, the MIVCs do provide a more accurate view of the subformulae used in a proof of a property. 
 
 \subsubsection{RQ2}
-The refactorization described in the previous section introduces multiple new variables and equations into the Lustre model. While a more exact trace of each equation is possible using this method, the size of the model could grow substantially making the time of analysis unacceptable. To this end, we ran a set of Lustre benchmark models used in previous MIVC enumeration work~\cite{ghassabani_2018} and compared the time difference between the MIVC enumeration of the partially decomposed models and the MIVC enumeration of the original benchmark models without any decomposition. The time of the MIVC enumeration of decomposed models includes both the decomposition itself and the MIVC enumeration. 
+The refactorization described in the previous section introduces multiple new variables and equations into the Lustre model. While a more exact trace of each equation is possible using this method, the size of the model could grow substantially making the time of analysis unacceptable. To this end, we ran a subset of the Lustre benchmark models used in previous MIVC enumeration work~\cite{ghassabani_2018} and compared the time difference between the MIVC enumeration of the partially decomposed models and the MIVC enumeration of the original benchmark models without any decomposition. The time of the MIVC enumeration of decomposed models includes both the decomposition itself and the MIVC enumeration. 
 
 In previous work, it was found that all minimal inductive validity core enumeration on this set of benchmarks performed well using the Z3 solver~\cite{ghassabani_2018, z3} as compared to other solvers available for JKind. In the results presented here, we also used Z3 as a solver and the only IVC elements flagged for consideration were the fresh variables. 
 
 \subsubsection{RQ3}
+The method used in this algorithm provides all fresh variables to the MIVC algorithm. The results seen in the MIVCs reflect a branch of the Boolean equation. The transformation from MIVCs to minimal cut sets include a hitting set algorithm. Given the results of this initial algorithm, the hitting sets would split the branch shown in the MIVC such that the semantics of results would no longer be sound. In order to use these MIVCs for minimal cut set generation, further work must be implemented. 
 
+The MIVC information would need to be combined into a single subformula describing the branch required for proof. At that point, the single formula/branch could be used in the hitting set algorithm without loss of meaning. Theoretically, this would result in more exact cut sets and eliminate the possibility of dependent contracts causing additional elements within the set. Further work on this initial exploration is required to test that hypothesis. 
 
 
 
