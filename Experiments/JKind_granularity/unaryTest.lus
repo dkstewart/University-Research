@@ -1,0 +1,30 @@
+node monitor(
+  errorCompA : bool;
+  errorCompB : bool;
+  disableCmd : bool;
+  autoMode : bool
+) returns (
+  OK : bool
+);
+var
+  valid : bool;
+  invalid : bool;
+  output : bool;
+let
+  OK = (not(valid and invalid));
+
+  valid = (not(errorCompA and errorCompB) and output);
+  invalid = (errorCompA and errorCompB);
+  output = (not(disableCmd) and not(autoMode));
+
+  --%PROPERTY OK;
+  --%IVC valid, invalid, output;
+
+tel;
+
+
+
+
+
+
+
