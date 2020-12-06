@@ -126,7 +126,7 @@ As an example, we return to the sensor system described in Section~\ref{sec:exam
 %%				DEFINE COMPOSITION OF COMPONENTS
 \begin{definition}
 The composition of child component $\mathit{Comp}_c$ and parent component $\mathit{Comp}_p$:
-$Comp_c(M_c, \mathit{FF}_c, \mathit{NFV}_c, \pi_c) \circ Comp_p(M_p, \mathit{FT}_p, \mathit{NFV}_p, \pi_p) = Comp_\circ(M', \mathit{FF}', \mathit{NFV}', \pi')$ where:
+$Comp_c(M_c, \mathit{FF}_c, \mathit{NFV}_c, \pi_c) \circ Comp_p(M_p, \mathit{FF}_p, \mathit{NFV}_p, \pi_p) = Comp_\circ(M', \mathit{FF}', \mathit{NFV}', \pi')$ where:
 \begin{itemize}[label=\textbullet]
 \item $M' = M_c \cup M_p$ is the iterative enlargement of the model,
 \item $\mathit{FF}_c \circ \mathit{FF}_p$ is the composed fault forest
@@ -165,7 +165,7 @@ We work under the {\em monotonicity assumption}, commonly adopted in safety anal
 \begin{proof}
 Assume $\mathit{FT}_c$ and $\mathit{FT}_p$ are valid fault trees and let $\phi$ be defined as in (\ref{eq:phi}).  
 
- $\forall \mathit{af} \in \mathit{FT}_c$, $\mathit{af}$ has a true valuation and is added to the formula $\mathit{FT}_p$. By the monotonicity assumption and Definition~\ref{def:validFT}, the resulting formula is satisfiable. 
+For all $\mathit{af} \in \mathit{FT}_c$, $\mathit{af}$ has a true valuation and is added to the formula $\mathit{FT}_p$. By the monotonicity assumption and Definition~\ref{def:validFT}, the resulting formula is satisfiable. 
 \end{proof}
 \label{lemma:validTree}
 \end{lemma}
@@ -208,7 +208,7 @@ We represent the unconstrained (violated) guarantee as $\neg G_p$ and it is asso
 %%%%5										COMPOSITION OF FF IS VALID
 \begin{lemma} If $\mathit{FF}_c$ and $\mathit{FF}_p$ are valid fault forests, then their composition $\phi(\mathit{FF}_c, \mathit{FF}_p)$ is also a valid fault forest. 
 \begin{proof}
-By iterative application of Lemma~\ref{lemma:validTree}, the result is immediate.
+For each parent tree $\mathit{FT}_p \in \mathit{FF}_p$, iterate through the children trees $\mathit{FT}_c \in \mathit{FF}_c$ and apply Lemma~\ref{lemma:validTree}. The result is a valid fault forest. 
 \end{proof}
 \label{lemma:validForest}
 \end{lemma}
@@ -238,7 +238,7 @@ By inductive assumption and Lemma~\ref{lemma:validForest}, $\phi_F^{n+1}(\mathit
 \label{thm:indForest}
 \end{theorem}
 
-We know from previous work that composition is conservative. A valid monolithic analysis of the transition system implies that the compositional analysis of that same system is valid, but the converse may not be true~\cite{}. It is likewise the case for composing fault forests. 
+We know from previous work that composition is conservative. A valid monolithic analysis of the transition system implies that the compositional analysis of that same system is valid, but the converse may not be true~\cite{ghassabani_2018}. It is likewise the case for composing fault forests. 
 
 Let $S \subseteq \mathit{AF}$ where all $\mathit{af} \in S$ are constrained to true. If $S \cup \{\neg P\}$ is satisfiable, this equates to a valid fault tree. 
 
@@ -249,7 +249,7 @@ Assume toward contradiction that $(I,T) \vdash P$ and there exists a set $S \sub
 \label{thm:sound}
 \end{theorem}
 
-As a counterexample to the converse of Theorem~\ref{thm:sound}, consider the following. \danielle{Counterexample here.}
+As a counterexample to the converse of Theorem~\ref{thm:sound}, consider the following. \danielle{Counterexample here.} What this may mean for fault forest composition is that additional leaves may accumulate in the composed tree. In the worst case, the compositional approach provides an overapproximation to the fault trees generated.
 
 Now that we have the formal foundations laid, we proceed towards the implementation. 
 
