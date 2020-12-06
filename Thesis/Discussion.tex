@@ -26,8 +26,8 @@ Upon initial exploration of the idea, two problems became apparent: (1) this rel
 
 It became quickly apparent that to include in the analysis results information regarding the roles that faults, components, and node inputs play within a proof would provide great feedback to an analyst. They could view minimal cut sets from the perspective of the entire model and not just the faults that are active. If, for instance, certain components play direct roles in the proof of a safety property, those components would be seen as critical and managed or analyzed in a more comprehensive way. Likewise if specific inputs were known to be crucial to a proof, they would also be critical within the safety analysis. Preliminary investigations showed that related work may be used and extended to perform this kind of analysis~\cite{9081652}. We discuss this in the next two subsections.
 
-\include{granularityMutationEq}
-\include{granularityMutationInputs}
+\input{granularityMutationEq}
+\input{granularityMutationInputs}
 
 \section{Compositional Probabilistic Analysis}
 Safety analysis techniques aim at demonstrating that the system meets the requirements necessary for certification and use in the presence of faults. In many domains, there are two main steps to this process: (1) the generation of all minimal cut sets, and (2) the computation of the corresponding fault probability, i.e., the probability of violating the safety property given probabilities for all faults in the system. 
