@@ -88,8 +88,7 @@ We were interested in three main research questions regarding the exploration of
 \item[RQ1:] Do the MIVCs generated reflect a more accurate view of which portions of the model support the proof of the safety property? We expect that the additional granularity would provide more exact information regarding which subformulae of a guarantee contribute to proof.
 
 \item [RQ2:] What is the analysis time difference between the nominal model MIVC generation and the decomposed model MIVC generation? Given smaller models with fewer or less complex guarantees, the timing results should not differ greatly, but in a large model with potentially many complex guarantees, the computation time for MIVC generation could increase quickly. 
-
-\item[RQ3:] Given the results in RQ2, could more exact minimal cut sets be produced from the MIVCs? If changes are reflected in the MIVC sets, then we will see corresponding changes in the minimal cut sets. This could provide more exact safety analysis artifacts and additional insight into the specifications and how they impact the analysis results. 
+ 
 \end{description}
 
 To explore these questions, we developed an algorithm that performs a partial decomposition of the  Lustre model. The partial decomposition of the model is a total decompostion of each equation used in the \aivcalg algorithm. In minimal cut set generation, the portions of the model that will be of interest are the guarantees (Lustre equations) that constrain the output of a node and any equations these guarantees may reference; therefore, we perform the refactorization on equations alone. 
@@ -217,12 +216,12 @@ The reason we used only a small subset of the total Lustre benchmarks available 
 
 We believe the reason is due to the complexity and size of the formulae in the models and the sheer number of additional variables that were introduced. In order to utilize this approach, much work must be done to streamline the approach and address the computational complexity. 
 
+\subsubsection{Future Work Research Question}
+Given the results in RQ2, could more exact minimal cut sets be produced from the MIVCs? If changes are reflected in the MIVC sets, then we will see corresponding changes in the minimal cut sets. This could provide more exact safety analysis artifacts and additional insight into the specifications and how they impact the analysis results.
 
+The method used in this algorithm provides all fresh variables to the MIVC algorithm. The results seen in the MIVCs reflect a branch of the Boolean equation. The transformation from MIVCs to minimal cut sets include a hitting set algorithm. Given the IVC results of this granularity algorithm, the hitting sets would split the branch shown in the MIVC such that the semantics of results would no longer be sound. In order to use these MIVCs for minimal cut set generation, further work must be implemented. 
 
-\subsubsection{RQ3}
-The method used in this algorithm provides all fresh variables to the MIVC algorithm. The results seen in the MIVCs reflect a branch of the Boolean equation. The transformation from MIVCs to minimal cut sets include a hitting set algorithm. Given the results of this initial algorithm, the hitting sets would split the branch shown in the MIVC such that the semantics of results would no longer be sound. In order to use these MIVCs for minimal cut set generation, further work must be implemented. 
-
-The MIVC information would need to be combined into a single subformula describing the branch required for proof. At that point, the single formula/branch could be used in the hitting set algorithm without loss of meaning. Theoretically, this would result in more exact cut sets and eliminate the possibility of dependent contracts causing additional elements within the set. Further work on this initial exploration is required to test that hypothesis. 
+The MIVC information would need to be combined into a single subformula describing the branch required for proof. At that point, the single formula/branch could be used in the hitting set algorithm without loss of meaning. Theoretically, this would result in more exact cut sets and eliminate the possibility of dependent contracts causing additional elements within the set. Further work is required to test that hypothesis. 
 
 
 
