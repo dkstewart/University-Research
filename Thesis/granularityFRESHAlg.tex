@@ -197,9 +197,27 @@ To preserve semantics of the equations during the decomposition, the original eq
 The MIVCs now provide information on the necessary subformulae of an equation and not only the equation itself. If all branches are required, then all associated fresh variables would be found in those MIVCs. As expected, the MIVCs do provide a more accurate view of the subformulae used in a proof of a property. 
 
 \subsubsection{RQ2}
-The refactorization described in the previous section introduces multiple new variables and equations into the Lustre model. While a more exact trace of each equation is possible using this method, the size of the model could grow substantially making the time of analysis unacceptable. To this end, we ran a subset of the Lustre benchmark models used in previous MIVC enumeration work~\cite{ghassabani_2018} and compared the time difference between the MIVC enumeration of the partially decomposed models and the MIVC enumeration of the original benchmark models without any decomposition. The time of the MIVC enumeration of decomposed models includes both the decomposition itself and the MIVC enumeration. 
+The refactorization described in the previous section introduces multiple new variables and equations into the Lustre model. While a more exact trace of each equation is possible using this method, the size of the model could grow substantially making the time of analysis unacceptable. To this end, we ran a subset of the Lustre benchmark models used in previous MIVC enumeration work~\cite{ghassabani_2018} and compared the time difference between the MIVC enumeration of the partially decomposed models and the MIVC enumeration of the original benchmark models without any decomposition. 
 
 In previous work, it was found that all minimal inductive validity core enumeration on this set of benchmarks performed well using the Z3 solver~\cite{ghassabani_2018, z3} as compared to other solvers available for JKind. In the results presented here, we also used Z3 as a solver and the only IVC elements flagged for consideration were the fresh variables. 
+
+The time of the MIVC enumeration of decomposed models includes both the decomposition itself and the MIVC enumeration. The timing comparison results are shown in Figure~\ref{fig:granIVC}. 
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=.8\textwidth]{images/granularityIVC.png}
+\caption{Timing comparison for generating MIVCs} 
+\label{fig:granIVC}
+\end{center}
+\end{figure}
+
+As the figure shows, the timing difference for this subset of benchmarks is comparable. The models are all small (under 10 seconds completion for the \aivcalg algorithm) and have few equations. This means that the number of fresh variables introduced into each model is of a manageable size. The outlying data points for the granular IVC computations consist of models with over 100 fresh variables added to the program and in the most dramatic case, the IVC set went from cardinality of 7 to a cardinality of 48. This is due to each subtree of the formula needing to be captured in the IVCs. 
+
+The reason we used only a small subset of the total Lustre benchmarks available was due to time of computation. As the time for MIVC generation increased beyond 10 seconds per model, the time of granularity computation became very large very quickly (many hours per model). 
+
+We believe the reason is due to the complexity and size of the formulae in the models and the sheer number of additional variables that were introduced. In order to utilize this approach, much work must be done to streamline the approach and address the computational complexity. 
+
+
 
 \subsubsection{RQ3}
 The method used in this algorithm provides all fresh variables to the MIVC algorithm. The results seen in the MIVCs reflect a branch of the Boolean equation. The transformation from MIVCs to minimal cut sets include a hitting set algorithm. Given the results of this initial algorithm, the hitting sets would split the branch shown in the MIVC such that the semantics of results would no longer be sound. In order to use these MIVCs for minimal cut set generation, further work must be implemented. 
