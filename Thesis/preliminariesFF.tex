@@ -22,7 +22,7 @@ JKind is an open-source industrial infinite-state inductive model checker for sa
   $k$-induction} which unrolls the property $P$ over $k$ steps of the
 transition system.
 
-\begin{comment}
+%\begin{comment}
 %For an arbitrary transition system $(I, T)$, computing reachability can be very expensive or even impossible. Thus, we need a more effective way of checking if a safety property $P$ is satisfied by the system. The key idea is to over-approximate reachability. If we can find an over-approximation that implies the property, then the property must hold. Otherwise, the approximation needs to be refined.
 
 A good first approximation for reachability is the property itself.
@@ -78,7 +78,7 @@ T(s_{k-1}, s_k) \Rightarrow P(s_k)
 In practice, inductive model checkers often use a combination of the
 above techniques. Thus, a typical conclusion is of the form ``$P$ with
 lemmas $L_1, \ldots, L_n$ is $k$-inductive''.
-\end{comment}
+%\end{comment}
 
 Each step of induction is sent to an SMT (Satisfiabilty Modulo Theory)-solver to check for \emph{satisfiability}, i.e. there exists a total truth assignment to a given formula that evaluates to true. If there does not exist such an assignment, the formula is considered \emph{unsatisfiable}. %A \emph{constraint system} is a term used to describe the formula with all constraints to the variables. 
 A $\mathit{k}$-induction model checker utilizes parallel SMT-solving engines at each induction step to glean information about the proof of a safety property. The transition formula is translated into clauses such that satisfiability is preserved~\cite{een2003temporal}. Expression of the base and induction steps of a temporal induction proof as SAT problems is straightforward and is shown below for step $k$:
