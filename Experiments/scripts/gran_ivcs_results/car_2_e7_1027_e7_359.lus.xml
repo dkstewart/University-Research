@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<Results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Progress source="bmc" trueFor="1">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="2">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="3">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="4">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="5">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="6">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="7">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="8">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="9">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="10">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="11">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="12">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="13">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="14">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="15">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="16">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="17">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="18">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="19">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="20">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="21">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="22">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="23">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="24">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="25">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="26">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="27">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="28">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="29">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="30">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="31">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="32">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="33">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="34">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="35">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="36">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="37">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="38">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="39">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="40">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="41">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="42">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="43">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="44">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="45">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="46">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="47">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="48">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="49">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="50">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="51">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Progress source="bmc" trueFor="52">
+    <PropertyProgress name="OK"/>
+  </Progress>
+  <Property name="OK">
+    <Runtime unit="sec">5.119</Runtime>
+    <Answer source="pdr">valid</Answer>
+    <K>1</K>
+    <NumberOfIVCs>2</NumberOfIVCs>
+    <TimedoutLoop>no</TimedoutLoop>
+    <MustElem>OK</MustElem>
+    <MustElem>FRESHVAR4</MustElem>
+    <MustElem>FRESHVAR3</MustElem>
+    <IvcSet number="1">
+    <Invariant>OK</Invariant>
+    <Invariant>(((not OK) or (V27_dist &lt;= (9.0 / 1.0))) or (not FRESHVAR4))</Invariant>
+    <Invariant>(V27_dist &lt;= (10.0 / 1.0))</Invariant>
+    <Ivc>FRESHVAR2</Ivc>
+    <Ivc>FRESHVAR4</Ivc>
+    <Ivc>FRESHVAR3</Ivc>
+    </IvcSet>
+    <IvcSet number="2">
+    <Invariant>((((V28_speed &lt;= (0.0 / 1.0)) or (not (V28_speed &lt;= (1.0 / 1.0)))) or ((0.0 / 1.0) &lt;= (V29_time + (-2.0 / 1.0)))) or (V27_dist &lt;= (4.0 / 1.0)))</Invariant>
+    <Invariant>((((not FRESHVAR4) or ((0.0 / 1.0) &lt;= (V29_time + (-3.0 / 1.0)))) or (not (V28_speed &lt;= (0.0 / 1.0)))) or (V27_dist &lt;= (5.0 / 1.0)))</Invariant>
+    <Invariant>((((V28_speed &lt;= (0.0 / 1.0)) or (not (V28_speed &lt;= (1.0 / 1.0)))) or (V27_dist &lt;= (2.0 / 1.0))) or ((0.0 / 1.0) &lt;= (V29_time + (-1.0 / 1.0))))</Invariant>
+    <Invariant>(((((V27_dist + (-1.0 / 1.0)) &lt;= (0.0 / 1.0)) or (not FRESHVAR4)) or (not (V28_speed &lt;= (0.0 / 1.0)))) or ((0.0 / 1.0) &lt;= (V29_time + (-1.0 / 1.0))))</Invariant>
+    <Invariant>OK</Invariant>
+    <Invariant>((((not (V28_speed &lt;= (2.0 / 1.0))) or ((V27_dist + (-1.0 / 1.0)) &lt;= (6.0 / 1.0))) or ((0.0 / 1.0) &lt;= (V29_time + (-3.0 / 1.0)))) or (V28_speed &lt;= (1.0 / 1.0)))</Invariant>
+    <Invariant>(((V28_speed &lt;= (0.0 / 1.0)) or (not (V28_speed &lt;= (1.0 / 1.0)))) or (V27_dist &lt;= (8.0 / 1.0)))</Invariant>
+    <Invariant>((((not FRESHVAR4) or (not (V28_speed &lt;= (0.0 / 1.0)))) or ((V27_dist + (-1.0 / 1.0)) &lt;= (2.0 / 1.0))) or ((0.0 / 1.0) &lt;= (V29_time + (-2.0 / 1.0))))</Invariant>
+    <Invariant>(((not (V28_speed &lt;= (2.0 / 1.0))) or (V28_speed &lt;= (1.0 / 1.0))) or (V27_dist &lt;= (9.0 / 1.0)))</Invariant>
+    <Invariant>(V27_dist &lt;= (10.0 / 1.0))</Invariant>
+    <Invariant>((((not (V28_speed &lt;= (2.0 / 1.0))) or (V28_speed &lt;= (1.0 / 1.0))) or (V27_dist &lt;= (5.0 / 1.0))) or ((0.0 / 1.0) &lt;= (V29_time + (-2.0 / 1.0))))</Invariant>
+    <Invariant>((0.0 / 1.0) &lt;= V29_time)</Invariant>
+    <Invariant>(((not FRESHVAR4) or ((V27_dist + (-1.0 / 1.0)) &lt;= (6.0 / 1.0))) or (not (V28_speed &lt;= (0.0 / 1.0))))</Invariant>
+    <Invariant>((((not (V28_speed &lt;= (2.0 / 1.0))) or (V28_speed &lt;= (1.0 / 1.0))) or ((V27_dist + (-1.0 / 1.0)) &lt;= (2.0 / 1.0))) or ((0.0 / 1.0) &lt;= (V29_time + (-1.0 / 1.0))))</Invariant>
+    <Invariant>((0.0 / 1.0) &lt;= V28_speed)</Invariant>
+    <Invariant>(((((0.0 / 1.0) &lt;= (V29_time + (-3.0 / 1.0))) or (V28_speed &lt;= (0.0 / 1.0))) or (not (V28_speed &lt;= (1.0 / 1.0)))) or (V27_dist &lt;= (6.0 / 1.0)))</Invariant>
+    <Ivc>FRESHVAR0</Ivc>
+    <Ivc>FRESHVAR9</Ivc>
+    <Ivc>FRESHVAR6</Ivc>
+    <Ivc>FRESHVAR5</Ivc>
+    <Ivc>FRESHVAR8</Ivc>
+    <Ivc>FRESHVAR7</Ivc>
+    <Ivc>FRESHVAR1</Ivc>
+    <Ivc>FRESHVAR4</Ivc>
+    <Ivc>FRESHVAR3</Ivc>
+    </IvcSet>
+  </Property>
+</Results>

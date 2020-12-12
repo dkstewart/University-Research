@@ -66,49 +66,31 @@
   <Progress source="bmc" trueFor="22">
     <PropertyProgress name="OK"/>
   </Progress>
-  <Progress source="bmc" trueFor="23">
-    <PropertyProgress name="OK"/>
-  </Progress>
-  <Progress source="bmc" trueFor="24">
-    <PropertyProgress name="OK"/>
-  </Progress>
-  <Progress source="bmc" trueFor="25">
-    <PropertyProgress name="OK"/>
-  </Progress>
   <Property name="OK">
-    <Runtime unit="sec">26.776</Runtime>
-    <Answer source="pdr">valid</Answer>
-    <K>1</K>
+    <Runtime unit="sec">1.212</Runtime>
+    <Answer source="k-induction">valid</Answer>
+    <K>9</K>
     <NumberOfIVCs>1</NumberOfIVCs>
-    <TimedoutLoop>no</TimedoutLoop>
-    <MustElem>FRESHVAR0</MustElem>
-    <MustElem>FRESHVAR6</MustElem>
-    <MustElem>FRESHVAR5</MustElem>
+    <MustElem>V24_minus</MustElem>
+    <MustElem>V23_plus</MustElem>
+    <MustElem>V109_cpt</MustElem>
+    <MustElem>V25_realistic</MustElem>
+    <MustElem>V110_acceptable</MustElem>
+    <MustElem>V22_speed</MustElem>
     <MustElem>OK</MustElem>
-    <MustElem>FRESHVAR2</MustElem>
-    <MustElem>FRESHVAR1</MustElem>
-    <MustElem>FRESHVAR4</MustElem>
-    <MustElem>FRESHVAR3</MustElem>
+    <MustElem>V98_Sofar</MustElem>
+    <MustElem>V93_X</MustElem>
     <IvcSet number="1">
-    <Invariant>((not FRESHVAR4) or (V27_dist &lt;= (8.0 / 1.0)))</Invariant>
-    <Invariant>(((not FRESHVAR4) or ((0.0 / 1.0) &lt;= (V29_time + (-2.0 / 1.0)))) or (V27_dist &lt;= (4.0 / 1.0)))</Invariant>
-    <Invariant>(((not FRESHVAR4) or (V27_dist &lt;= (7.0 / 1.0))) or ((0.0 / 1.0) &lt;= (V28_speed + (-1.0 / 1.0))))</Invariant>
-    <Invariant>((0.0 / 1.0) &lt;= V29_time)</Invariant>
     <Invariant>OK</Invariant>
-    <Invariant>(((not FRESHVAR4) or ((0.0 / 1.0) &lt;= (V29_time + (-3.0 / 1.0)))) or (V27_dist &lt;= (6.0 / 1.0)))</Invariant>
-    <Invariant>((((not FRESHVAR4) or ((0.0 / 1.0) &lt;= (V29_time + (-3.0 / 1.0)))) or (V27_dist &lt;= (5.0 / 1.0))) or ((0.0 / 1.0) &lt;= (V28_speed + (-1.0 / 1.0))))</Invariant>
-    <Invariant>((((not FRESHVAR4) or ((0.0 / 1.0) &lt;= (V29_time + (-2.0 / 1.0)))) or (V27_dist &lt;= (3.0 / 1.0))) or ((0.0 / 1.0) &lt;= (V28_speed + (-1.0 / 1.0))))</Invariant>
-    <Invariant>(V27_dist &lt;= (9.0 / 1.0))</Invariant>
-    <Invariant>((0.0 / 1.0) &lt;= V28_speed)</Invariant>
-    <Invariant>((((not FRESHVAR4) or (V27_dist &lt;= (1.0 / 1.0))) or ((0.0 / 1.0) &lt;= (V29_time + (-1.0 / 1.0)))) or ((0.0 / 1.0) &lt;= (V28_speed + (-1.0 / 1.0))))</Invariant>
-    <Invariant>(((not FRESHVAR4) or (V27_dist &lt;= (2.0 / 1.0))) or ((0.0 / 1.0) &lt;= (V29_time + (-1.0 / 1.0))))</Invariant>
-    <Ivc>FRESHVAR0</Ivc>
-    <Ivc>FRESHVAR6</Ivc>
-    <Ivc>FRESHVAR5</Ivc>
-    <Ivc>FRESHVAR2</Ivc>
-    <Ivc>FRESHVAR1</Ivc>
-    <Ivc>FRESHVAR4</Ivc>
-    <Ivc>FRESHVAR3</Ivc>
+    <Ivc>V24_minus</Ivc>
+    <Ivc>V23_plus</Ivc>
+    <Ivc>V109_cpt</Ivc>
+    <Ivc>V25_realistic</Ivc>
+    <Ivc>V110_acceptable</Ivc>
+    <Ivc>V22_speed</Ivc>
+    <Ivc>OK</Ivc>
+    <Ivc>V98_Sofar</Ivc>
+    <Ivc>V93_X</Ivc>
     </IvcSet>
   </Property>
 </Results>

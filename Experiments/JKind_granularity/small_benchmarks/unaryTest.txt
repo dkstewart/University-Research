@@ -1,0 +1,39 @@
+==========================================
+  JKind 4.3.0
+==========================================
+
+There are 1 properties to be checked.
+PROPERTIES TO BE CHECKED: [OK]
+
+Proving the high level property OK might require to use some of the --%IVC annotated low level properties.
+Starting MIVC enumeration using the offline enumeration algorithm.
+MIVC enumeration completed.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+VALID PROPERTIES: [OK] || pdr || K = 0 || Time = 1.451s
+
+INDUCTIVE VALIDITY CORES:
+
+MUST ELEMENTS FOR THE PROPERTY:
+  FRESHVAR0
+  FRESHVAR1
+  FRESHVAR2
+  OK
+
+1 INDUCTIVE VALIDITY CORES WERE FOUND:
+============================
+IVC  #1:
+INVARIANTS:
+  OK
+INDUCTIVE VALIDITY CORE:
+  FRESHVAR0
+  FRESHVAR2
+  FRESHVAR1
+============================
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    -------------------------------------
+    --^^--        SUMMARY          --^^--
+    -------------------------------------
+
+VALID PROPERTIES: [OK]
+
