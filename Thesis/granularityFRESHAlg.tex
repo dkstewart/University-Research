@@ -200,7 +200,7 @@ The refactorization described in the previous section introduces multiple new va
 
 In previous work, it was found that all minimal inductive validity core enumeration on this set of benchmarks performed well using the Z3 solver~\cite{ghassabani_2018, z3} as compared to other solvers available for JKind. In the results presented here, we also used Z3 as a solver and the only IVC elements flagged for consideration were the fresh variables. 
 
-The time of the MIVC enumeration of decomposed models includes both the decomposition itself and the MIVC enumeration. The timing comparison results are shown in Figure~\ref{fig:granIVC}. 
+The time of the MIVC enumeration of decomposed models includes both the decomposition itself and the MIVC enumeration. The timing comparison results are shown in Figure~\ref{fig:granIVC} and was executed on an Intel Core i7 with a 2.80GHz CPU and 16 GB RAM. 
 
 \begin{figure}[h!]
 \begin{center}
@@ -210,11 +210,11 @@ The time of the MIVC enumeration of decomposed models includes both the decompos
 \end{center}
 \end{figure}
 
-As the figure shows, the timing difference for this subset of benchmarks is comparable. The models are all small (under 10 seconds completion for the \aivcalg algorithm) and have few equations. This means that the number of fresh variables introduced into each model is of a manageable size. The outlying data points for the granular IVC computations consist of models with over 100 fresh variables added to the program and in the most dramatic case, the IVC set went from cardinality of 7 to a cardinality of 48. This is due to each subtree of the formula needing to be captured in the IVCs. 
+As the figure shows, the timing difference for this subset of benchmarks is mostly comparable. The models are all small (under 10 seconds completion for the \aivcalg algorithm) and have relatively few equations. This means that the number of fresh variables introduced into each model is of a manageable size. The outlying data points for the granular IVC computations consist of models with over 100 fresh variables added to the program and in the most dramatic case, the IVC set went from cardinality of 7 to a cardinality of 48. This is due to each subtree of the formula needing to be captured in the IVCs. 
 
 The reason we used only a small subset of the total Lustre benchmarks available was due to time of computation. As the time for MIVC generation increased beyond 10 seconds per model, the time of granularity computation became very large very quickly (many hours per model). 
 
-We believe the reason is due to the complexity and size of the formulae in the models and the sheer number of additional variables that were introduced. In order to utilize this approach, much work must be done to streamline the approach and address the computational complexity. 
+We believe the reason is due to the complexity and size of the formulae in the models and the sheer number of additional variables that were introduced. In order to successfully utilize this approach, much work must be done to streamline the approach and address the computational complexity. 
 
 \subsubsection{Future Work Research Question}
 Given the results in RQ2, could more exact minimal cut sets be produced from the MIVCs? If changes are reflected in the MIVC sets, then we will see corresponding changes in the minimal cut sets. This could provide more exact safety analysis artifacts and additional insight into the specifications and how they impact the analysis results.
