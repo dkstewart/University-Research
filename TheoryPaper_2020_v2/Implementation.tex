@@ -1,4 +1,4 @@
-\section{Implementation}
+\subsection{Algorithm Implementation in the Safety Annex}
 \label{sec:impl}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%            ALGORITHM DETAILS
@@ -22,8 +22,6 @@ The figure shows an arbitrary architecture with two analysis layers: top and lea
 A requirement of the hitting set algorithm is that to find all MCSs, all MUSs must be known. Ghassabani et al.~\cite{Ghassabani2017EfficientGO} showed that finding all MIVCs is as hard as model checking. It is a requirement of this analysis that all MIVCs are found. Once the MIVC analysis is complete for a property at a given layer, a hitting set algorithm is used to generate the related MCSs~\cite{gainer2017minimal}. Depending on the layer of analysis, the MCSs contain either guarantees or fault activation literals.
 
 %For a safety property $P$, the set of all MCSs are understood as $\lor^{n}_{i=1} MCS_i(P)$; intuitively, this means if all constraints found in any single MCS are removed from the constraint system, $\neg P$ is satisfied. For each element $gf_j \in MCS_i$, this is understood as $\land^{m}_{i=1} gf_i$ and speaks to the minimality of the correction set. Thus the MCSs form a disjunctive normal formula over the safety property at that layer. As the proof proceeds down the hierarchy, each of the subcomponent guarantees become a property to be proven and thus MIVCs/MCSs are generated. The composition of the MCSs consists of replacing a contract in a higher layer MCS with the disjunctive normal formula of its own MCSs. After all replacements have been made, the system property formula is converted back into disjunctive normal form. 
-
-The composition of these results is performed top down and shown in Algorithm~\ref{alg:compose}. For each guarantee found in an MCS, a replacement is made with the guarantees own MCSs. This is done recursively until all replacements have been made (line 7, 8 of Algorithm~\ref{alg:compose}). If on the other hand there are no MCSs for a given guarantee, that guarantee is replaced by its associated fault activation literal (line 10). At the leaf level of analysis, no guarantees have associated MCSs and thus reaches the end of recursion. At that time, the formula is converted back into disjunctive normal form to finish the translation into the traditional fault tree (line 11). 
 
 \begin{algorithm}[h]
 \SetKwFunction{Resolve}{resolve}
@@ -49,7 +47,9 @@ The composition of these results is performed top down and shown in Algorithm~\r
 	\label{alg:compose}
 \end{algorithm}
 
-Algorithm~\ref{alg:compose} provides the outline for the general case of composing fault forests: for each each property in a layer, the algorithm is called. Each property may have a corresponding fault tree. The collection of fault trees associated with each property make the forest. In the next subsection, we describe how this general algorithm is adjusted.
+The composition of these results is performed top down and shown in Algorithm~\ref{alg:compose}. For each guarantee found in an MCS, a replacement is made with the guarantee's own MCSs. This is done recursively until all replacements have been made (line 7, 8 of Algorithm~\ref{alg:compose}). If on the other hand there are no MCSs for a given guarantee, that guarantee is replaced by its associated fault activation literal (line 10). At the leaf level of analysis, no guarantees have associated MCSs and thus reaches the end of recursion. At that time, the formula is converted back into disjunctive normal form of fault activation literals to finish the translation into the traditional fault tree (line 11). 
+
+Algorithm~\ref{alg:compose} provides the outline for the general case of composing fault forests: for each each property in a layer of analysis, the algorithm is called. Each property may have a corresponding fault tree. The collection of fault trees associated with each property make the forest. In the next subsection, we describe how this general algorithm is adjusted.
 
 \begin{comment}
 The number of replacements $r$ that are made for a single property $P$ are constrained by the number of minimal cut sets there are for each of the $\alpha$ contracts within the initial MCS. We call the set of all minimal cut sets for a contract $g$: $\mathit{Cut(g)}$. The following formula defines an upper bound on the number of replacements. 

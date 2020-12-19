@@ -1,4 +1,4 @@
-\section{Preliminaries for the Implementation}
+\section{Implementation}
 \label{sec:prelim}
 
 %\input{implBackground}
@@ -17,7 +17,7 @@ One may attempt to violate a proof by violating a guarantee in a single MIVC as 
 
 Next we outline the formal background and toolsuite used in the implementation and then describe the algorithm that is implemented in the safety annex for AADL. 
 
-\subsection{Background}
+\subsection{Formal Background}
 JKind is an open-source industrial infinite-state inductive model checker for safety properties~\cite{2017arXiv171201222G}. Models and properties in JKind are specified in Lustre~\cite{Halbwachs91:IEEE}, a synchronous dataflow language, using the theories of linear real and integer arithmetic. JKind uses SMT-solvers to prove and falsify multiple properties in parallel. The JKind model checker uses {\em
   $k$-induction} which unrolls the property $P$ over $k$ steps of the
 transition system.
