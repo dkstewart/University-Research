@@ -1,10 +1,10 @@
-\section{Modeling and Formal Methods: Important Concepts}
+\section{Modeling and Formal Methods: Concepts and Definitions}
 \label{sec:concepts}
 The contributions of this research require further information regarding specific concepts of formal methods. Our approach allows safety analysts to extend an existing system model with fault information. The nominal model can then be analyzed using formal methods of verification to show that in the absence of faults the system meets its specified requirements. The extended fault model can also be formally analyzed to show how active faults in the system may violate the specified properties. 
 
 The existing system model is written in the Architecture Analysis and Design Language (AADL)~\cite{AADL_Standard}. This model is extended with behavioral contracts that formalize the requirements into temporal logic using the Assume-Guarantee Reasoning Environment (AGREE)~\cite{cofer2012compositional}. This constitutes the nominal system model. Verification through AGREE consists of a translation of the AADL model along with the AGREE contracts into a Lustre~\cite{Halbwachs91:IEEE} model. JKind~\cite{2017arXiv171201222G}, an infinite state model checker, is used to perform the formal verification of the Lustre model. Verification of the program is based on {\em k-induction} (see Section~\ref{sec:induction}) and property directed reachability using a back-end SMT solver such as Z3~\cite{z3} or SMTInterpol~\cite{smtInterpol}. 
 
-Given this nominal model organization, we extend this to allow for reasoning about faults. This is detailed in Chapter~\ref{chap:faultModeling}. The remainder of this section includes important concepts and definitions regarding the formalization of the nominal system model. 
+Given this nominal model organization, we extend this to allow for reasoning about faults. This is detailed in Chapter~\ref{chap:faultModeling}. The remainder of this section includes concepts and definitions regarding the formalization of the nominal system model. 
 
 \subsection{Architecture Analysis and Design Language}
 The Architectural Analysis and Design Language (AADL) is an SAE International standard language that provides a unifying framework for describing the system architecture for performance-critical, embedded, real-time systems~\cite{AADL_Standard,FeilerModelBasedEngineering2012}. From its conception, AADL has been designed for the design and construction of avionics systems.  Rather than being merely descriptive, AADL models can be made specific enough to support system-level code generation.  
@@ -12,9 +12,9 @@ The Architectural Analysis and Design Language (AADL) is an SAE International st
 An AADL model describes a system in terms of a hierarchy of components and their interconnections, where each component can either represent a logical entity (e.g., application software functions, data) or a physical entity (e.g., buses, processors). An AADL model can be extended with language annexes to provide a richer set of modeling elements for various system design and analysis needs (e.g., performance-related characteristics, configuration settings, dynamic behaviors). The language definition is sufficiently rigorous to support formal analysis tools that allow for early phase error/fault detection. Further details regarding AADL will be introduced as needed throughout this dissertation. 
 
 \subsection{Compositional Analysis in the Assume-Guarantee Reasoning Environment}
-The {\em compositional} analysis of systems was introduced in order to address the scalability of model checking large software systems~\cite{pnueli1985transition, heckel1998compositional, NFM2012:CoGaMiWhLaLu}. {\em Monolithic} analysis flattens the hierarchical system model and use all model elements from all layers in order to find proof of a safety property. Compositional analysis, on the other hand, is performed per the architecture hierarchy such that analysis at a higher level is based on the components at the next lower level and conducted layer by layer; the components of a system are organized hierarchically and each layer of the architecture is viewed a system. The idea is to partition the formal analysis of a system architecture into verification tasks that correspond into the decomposition of the architecture. 
+The {\em compositional} analysis of systems was introduced in order to address the scalability of model checking large software systems~\cite{pnueli1985transition, heckel1998compositional, NFM2012:CoGaMiWhLaLu}. {\em Monolithic} analysis flattens the hierarchical system model and use all model elements from all layers in order to find proof of a safety property. Compositional analysis, on the other hand, is performed per the architecture hierarchy such that analysis at a higher level is based on the components at the next lower level and conducted layer by layer; the components of a system are organized hierarchically and each layer of the architecture is viewed as a system. The idea is to partition the formal analysis of a system architecture into verification tasks that correspond into the decomposition of the architecture. 
 
-A component contract in an assume-guarantee reasoning environment is an assume-guarantee pair. Intuitively, the meaning of a pair is: if the assumption is true, then the component will ensure that the guarantee is true. The formulation of assume-guarantee compositional reasoning  uses the past-time LTL operators $G$ (globally), $U$ (until), $H$ (historically), and $Z$ (in the previous instant).
+A component contract in an assume-guarantee reasoning environment is an assume-guarantee pair. Intuitively, the meaning of a pair is: if the assumption is true, then the component will ensure that the guarantee is true. The formulation of assume-guarantee compositional reasoning  uses the past-time LTL\footnote{past-time LTL provides temporal operators that refer to the past states of an execution trace relative to a current point of reference} operators $G$ (globally), $U$ (until), $H$ (historically), and $Z$ (in the previous instant).
 
 A component contract is an assume-guarantee pair $(A,P)$ for propositions $A, P$. Assume-guarantee reasoning attempts to prove that if the assumptions have held in all previous instances up to the current instance, then the guarantee holds at the current time~\cite{cofer2012compositional}; formally, this can be written as $G(H(A) \implies P)$. 
 
@@ -76,20 +76,20 @@ A good first approximation for reachability is the property itself.
 That is, we can check if the following formulas hold:
 \begin{gather}
   \forall s.~ I(s) \Rightarrow P(s)
-  \label{eq:1-ind-base} \\
+  \label{eq:ind-base} \\
   \forall s, s'.~ P(s) \land T(s, s') \Rightarrow P(s')
-  \label{eq:1-ind-step}
+  \label{eq:ind-step}
 \end{gather}
 If both formulas hold then $P$ is {\em inductive} and holds over the
-system. If (\ref{eq:1-ind-base}) fails to hold, then $P$ is violated
-by an initial state of the system. If (\ref{eq:1-ind-step}) fails to
+system. If (\ref{eq:ind-base}) fails to hold, then $P$ is violated
+by an initial state of the system. If (\ref{eq:ind-step}) fails to
 hold, then $P$ is too much of an over-approximation and needs to be
 refined.
 
 The JKind model checker~\cite{2017arXiv171201222G} used in this research uses {\em
   $k$-induction} which unrolls the property over $k$ steps of the
 transition system. For example, 1-induction consists of formulas
-(\ref{eq:1-ind-base}) and (\ref{eq:1-ind-step}) above, whereas
+(\ref{eq:ind-base}) and (\ref{eq:ind-step}) above, whereas
 2-induction consists of the following formulas:
 \begin{gather*}
 \forall s.~ I(s) \Rightarrow P(s) \\
@@ -100,13 +100,13 @@ transition system. For example, 1-induction consists of formulas
 That is, there are two base step checks and one inductive step check.
 In general, for an arbitrary $k$, $k$-induction consists of $k$
 base step checks and one inductive step check as shown in
-Figure~\ref{fig:k-induction} (the universal quantifiers on $s_i$ have
+Figure~\ref{eq:k-induction} (the universal quantifiers on $s_i$ have
 been elided for space). We say that a property is $k$-inductive if it
 satisfies the $k$-induction constraints for the given value of $k$.
 The hope is that the additional formulas in the antecedent of the
 inductive step make it provable.
 
-\begin{figure}
+\begin{figure}[h!]
 \begin{gather*}
 I(s_0) \Rightarrow P(s_0) \\[-2pt]
 %
@@ -120,7 +120,7 @@ T(s_{k-1}, s_k) \Rightarrow P(s_k)
 \end{gather*}
 \caption{$k$-induction formulas: $k$ base cases and one inductive
   step}
-\label{fig:k-induction}
+\label{eq:k-induction}
 \end{figure}
 
 In practice, inductive model checkers often use a combination of the

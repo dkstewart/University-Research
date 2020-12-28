@@ -1,6 +1,6 @@
 \chapter{Fault Modeling and the Safety Annex}
 \label{chap:faultModeling}
-Early on in Section~\ref{subsec:mbsa}, a model-based safety assessment process was proposed. This process was backed by formal methods and incorporates a shared model into the development and safety analysis processes. A high level description of this cyclical process is shown in Figure~\ref{fig:SACycle} for your convenience. 
+In Section~\ref{subsec:mbsa}, a model-based safety assessment process was proposed. This process was backed by formal methods and incorporates a shared model into the development and safety analysis processes. A high level description of this cyclical process is shown in Figure~\ref{fig:SACycle} for your convenience. 
 
 \begin{figure}[h]
 	\begin{center}
@@ -10,13 +10,13 @@ Early on in Section~\ref{subsec:mbsa}, a model-based safety assessment process w
 	\label{fig:SACycle}
 \end{figure}
 
-There are certain capabilities that are required in order to fully perform all steps of this process. In beginning this research, we outlined what those pieces were and investigated related work to determine if a gap still existed. Based on the related work summary found in Section~\ref{sec:modelCheckingInSA}, it can be seen that this research attempts to fill certain gaps in the field of safety analysis. 
+There are certain capabilities that are required in order to fully perform all steps of this process. In beginning this research, we outlined what those pieces were and investigated related work. Based on the related work summary found in Section~\ref{sec:modelCheckingInSA}, certain gaps remain unfilled in the realm of model-based safety analysis. We contribute this research to fill in those areas:
 
 \begin{description}[nosep]
 
     \item[Shared model] with a language expressive enough to describe HW and SW components.
     \item[Flexible error propagations] through both behavioral and explicit means.
-    \item[Flexible fault modeling] with support for a/symmetric faults, in/dependent faults, etc.
+    \item[Flexible fault modeling] with support for symmetric and asymmetric faults, dependent and independent faults, etc.
     \item[Model checker] used to assess and verify the design with or without faults active.
     \item[Ability to generate artifacts] used in the safety assessment process.
 \end{description}
@@ -24,7 +24,7 @@ There are certain capabilities that are required in order to fully perform all s
 In this chapter, the fault modeling process using the safety annex for the Architecture Analysis and Design Language (AADL)~\cite{AADL_Standard} is described. The safety annex was developed with these two broad ideas in mind: (1) how this annex can support the proposed safety assessment process, and (2) what are the gaps in current related safety analysis tools that can be closed with this research.
 
 \section{Fault, Failure, and Error Terminology}
-The usage of the terms error, failure, and fault are defined in ARP4754A and are described here for ease of understanding~\cite{SAE:ARP4754A}. An \textit{error} is a mistake made in implementation, design, or requirements. A \textit{fault} is the manifestation of an error and a \textit{failure} is an event that occurs when the delivered service of a system deviates from correct behavior. If a fault is activated under the right circumstances, that fault can lead to a failure. The terminology used in the Error Model Annex version 2 for AADL (EMV2)~\cite{EMV2}, differs slightly for an error: an error is a corrupted state caused by a fault. The error propagates through a system and can manifest as a failure. In this dissertation, we use the ARP4754A terminology with the added definition of \textit{error propagation} as used in EMV2. An error is a mistake made in design or code and an error propagation is the propagation of the corrupted state caused by an active fault. 
+The usage of the terms error, failure, and fault are defined in ARP4754A and are described here for ease of understanding~\cite{SAE:ARP4754A}. An \textit{error} is a mistake made in implementation, design, or requirements. A \textit{fault} is the manifestation of an error and a \textit{failure} is an event that occurs when the delivered service of a system deviates from correct behavior. If a fault is activated under the right circumstances, that fault can lead to a failure. The terminology used in the Error Model Annex version 2 for AADL (EMV2)~\cite{EMV2}, differs slightly for an error: an error is a corrupted state caused by a fault. The error propagates through a system and can manifest as a failure. In this dissertation, we use the ARP4754A terminology with the added definition of \textit{error propagation} as used in EMV2. An error is a mistake made in design or code and an error propagation is the propagation of a corrupted state caused by an active fault. 
 
 \input{implementationSA}
 \input{sensorExample}
@@ -32,7 +32,7 @@ The usage of the terms error, failure, and fault are defined in ARP4754A and are
 \section{Component Fault Modeling in the Safety Annex}
 The safety annex is used to add possible faulty behaviors to a component model. When a fault is activated by its specified triggering conditions, it modifies the output of the component. This erroneous behavior may violate the contracts of other components in the system, including assumptions of downstream components. The impact of an active fault is computed by the AGREE model checker when the safety analysis is run on the fault model. 
 
-When given a nominal model with which to perform safety analysis, the analyst must associate faults with each component. Examples of such faults include valves being stuck open or closed, output of a software component being nondeterministic, or power being cut off. These are often determined based on hardware specification guidelines and domain expertise. Returning to the PWR running example, each sensor for each subsystem may fail to indicate that the threshold has been surpassed. If the radiation levels are high and the radiation sensor reports no such indication, this is a fault that must be considered during analysis. 
+When given a nominal model with which to perform safety analysis, the analyst must associate faults with relevant components. Examples of such faults include valves being stuck open or closed, output of a software component being nondeterministic, or power being cut off. These are often determined based on hardware specification guidelines and domain expertise. Returning to the PWR running example, each sensor for each subsystem may fail to indicate that the threshold has been exceeded. If the radiation levels are high and the radiation sensor reports no such indication, this is a fault that must be considered during analysis. 
 
 As an illustration of fault modeling using the safety annex, we look at one of the components important to the PWR system level safety property: the radiation sensor.  If the radiation levels are high, the radiaton sensor reports this through an indicator to the radiation sensor subsystem. A shut down command will be sent to the top level. Figure~\ref{fig:radiationSensor} shows the AADL pedal sensor component with a contract for its nominal behavior. The sensor has only one input, the environmental radiation, and one output, the high radiation levels indication. The property that governs the behavior of the component is that the radiation sensor will indicate when the threshold is reached.
 
@@ -48,8 +48,7 @@ As an illustration of fault modeling using the safety annex, we look at one of t
 	%\vspace{-0.2in}
 \end{figure}
 
-One possible failure for this sensor is inversion of its output value; the radiation levels are actually above threshold, but the sensor does not indicate such. This fault can be triggered with probability $1.0\times 10^{-5}$\footnote{In practice, the component failure probability is 
-collected from hardware specification sheets.}. The safety annex definition for this fault is shown in Figure~\ref{fig:radiationSensorFault}. Fault behavior is defined through the use of a fault node called \textit{stuck\_false} (shown in Figure~\ref{fig:stuckFalseNode}).  When the fault is triggered, the nominal output of the component (\textit{High\_Radiation\_Indicator}) is replaced with its failure value (\textit{val\_out}). 
+One possible failure for this sensor is inversion of its output value; the radiation levels are actually above threshold, but the sensor does not indicate such. This fault can be triggered with a lkelihood of $1.0\times 10^{-5}$. The safety annex definition for this fault is shown in Figure~\ref{fig:radiationSensorFault}. Fault behavior is defined through the use of a fault node called \textit{stuck\_false} (shown in Figure~\ref{fig:stuckFalseNode}).  When the fault is triggered, the nominal output of the component (\textit{High\_Radiation\_Indicator}) is replaced with its failure value (\textit{val\_out}). 
 
 \begin{figure}[h!]
 	%\hspace*{-2cm}
@@ -79,6 +78,7 @@ Given the complexity of systems, there are many types of faults that correspond 
 
 
 \section{Error Propagation}
+\label{sec:propogation}
 As systems become larger and more complex, it can be difficult knowing all possible error propagations within a model; using a purely explicit approach to error propagation is difficult. To this end, we developed the safety annex to primarily use \textit{behavioral} propagation. In this approach, the faults are attached to a component's output and ``turned on" in a manner of speaking. The effects and propagation of the active fault is revealed through the behavioral contracts of the system by use of the model checker. 
 
 This section outlines the safety annex's approach to implicit error propagation and also describes how one can model an explicit propagation by defining dependent faults. 
@@ -88,33 +88,11 @@ In the approach primarily used in the safety annex, faults are captured as fault
 
 In the PWR running example, all error propagations are defined implicitly. 
 
-\begin{comment}
-On the contrary, in the AADL Error Model Annex, Version 2 (EMV2)~\cite{EMV2} approach, all errors must be explicitly propagated through each component (by applying fault types on each of the output ports) in order for a component to have an impact on the rest of the system. To illustrate the key differences between implicit %failure
-error propagation provided in the safety annex and the explicit %failure 
-error propagation provided in EMV2, we use a simplified behavioral flow from the WBS example using code fragments from EMV2, AGREE, and the safety annex. 
-
-\begin{figure}[h]
-	%\hspace*{-2cm}
-%	\vspace{-0.19in}
-	\centering
-	\includegraphics[trim=0 9 0 5,clip,width=\textwidth]{images/Comparison_with_EMV2.pdf}
-	%\vspace{-0.3in}
-	\caption{Differences between safety annex and EMV2}
-	\label{fig:comparison_with_EMV2}
-	%\vspace{-0.2in}
-\end{figure} 
-
-In this simplified WBS system, the physical signal from the pedal component is detected by the sensor and the pedal position value is passed to the Braking System Control Unit (BSCU) components.  The BSCU generates a pressure command to the valve component which applies hydraulic brake pressure to the wheels. 
-
-In the EMV2 approach (top half of Figure~\ref{fig:comparison_with_EMV2}), the ``NoService'' fault is explicitly propagated through all of the components. These fault types are essentially tokens that do not capture any analyzable behavior. At the system level, analysis tools supporting the EMV2 annex can aggregate the propagation information from different components to compose an overall fault flow diagram or fault tree. 
-
-When a fault is triggered in the safety annex (bottom half of Figure~\ref{fig:comparison_with_EMV2}), the output behavior of the sensor component is modified. In this case the result is a ``stuck at zero'' error. The behavior of the BSCU receives a zero input and proceeds as if the pedal has not been pressed. This will cause the top level system contract to fail: {\em pedal pressed implies brake pressure output is positive}.
-\end{comment}
 
 
 \subsection{Explicit Propagation} 
 Failures in hardware (HW) components can trigger behavioral faults in the system components that depend on them. For example, a CPU failure may trigger faulty behavior in the threads bound to that CPU. In addition, a failure in one HW component may trigger failure in other HW components located nearby, such as overheating, fire, or explosion
-in the containment location. The safety annex provides the capability to explicitly model the impact of hardware failures on other faults, behavioral or non behavioral. 
+in the containment location. The safety annex provides the capability to explicitly model the impact of hardware failures on other faults, behavioral or non-behavioral. 
 
 To better model faults at the system level dependent on HW failures, a fault model element is introduced called a \textit{hardware fault}. Users are not required to specify behavioral effects for the HW faults, nor are data ports necessary on which to apply the fault definition. An example of a hardware fault declaration is shown in Figure~\ref{fig:hwFault} and describes a possible failure occurring between two co-located pumps. 
 \begin{figure}[h!]
@@ -130,7 +108,7 @@ To better model faults at the system level dependent on HW failures, a fault mod
 \end{figure}
 
 
-Users specify dependencies between the HW component faults and faults that are defined in other components, either HW or SW. The hardware fault then acts as a trigger for dependent faults. This allows a simple propagation from the faulty HW component to the SW components that rely on it, affecting the behavior on the outputs of the affected SW components.
+Users specify dependencies between the HW component faults and faults that are defined in other components, either HW or SW. The hardware fault then acts as a trigger for dependent faults. This allows a simple explicit propagation from the faulty HW component to the SW components that rely on it, affecting the behavior on the outputs of the affected SW components.
 
 Assume that there exist a green and a blue hydraulic pump; these are located in the same compartment in the aircraft and an explosion in this compartment rendered both pumps inoperable. 
 The HW fault definition can be modeled first in the green hydraulic pump component as shown in Figure~\ref{fig:hwFault}. The activation of this fault triggers the activation of related faults as seen in the \textit{propagate\_to} statement shown in Figure~\ref{fig:hwFaultProp}. 
