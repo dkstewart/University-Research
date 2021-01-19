@@ -12,29 +12,29 @@ To demonstrate the fault modeling capabilities of the Safety Annex we will use t
 The WBS is composed of two main parts: the Line Replaceable Unit control system and the electro-mechanical physical system.
 The control system electronically controls the physical system and contains a redundant
 channel of the Braking System Control Unit (BSCU) in case a detectable fault occurs in the active channel.
- It also commands antiskid braking. % in case of skidding on the ground. 
+The control system also commands antiskid braking. % in case of skidding on the ground. 
  The physical system consists of the hydraulic circuits running from hydraulic pumps to wheel brakes as well as valves that control the hydraulic fluid flow. This system provides braking force to each of the eight wheels of the aircraft. The wheels are all mechanically braked in pairs (one pair per landing gear). For simplicity, Figure~\ref{fig:wbs} displays only two of the eight wheels. 
 
 There are three operating modes in the WBS model:
 
 \begin{itemize}
 	\renewcommand{\labelitemi}{\textbullet}
-	\item In \textit{normal} mode, the system is composed of a \textit{green} hydraulic pump and one meter valve per each of the eight wheels. Each of the meter valves are controlled through electronic commands coming from the active channel of the BSCU. These signals provide braking and antiskid commands for each wheel. The braking command is determined through a sensor on the pedal and the antiskid command is determined by the \textit{Wheel Sensors}. 
-	\item In \textit{alternate} mode, the system is composed of a \textit{blue} hydraulic pump, four meter valves, and four antiskid shutoff valves, one for each landing gear. The meter valves are mechanically commanded through the pilot pedal corresponding to each landing gear. If the selector detects lack of pressure in the green circuit, it switches to the blue circuit. 
-	\item In \textit{emergency} mode, the system mode is entered if the \textit{blue} hydraulic pump fails. The accumulator pump has a reserve of pressurized hydraulic fluid and will supply this to the blue circuit in emergency mode. 
+	\item In \textit{normal} mode, the system is operated by a \textit{green} hydraulic pump and one meter valve per each of the eight wheels. Each of the meter valves are controlled through electronic commands coming from the active channel of the BSCU. These signals provide braking and antiskid commands for each wheel. The braking command is determined through a sensor on the pedal and the antiskid command is determined by the \textit{Wheel Sensors}. 
+	\item In \textit{alternate} mode, the system is operated by a \textit{blue} hydraulic pump, four meter valves, and four antiskid shutoff valves, one for each landing gear. The meter valves are mechanically commanded through the pilot pedal corresponding to each landing gear. If the selector detects lack of pressure in the green circuit, it switches to the blue circuit. 
+	\item \textit{Emergency} mode is entered if the \textit{blue} hydraulic pump fails. The accumulator pressure vessel has a reserve of pressurized hydraulic fluid and will supply this to the blue circuit in emergency mode. 
 \end{itemize}
 
 The WBS architecture model in AADL contains 30 different kinds of components, 169 component instances, and a model depth of 5 hierarchical levels. 
 
 The behavioral model is encoded using the AGREE annex and the behavior is based on descriptions found in AIR6110. The top level system properties are given by the requirements and safety objectives in AIR6110. All of the subcomponent contracts support these system safety objectives through the use of assumptions on component input and guarantees on the output. 
 
-An example system safety property is to ensure that there is no inadvertent braking of any of the wheels. This is based on a failure condition described in AIR6110 is \textit{Inadvertent wheel braking on one wheel during takeoff shall be less than 1E-9 per takeoff}. 
-Inadvertent braking means that braking force is applied at the wheel but the pilot has not pressed the brake pedal.  In addition, the inadvertent braking requires that power and hydraulic pressure are both present, the plane is not stopped, and the wheel is rolling (not skidding). The property is stated in AGREE such that inadvertent braking does \textit{not} occur, as shown in Figure \ref{fig:inadvertent_braking}. 
+An example system safety property is to ensure that there is no inadvertent braking of any of the wheels. This is based on a failure condition described in AIR6110 is \textit{Inadvertent wheel braking on one wheel during takeoff shall be less than $10^{-9}$ per takeoff}. 
+Inadvertent braking means that braking force is applied at the wheel but the pilot has not pressed the brake pedal.  In addition, the inadvertent braking requires that power and hydraulic pressure are both present, the plane is not stopped, and the wheel is rolling (not skidding). Figure \ref{fig:inadvertent_braking} shows the AGREE specification of this property. If power and hydraulic pressure are supplied and the pedal is not pressed, that implies that the wheel isn't rolling, speed is zero, or there is no braking force supplied at the wheel.
 
 \begin{figure}[htbp]
 	%\vspace{-0.2in}
 	\begin{center}
-		\includegraphics[width=.7\textwidth]{images/inadvertent_braking.png}
+		\includegraphics[width=.9\textwidth]{images/inadvBraking.png}
 	\end{center}
 	\vspace{-0.3in}
 	\caption{Safety Property: Inadvertent Braking}
@@ -51,11 +51,11 @@ The WBS has a total of 13 safety properties at the top level that are supported 
 \begin{center}
 \begin{tabular}{@{}ll}
 \toprule
-\textbf{S18-WBS-R-0321} \\Loss of all wheel braking during landing or RTO shall be less than $5.0 \times 10^{-7}$ per flight.                                    \\ \midrule 
-\textbf{S18-WBS-R/L-0322}  \\ Asymmetrical loss of wheel braking (Left/Right) shall be less than $5.0 \times 10^{-7}$ per flight. \\ \midrule
-\textbf{S18-WBS-0323} \\ Never inadvertent braking with all wheels locked shall be less than $1.0 \times 10^{-9}$ per takeoff.                                                                                                                                                                                                               \\ \midrule
-\textbf{S18-WBS-0324}  \\ Never inadvertent braking with all wheels shall be less than $1.0 \times 10^{-9}$ per takeoff.                                                                                                            \\ \midrule
-\textbf{S18-WBS-0325-wheelX} \\ Never inadvertent braking of wheel X shall be less than $1.0 \times 10^{-9}$ per takeoff.                                                                                                           .                                                                                                                 \\ \bottomrule
+\textbf{S18-WBS-R-0321} \\Loss of all wheel braking during landing shall have a probability of occurrence less than \\$5.0 \times 10^{-7}$ per flight.                                    \\ \midrule 
+\textbf{S18-WBS-R/L-0322}  \\ Asymmetrical loss of wheel braking (Left/Right) shall have a probability of occurrence\\less than $5.0 \times 10^{-7}$ per flight. \\ \midrule
+\textbf{S18-WBS-0323} \\ Inadvertent braking with all wheels locked shall have a probability of occurrence less \\than $10^{-9}$ per takeoff.                                                                                                                                                                                                               \\ \midrule
+\textbf{S18-WBS-0324}  \\ Inadvertent braking with all wheels shall have a probability of occurrence less than $10^{-9}$ \\per takeoff.                                                                                                            \\ \midrule
+\textbf{S18-WBS-0325-wheelX} \\ Inadvertent braking of wheel X shall have a probability of occurrence less than $10^{-9}$ \\per takeoff.                                                                                                           .                                                                                                                 \\ \bottomrule
 \end{tabular}
 \caption{Safety Properties of the WBS}
 \label{tab:safetyProperties}
@@ -64,25 +64,26 @@ The WBS has a total of 13 safety properties at the top level that are supported 
 
 
 \subsection{Fault Model Analysis}
-There are two main options for fault model analysis using the Safety Annex. The first option injects faults into the Lustre program based on the restrictions placed through the fault hypothesis. The bounded model checker engine used in JKind will find counterexamples to an invalid property. These counterexamples are returned to the user and include a trace of the system state that causes the violation. This includes any active faults that were part of that violation. The second option is used to generate minimal cut sets for the model. The fault activation literals and supporting guarantees are added to the MIVC algorithm elements as described in Sections~\ref{sec:formalization} and \ref{sec:impl}, the algorithm generating the cut sets is run (Section~\ref{sec:impl}), and the results are displayed to the user. 
+There are two main options for fault model analysis using the Safety Annex. The first option injects faults into the Lustre program based on the restrictions placed through the fault hypothesis. The bounded model checker engine used in JKind will find counterexamples to an invalid property. These counterexamples are returned to the user and include a trace of the system execution that causes the violation. This includes any active faults that were part of that violation. The second option is used to generate minimal cut sets for the model. The fault activation literals and supporting guarantees are added to the MIVC algorithm elements as described in Sections~\ref{sec:formalization} and \ref{sec:impl}, the algorithm generating the cut sets is run (Section~\ref{sec:impl}), and the results are displayed to the user. 
 
 \subsubsection{Verification in the Presence of Faults: Max \textit{n} Analysis}
 Using a max number of faults for the hypothesis, the user can constrain the number of simultaneously active faults in the model. The faults are added to the AGREE model for the verification. Given the constraint on the number of possible simultaneously active faults, the model checker attempts to prove the top level properties given these constraints. If this cannot be done, the counterexample provided will show which of the faults ($n$ or less) are active and which contracts are violated. More detail on verification of fault models can be found in Section~\ref{sec:analysisResults}. 
 
 The WBS was verified in the presence of faults given a \texttt{max 1 fault} hypothesis using compositional analysis. The time for complete model analysis was approximately 9 minutes, but a counterexample for certain top level properties took only around 20 seconds. (Recall that when using compositional verification in the presence of faults, that hypothesis applies to each layer separately -- the results are not rolled up as in the compositional generation of minimal cut sets. The counterexample given in this analysis pertains only to faults and contracts \textit{in a given layer}, and the timing of the counterexample reflects this single layer analysis result.) 
 
-The verification in the presence of faults with \texttt{max 1 fault} hypothesis statement provided a counterexample to the property {\em S18-WBS-0325: never inadvertent braking of wheel i}, for $i = 1, \dots 8$. This property is given in Figure~\ref{fig:inadvertent_braking}. The intuition behind the failure is that the pedal was not pressed, the sensor stated that it was pressed, braking was commanded through the digital components, and brake pressure was supplied at the wheel. This sensor fault was a single point of failure with regard to all of the inadvertent braking properties. Later in this section we look at the sensor on the pedal position in closer detail from the lens of architectural design changes led by the analysis results. 
+The verification in the presence of faults with \texttt{max 1 fault} hypothesis statement provided a counterexample to the property {\em S18-WBS-0325: never inadvertent braking of wheel i}, for $i = 1, \dots 8$. This property is given in Figure~\ref{fig:inadvertent_braking}. The intuition behind the failure is that the pedal was not pressed, the sensor failed and sent a signal stating that the pedal was pressed, braking was commanded through the digital components, and brake pressure was supplied at the wheel. The failed sensor was a single point of failure with regard to all of the inadvertent braking properties. Later in this section we look at the sensor on the pedal position in closer detail from the lens of architectural design changes guided by the analysis results. 
 
 \subsubsection{Verification in the Presence of Faults: Probabilistic Analysis} 
 Given a probabilistic fault hypothesis, this corresponds to performing analysis with the combinations of faults whose occurrence probability is less than the probability threshold. This is done by inserting assertions that allow those combinations in the Lustre code. If the model checker proves that the safety properties can be violated with any of those combinations, one of such combination will be shown in the counterexample. Probabilistic analysis done in this way must utilize the monolithic AGREE option. 
 
-Recall that when using the \texttt{max 1 fault} hypothesis statement on the WBS, we found that the sensor was a single point of failure for multiple properties. The probability of this particular sensor failing is given in AIR6110~\cite{AIR6110} as $1.0 \times 10^{-2}$. The probabilistic hypothesis was set according to the thresholds given per property (see Table~\ref{tab:safetyProperties}) and the analysis was run monolithically on the WBS model. The total time {\em to generate a counterexample} for violated properties using a probabilistic hypothesis with monolithic analysis varied depending on the safety property; the range of times was between 15 seconds and 9 minutes. The property that took the longest to generate a counterexample for was {\em S18-WBS-0323: never inadvertent braking with all wheels locked shall be less than $1.0 \times 10^{-9}$ per takeoff.} The formula for this property references all 8 wheels and numerous subcomponents, most of which have faults associated with them. The low probability threshold combined with the formula complexity and the exponential increase in fault combinations likely served to make this the longest time in counterexample generation. For a full discussion on use of probabilistic thresholds in compositional analysis, see Section~\ref{sec:prob_generate}.
+Recall that when using the \texttt{max 1 fault} hypothesis statement on the WBS, we found that the sensor was a single point of failure for multiple properties. The probability of this particular sensor failing is given in AIR6110~\cite{AIR6110} as $1.0 \times 10^{-2}$. The probabilistic hypothesis was set according to the thresholds given per property (see Table~\ref{tab:safetyProperties}) and the analysis was run monolithically on the WBS model. The total time {\em to generate a counterexample} for violated properties using a probabilistic hypothesis with monolithic analysis varied depending on the safety property; the range of times was between 15 seconds and 9 minutes\footnote{All following analyses were run on an Intel Core i7 with a 2.80GHz CPU and 16 GB RAM. }. 
+The property that took the longest to generate a counterexample for was {\em S18-WBS-0323: inadvertent braking with all wheels locked shall have a probability of occurrence less than $1.0 \times 10^{-9}$ per takeoff.} The formula for this property references all 8 wheels and numerous subcomponents, most of which have faults associated with them. The low probability threshold combined with the formula complexity and the exponential increase in fault combinations likely served to make this the longest time in counterexample generation. For a full discussion on use of probabilistic thresholds in compositional analysis, see Section~\ref{sec:prob_generate}.
 
 \subsubsection{Generate Minimal Cut Sets: Max \textit{n} Analysis}
 \label{sec:maxN_generate}
 As described in Section~\ref{sec:impl}, we use the \aivcalg algorithm to provide a full enumeration of all minimal set of model elements necessary for the proof of each top-level safety property in the model, and then transform all MIVCs into all minimal cut sets. In max $n$ analysis, the minimal cut sets are pruned to include only those with at cardinality less than or equal to the number $n$ specified in the fault hypothesis.
 
-Generate minimal cut set analysis was performed on the Wheel Brake System and results are shown in Table~\ref{tab:wbs_maxN_results}. Notice in Table~\ref{tab:wbs_maxN_results}, the label across the top row refers to the cardinality (\textit{n}) and the corresponding column shows how many cut sets are generated of that cardinality. When the analysis is run, the user specifies the value \textit{n}. This gives cut sets of cardinality less than or equal to \textit{n}. Table~\ref{tab:wbs_maxN_results} shows the total number of cut sets of cardinality \textit{n}. The total number of cut sets computed at the given threshold is the sum across a row. (For the full text of the properties, see Table~\ref{tab:safetyProperties}.) 
+Generate minimal cut set analysis was performed on the Wheel Brake System and results are shown in Table~\ref{tab:wbs_maxN_results1}. The label across the top row refers to the cardinality (\textit{n}) and the corresponding column shows how many cut sets are generated of that cardinality. When the analysis is run, the user specifies the value \textit{n}. This gives cut sets of cardinality less than or equal to \textit{n}. Table~\ref{tab:wbs_maxN_results1} shows the total number of cut sets of cardinality \textit{n}. The total number of cut sets computed at the given threshold is the sum across a row. (For the full text of the properties, see Table~\ref{tab:safetyProperties}.) 
 
 
 \begin{table}[htbp]
@@ -99,14 +100,14 @@ Generate minimal cut set analysis was performed on the Wheel Brake System and re
     0325-WX & 33 & 0 & 0 &0 &0 \\ \hline
     \end{tabular}
     \caption{WBS Minimal Cut Set Results for Max \textit{n} Hypothesis}
-    \label{tab:wbs_maxN_results}
+    \label{tab:wbs_maxN_results1}
     \end{center}
 \end{table}
 
 
-As can be seen in Table~\ref{tab:wbs_maxN_results}, the number of cut sets increases proportional to the cardinality of the cut sets. Intuitively, this can be understood as simple combinations of faults that can violate the hazard; if more things go wrong in a system at the same time, the more likely a property will be violated. Property S18-WBS-0324 with a max fault hypothesis of 5 was unable to finish due to an out of memory error. At the time that the error was thrown, the number of cut sets exceeded 1.5 million. In practice, it is not likely that an analyst will manually sift through a million or more cut sets, but rather will filter out the combinations that are sufficiently unlikely to occur. A probabilistic approach would be warranted in these situations. 
+For property 3024, the number of cut sets increases as the cardinality of allowable cut sets grows. Intuitively, this can be understood as simple combinations of faults that can violate the hazard; if more things go wrong in a system at the same time, the more likely this property will be violated. Property S18-WBS-0324 with a max fault hypothesis of 5 was unable to finish due to an out of memory error. At the time that the error was thrown, the number of cut sets exceeded 1.5 million. In practice, it is not likely that an analyst will manually sift through a million or more cut sets, but rather will filter out the combinations that are sufficiently unlikely to occur. A probabilistic approach would be warranted in these situations. 
 
-The next analysis shows the difference between the time it takes to generate all MIVCs and the time it takes to transform those MIVCs into minimal cut sets. Each column of Table~\ref{tab:wbs_mincut} labeled with the value of \textit{n} gives the fault hypothesis threshold for that analysis run. For comparison with the number of minimal cut sets generated per property, we refer to Table~\ref{tab:wbs_maxN_results}\footnote{The property S18-WBS-0325-WX is symmetric for all eight wheels. For readability, we only include wheel one verification timing results in Table~\ref{tab:wbs_mincut}. Likewise for property 0322-L/R.}.
+The next analysis shows the difference between the time it takes to generate all MIVCs and the time it takes to transform those MIVCs into minimal cut sets. Each column of Table~\ref{tab:wbs_mincut1} labeled with the value of \textit{n} gives the fault hypothesis threshold for that analysis run. For comparison with the number of minimal cut sets generated per property, we refer to Table~\ref{tab:wbs_maxN_results1}\footnote{The property S18-WBS-0325-WX is symmetric for all eight wheels. For readability, we only include wheel one verification timing results in Table~\ref{tab:wbs_mincut1}. Likewise for property 0322-L/R.}.
 \begin{table}[htbp]
 \begin{center}
     \begin{tabular}{ | l | l | l | l | l | l | l |}
@@ -119,10 +120,10 @@ The next analysis shows the difference between the time it takes to generate all
     0325-W1 & 391.137 & 5.632 & 5.388 &5.359 &5.301 & 5.236 \\ \hline
     \end{tabular}
     \caption{WBS Analysis Time in Seconds}
-    \label{tab:wbs_mincut}
+    \label{tab:wbs_mincut1}
     \end{center}
 \end{table}
-The overall time of the algorithms used for minimal cut set generation is quite small compared to the nominal analysis and extended model analysis time. This is not altogether surprising; the nominal and extended analysis is contending with an infinite state model checking problem whereas the algorithms presented to generate minimal cut sets deal with set element algorithms and boolean formula manipulation. The greatest time recorded was for property S18-WBS-0324 at $n = 4$; the reason is clear when comparing this with Table~\ref{tab:wbs_maxN_results}: the total number of minimal cut sets computed for this threshold is 916,349.  
+The overall time of the algorithms used for minimal cut set generation is quite small compared to the nominal analysis and extended model analysis time. This is likely due to the thresholds used to prune the size of the cut sets computed. At each layer of analysis, pruning can take place that may shrink the problem space considerably. The greatest time recorded was for property S18-WBS-0324 at $n = 4$; the reason is clear when comparing this with Table~\ref{tab:wbs_maxN_results1}: the total number of minimal cut sets computed for this threshold is 916,349.  
 
 \subsubsection{Generate Minimal Cut Sets: Probabilistic Analysis}
 \label{sec:prob_generate}
@@ -148,7 +149,7 @@ The probabilistic analysis for the WBS was given a top level threshold per prope
     \end{center}
 \end{table}
 
-As shown in Table~\ref{tab:wbs_prob_results}, the number of allowable combinations drops considerably when given probabilistic threshold as compared to just fault combinations of certain cardinalities. For example, one contract (inadvertent wheel braking of all wheels) had over a million minimal cut sets produced when looking at it in terms of max N analysis, but after taking probabilities into account, it is seen on Table~\ref{tab:wbs_prob_results} that the likely contributors to a hazard are minimal cut sets of cardinality one. The probabilistic analysis eliminated many thousands of cut sets from consideration. The total computation time for these runs is given in Table~\ref{tab:analysisTimeWBSProb}.
+As shown in Table~\ref{tab:wbs_prob_results}, the number of allowable combinations drops considerably when given probabilistic threshold as compared to just fault combinations of certain cardinalities. For example, one contract (0324: inadvertent wheel braking of all wheels) had over a million minimal cut sets produced when looking at it in terms of max N analysis, but after taking probabilities into account, it is seen in Table~\ref{tab:wbs_prob_results} that the likely contributors to a hazard are minimal cut sets of cardinality one. The probabilistic analysis eliminated many thousands of cut sets from consideration. The total computation time for these runs is given in Table~\ref{tab:analysisTimeWBSProb}.
 
 
 \begin{table}[htbp]
