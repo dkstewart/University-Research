@@ -14,7 +14,7 @@ A safety property $P : U \to \bool$ is a state predicate. A safety
 property $P$ holds on a transition system $(I, T)$ if it holds on all
 reachable states, i.e., $\forall u.~ \reach(u) \Rightarrow P(u)$,
 written as $\reach \Rightarrow P$ for short. When this is the case, we
-write $(I, T)\vdash P$. We assume the transition relation has the structure of a top level conjunction. Given $T(u, u') = T_1(u,u') \land \cdots T_n(u,u')$ we will write $T = \land_{i=1..n}$ for short. By further abuse of notation, $T$ is identified with the set of its top-level conjuncts. Thus, $T_i \in T$ means that $T_i$ is a top-level conjunct of $T$, and $S\subseteq T$ means all top level conjuncts of $S$ are top-level conjuncts of $T$. When a top-level conjunct $T_i$ is removed from $T$, we write $T \setminus \{T_i\}$
+write $(I, T)\vdash P$. We assume the transition relation has the structure of a top level conjunction. Given $T(u, u') = T_1(u,u') \land \cdots T_n(u,u')$ we will write $T = \land_{i=1..n}T_i$ for short. By further abuse of notation, $T$ is identified with the set of its top-level conjuncts $\land_{i=1..n}T_i$\footnote{Each conjunct $T_i$ may contain lower level conjuncts; thus, we differentiate by using the term ``top-level" conjunct for $T_i$.}. Thus, $T_i \in T$ means that $T_i$ is a top-level conjunct of $T$, and $S\subseteq T$ means all top level conjuncts of $S$ are top-level conjuncts of $T$. When a top-level conjunct $T_i$ is removed from $T$, we write $T \setminus \{T_i\}$
 
 The set of all nominal guarantees of the system $G$ consists of conjunctive constraints $g \in G$. Given no faults (i.e., nominal system) and a transition relation $T$ consisting of conjunctive constraints $T_i$, each $g$ is one of the transition constraints $T_i$ where:
 
@@ -23,68 +23,73 @@ T = g_1 \land  g_2 \land \cdots \land g_n
 \label{eq:Tn}
 \end{gather}
 
-We consider an arbitrary layer of analysis of the architecture and assume the property holds of the nominal relation $(I,T) \vdash P$. Let the set of all faults in the system be  denoted as $F$. A fault $f \in F$ is a deviation from the normal constraint imposed by a guarantee. Without loss of generality, we associate a single fault and an associated fault probability with a guarantee. Each fault $f_i$ is associated with an \emph{activation literal}, $\mathit{af}_i$, that determines whether the fault is active or inactive. %Any ``faults" in a mid-layer are simply violated guarantees, or deviations from normal behavior. 
+We consider an arbitrary layer of analysis of the architecture and assume the property holds of the nominal relation $(I,T) \vdash P$. Let the set of all faults in the system be  denoted as $F$. A fault $f \in F$ is a deviation from the normal constraint imposed by a guarantee. Without loss of generality, we associate a single fault and an associated fault probability with a guarantee. Each fault $f_i$ is associated with an \emph{activation literal}, $\mathit{af_i}$, that determines whether the fault is active or inactive. %Any ``faults" in a mid-layer are simply violated guarantees, or deviations from normal behavior. 
 
 %The faults in the safety annex are defined on leaf level components. Thus, for the lowest analysis layer, we must take into consideration faults and the guarantees their activation may violate. A fault $f \in F$ is a deviation from the normal constraint imposed by a guarantee. For the purposes of this paper, each guarantee at the leaf layer of analysis has an associated fault. 
 
-To consider the system under the presence of faults, consider a set $GF$ of modified guarantees in the presence of faults and let a mapping be defined from activation literals $\mathit{af}_i \in AF$ to these modified guarantees $\mathit{gf}_i \in GF$. 
+To consider the system under the presence of faults, consider a set $GF$ of modified guarantees in the presence of faults and let a mapping be defined from activation literals $\mathit{af_i} \in AF$ to these modified guarantees $\mathit{gf_i} \in GF$. 
 \begin{center}
-$\mathit{gf}_i =$ \textit{if} $\mathit{af}_i$ \textit{then} $f_i$ \textit{else} $g_i$
+$\mathit{gf_i} =$ \textit{if} $\mathit{af_i}$ \textit{then} $f_i$ \textit{else} $g_i$
 \label{eq:sigma}
 \end{center}
 
-The transition system is composed of the set of modified guarantees $GF$ and a set of conjunctions assigning each of the activation literals $\mathit{af}_i \in AF$ to false: 
+The transition system is composed of the set of modified guarantees $GF$ and a set of conjunctions assigning each of the activation literals $\mathit{af_i} \in AF$ to false: 
 
 \begin{gather}
-T' = \mathit{gf}_1 \land \mathit{gf}_2 \land \cdots \land \mathit{gf}_n \land \neg \mathit{af}_1 \land \neg \mathit{af}_2 \land \cdots \land \neg \mathit{af}_n
+T' = \mathit{gf_1} \land \mathit{gf_2} \land \cdots \land \mathit{gf_n} \land \neg \mathit{af_1} \land \neg \mathit{af_2} \land \cdots \land \neg \mathit{af_n}
 \label{eq:T}
 \end{gather}
 
 \begin{theorem} If $(I,T) \vdash P$ for $T$ defined in equation~\ref{eq:Tn}, then $(I,T') \vdash P$ for $T'$ defined in equation~\ref{eq:T}.
 \begin{proof}
-By the mapping of each constrained activation literal $\neg \mathit{af}_i$ to the associated guarantee $g_i$ and the weakening of the antecedent by introduction of the activation literals, the result is immediate.
+By the mapping of each constrained activation literal $\neg \mathit{af_i}$ to the associated guarantee $g_i$ and the weakening of the antecedent by introduction of the activation literals constrained to be false, the result is immediate.
 \end{proof}
 \end{theorem}
 
 Consider the elements of $T'$ as a set $GF \cup AF$, where $GF$ are the potentially faulty guarantees and $AF$ consists of the activation literals that determine whether a guarantee is faulty. This is a set that is considered by an SMT solver for satisfiability during the model checking engine procedures. 
 
-If the $\mathit{af}_i \in \mathit{AF}$ defined in $T'$ are unconstrained and this causes violation of $P$, a counterexample is returned. For each counterexample, we can partition $\mathit{AF}$ into two sets which we call {\em non-faulty variables (NFV)} and {\em faulty variables (FV)}.  The set $\mathit{NFV}$ consists of a set of variables that are constrained to be false throughout the counterexample, and $\mathit{FV}$ contains those that can be non-deterministically assigned at some point in the trace. By mapping some of the variables in $\mathit{AF}$ to false, we know that the associated guarantees in $\mathit{GF}$ are non-faulty for all considered executions. We define $T'(\mathit{NFV})$ as a relaxation of $T'$:
+If the $\mathit{af_i} \in \mathit{AF}$ defined in $T'$ are unconstrained, this allows more behaviors to the transition system and could cause a violation of $P$. If so, a counterexample may be produced. For each counterexample, we can partition $\mathit{AF}$ into two sets that we call {\em non-faulty variables (NFV)} and {\em faulty variables (FV)}.  The set $\mathit{NFV}$ consists of a set of variables that are constrained to be false throughout the counterexample, and $\mathit{FV}$ contains those that can be non-deterministically assigned at some point in the trace. By mapping some of the variables in $\mathit{AF}$ to false, we know that the associated guarantees in $\mathit{GF}$ are non-faulty for all considered executions. We define $T'(\mathit{NFV})$ as a relaxation of $T'$ (\ref{eq:T}):
 
 \begin{gather*}
-T'(\mathit{NFV}) = \mathit{gf}_1 \land \mathit{gf}_2 \land \cdots \land \mathit{gf}_n \land \bigwedge \{\neg \mathit{af}_i | \mathit{af}_i \in \mathit{NFV} \}
+T'(\mathit{NFV}) = \mathit{gf_1} \land \mathit{gf_2} \land \cdots \land \mathit{gf_n} \land \bigwedge \{\neg \mathit{af_i} | \mathit{af_i} \in \mathit{NFV} \}
 \end{gather*}
 
-The activation literals constrained to be false in $T'(\mathit{NFV})$ cause their associated guarantees to be valid. In the remainder of this section, we assume that all $\mathit{af}_i \in \mathit{AF}$ are unconstrained and when given a true valuation will violate the associated guarantee. This violation causes the output that the guarantee constrains to become non-deterministic. The Boolean variables in $\mathit{FV}$ correspond to Boolean variables in the fault tree. 
+The activation literals constrained to be false in $T'(\mathit{NFV})$ cause their associated guarantees to be valid. In the remainder of this section, we assume that all $\mathit{af_i} \in \mathit{AF}$ are unconstrained and when given a true valuation will lead to a violation of the associated guarantee. This violation causes the output that the guarantee constrains to become non-deterministic. The Boolean variables in $\mathit{FV}$ correspond to Boolean variables in the fault tree. 
 
-%Given the extended transition system in Equation~\ref{eq:T}, if the $\mathit{af}_i \in \mathit{AF}$ are unconstrained and this causes violation of $P$, a counterexample is returned.  This counterexample is a partition of guarantees $\mathit{GF}$ into disjoint sets:  $\mathit{GF} = \mathit{NFV} \cup \mathit{FV}$. The set $\mathit{NFV}$ consists of nonfaulty variables: the associated $\mathit{af}_i$ are mapped to {\em false} in the counterexample, and the set $\mathit{FV}$ consists of faulty variables: the associated $\mathit{af}_i$ are mapped to {\em true} in the counterexample. In the remainder of this section, we assume that all $\mathit{af}_i \in \mathit{AF}$ are nondeterministically unconstrained and when active, cause the associated guarantee to be violated. Thus the output that the guarantee constrains becomes nondeterministic when the associated $\mathit{af}_i$ is true.
+%Given the extended transition system in Equation~\ref{eq:T}, if the $\mathit{af_i} \in \mathit{AF}$ are unconstrained and this causes violation of $P$, a counterexample is returned.  This counterexample is a partition of guarantees $\mathit{GF}$ into disjoint sets:  $\mathit{GF} = \mathit{NFV} \cup \mathit{FV}$. The set $\mathit{NFV}$ consists of nonfaulty variables: the associated $\mathit{af_i}$ are mapped to {\em false} in the counterexample, and the set $\mathit{FV}$ consists of faulty variables: the associated $\mathit{af_i}$ are mapped to {\em true} in the counterexample. In the remainder of this section, we assume that all $\mathit{af_i} \in \mathit{AF}$ are nondeterministically unconstrained and when active, cause the associated guarantee to be violated. Thus the output that the guarantee constrains becomes nondeterministic when the associated $\mathit{af_i}$ is true.
 
 
 %%						DEFINE FT/FF
 \begin{definition}
 A fault tree $\mathit{FT}$ is a pair $(r, \mathcal{L})$ where:
 \begin{itemize}
-\item[] $r$: the root is a guarantee $r \in P$ constrained to be false
+\item[] $r$: the root $r$ is a negated desirable property
 \item[] $\mathcal{L}$: a Boolean equation containing faulty vars $\mathcal{L} \subseteq \mathit{FV}$
 \end{itemize}
 %The fault tree $\mathit{FT}$ is a Boolean equation in disjunctive normal form (DNF): $(r, \mathcal{L}) = r \lor \mathcal{L} = r \lor C_1 \lor \cdots \lor C_n$ for conjunctions $C_i$. 
 \end{definition}
 
-The terms $\mathit{af}$  in the Boolean formula $\mathcal{L}$ may be extracted as the set of leaf nodes of the fault tree. 
+The terms $\mathit{af}$  in the Boolean formula $\mathcal{L}$ may be extracted as the set of leaf nodes of the fault tree. The root $r$ of a tree may be either an element of the set $P$ of safety properties if the tree describes the top level of the system hierarchy, or it is an element of the set of a component guarantees $\pi$. 
 
 \begin{definition} 
-A fault tree $FT = (r, \mathcal{L})$ is valid if and only if $(r, \mathcal{L})$ is satisfiable with a true valuation for $r$ and for all $\mathit{af} \in \mathcal{L}$. 
+A fault tree $FT = (r, \mathcal{L})$ is valid if and only if a true valuation for $r$ and for all $\mathit{af} \in \mathcal{L}$ results in a satisfiable transition system. 
 \label{def:validFT}
 \end{definition}
 
+The hierarchy of the fault tree is dependent on the associated Boolean formula. A more intuitive structure is that of {\em disjunctive normal form} (DNF) as seen in the fault tree depicted in Figure~\ref{fig:sensorSysComp}, but DNF is not required under our definition of a fault tree. 
 
-Each layer of the architecture may contain multiple properties $P$. The subset $\pi$ of $P$ are the properties which have an associated fault tree and are either top level safety properties themselves or are used to prove the properties of a parent level. Due to this multiplicity, we do not compose single fault trees per layer, but rather forests of trees.
+Traditionally, a safety property is a property of the system and in the assume-guarantee reasoning environment is a top level guarantee. In the following formalism, each layer of analysis is viewed as distinct from the system hierarchy {\em as the proof is being constructed} and the properties we wish to prove are guarantees of a component. We use the notation $P$ to refer to the set of all parent properties at a given layer of analysis. If the analysis is being performed at the top level, these are all safety properties of the system. If the analysis is being performed at an intermediate level, these are all guarantees of the parent component.
+
+A goal of compositional safety analysis is to reflect failures of leaf and intermediate components at the top level. Not all guarantees must be valid to prove a parent level guarantee. To this end, we wish to make a distinction between all guarantees of a component and those that are required to prove parent guarantees. The subset $\pi$ of $P$ are the guarantees which have an associated fault tree and, when not violated, are used to prove the system safety properties or the guarantees of a parent component. 
+
+Given that there may be multiple safety properties and multiple intermediate level guarantees, we do not compose single fault trees per layer, but rather forests of trees.
 
 \begin{definition}
 A fault forest $\mathit{FF}$ is a set of fault trees.
 \end{definition}
 
 \begin{definition}
-A fault forest $\mathit{FF}$ is valid if and only if for all $\mathit{FT} \in \mathit{FF}$, $\mathit{FT}$ is valid.
+A fault forest $\mathit{FF}$ is valid if and only if for all $\mathit{FT} \in \mathit{FF}$, the fault tree $\mathit{FT}$ is valid as per Definition~\ref{def:validFT}.
 \label{def:validFF}
 \end{definition}
 
@@ -95,25 +100,26 @@ A fault forest $\mathit{FF}$ is valid if and only if for all $\mathit{FT} \in \m
 %%%%%%%%%%%%%%%%%%%%%
 
 %							SET UP FOR COMPONENT DEFINITION
-A counterexample is a trace. That trace is a valuation that splits $\mathit{AF}$ into disjoint sets $\mathit{NFV} \cup \mathit{FV}$. Each counterexample determines a set $\mathit{FV}$ with respect to a property $\pi_i \in \pi$. This defines an associated fault tree $\mathit{FT}_i \in \mathit{FF}$ where the root of the tree is the property $\pi_i$.  
+To prove each parent component guarantee $\pi_i \in \pi$, a certain subset of child guarantees are required to be non-faulty, i.e., the assocated activation literals are given a false valuation. We use the set $\mathit{NFV}$ to denote the non-faulty variables of the children components that are required to prove parent guarantees $\pi$.  These non-faulty variables are used in the relaxation of $T'$ (Equation~\ref{eq:T}). This can be stated as $I,T'(\mathit{NFV}) \vdash \pi$. 
 
-On the other hand, we also want to describe the non-faulty variables that are required for the proof of all $\pi_i \in \pi$ in order to have a valid component throughout composition. These are used in the relaxation of $T'$ and can be stated as $(I, T'(\mathit{NFV})) \vdash \pi$. A valid component has the potential to either prove pertinent properties (non-faulty variables) or violate properties (faulty variables), depending on the valuation of activation literals. 
+The violation of certain child guarantees may lead to the violation of a parent guarantee $\pi_i$. The activation literals of the child are given a true valuation and are denoted as $\mathit{FV}$: faulty variables. A set of faulty variables of the children components contain the activation literals that correspond to leaves of a fault tree $\mathcal{L}$ with the root $r = \neg \pi_i$ for parent guarantee $\pi_i$. In other words, the fault tree $\mathit{FT_i} \in \mathit{FF}$ is associated with a property $\pi_i$. The non-faulty variables $\mathit{NFV}$ contain the valid child guarantees that are required to prove $\pi_i$, and the fault tree $\mathit{FT_i}$ reflects the child guarantee violations that may lead to the violation of $\pi_i$.
+
 
 %%					DEFINE COMPONENT
 \begin{definition}
 A component is the tuple $\mathit{Comp}(M, \mathit{FF}, \mathit{NFV}, \pi)$ where:
 \begin{itemize}[label=\textbullet]
-\item $M$: the model consisting of the set of child properties $P_c$ extended with non-deterministic faults: $\mathit{gf}_i \in P_c$ where $\mathit{gf}_i =$ \textit{if} $\mathit{af}_i$ \textit{then} $\mathit{f}_i$ \textit{else} $g_i$
+\item $M$: the model consisting of the set of child properties $P_c$ extended with non-deterministic faults: $\mathit{gf_i} \in P_c$ where $\mathit{gf_i} =$ \textit{if} $\mathit{af_i}$ \textit{then} $\mathit{f}_i$ \textit{else} $g_i$
 \item $\mathit{FF}$: the ordered set of fault trees for this component
 \item $\mathit{NFV}$: the set of non-faulty variables 
-\item $\pi$: the ordered set of properties $\pi \subseteq P$ such that $(I, T'(\mathit{NFV})) \vdash \pi$
+\item $\pi$: the ordered set of properties $\pi \subseteq P$ such that $(I, T'(\mathit{NFV})) \vdash \pi$, i.e., all properties $\pi$ hold if the variables in $\mathit{NFV}$ are given a true valuation.
 \end{itemize}
-and $\mathit{FT}_i \in \mathit{FF}$ corresponds to $\pi_i \in \pi$ for each of the $i$ properties.  
+and $\mathit{FT}_i \in \mathit{FF}$ corresponds to $\pi_i \in \pi$ for each of the $i$ properties: the root of $\mathit{FT_i}$ is $\neg \pi_i$. 
 \end{definition}
 
 
 %%					EXAMPLE OF COMPONENT DEF AND FF/FT DEFS
-As an example, we return to the sensor system described in Section~\ref{sec:}. The component {\em Pressure Subsystem} can be defined as follows. 
+As an example, we return to the sensor system described in Section~\ref{sec:example}. The component {\em Pressure Subsystem} can be defined as follows. 
 
 \begin{itemize}[label=\textbullet]
 \item $M = \{\mathit{gf}_{p1}, \mathit{gf}_{p2}, \mathit{gf}_{p3}\}$. These are the child properties of the pressure subsystem extended with faults. 
@@ -124,6 +130,8 @@ As an example, we return to the sensor system described in Section~\ref{sec:}. T
 
 
 %%				DEFINE COMPOSITION OF COMPONENTS
+Given the definition of a component, we now discuss what it means to compose these components. Each layer of composition moves iteratively closer to a monolithic model by the enlargement of each set described in a component. 
+
 \begin{definition}
 The composition of child component $\mathit{Comp}_c$ and parent component $\mathit{Comp}_p$:
 $Comp_c(M_c, \mathit{FF}_c, \mathit{NFV}_c, \pi_c) \circ Comp_p(M_p, \mathit{FT}_p, \mathit{NFV}_p, \pi_p) = Comp_\circ(M', \mathit{FF}', \mathit{NFV}', \pi')$ where:
@@ -165,9 +173,9 @@ We work under the {\em monotonicity assumption}, commonly adopted in safety anal
 \begin{proof}
 Assume the antecedent. Then $(r_c, \mathcal{L}_c)$ is satisfiable for some $\neg g_i$ in the child component and all $\mathit{af} \in \mathcal{L}_c$ given true valuations. 
 
-Case 1: If the child root $\neg g_i$ does not have an associated $\mathit{af}_i \in \mathcal{L}_p$, then $\phi(\mathit{FT}_c, \mathit{FT}_p) = \mathit{FT}_p$ and is a valid fault tree.
+Case 1: If the child root $\neg g_i$ does not have an associated $\mathit{af_i} \in \mathcal{L}_p$, then $\phi(\mathit{FT}_c, \mathit{FT}_p) = \mathit{FT}_p$ and is a valid fault tree.
 
-Case 2: If the child root $\neg g_i$ has an associated $\mathit{af}_i \in \mathcal{L}_p$, then $\mathit{af}_i$ has a true valuation. Given the mapping defined between guarantees and activation literals, replacement of $\mathit{af}_i \in \mathcal{L}_p$ with the violated $g_i$ preserves satisfiability. Furthermore, by the monotonicity assumption, the addition of more faults ($\mathit{af} \in \mathcal{L}_c$) to the Boolean formula does not change satisfiability. 
+Case 2: If the child root $\neg g_i$ has an associated $\mathit{af_i} \in \mathcal{L}_p$, then $\mathit{af_i}$ has a true valuation. Given the mapping defined between guarantees and activation literals, replacement of $\mathit{af_i} \in \mathcal{L}_p$ with the violated $g_i$ preserves satisfiability. Furthermore, by the monotonicity assumption, the addition of more faults ($\mathit{af} \in \mathcal{L}_c$) to the Boolean formula does not change satisfiability. 
 
 In all cases, $\phi(\mathit{FT}_c, \mathit{FT}_p)$ is a valid fault tree. 
 \end{proof}
@@ -188,7 +196,7 @@ Let $\phi_F$ be a function $\phi _F: \mathit{seq(B)} \times \mathit{seq(B)} \rig
 
 where $\mathcal{L}_p(r_c, \mathcal{L}_c)$ is the replacement of $r_c$ in $\mathcal{L}_p$ with $(r_c, \mathcal{L}_c)$.
 
-Each literal in the formula $\mathcal{L}_p$ is a fault activation literal $\mathit{af}_i$. If $\mathit{af}_i$ has an associated guarantee $\mathit{gf}_i$ in the set of child roots $r_c$, then the mapping $\phi_F$ will extend $\mathit{af}_i$ in $\mathcal{L}_p$ with the leaf formula of the child root $\mathit{gf}_i$.  The resulting fault forest is a sequence of fault trees $\mathit{FF} = \{(r_{pk}, \mathcal{L}_{k}): k = 1,\dots,m\}$. The roots of the resulting forest are the same roots as  the parent forest while the leaf formulae may change based on replacement. 
+Each literal in the formula $\mathcal{L}_p$ is a fault activation literal $\mathit{af_i}$. If $\mathit{af_i}$ has an associated guarantee $\mathit{gf_i}$ in the set of child roots $r_c$, then the mapping $\phi_F$ will extend $\mathit{af_i}$ in $\mathcal{L}_p$ with the leaf formula of the child root $\mathit{gf_i}$.  The resulting fault forest is a sequence of fault trees $\mathit{FF} = \{(r_{pk}, \mathcal{L}_{k}): k = 1,\dots,m\}$. The roots of the resulting forest are the same roots as  the parent forest while the leaf formulae may change based on replacement. 
 
 
 %%							EXAMPLE PHI MAPPING WITH PARENT AND CHILD
@@ -220,24 +228,24 @@ For each tree $\mathit{FT}_i \in \mathit{FF}_c$, apply Lemma~\ref{lemma:validTre
 
 Thus far, we have proven that a single layer of composition produces valid fault trees forests, but to perform this analysis across $n$ layers of architecture we use induction to show that the resulting fault forest is valid. 
 
-The notation $\phi_F^n$ indicates the iterated function $\phi_F$ which is a successive application of $\phi_F$ with itself $n$ times. Assume the fault forest $\mathit{FF}_0$ is obtained at the leaf level of the architecture.
+The notation $\phi_F^n$ indicates the iterated function $\phi_F$ which is a successive application of $\phi_F$ with itself $n$ times. Assume the fault forest $\mathit{FF_0}$ is obtained at the leaf level of the architecture.
 
-\begin{theorem} If $\phi_F^n(\mathit{FF}_{n-1}, \mathit{FF}_n)$ is a valid fault forest, then $\phi^{n+1}(\mathit{FF}_{n}, \mathit{FF}_{n+1})$ is a valid fault forest.
+\begin{theorem} If $\phi_F^n(\mathit{FF_{n-1}}, \mathit{FF_n})$ is a valid fault forest, then $\phi^{n+1}(\mathit{FF_n}, \mathit{FF_{n+1}})$ is a valid fault forest.
 \begin{proof}
 
-Base case: Each fault forest per layer is valid by construction. By Lemma~\ref{lemma:validForest}, $\phi_F(\mathit{FF}_{0}, \mathit{FF}_1)$ is a valid fault forest.
+Base case: Each fault forest per layer is valid by construction. By Lemma~\ref{lemma:validForest}, $\phi_F(\mathit{FF_0}, \mathit{FF_1})$ is a valid fault forest.
 
-Inductive assumption: Assume $\phi_F^n(\mathit{FF}_{n-1}, \mathit{FF}_n)$ is a valid fault forest.
+Inductive assumption: Assume $\phi_F^n(\mathit{FF_{n-1}}, \mathit{FF_n})$ is a valid fault forest.
 \begin{equation*}
 \begin{split}
-\phi_F^{n+1}(\mathit{FF}_{n}, \mathit{FF}_{n+1}) &= ((\mathit{FF}_0 \circ \mathit{FF}_1) \circ \mathit{FF}_2) \circ \cdots \circ \mathit{FF}_n) \circ \mathit{FF}_{n+1})) \\
-  &= \phi_F^n(\mathit{FF}_{n-1}, \mathit{FF}_n) \circ \mathit{FF}_{n+1}
+\phi_F^{n+1}(\mathit{FF_n}, \mathit{FF_{n+1}}) &= ((\mathit{FF_0} \circ \mathit{FF_1}) \circ \mathit{FF}_2) \circ \cdots \circ \mathit{FF_n}) \circ \mathit{FF_{n+1}})) \\
+  &= \phi_F^n(\mathit{FF_{n-1}}, \mathit{FF_n}) \circ \mathit{FF_{n+1}}
 \end{split}
 \end{equation*}
 
-%$\phi_F^{n+1}(\mathit{FF}_{n}, \mathit{FF}_{n+1}) = ((\mathit{FF}_0 \circ \mathit{FF}_1) \circ \mathit{FF}_2) \circ \cdots \circ \mathit{FF}_n) \circ \mathit{FF}_{n+1})) = \phi_F^n(\mathit{FF}_{n-1}, \mathit{FF}_n) \circ \mathit{FF}_{n+1}$. 
+%$\phi_F^{n+1}(\mathit{FF_n}, \mathit{FF_{n+1}}) = ((\mathit{FF_0} \circ \mathit{FF_1}) \circ \mathit{FF}_2) \circ \cdots \circ \mathit{FF_n}) \circ \mathit{FF_{n+1}})) = \phi_F^n(\mathit{FF_{n-1}}, \mathit{FF_n}) \circ \mathit{FF_{n+1}}$. 
 
-By inductive assumption and Lemma~\ref{lemma:validForest}, $\phi_F^{n+1}(\mathit{FF}_{n}, \mathit{FF}_{n+1})$ is a valid fault forest.
+By inductive assumption and Lemma~\ref{lemma:validForest}, $\phi_F^{n+1}(\mathit{FF_n}, \mathit{FF_{n+1}})$ is a valid fault forest.
 
 \end{proof}
 \label{thm:indForest}
