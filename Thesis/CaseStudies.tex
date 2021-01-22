@@ -7,17 +7,19 @@ This chapter illustrates aspects of the safety annex in terms of both modeling a
 
 \section{Discussion on Timing Results}
 \label{sec:timing}
-Given that the safety annex has been developed within the course of this research, there was no pre-existing benchmark models with which to conduct experiments and collect data for comparison with existing tools. As described in Section~\ref{sec:modelCheckingInSA}, there are a few related research tools that perform similar analyses, e.g., xSAP~\cite{DBLP:conf/tacas/BittnerBCCGGMMZ16}, AltaRica~\cite{signoret1998altarica}, SAML~\cite{Gudemann:2010:FQQ:1909626.1909813}, but all of these perform analysis over different modeling languages, use varying analysis methodology, and some even separate fault models from the system modeling language.
+We aim in this section to provide timing results on the fault analysis of exemplar models. Given that the safety annex has been developed within the course of this research, there were no pre-existing benchmark models with which to conduct experiments and collect data for comparison with existing tools. As described in Section~\ref{sec:modelCheckingInSA}, there are a few related research tools that perform similar analyses, e.g., xSAP~\cite{DBLP:conf/tacas/BittnerBCCGGMMZ16}, AltaRica~\cite{signoret1998altarica}, SAML~\cite{Gudemann:2010:FQQ:1909626.1909813}, but all of these perform analysis over different modeling languages, use varying analysis methods, and some even separate the fault models from the system modeling language.
 
-Throughout the course of this research, a small number of system models have been developed that illustrate various aspects of modeling and analysis capabilities. These range in size from quite simple two component single layer systems up to the large WBS example outlined in Section~\ref{sec:wbs}. But notice that the size of the model in terms of the architecture does not completely capture the analysis timing results. For example, a single layer architecture containing two components is small in terms of AADL models, but the nominal AGREE model may contain numerous assumptions and guarantees, and likewise a large number of faults, both of which increase computation time for proofs and for minimal cut set generation compared to a small architectural model with fewer contracts and faults. Likewise, the total number of contracts do not tell the whole story; that number does not give insight into the complexity of the formulas in the contracts. When discussing results of the fault model analysis, one must not only take into account the number of faults defined in a model, but also the probabilistic threshold, possible fault combinations that are allowed to be active at once, and the complexity of the contracts within the model. Given all of this, it is not so straightforward to run a single analysis and make comparisons along these axes, so we provide enough comparison to glean interesting information regarding the feasibility of the approach\footnote{All following analyses were run on an Intel Core i7 with a 2.80GHz CPU and 16 GB RAM. }.
+Throughout the course of this research, a small number of system models have been developed that illustrate various aspects of modeling and analysis capabilities. These range in size from quite simple two component single layer systems up to the sizable WBS example outlined in Section~\ref{sec:wbs}. But the size of the model in terms of the architecture does not completely capture the analysis timing results. For example, a single layer architecture with two components is small in terms of architectural models, but may have complex contracts with numerous assumptions and guarantees on those subcomponents. This increases the size of the nominal model and will affect analysis time. Likewise, the total number of contracts does not tell the whole story; that number does not give insight into the complexity of the formulas in the contracts. When discussing results of the fault model analysis, one must not only take into account the number of faults defined in a model, but also the probabilistic threshold, possible fault combinations that are allowed to be active at once, and the complexity of the contracts within the model. Consequently, it is non-trivial to run a single analysis and make comparisons along these axes, so we provide enough comparison to glean information regarding the feasibility of the approach\footnote{All following analyses were run on an Intel Core i7 with a 2.80GHz CPU and 16 GB RAM. }.
 
-\paragraph{Nominal Model:} As a baseline to the analysis comparisons we provide, we run compositional nominal analysis on the 18 AADL models extended with AGREE contracts. The analysis includes property verification and component consistency checks; this is the analysis that any user would run on a nominal model with no interwoven faults. 
+The first timing results we show is a comparison between the nominal model, the extended fault model with no faults active, and the fault model with a constraint that a single fault may be active in the model. We outline the details of each type of analysis and then show the results in Figure~\ref{graphComp15Models}.
 
-\paragraph{Extended model, no faults active:} Since a safety analyst extends the nominal model with fault definitions and constraints, we want to see the results of that extension in terms of additional verification time. The model grows in size with each fault that is defined in multiple ways. There is a node definition in the Lustre model corresponding to the fault behavior, there are five variables for each fault added to the model, and each of those variables has constraints written in Lustre. There are also constraints on the new fault related variables that correspond to the fault hypothesis statement. We wish to see how these extensions increases verification time when no faults are active within the model; this will give insight into the feasibility of verifying the extension alone and how costly that extension may be. 
+\paragraph{Nominal Model:} We perform compositional nominal analysis on the 18 AADL models extended with AGREE contracts as a baseline comparison. The analysis includes property verification and component consistency checks; this is the analysis that any user would run on a nominal model with no interwoven faults. 
 
-\paragraph{Extended model, one fault active:} The reason we wish to activate a single fault in the model is to see how removing the constraint that {\em no} faults are active (as in the extended case above) changes the analysis time. By giving a single active fault constraint, the model checker is required to determine which of the faults may violate a property and thus must iterate through the fault possibilities. If one or more of those faults violate a property, a counterexample is generated which may also add to fault model verification time. 
+\paragraph{Extended model, no faults active:} Since a safety analyst extends the nominal model with fault definitions and constraints, we want to see the results of that extension in terms of additional verification time. The model grows as faults are defined. A node definition in the Lustre model corresponds to the fault behavior, there are new variables defined for each fault added to the model, and each of those variables has associated constraints written in Lustre. There are also constraints that correspond to the fault hypothesis statement. We are interested in how these extensions increase verification time when no faults are active within the model. 
 
-To this end, we performed the above three types of analysis on the 18 models and graphed the results together as shown in Figure~\ref{fig:graphComp15Models}. 
+\paragraph{Fault model analysis:} For this analysis, we change the constraint to allow an active fault in the model. If one or more of those faults violate a property, a counterexample is generated.
+
+We performed the above three types of analysis on the 18 models and graphed the results together as shown in Figure~\ref{fig:graphComp15Models}. 
 
 \begin{figure}[htbp]
 	%\vspace{-0.2in}
@@ -25,14 +27,16 @@ To this end, we performed the above three types of analysis on the 18 models and
 		\includegraphics[width=.7\textwidth]{images/graphComp15Models.png}
 	\end{center}
 	\vspace{-0.3in}
-	\caption{Nominal, Extended, and One Fault Verification on 18 Models}
+	\caption{Nominal, Extended, and Fault Model Verification on 18 Models}
 	\label{fig:graphComp15Models}
 	%\vspace{-0.2in}
 \end{figure}
 
-The first 15 models are similar in architectural and contractual size and the time differences between the three forms of analysis are negligible. Model 12 shows a greater irregularity between the nominal, extended, and fault analysis times and this is most likely due to the complexity of both the faults and contracts in the model. Models 16-18 show the greatest differences in timing results and are the largest of the set. Interestingly enough, the extended model analysis time was far greater than both the nominal and fault model analysis time. The reason for this may be due to a greater number of model elements in the extended model compared with the amount of time needed to find a counterexample. 
+The first 15 models are similar in architectural and contract size and the time differences between the three forms of analysis are negligible. Model 12 shows a greater irregularity between the nominal, extended, and fault analysis times and this is most likely due to the complexity of both the faults and contracts in the model. Models 16-18 show the greatest differences in timing results and are the largest of the set. The extended model analysis time for models 16-18 was noticeably greater than both the nominal and fault model analysis time. The reason for this may be due to a greater number of model elements in the extended model and the amount of time needed to find a counterexample in the fault model analysis.
 
-\paragraph{Extended model, probabilistic threshold:} In the implementation of the safety annex, a preprocessing step to probabilistic analysis is to compute all possible combinations of faults whose probability exceeds the threshold. This is inserted into the Lustre model as an assertion that states only these combinations can be active at once. If there is such a combination that violates a property, it will be shown. Compositional probabilistic analysis can only be performed through the generation of minimal cut sets; therefore, this analysis was first performed using a monolithic probabilistic approach and then a compositional minimal cut set approach to show the comparison. To illustrate how the probabilistic threshold changes analysis results and timing, we perform this analysis on a larger model: the wheel brake system with 4 wheels. This is a pared down version of what was described in Section~\ref{sec:wbs}, but still contains over 250 contracts among 66 components with faults defined for all leaf level components of the system. 
+We now show how probabilistic analysis time differs between monolithic and compositional reasoning. We describe the approach and show results in Figure~\ref{fig:graphProbWBS_4wheel}. 
+
+\paragraph{Extended model, probabilistic threshold:} In the implementation of the safety annex, a preprocessing step to probabilistic analysis is to compute all possible combinations of faults whose probability exceeds the threshold. This is inserted into the Lustre model as an assertion that states only these combinations can be active at once. If there is such a combination that violates a property, it will be shown. Compositional probabilistic analysis can only be performed through the generation of minimal cut sets; therefore, this analysis was first performed using a monolithic probabilistic approach and then a compositional minimal cut set approach to show the comparison. We perform this analysis on a larger model: the wheel brake system with 4 wheels. This is a pared down version of what was described in Section~\ref{sec:wbs}, but still contains over 250 contracts among 66 components with faults defined for all leaf level components of the system. 
 
 \begin{figure}[htbp]
 	%\vspace{-0.2in}
@@ -45,23 +49,25 @@ The first 15 models are similar in architectural and contractual size and the ti
 	%\vspace{-0.2in}
 \end{figure}
 
-The monolithic analysis shows that the time of analysis increases as the probabilistic threshold is lowered; by $1.0 \times 10^{-7}$, the time increase is noticeable. The reason for increased analysis time is that more faults must be considered in the analysis -- there are more allowable combinations that could fail together. Theoretically, the time of analysis would increase as the threshold decreased until all possible combinations were always considered in the analysis. At that point, the analysis time would level off. But what we find for monolithic analysis is that when setting the threshold at $1.0 \times 10^{-9}$, the verification returns unknown results after 55 minutes. The monolithic approach seems quite suitable for smaller models, but when many faults are introduced by lowering the threshold, the analysis cannot proceed.
+The monolithic analysis shows that the time of analysis increases as the probabilistic threshold is lowered; by $1.0 \times 10^{-7}$, the time increase is noticeable. The reason for increased analysis time is that more faults must be considered in the analysis -- there are more allowable combinations that could fail together. These combinations are inserted into the model as constraints showing allowable fault combinations and greatly increase the size of the Boolean formula used in the SMT solver. Theoretically, the time of analysis would increase as the threshold decreased until all possible combinations were always considered in the analysis. At that point, the analysis time would level off. But what we find for monolithic analysis is that when setting the threshold at $1.0 \times 10^{-9}$, the verification returns unknown results after 55 minutes. The monolithic approach seems quite suitable for smaller models, but when many faults are introduced by lowering the threshold, the analysis cannot proceed.
 
-When running the same models using a compositional probabilistic approach, we see that the time increases but not nearly as quickly. As expected, a compositional approach may provide a more feasible method of verification for large scale models. 
+When running the same models using a compositional probabilistic approach, we see that the time increases but not nearly as quickly. A compositional approach may provide a more feasible method of verification for large scale models. 
 
-\paragraph{Minimal cut set analysis:} To analyze the results of the algorithms described in Chapter~\ref{chap:compFF}, we split the verification time into two parts; the first part includes only the generation of all MIVCs. This is a required step in the process. The second step is to show the additional time needed to transform those MIVCs into minimal cut sets. There are a number of parameters that can be used to show such results. The computation time may change if a probabilistic threshold is set that is very small, a max \textit{n} analysis threshold that is very large, or a model with many faults defined or numerous contracts. To adjust for these factors, we ran the analysis on the large wheel brake system model (WBS) for each of the safety properties and performed max \textit{n} analysis. The number of minimal cut sets generated per property at a given threshold is shown in Table~\ref{tab:wbs_maxN_results}.
+The next analysis comparison we provide is with regard to minimal cut set computations. We describe how the timing analysis is performed and show results in Table~\ref{tab:analysisTimeWBSProb}. 
+
+\paragraph{Minimal cut set analysis:} To analyze the results of the algorithms described in Chapter~\ref{chap:compFF}, we split the verification time into two parts; the first part includes only the generation of all MIVCs. This is a required step in the process. The second step is to show the additional time needed to transform those MIVCs into minimal cut sets. There are a number of parameters that can be used to show such results. Factors that may change analysis time include probabilistic threshold, a max {\em n} analysis threshold that is large, or the size of the model. To adjust for these factors, we ran the analysis on the large wheel brake system model (WBS) for each of the safety properties and performed max \textit{n} analysis. The number of minimal cut sets generated per property at a given threshold is shown in Table~\ref{tab:wbs_maxN_results}.
 \begin{table}[htbp]
 \begin{center}
     \begin{tabular}{ | l | l | l | l | l | l |}
     \hline
     \textbf{Property} & $\bm{n = 1}$ & $\bm{n = 2}$ & $\bm{n = 3}$ & $\bm{n = 4}$ 
 		& $\bm{n = 5}$    \\ \hline \hline
-    0321 & 7 & 0 & 0 & 256 & 57,600   \\ \hline
-    0322-R & 75 & 0 & 0 & 0 & 0  \\ \hline
-    0322-L & 75 & 0 & 0 & 0 & 0  \\ \hline
-    0323 & 182 & 0 & 0 & 0 & 0  \\ \hline
+    0321 & 6 & 0 & 0 & 256 & 57,600   \\ \hline
+    0322-R & 18 & 0 & 0 & 0 & 0  \\ \hline
+    0322-L & 18 & 0 & 0 & 0 & 0  \\ \hline
+    0323 & 2 & 0 & 0 & 0 & 0  \\ \hline
     0324 & 8 & 3,665 & 28,694 & 883,981 & - \\ \hline
-    0325-WX & 33 & 0 & 0 &0 &0 \\ \hline
+    0325-WX & 18 & 0 & 0 &0 &0 \\ \hline
     \end{tabular}
     \caption{WBS Minimal Cut Set Results for Max \textit{n} Hypothesis}
     \label{tab:wbs_maxN_results}
@@ -73,11 +79,11 @@ Each column of Table~\ref{tab:wbs_mincut} labeled with the value of \textit{n} g
 \begin{center}
     \begin{tabular}{ | l | l | l | l | l | l | l |}
     \hline
-    \textbf{Property} &  MIVC Gen & $n=1$ & $n=2$ & $n=3$ & $n=4$ & $n=5$     \\ \hline \hline
+    \textbf{Property} &  Nominal & $n=1$ & $n=2$ & $n=3$ & $n=4$ & $n=5$     \\ \hline \hline
     0321 & 396.417 & 5.913 & 5.468 & 5.61 & 5.636 & 11.925  \\ \hline
     0322-L  & 407.078 & 5.931 & 5.435 & 5.302 & 5.268 & 5.243 \\ \hline
     0323 & 412.926 & 6.397 & 6.452 & 6.420  & 5.309 & 5.459\\ \hline
-    0324 & 446.610 & 41.334 & 41.744 & 44.062 & 69.142 & -\\ \hline
+    0324 & 446.610 & 21.334 & 41.744 & 44.062 & 69.142 & -\\ \hline
     0325-W1 & 391.137 & 5.632 & 5.388 &5.359 &5.301 & 5.236 \\ \hline
     \end{tabular}
     \caption{WBS Analysis Time in Seconds}
@@ -85,9 +91,11 @@ Each column of Table~\ref{tab:wbs_mincut} labeled with the value of \textit{n} g
     \end{center}
 \end{table}
 
-The overall time of the algorithms used for minimal cut set generation is quite small compared to the nominal analysis and extended model analysis time. This is not altogether surprising; the nominal and extended analysis is contending with an infinite state model checking problem whereas the algorithms presented to generate minimal cut sets deal with set element algorithms and boolean formula manipulation. The greatest time recorded was for property S18-WBS-0324 at $n = 4$; the reason is clear when comparing this with Table~\ref{tab:wbs_maxN_results}: the total number of minimal cut sets computed for this threshold is 916,349. 
+Column {\em Nominal} provides the amount of time required to run nominal model analysis and generate all MIVCs. Column {\em n = i} is the additional amount of time needed to generate minimal cut sets of cardinality {\em i} after MIVCs have been computed.
+
+The overall time of the algorithms used for minimal cut set generation is less than the nominal analysis and extended model analysis time in all cases. The time reported in column {\em Nominal} includes translation of the AGREE and AADL model into Lustre, calls to the model checker, subsequent calls to the analysis engines, proof time, and MIVC generation time. The additional time to generate minimal cut sets includes the hitting set algorithm, transformation of sets into cut sets, and display of the results. The greatest time recorded was for property S18-WBS-0324 at $n = 4$; the reason is clear when comparing this with Table~\ref{tab:wbs_maxN_results}: the total number of minimal cut sets computed for this threshold is 916,349 (summed across the row of Table~\ref{tab:wbs_maxN_results}). 
  
-In summary, there are multiple ways of comparing analysis timing results and we tried to account for these by providing meaningful comparisons between some important factors. Practically, the method of using compositional verification in safety analysis is a feasible approach in both large and small models. These comparisons support the goal of the research which is to provide usable and automated safety analysis methods to analysts. 
+In summary, there are multiple ways of comparing analysis timing results and we tried to account for these by providing meaningful comparisons between some factors. Practically, the method of using compositional verification in safety analysis is a feasible approach in both large and small models. These comparisons support the goal of the research which is to provide usable and automated safety analysis methods to analysts. 
 
 
 

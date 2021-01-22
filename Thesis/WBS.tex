@@ -55,13 +55,27 @@ The WBS has a total of 13 safety properties at the top level that are supported 
 \textbf{S18-WBS-R/L-0322}  \\ Asymmetrical loss of wheel braking (Left/Right) shall have a probability of occurrence\\less than $5.0 \times 10^{-7}$ per flight. \\ \midrule
 \textbf{S18-WBS-0323} \\ Inadvertent braking with all wheels locked shall have a probability of occurrence less \\than $10^{-9}$ per takeoff.                                                                                                                                                                                                               \\ \midrule
 \textbf{S18-WBS-0324}  \\ Inadvertent braking with all wheels shall have a probability of occurrence less than $10^{-9}$ \\per takeoff.                                                                                                            \\ \midrule
-\textbf{S18-WBS-0325-wheelX} \\ Inadvertent braking of wheel X shall have a probability of occurrence less than $10^{-9}$ \\per takeoff.                                                                                                           .                                                                                                                 \\ \bottomrule
+\textbf{S18-WBS-0325-wheelX} \\ Inadvertent braking of wheel X shall have a probability of occurrence less than $10^{-9}$ \\per takeoff.                                                                                                                                                                                                                           \\ \bottomrule
 \end{tabular}
 \caption{Safety Properties of the WBS}
 \label{tab:safetyProperties}
 \end{center} 
 \end{table} 
 
+The analysis results are shown in Figure~\ref{fig:analysisResults}. 
+
+\begin{figure}[htbp]
+	%\vspace{-0.2in}
+	\begin{center}
+		\includegraphics[width=.9\textwidth]{images/nominalModelResults.png}
+	\end{center}
+	\vspace{-0.3in}
+	\caption{Nominal model analysis results for WBS}
+	\label{fig:analysisResults}
+	%\vspace{-0.2in}
+\end{figure}
+
+The lemmas are the specifications of all top level safety properties in the model. The results show that the model supports the specifications and a proof is found for each lemma. The child component contracts are used to prove the validity of the safety properties.
 
 \subsection{Fault Model Analysis}
 There are two main options for fault model analysis using the Safety Annex. The first option injects faults into the Lustre program based on the restrictions placed through the fault hypothesis. The bounded model checker engine used in JKind will find counterexamples to an invalid property. These counterexamples are returned to the user and include a trace of the system execution that causes the violation. This includes any active faults that were part of that violation. The second option is used to generate minimal cut sets for the model. The fault activation literals and supporting guarantees are added to the MIVC algorithm elements as described in Sections~\ref{sec:formalization} and \ref{sec:impl}, the algorithm generating the cut sets is run (Section~\ref{sec:impl}), and the results are displayed to the user. 
@@ -92,12 +106,12 @@ Generate minimal cut set analysis was performed on the Wheel Brake System and re
     \hline
     \textbf{Property} & $\bm{n = 1}$ & $\bm{n = 2}$ & $\bm{n = 3}$ & $\bm{n = 4}$ 
 		& $\bm{n = 5}$    \\ \hline \hline
-    0321 & 7 & 0 & 0 & 256 & 57,600   \\ \hline
-    0322-R & 75 & 0 & 0 & 0 & 0  \\ \hline
-    0322-L & 75 & 0 & 0 & 0 & 0  \\ \hline
-    0323 & 182 & 0 & 0 & 0 & 0  \\ \hline
+    0321 & 6 & 0 & 0 & 256 & 57,600   \\ \hline
+    0322-R & 18 & 0 & 0 & 0 & 0  \\ \hline
+    0322-L & 18 & 0 & 0 & 0 & 0  \\ \hline
+    0323 & 2 & 0 & 0 & 0 & 0  \\ \hline
     0324 & 8 & 3,665 & 28,694 & 883,981 & - \\ \hline
-    0325-WX & 33 & 0 & 0 &0 &0 \\ \hline
+    0325-WX & 18 & 0 & 0 &0 &0 \\ \hline
     \end{tabular}
     \caption{WBS Minimal Cut Set Results for Max \textit{n} Hypothesis}
     \label{tab:wbs_maxN_results1}
@@ -105,7 +119,7 @@ Generate minimal cut set analysis was performed on the Wheel Brake System and re
 \end{table}
 
 
-For property 3024, the number of cut sets increases as the cardinality of allowable cut sets grows. Intuitively, this can be understood as simple combinations of faults that can violate the hazard; if more things go wrong in a system at the same time, the more likely this property will be violated. Property S18-WBS-0324 with a max fault hypothesis of 5 was unable to finish due to an out of memory error. At the time that the error was thrown, the number of cut sets exceeded 1.5 million. In practice, it is not likely that an analyst will manually sift through a million or more cut sets, but rather will filter out the combinations that are sufficiently unlikely to occur. A probabilistic approach would be warranted in these situations. 
+For property 3024, the number of cut sets increases as the cardinality of allowable cut sets grows. Intuitively, this can be understood as simple combinations of faults that can violate the hazard; if more things go wrong in a system at the same time, the more likely this property will be violated. Property S18-WBS-0324 with a max fault hypothesis of 5 was unable to finish due to an out of memory error. At the time that the error was thrown, the number of cut sets exceeded 1 million. In practice, it is not likely that an analyst will manually sift through a million or more cut sets, but rather will filter out the combinations that are sufficiently unlikely to occur. A probabilistic approach would be warranted in these situations. 
 
 The next analysis shows the difference between the time it takes to generate all MIVCs and the time it takes to transform those MIVCs into minimal cut sets. Each column of Table~\ref{tab:wbs_mincut1} labeled with the value of \textit{n} gives the fault hypothesis threshold for that analysis run. For comparison with the number of minimal cut sets generated per property, we refer to Table~\ref{tab:wbs_maxN_results1}\footnote{The property S18-WBS-0325-WX is symmetric for all eight wheels. For readability, we only include wheel one verification timing results in Table~\ref{tab:wbs_mincut1}. Likewise for property 0322-L/R.}.
 \begin{table}[htbp]
@@ -116,14 +130,14 @@ The next analysis shows the difference between the time it takes to generate all
     0321 & 396.417 & 5.913 & 5.468 & 5.61 & 5.636 & 11.925  \\ \hline
     0322-L  & 407.078 & 5.931 & 5.435 & 5.302 & 5.268 & 5.243 \\ \hline
     0323 & 412.926 & 6.397 & 6.452 & 6.420  & 5.309 & 5.459\\ \hline
-    0324 & 446.610 & 41.334 & 41.744 & 44.062 & 69.142 & -\\ \hline
+    0324 & 446.610 & 21.334 & 41.744 & 44.062 & 69.142 & -\\ \hline
     0325-W1 & 391.137 & 5.632 & 5.388 &5.359 &5.301 & 5.236 \\ \hline
     \end{tabular}
     \caption{WBS Analysis Time in Seconds}
     \label{tab:wbs_mincut1}
     \end{center}
 \end{table}
-The overall time of the algorithms used for minimal cut set generation is quite small compared to the nominal analysis and extended model analysis time. This is likely due to the thresholds used to prune the size of the cut sets computed. At each layer of analysis, pruning can take place that may shrink the problem space considerably. The greatest time recorded was for property S18-WBS-0324 at $n = 4$; the reason is clear when comparing this with Table~\ref{tab:wbs_maxN_results1}: the total number of minimal cut sets computed for this threshold is 916,349.  
+The overall time of the algorithms used for minimal cut set generation is quite small compared to the nominal analysis and extended model analysis time. This is likely due to the thresholds used to prune the size of the cut sets computed. At each layer of analysis, pruning can take place that may shrink the problem space considerably. The greatest time recorded was for property S18-WBS-0324 at $n = 4$; the reason is clear when comparing this with Table~\ref{tab:wbs_maxN_results1}: the total number of minimal cut sets computed for this threshold is over 800,000.  
 
 \subsubsection{Generate Minimal Cut Sets: Probabilistic Analysis}
 \label{sec:prob_generate}
@@ -137,19 +151,19 @@ The probabilistic analysis for the WBS was given a top level threshold per prope
     \hline
     \textbf{Property} & $n=1$ & $n=2$ & $n=3$ & $n=4$ 
 		& $n=5$    \\ \hline \hline
-    0321: $5.0 \times 10^{-7}$ & 7 & 0 & 0 & 256 & 0   \\ \hline
-    0322-R: $5.0 \times 10^{-7}$ & 75 & 0 & 0 &0 &0   \\ \hline
-    0322-L: $5.0 \times 10^{-7}$ & 75 & 0 & 0 & 0 & 0    \\ \hline
-    0323: $1.0 \times 10^{-9}$ & 182 & 0 & 0 & 0 & 0    \\ \hline
-    0324: $1.0 \times 10^{-9}$ & 8 & 3665 & 0 & 0 & 0   \\ \hline
-    0325-W1: $1.0 \times 10^{-9}$ & 33 & 0 & 0 &0 &0    \\ \hline
+    0321: $5.0 \times 10^{-7}$ & 6 & 0 & 0 & 0 & 0   \\ \hline
+    0322-R: $5.0 \times 10^{-7}$ & 18 & 0 & 0 &0 &0   \\ \hline
+    0322-L: $5.0 \times 10^{-7}$ & 18 & 0 & 0 & 0 & 0    \\ \hline
+    0323: $1.0 \times 10^{-9}$ & 2 & 0 & 0 & 0 & 0    \\ \hline
+    0324: $1.0 \times 10^{-9}$ & 8 & 256 & 0 & 0 & 0   \\ \hline
+    0325-W1: $1.0 \times 10^{-9}$ & 8 & 0 & 0 &0 &0    \\ \hline
     \end{tabular}
     \caption{WBS Minimal Cut Set Results for Probabilistic Hypotheses}
     \label{tab:wbs_prob_results}
     \end{center}
 \end{table}
 
-As shown in Table~\ref{tab:wbs_prob_results}, the number of allowable combinations drops considerably when given probabilistic threshold as compared to just fault combinations of certain cardinalities. For example, one contract (0324: inadvertent wheel braking of all wheels) had over a million minimal cut sets produced when looking at it in terms of max N analysis, but after taking probabilities into account, it is seen in Table~\ref{tab:wbs_prob_results} that the likely contributors to a hazard are minimal cut sets of cardinality one. The probabilistic analysis eliminated many thousands of cut sets from consideration. The total computation time for these runs is given in Table~\ref{tab:analysisTimeWBSProb}.
+As shown in Table~\ref{tab:wbs_prob_results}, the number of allowable combinations drops considerably when given probabilistic threshold as compared to just fault combinations of certain cardinalities. For example, one contract (0324: inadvertent wheel braking of all wheels) had over a million minimal cut sets produced when looking at it in terms of max N analysis, but after taking probabilities into account, it is seen in Table~\ref{tab:wbs_prob_results} that the likely contributors to a hazard are minimal cut sets of cardinality one or two. The probabilistic analysis eliminated many thousands of cut sets from consideration. The total computation time for these runs is given in Table~\ref{tab:analysisTimeWBSProb}.
 
 
 \begin{table}[htbp]
@@ -180,7 +194,7 @@ Results from minimal cut set analysis can be represented in one of the following
 	\hspace*{-2cm}
 	\vspace{-0.1in} 
 	\begin{center}
-		\includegraphics[scale=0.7]{images/wbsMCSDesc.png}
+		\includegraphics[scale=0.7]{images/mcs_detailed.png}
 	\caption{Detailed Output of Minimal Cut Sets}
 		\label{fig:detailedMCS}
 	\end{center}
@@ -191,7 +205,7 @@ Results from minimal cut set analysis can be represented in one of the following
 	\hspace*{-2cm}
 	\vspace{-0.1in} 
 	\begin{center}
-		\includegraphics[scale=0.7]{images/wbsMCSTally.png}
+		\includegraphics[scale=0.7]{images/mcs_tally.png}
 	\caption{Tally Output of Minimal Cut Sets}
 		\label{fig:tallyMCS}
 	\end{center}
@@ -201,7 +215,7 @@ Results from minimal cut set analysis can be represented in one of the following
 
 \subsubsection{Use of Analysis Results to Drive Design Change}
 \label{sec:designChange}
-We use a single top level requirement of the WBS: {\em S18-WBS-0323: Never inadvertent braking with all wheels locked} to illustrate how Safety Annex can be used to detect design flaws and how faults can affect the behavior of the system. 
+We use a single top level requirement of the WBS: {\em S18-WBS-0323: inadvertent braking with all wheels locked shall occur with probability less than $10^{-9}$} to illustrate how the safety annex can be used to detect design flaws and how faults can affect the behavior of the system. 
 
 Upon running max $n$ compositional fault analysis with $n = 1$, a pedal sensor fault was shown to be a single point of failure for the inadvertent braking properties. 
 \begin{figure}[htbp]
@@ -217,10 +231,10 @@ Upon running max $n$ compositional fault analysis with $n = 1$, a pedal sensor f
 A counterexample is shown in Figure \ref{fig:counterexample} showing the active fault on the pedal sensor. Depending on the goals of the system, the architecture currently modeled, and the mitigation strategies that are desired, various strategies are possible to mitigate the problem.
 
 \begin{itemize}
-\item Possible mitigation strategy 1: Monitor system can be added for the sensor: A monitor sub-component can be modeled in which it accesses the mechanical pedal as well as the signal from the sensor. If the monitor finds discrepancies between these values, it can send an indication of invalid sensor value to the top level of the system. In terms of the modeling, this would require a change to the behavioral contracts which use the sensor value. This validity would be taken into account through the means of $valid \land pedal\_sensor\_value$. 
+\item Possible mitigation strategy 1: Monitor system can be added for the sensor: A monitor sub-component can be modeled in which it accesses the mechanical pedal as well as the signal from the sensor. If the monitor finds discrepancies between these values, it can send an indication of an invalid sensor value to the top level of the system. In terms of the modeling, this would require a change to the behavioral contracts that use the sensor value. This validity would be taken into account through the means of $valid \land pedal\_sensor\_value$. 
 %In the real system however, this mitigation would need to be taken into account. Whether this is a flag to the pilot who can then override the electrical system and switch to a different mode or perform some other action to mitigate the failed sensor must be discussed and implemented. 
 
-\item Possible mitigation strategy 2: Redundancy can be added to the sensor: A sensor subsystem can be modeled which contains 3 or more sensors. The overall output from the sensor system may utilize a voting scheme to determine validity of sensor reading. There are multiple voting schemes that are possible, one of which is a majority voting (e.g. one sensor fails, the other two take majority vote and the correct value is passed). 
+\item Possible mitigation strategy 2: Redundancy can be added to the sensor: A sensor subsystem can be modeled which contains 3 or more sensors. The overall output from the sensor system may utilize a voting scheme to determine validity of sensor reading. There are multiple voting schemes that are possible, one of which is a majority voting (e.g., one sensor fails, the other two take a majority vote and the correct value is passed). 
 When three sensors are present, this mitigates the single point of failure problem. New behavioral contracts are added to the sensor system to model the behavior of redundancy and voting. 
 \end{itemize}
 \begin{figure}[htbp]
@@ -235,6 +249,6 @@ When three sensors are present, this mitigates the single point of failure probl
 \end{figure}
 In the case of the pedal sensor in the WBS, the latter of the two strategies outlined above was implemented. A sensor system was added to the model which held three pedal sensors. The output of this subsystem was constrained using a majority voting scheme. Upon subsequent runs of the analysis (regardless which type of run was used), resilience was confirmed in the system regarding the failure of a single pedal sensor. Figure \ref{fig:sensorsystem} outlines the architectural changes that were made in the model.
 
-As can be seen through this single example, a system as large as the WBS would benefit from many iterations of this process. Furthermore, if the model is changed even slightly on the system development side, it would automatically be seen from the safety analysis perspective and any negative outcomes would be shown upon subsequent analysis runs. This effectively eliminates any miscommunications between the system development and analysis teams and creates a new safeguard regarding model changes. 
+As can be seen through this single example, a system such as the WBS would benefit from many iterations of this process. Furthermore, if the model is changed even slightly on the system development side, it would automatically be seen from the safety analysis perspective and any negative outcomes would be shown upon subsequent analysis runs. This effectively eliminates any miscommunications between the system development and analysis teams and creates a new safeguard regarding model changes. 
 
 For more information on types of fault models that can be created as well as details on analysis results, see the users guide located in the GitHub repository \cite{SAGithub}. This repository also contains all models used in this project. 

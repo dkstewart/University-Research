@@ -1,11 +1,11 @@
 \section{Process ID Example}
 \label{sec:pid}
-The illustration of asymmetric fault implementation can be seen through a simple example where 4 nodes report to each other their own process ID (PID). Each node has a 1-3 connection and thus each node is a candidate for an asymmetric fault. Given this architecture, a top level contract of the system is simply that all nodes report and see the correct PID of all other nodes. Naturally in the absence of faults, this holds. But when one asymmetric fault is introduced on any of the nodes, this contract cannot be verified. What is desired is a protocol in which all nodes agree on a value (correct or arbitrary) for all PIDs. 
+The illustration of asymmetric fault implementation can be seen through a simple example where 4 nodes report to each other their own process ID (PID). Each node has a 1-3 connection and, thus, each node is a candidate for an asymmetric fault. Given this architecture, a top level contract of the system is simply that all nodes report and see the correct PID of all other nodes. Naturally in the absence of faults, this holds. But when one asymmetric fault is introduced on any of the nodes, this contract cannot be verified. What is desired is a protocol in which all nodes agree on a value (correct or arbitrary) for all PIDs. 
 
 \subsection{The Agreement Protocol Behavioral Implementation}
 In order to mitigate this problem, special attention must be given to the behavioral model. Using the strategies outlined in previous research~\cite{bracha1987asynchronous,Driscoll-Byzantine-Fault}, the agreement protocol is specified in AGREE to create a model resilient to one active Byzantine fault. 
 
-The objective of the agreement protocol is for all correct (non-failed) nodes to eventually reach agreement on the PID values of the other nodes. There are $n$ nodes, possibly $f$ failed nodes. The protocol requires $n > 3f$ nodes to handle a single fault. The point is to achieve distributed agreement and coordinated decisions.
+The objective of the agreement protocol is for all correct (non-failed) nodes to eventually reach agreement on the PID values of the other nodes. There are $n$ nodes and possibly $f$ failed nodes. The protocol requires $n > 3f$ nodes to handle $f$ faults. The point is to achieve distributed agreement and coordinated decisions.
 The properties that must be verified in order to prove the protocol works as desired are as follows: 
 \begin{itemize}
 	\item All correct (non-failed) nodes eventually reach a decision regarding the value they have been given.  In this solution, nodes will agree in $f+1$ time steps or rounds of communication.   
@@ -13,10 +13,10 @@ The properties that must be verified in order to prove the protocol works as des
 	\item If the source node is failed, all other nodes must agree on some predetermined default value.  
 \end{itemize}
 
-The updated architecture of the PID example is shown in Figure~\ref{fig:PIDArch}. 
+The architecture of the PID example is shown in Figure~\ref{fig:PIDArch}. 
 \begin{figure}[!htb]
         \center{\includegraphics[width=\textwidth] {images/PIDArch.png}}
-        \caption{\label{fig:PIDArch} Updated PID Example Architecture}
+        \caption{\label{fig:PIDArch} PID Example Architecture}
 \end{figure}
 
 Each node reports its own PID to all other nodes in the first round of communication. In the second round, each node informs the others what they saw in terms of %everyones
@@ -35,17 +35,21 @@ These outputs are modeled as a nested data implementation in AADL and each field
 \end{figure}
 
 The fault definition for %that is inserted explicitly into the model is connected to 
-each node's output and can effect the data fields arbitrarily. This is a nondeterministic fault in two ways. It is nondeterministic how many receiving nodes see incorrect values and it is nondeterministic how many of the data fields are affected by this fault. This can be accomplished through the fault definition shown in Figure~\ref{fig:PIDFaultNode} and the fault node definition in Figure~\ref{fig:PIDFaultDef}. 
+each node's output can effect the data fields arbitrarily. This is a non-deterministic fault in two ways. It is non-deterministic how many receiving nodes see incorrect values and it is non-deterministic how many of the data fields are affected by this fault. The fault is permanent. Once it is active, it remains active in the model. This can be accomplished through the fault definition shown in Figure~\ref{fig:PIDFaultNode} and the fault node definition in Figure~\ref{fig:PIDFaultDef}. 
 
 \begin{figure}[!htb]
         \center{\includegraphics[width=0.9\textwidth] {images/PIDFaultNode.png}}
         \caption{\label{fig:PIDFaultNode} Fault Definition on Node Outputs for PID Example}
 \end{figure}
 
+The fault definition in Figure~\ref{fig:PIDFaultNode} associates each output value (\texttt{pid1\_val} for instance) with a non-deterministic value (the \texttt{eq} statement). The fault is permanent (\texttt{duration: permanent}) and has a propagation type of \texttt{asymmetric}. 
+
 \begin{figure}[!htb]
         \center{\includegraphics[width=0.9\textwidth] {images/PIDFaultDef.png}}
         \caption{\label{fig:PIDFaultDef} Fault Node Definition for PID Example}
 \end{figure}
+
+The fault node in Figure~\ref{fig:PIDFaultDef} is an AGREE node with parameters matching the \texttt{eq} statements from the fault definition (Figure~\ref{fig:PIDFaultNode}). These non-deterministic values are passed to the fault node definition and used as fault node output if the fault has a true activation status (\texttt{trigger}). If the trigger is false, the otuput of the node matches that of the nominal model output. 
 
 Once the fault model is in place, the implementation in AGREE of the agreement protocol is developed. As stated previously, there are two cases that must be considered in the contracts of this system. 
 \begin{itemize}
@@ -59,10 +63,14 @@ These requirements are encoded in AGREE through the use of the following contrac
         \caption{\label{fig:PIDContract1} Agreement Protocol Contract in AGREE for No Active Faults}
 \end{figure}
 
+The contract shown in Figure~\ref{fig:PIDContract1} specifies the expected behavior when no fault is present. All nodes agree on the PID given by the other nodes. This contract should always be true in the nominal case.
+
 \begin{figure}[!htb]
         \center{\includegraphics[width=0.9\textwidth] {images/PIDCOntract2.png}}
         \caption{\label{fig:PIDContract2} Agreement Protocol Contract in AGREE Regarding Non-failed Nodes}
 \end{figure}
+
+The contract shown in Figure~\ref{fig:PIDContract2} states that all of the non-failed nodes should agree on a PID value after two steps of analysis. This gives time for a disagreement to occur and the voting process to conclude. After this delay, the voting process should have been successful and the non-failed nodes have reached consensus. 
 
 
 \textbf{Referencing Fault Activation Status}
