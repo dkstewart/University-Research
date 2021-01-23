@@ -2,6 +2,19 @@
 \label{ch:discussion}
 The overarching goal of this dissertation is to utilize the capability of a model checker to provide information that can be used during the safety analysis process. We used a model checker to provide behavioral propagation of errors throughout nominal model contract and extended the transition system in order to formalize the composition of fault forests. In the implementation of the formalism, we leveraged MIVC generation to provide compositional minimal cut set generation, and we used counterexample generation capability to gain insight into the state of a system when a property is violated. All of this can be used within the iterative process of complex system design and development to show safety of a system and to drive for design change (see Section~\ref{subsec:mbsa}). We discuss in this chapter other ways of providing the analyst with safety critical information regarding model elements that may be of interest. 
 
+\subsection{Soundness, Completeness, and Minimality}
+Describe soundness and completeness. Use example. 
+
+Comp reasoning is sound (cite tech report and comp paper); therefore, it is not possible to deduce false facts. Comp reasoning is incomplete; therefore, not every formula can be derived using this proof system (cite paper). Since we have soundness, we know that in nominal compositional analysis, we will not prove a false property. But there may be cases in which we cannot prove a property which is true given the model. Given our assumption that the nominal model proves and all MIVCs are enumerated, we know that a fault tree is still valid using this approach. 
+
+What we cannot ensure is that the cut sets after composition are necessarily minimal. The example described in Section(granularity) illustrates this point. Furthermore, dependencies between guarantees within the model may mess up the minimality of the cut sets after composition. We are guaranteed minimality per layer, but compose them and it may be lost. 
+
+From safety analysts perspective, this is acceptable. This approach is not meant to supplant an analyst, but to automate certain aspects of the traditional approach to SA. The analyst is still required to understand the cut sets and how they pertain to the system as a whole. 
+
+From a probabilistic computation perspective, this may result in an unsafe probabilistic approximation. Assuming indep., (grab computation stuff from later subsec). If the cut set is not minimal, this results in a lower probability computation. 
+
+An extension to this work is to provide a meaningful overapproximation to the probabilistic computations that may be performed over a compositionally derived fault tree. 
+
 \section{Preprocessing Improvements}
 \label{sec:preproc}
 The preprocessing that must be done to generate minimal cut sets is not trivial (see discussion in Section~\ref{sec:impl}). All minimal inductive validity cores must be produced which is as hard as model checking~\cite{GhassabaniGW16}. If all MIVCs are found, then these sets must be transformed into minimal correction sets through a minimal hitting set algorithm. Finding the hitting sets, or {\em minimal set cover} is an NP-hard problem~\cite{gainer2017minimal,karp1972reducibility}.%, but irreducibility is a weaker requirement and thus can be performed in polynomial time~\cite{liffiton2005finding}. While this is no longer NP-hard, the possible number of MIVCs may be large and thus the computation impractical. 
