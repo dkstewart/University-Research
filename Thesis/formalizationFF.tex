@@ -69,7 +69,7 @@ A fault tree $\mathit{FT}$ is a pair $(r, \mathcal{L})$ where:
 %The fault tree $\mathit{FT}$ is a Boolean equation in disjunctive normal form (DNF): $(r, \mathcal{L}) = r \lor \mathcal{L} = r \lor C_1 \lor \cdots \lor C_n$ for conjunctions $C_i$. 
 \end{definition}
 
-The terms $\mathit{af}$  in the Boolean formula $\mathcal{L}$ may be extracted as the set of leaf nodes of the fault tree. The root $r$ of a tree may be either an element of the set $P$ of safety properties if the tree describes the top level of the system hierarchy, or it is an element of the set of a component guarantees $\pi$. 
+A fault tree may define a single layer of the system architecture where the root $r$ corresponds with a violated guarantee or safety property depending on the parent component under analysis. The tree may also describe the relationship between faults and multiple layers of the system architecture. The root $r$ still corresponds to a violated guarantee or property, but the structure of the Boolean formula $\mathcal{L}$ will reflect the layers of the system architecture. If $r$ is a violated safety property, then $r \in P$. If $r$ is a violated guarantee for some lower level component, then $r \in \pi$, where $\pi$ is the set of component guarantees. 
 
 \begin{definition} 
 A fault tree $FT = (r, \mathcal{L})$ is valid if and only if a true valuation for $r$ and for all $\mathit{af} \in \mathcal{L}$ results in a satisfiable transition system. 
@@ -109,7 +109,7 @@ The violation of certain child guarantees may lead to the violation of a parent 
 \begin{definition}
 A component is the tuple $\mathit{Comp}(M, \mathit{FF}, \mathit{NFV}, \pi)$ where:
 \begin{itemize}[label=\textbullet]
-\item $M$: the model consisting of the set of child properties $P_c$ extended with non-deterministic faults: $\mathit{gf_i} \in P_c$ where $\mathit{gf_i} =$ \textit{if} $\mathit{af_i}$ \textit{then} $\mathit{f}_i$ \textit{else} $g_i$
+\item $M$: the model consisting of the set of all children properties $P_c$ extended with non-deterministic faults: $\mathit{gf_i} \in P_c$ where $\mathit{gf_i} =$ \textit{if} $\mathit{af_i}$ \textit{then} $\mathit{f}_i$ \textit{else} $g_i$
 \item $\mathit{FF}$: the ordered set of fault trees for this component
 \item $\mathit{NFV}$: the set of non-faulty variables 
 \item $\pi$: the ordered set of properties $\pi \subseteq P$ such that $(I, T'(\mathit{NFV})) \vdash \pi$, i.e., all properties $\pi$ hold if the variables in $\mathit{NFV}$ are given a true valuation.
@@ -122,39 +122,19 @@ and $\mathit{FT}_i \in \mathit{FF}$ corresponds to $\pi_i \in \pi$ for each of t
 As an example, we return to the sensor system described in Section~\ref{sec:example}. The component {\em Pressure Subsystem} can be defined as follows. 
 
 \begin{itemize}[label=\textbullet]
-\item $M = \{\mathit{gf}_{p1}, \mathit{gf}_{p2}, \mathit{gf}_{p3}\}$. These are the child properties of the pressure subsystem extended with faults. 
+\item $M = \{\mathit{gf}_{p1}, \mathit{gf}_{p2}, \mathit{gf}_{p3}\}$. 
+These are the guarantees of the child components of the pressure subsystem: all guarantees found in the sensors. 
 \item $\mathit{FT} = (r, \mathcal{L}) = (\neg G_p, (\mathit{af}_{p1} \land \mathit{af}_{p2}) \lor (\mathit{af}_{p1} \land \mathit{af}_{p3}) \lor (\mathit{af}_{p2} \land \mathit{af}_{p3}) $: the fault tree leaf formula has all pairwise combinations of active sensor faults. The fault forest for this component consists only of this single tree.
 \item $\mathit{NFV} = \{\mathit{gf}_{p1}, \mathit{gf}_{p2}, \mathit{gf}_{p3}\}$: in this example, all three guarantees must be non-faulty in order to prove the property $\pi$.
 \item $\pi = \{G_p\}$: the only property of this subsystem is required to be valid for the proof of the top level safety property. Notice that $(I, T'(\mathit{NFV})) \vdash \pi$.
 \end{itemize}
 
 
-%%				DEFINE COMPOSITION OF COMPONENTS
-Given the definition of a component, we now discuss what it means to compose these components. Each layer of composition moves iteratively closer to a monolithic model by the enlargement of each set described in a component. 
 
-\begin{definition}
-The composition of child component $\mathit{Comp}_c$ and parent component $\mathit{Comp}_p$:
-$Comp_c(M_c, \mathit{FF}_c, \mathit{NFV}_c, \pi_c) \circ Comp_p(M_p, \mathit{FT}_p, \mathit{NFV}_p, \pi_p) = Comp_\circ(M', \mathit{FF}', \mathit{NFV}', \pi')$ where:
-\begin{itemize}[label=\textbullet]
-\item $M' = M_c \cup M_p$ is the iterative enlargement of the model,
-\item $\mathit{FF}_c \circ \mathit{FF}_p$ is the composed fault forest
-\item $\mathit{NFV}' = \mathit{NFV}_c \cup \mathit{NFV}_p$ is the set of non-faulty variables
-\item $\pi' = \pi_c \cup \pi_p$ are valid properties such that $(I, T'(\mathit{NFV}')) \vdash \pi'$.
-\end{itemize}
-\end{definition}
-
-
-%%				NFV |- PI
-Given that in child and parent components, the properties $\pi$ can be derived from the non-faulty variables, we show that this relationship holds after composition. To state $(I, T'\mathit{NFV})) \vdash \pi$, we use the shorthand $\mathit{NFV} \vdash \pi$. 
-
-\begin{theorem} If $\mathit{NFV}_c \vdash \pi_c$ and $\mathit{NFV}_p \vdash \pi_p$, then $\mathit{NFV}' \vdash \pi'$
-\begin{proof}
-Assume antecedent. Let $p' \in \pi'$. If $p' \in \pi_c$ then $\mathit{NFV}_c \vdash p'$ and likewise if $p' \in \mathit{NFV}_p$, then $\mathit{NFV}_p \vdash p'$. In either case, $\mathit{NFV}_c \cup \mathit{NFV}_p = \mathit{NFV}' \vdash \pi'$.
-\end{proof}
-\end{theorem} 
+Given the definition of a component, we now discuss what it means to compose these components. Each layer of composition moves iteratively closer to a monolithic model by the enlargement of each set described in a component, but it is important to show that the composition is sound. To this end, we define the composition of fault trees. 
 
 %%								DEFINE PHI for trees
-To show that the composition of fault trees results in a valid fault tree, we define a mapping. Let $\phi$ be a function $\phi : B \times B \rightarrow B$ for Boolean equations $B$. We use this mapping to define the composition of parent and child component fault trees: $\mathit{FT}_c = (r_c, \mathcal{L}_c)$ and $\mathit{FT}_p = (r_p, \mathcal{L}_p)$.
+To show that the composition of fault trees results in a valid fault tree, let $\phi$ be a function $\phi : B \times B \rightarrow B$ for Boolean equations $B$. We use this mapping to define the composition of parent and child component fault trees: $\mathit{FT}_c = (r_c, \mathcal{L}_c)$ and $\mathit{FT}_p = (r_p, \mathcal{L}_p)$.
 
 \begin{gather}
 \mathit{FT}_c \circ \mathit{FT}_p = \phi(\mathit{FT}_c, \mathit{FT}_p) =\begin{cases} 
@@ -167,15 +147,15 @@ To show that the composition of fault trees results in a valid fault tree, we de
 where $\mathcal{L}_p(r_c, \mathcal{L}_c)$ is the replacement of $r_c$ in $\mathcal{L}_p$ with $(r_c, \mathcal{L}_c)$.
 
 %%%%5										COMPOSITION OF FT IS VALID
-We work under the {\em monotonicity assumption}, commonly adopted in safety analysis, that an additional fault can not prevent the violation of the property. While it is the case that each leaf of a parent component represents an activation literal with a true valuation and thus may be a candidate for compositional replacement with children fault trees (i.e., we compose fault forests), we build up the formalism one step at a time. 
+We work under the {\em monotonicity assumption}, commonly adopted in safety analysis, that an additional fault cannot cancel the effect of existing faults. Given Definition~\ref{def:validFT}, we show that the composition of two fault trees results in a valid fault tree. 
 
 \begin{lemma} If $\mathit{FT}_c$ and $\mathit{FT}_p$ are valid fault trees, then their composition $\phi(\mathit{FT}_c, \mathit{FT}_p)$ is also a valid fault tree. 
 \begin{proof}
-Assume the antecedent. Then $(r_c, \mathcal{L}_c)$ is satisfiable for some $\neg g_i$ in the child component and all $\mathit{af} \in \mathcal{L}_c$ given true valuations. 
+Assume the antecedent. Then $(r_c, \mathcal{L}_c)$ is satisfiable for some violated guarantee $\neg g_i$ in the child component and all $\mathit{af} \in \mathcal{L}_c$ given true valuations. 
 
 Case 1: If the child root $\neg g_i$ does not have an associated $\mathit{af_i} \in \mathcal{L}_p$, then $\phi(\mathit{FT}_c, \mathit{FT}_p) = \mathit{FT}_p$ and is a valid fault tree.
 
-Case 2: If the child root $\neg g_i$ has an associated $\mathit{af_i} \in \mathcal{L}_p$, then $\mathit{af_i}$ has a true valuation. Given the mapping defined between guarantees and activation literals, replacement of $\mathit{af_i} \in \mathcal{L}_p$ with the violated $g_i$ preserves satisfiability. Furthermore, by the monotonicity assumption, the addition of more faults ($\mathit{af} \in \mathcal{L}_c$) to the Boolean formula does not change satisfiability. 
+Case 2: If the child root $\neg g_i$ has an associated $\mathit{af_i} \in \mathcal{L}_p$, then $\mathit{af_i}$ has a true valuation. Given the mapping defined between guarantees and activation literals, replacement of $\mathit{af_i} \in \mathcal{L}_p$ with $\neg g_i$ preserves satisfiability. Furthermore, by the monotonicity assumption, the addition of more faults ($\mathit{af} \in \mathcal{L}_c$) to the Boolean formula does not change satisfiability. 
 
 In all cases, $\phi(\mathit{FT}_c, \mathit{FT}_p)$ is a valid fault tree. 
 \end{proof}
@@ -196,7 +176,7 @@ Let $\phi_F$ be a function $\phi _F: \mathit{seq(B)} \times \mathit{seq(B)} \rig
 
 where $\mathcal{L}_p(r_c, \mathcal{L}_c)$ is the replacement of $r_c$ in $\mathcal{L}_p$ with $(r_c, \mathcal{L}_c)$.
 
-Each literal in the formula $\mathcal{L}_p$ is a fault activation literal $\mathit{af_i}$. If $\mathit{af_i}$ has an associated guarantee $\mathit{gf_i}$ in the set of child roots $r_c$, then the mapping $\phi_F$ will extend $\mathit{af_i}$ in $\mathcal{L}_p$ with the leaf formula of the child root $\mathit{gf_i}$.  The resulting fault forest is a sequence of fault trees $\mathit{FF} = \{(r_{pk}, \mathcal{L}_{k}): k = 1,\dots,m\}$. The roots of the resulting forest are the same roots as  the parent forest while the leaf formulae may change based on replacement. 
+Each literal in the formula $\mathcal{L}_p$ is a fault activation literal $\mathit{af_i}$. If $\mathit{af_i}$ has its associated guarantee $\mathit{gf_i}$ in the set of child roots $r_c$, then the mapping $\phi_F$ will extend $\mathit{af_i}$ in $\mathcal{L}_p$ with the leaf formula of the child root $\mathit{gf_i}$.  The resulting fault forest is a sequence of fault trees $\mathit{FF} = \{(r_{pk}, \mathcal{L}_{k}): k = 1,\dots,m\}$. The roots of the resulting forest are the same roots as  the parent forest while the leaf formulae may change based on replacement. 
 
 
 %%							EXAMPLE PHI MAPPING WITH PARENT AND CHILD
@@ -226,7 +206,44 @@ For each tree $\mathit{FT}_i \in \mathit{FF}_c$, apply Lemma~\ref{lemma:validTre
 \label{lemma:validForest}
 \end{lemma}
 
-Thus far, we have proven that a single layer of composition produces valid fault trees forests, but to perform this analysis across $n$ layers of architecture we use induction to show that the resulting fault forest is valid. 
+
+
+
+
+
+
+
+
+
+
+%%				DEFINE COMPOSITION OF COMPONENTS
+We have given the foundational definitions necessary to discuss what it means to compose components. 
+
+\begin{definition}
+The composition of child component $\mathit{Comp}_c$ and parent component $\mathit{Comp}_p$:
+$Comp_c(M_c, \mathit{FF}_c, \mathit{NFV}_c, \pi_c) \circ Comp_p(M_p, \mathit{FT}_p, \mathit{NFV}_p, \pi_p) = Comp_\circ(M', \mathit{FF}', \mathit{NFV}', \pi')$ where:
+\begin{itemize}[label=\textbullet]
+\item $M' = M_c \cup M_p$ is the iterative enlargement of the model by combining children guarantees with parent guarantees,
+\item $\mathit{FF}_c \circ \mathit{FF}_p$ is the composed fault forest
+\item $\mathit{NFV}' = \mathit{NFV}_c \cup \mathit{NFV}_p$ is the set of non-faulty variables
+\item $\pi' = \pi_c \cup \pi_p$ are valid properties such that $(I, T'(\mathit{NFV}')) \vdash \pi'$.
+\end{itemize}
+\end{definition}
+
+The enlargement of the model, $M'$, iteratively flattens the composed layers by taking the union of children guarantees and parent guarantees. The fault forests are composed into a set of fault trees describing the enlarged model. The non-faulty variables are combined such that all guarantees from parent and child that are required to prove the safety properties of the system can be proven given the non-faulty variables. Notationally, this corresponds to: $(I, T'(\mathit{NFV}')) \vdash \pi'$. 
+
+
+%%				NFV |- PI
+Given that in child and parent components, the properties $\pi$ can be derived from the non-faulty variables, we show that this relationship holds after composition. To state $(I, T'\mathit{NFV})) \vdash \pi$, we use the shorthand $\mathit{NFV} \vdash \pi$. 
+
+\begin{theorem} If $\mathit{NFV}_c \vdash \pi_c$ and $\mathit{NFV}_p \vdash \pi_p$, then $\mathit{NFV}' \vdash \pi'$
+\begin{proof}
+Assume antecedent. Let $p' \in \pi'$. If $p' \in \pi_c$ then $\mathit{NFV}_c \vdash p'$ and likewise if $p' \in \pi_p$, then $\mathit{NFV}_p \vdash p'$. In either case, $\mathit{NFV}_c \cup \mathit{NFV}_p = \mathit{NFV}' \vdash \pi'$.
+\end{proof}
+\end{theorem} 
+
+
+We have shown that a single layer of composition produces valid fault forests. To perform this analysis across $n$ layers of architecture we use induction to show that the resulting fault forest is valid. 
 
 The notation $\phi_F^n$ indicates the iterated function $\phi_F$ which is a successive application of $\phi_F$ with itself $n$ times. Assume the fault forest $\mathit{FF_0}$ is obtained at the leaf level of the architecture.
 
@@ -251,7 +268,7 @@ By inductive assumption and Lemma~\ref{lemma:validForest}, $\phi_F^{n+1}(\mathit
 \label{thm:indForest}
 \end{theorem}
 
-
+\begin{comment}
 We know from previous work that composition is conservative. A valid monolithic analysis of the transition system implies that the compositional analysis of that same system is valid, but the converse may not be true~\cite{}. It is likewise the case for composing fault forests. 
 
 Let $S \subseteq \mathit{AF}$ where all $\mathit{af} \in S$ are constrained to true. If $S \cup \{\neg P\}$ is satisfiable, this equates to a valid fault tree. 
@@ -265,7 +282,9 @@ Assume toward contradiction that $(I,T) \vdash P$ and there exists a set $S \sub
 
 As a counterexample to the converse of Theorem~\ref{thm:sound}, consider the following. \danielle{Counterexample here.}
 
-Now that we have the formal foundations laid, we proceed towards the implementation. 
+\end{comment}
+
+In this section, we have formalized the idea that fault trees (and forests) can be composed without losing the validity of each composed tree. We proved that this can be performed iteratively across an arbitrary number of layers. Now that we have the formal foundations laid, we proceed towards the implementation. 
 
 
 
