@@ -137,7 +137,7 @@ The next analysis shows the difference between the time it takes to generate all
     \label{tab:wbs_mincut1}
     \end{center}
 \end{table}
-The overall time of the algorithms used for minimal cut set generation is quite small compared to the nominal analysis and extended model analysis time. This is likely due to the thresholds used to prune the size of the cut sets computed. At each layer of analysis, pruning can take place that may shrink the problem space considerably. The greatest time recorded was for property S18-WBS-0324 at $n = 4$; the reason is clear when comparing this with Table~\ref{tab:wbs_maxN_results1}: the total number of minimal cut sets computed for this threshold is over 800,000.  
+At each layer of analysis, pruning takes place that shrinks the problem space considerably. The greatest time recorded was for property S18-WBS-0324 at $n = 4$; the reason is clear when comparing this with Table~\ref{tab:wbs_maxN_results1}: the total number of minimal cut sets computed for this threshold is over 800,000.  
 
 \subsubsection{Generate Minimal Cut Sets: Probabilistic Analysis}
 \label{sec:prob_generate}
