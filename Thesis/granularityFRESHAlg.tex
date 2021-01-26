@@ -200,7 +200,7 @@ The MIVCs now provide information on the necessary subformulae of an equation an
 \subsubsection{RQ2}
 The refactorization described in the previous section introduces multiple new variables and equations into the Lustre model. While a more exact trace of each equation is possible using this method, the size of the model could grow substantially making the time of analysis unacceptable. To this end, we ran a subset of the Lustre benchmark models used in previous MIVC enumeration work~\cite{ghassabani_2018} and compared the time difference between the MIVC enumeration of the partially decomposed models and the MIVC enumeration of the original benchmark models without any decomposition. 
 
-In previous work, it was found that all MIVC enumeration on this set of benchmarks performed well using the Z3 solver~\cite{ghassabani_2018, z3} as compared to other solvers available for JKind. In the results presented here, we also used Z3 as a solver and the only IVC elements flagged for consideration were the fresh variables. 
+In previous work, it was found that all MIVC enumeration on this set of benchmarks performed well using the Z3 solver~\cite{ghassabani_2018, z3} as compared to other solvers available for JKind. In the results presented here, we used Z3 as a solver and the only IVC elements flagged for consideration were the fresh variables. 
 
 The time of the MIVC enumeration of decomposed models includes both the decomposition itself and the MIVC enumeration. The timing comparison results are shown in Figure~\ref{fig:granIVC} and was executed on an Intel Core i7 with a 2.80GHz CPU and 16 GB RAM. 
 
