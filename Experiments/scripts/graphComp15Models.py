@@ -13,9 +13,9 @@ y3 = []
 
 
 userhome = os.path.expanduser('~')
-csvfileNominal= os.path.join(userhome, 'git/dkstewart/University-Research/Experiments', 'nominalDataComp.csv')
-csvfileFault= os.path.join(userhome, 'git/dkstewart/University-Research/Experiments', 'faultDataComp.csv')
-csvfileExtended= os.path.join(userhome, 'git/dkstewart/University-Research/Experiments', 'extendedDataComp.csv')
+csvfileNominal= os.path.join(userhome, 'git/dkstewart/University-Research/Experiments/results', 'nominalDataComp.csv')
+csvfileFault= os.path.join(userhome, 'git/dkstewart/University-Research/Experiments/results', 'faultDataComp.csv')
+csvfileExtended= os.path.join(userhome, 'git/dkstewart/University-Research/Experiments/results', 'extendedDataComp.csv')
 
 with open(csvfileNominal,'r') as csvfile:
     plots = csv.reader(csvfile, delimiter=',')
