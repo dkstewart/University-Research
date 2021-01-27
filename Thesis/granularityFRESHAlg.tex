@@ -1,99 +1,21 @@
 \subsection{Deeper Granular Refinement}
 \label{sec:granularityFRESHAlg}
-%Model elements considered for the \aivcalg algorithm are explicitly defined in the Lustre code -- these we call \emph{IVC elements}; the generation of Lustre from an AADL/AGREE model provides guarantees and assumptions as IVC elements and when fault analysis is run using the safety annex, constrained faults are also added to this set. This can be seen in the safety analysis modified Lustre code in Figure~\ref{fig:lustreSensorsSafety} which is nominally the same as Figure~\ref{fig:lustreSensors}, but has faulty information added to outputs and IVC elements\footnote{For more information on safety modified Lustre programs, see Chapter XX, Section XX \danielle{ADD THIS TO IMPL}}. 
+The granularity of the minimal cut sets directly reflect that of the MIVCs. While we eventually may want this algorithm implemented in the safety annex, we chose to begin the refinement in JKind in order to explore granularity from the context of MIVC enumeration. Specific comparisons could be made in terms of the number of MIVCs enumerated, the size of the MIVCs, and the time of analysis. 
 
-%\danielle{Add figure of lustre code. Highlight IVC elements.}
-
-As previously described, we explored granularity within the context of the Lustre language; this programming language provides a good formalism for discussion because it is top-level conjunctive, equational, and \emph{referentially transparent}: the behavior or a Lustre program is defined by a system of equations, and any subexpression on the right side of an equation can be extracted and assigned to a fresh variable which is substituted into the original equation without changing the meaning of a program~\cite{Halbwachs91:IEEE,ghassabani_2018}. In this context, we can define a \emph{granular refinement} as an extraction of a subexpression into a new equation assigning a new variable. 
+The Lustre programming language provides a good formalism for discussion because it is top-level conjunctive, equational, and \emph{referentially transparent}: the behavior or a Lustre program is defined by a system of equations, and any subexpression on the right side of an equation can be extracted and assigned to a fresh variable which is substituted into the original equation without changing the meaning of a program~\cite{Halbwachs91:IEEE,ghassabani_2018}. In this context, we can define a \emph{granular refinement} as an extraction of a subexpression into a new equation assigning a new variable. 
 
 The maximal factorization of the model can be obtained by assigning each instance of a subexpression and each use of an input to its own variable. This results in a \emph{totally decomposed} Lustre model: (1) each computed (non-input) variable is used at most once in the right side of an equation, (2) each equation is either a single operator or a constant expression, and (3) each model input is directly assigned to one or more fresh variables and is not used elsewhere in the model~\cite{ghassabani_2018}.
 
-Ghassabani performed a preliminary analysis on maximally factored models for IVC coverage and found that analysis performed significantly slower for proofs and the \ivcmust algorithm~\cite{ghassabani_2018}. For our purposes in safety analysis, our concern is the guarantees in the Lustre model; therefore, we are able to weaken the factorization performed. To this end, a \emph{partially decomposed} Lustre model has the properties that (1) each computed variable is used at most once in the right side of an equation, and (2) each guarantee and associated equation has either a single operator or a constant expression. 
-
-
-
-
-
-
-
-
-
-
-\begin{comment}
-Model elements considered for the \aivcalg algorithm can be explicitly defined in the Lustre code -- these we call \emph{IVC elements}; the generation of Lustre from an AADL/AGREE model provides guarantees and assumptions as IVC elements and when fault analysis is run using the safety annex, constrained faults are also added to this set\footnote{For more information on safety modified Lustre programs, see Section~\ref{sec:impl}}.  The \aivcalg algorithm also contains an option to assign all equations in the model as IVC elements. 
-
-
-For the purposes of fault analysis and minimal cut set generation, we performed a partial decomposition of the contracts on the guarantees of the model in Lustre. An example of the simplified Lustre code before and after decomposition is shown in Figure~\ref{fig:lustreTwoGuar} and Figure~\ref{fig:lustreDecompGuar}. \danielle{change this to lustre direct fresh vars}
-
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=.9\textwidth]{images/lustreTwoGuar.PNG}
-\caption{Temp Sensor With Original Guarantee} \label{fig:lustreOneGuar}
-\end{center}
-\end{figure} 
-
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=.7\textwidth]{images/lustreDecomposedGuarantee.PNG}
-\caption{Temp Sensor With Decomposed Guarantee} \label{fig:lustreDecompGuar}
-\end{center}
-\end{figure} 
-
-The initial guarantee of interest -- \texttt{GUARANTEE0} from Figure~\ref{fig:lustreOneGuar} -- is decomposed and broken down into a series of fresh variables, \texttt{freshVar0} through \texttt{freshVar3} as seen in Figure~\ref{fig:lustreDecompGuar}. The fresh variables are then added to the IVC elements to put them into scope for the \aivcalg algorithm. The partial decomposition of the guarantees was performed according to Algorithm~\ref{alg:decomp}. \danielle{Rewrite algorithm.}
-
-\begin{algorithm}[h]
-\DontPrintSemicolon
-\SetKwFunction{Init}{Init}
-\SetKwFunction{Decompose}{Decompose}
-\SetKwProg{Fn}{Function}{:}{}
-\Fn{\Init{$G$}}{
-	$G$:= guarantee in Lustre node \;
-	$\mathit{newLocalVars} \gets \emptyset$
-	$\mathit{freshVar} \gets \mathit{g.expr}$ \;
-	$\mathit{newGuar} \gets \mathit{freshVar}$ \;	
-	$\mathit{newLocalVars} \gets \mathit{\Decompose(g.expr)}$ \;
-	
-}
-
-\setcounter{AlgoLine}{0}
-\Fn{\Decompose{$\mathit{expr}$}}{
-	$\mathit{freshVars} \gets \emptyset$ \;
-	\eIf{$\mathit{expr}$ is constant $\lor$ has single operator}{
-		\textbf{return} $\mathit{freshVars}$
-	}{
-		$\mathit{freshL} \gets \mathit{expr.left}$ \;
-		$\mathit{freshR} \gets \mathit{expr.right}$ \;
-		$\mathit{freshVars.add(\{freshL, freshR\})}$ \;
-		$\mathit{\Decompose(expr.left)}$ \;
-		$\mathit{\Decompose(expr.right)}$ \;
-	}
-}
-	\caption{Decomposition of Guarantees}
-	\label{alg:decomp}
-\end{algorithm}
-
-The AGREE program is intercepted by the safety annex plugin as described in Section~\ref{sec:impl}. Each guarantee defined in the nodes are decomposed and fresh variables are added to the local variables and their assignment added to local equations. This modified program is returned to AGREE along with the fault model modifications and the MIVCs are computed. As usual, the minimal cut sets are found according to the MIVC results. 
-
-\end{comment}
-
-
-
-
-
-
-
-We were interested in two main research questions regarding the exploration of granularity refinement: 
+Ghassabani performed a preliminary analysis on maximally factored models for IVC coverage and found that analysis performed significantly slower for proofs and the \ivcmust algorithm~\cite{ghassabani_2018}. For our purposes in safety analysis, our concern is the guarantees in the Lustre model; therefore, we are able to weaken the factorization performed. To this end, a \emph{partially decomposed} Lustre model has the properties that (1) each computed variable is used at most once in the right side of an equation, and (2) each guarantee and associated equation has either a single operator or a constant expression. The reason we focus on these two properties is because the portions of the model that are of interest are the guarantees (Lustre equations) that constrain the output of a node and any equations these guarantees may reference. We were interested in two main research questions regarding the exploration of granularity refinement: 
 
 \begin{description}
-\item[RQ1:] Do the MIVCs generated reflect a more accurate view of which portions of the model support the proof of the safety property? We expect that the additional granularity would provide more exact information regarding which subformulae of a guarantee contribute to proof.
+\item[RQ1:] Do the MIVCs generated reflect a more accurate view of which elements of the model support the proof of the safety property? We expect that the additional granularity would provide more exact information regarding which subformulae of a guarantee contribute to proof.
 
 \item [RQ2:] What is the analysis time difference between the nominal model MIVC generation and the decomposed model MIVC generation? Given smaller models with fewer or less complex guarantees, the timing results should not differ greatly, but in a large model with potentially many complex guarantees, the computation time for MIVC generation could increase dramatically. 
  
 \end{description}
 
-To explore these questions, we developed an algorithm that performs a partial decomposition of the Lustre model. Ghassabani defined a Lustre model as {\em totally decomposed} if (1) each computed (i.e., non-input) variable is used at most once in the right-hand side of an equation, and (2) each equation is either a single operator (which may be a ternary operator in the case of if-then-else) with leaves all variable expressions, or a constant expression, and (3) each model input is directly assigned to one or more fresh variables and is not used elsewhere in the model. We define a {\em partially decomposed} model as meeting the requirements of (1) and (2). The reason we focus on these two properties is because the portions of the model that are of interest are the guarantees (Lustre equations) that constrain the output of a node and any equations these guarantees may reference. 
-
-The logical structure of a formula can be viewed as a tree where nodes are arranged in terms of operator precedence. Clearly, it is a requirement to preserve equivalence during refactoring and we do not want to change the semantics of the formula, only the structure. To this end, we isolated branches and subtrees of the structure so that the \aivcalg algorithm can view each subtree of the formula separately. The algorithm recursively travels through a formula tree, assigning each subtree as a fresh variable. Figure~\ref{fig:formulaTree} shows the following formula in tree structure where \textit{lit} refers to a literal and \textit{const} refers to a constant:
+To explore these questions, we developed an algorithm that performs a partial decomposition of the Lustre model. The logical structure of a formula can be viewed as a tree where nodes are arranged in terms of operator precedence. Clearly, semantic equivalence must be preserved during refactoring and we only want to change the structure (syntax) of the formula. To this end, we isolated branches and subtrees of the structure so that the \aivcalg algorithm can view each subtree of the formula separately. The algorithm recursively travels through a formula tree, assigning each subtree as a fresh variable. Figure~\ref{fig:formulaTree} shows the following formula in tree structure where \textit{lit} refers to a literal and \textit{const} refers to a constant:
 \begin{gather*}
 ((((\mathit{lit} \implies \mathit{lit}) \lor \mathit{lit}) \iff \mathit{lit} ) \land (\mathit{lit}  \lor \mathit{lit} )) 
 \end{gather*} 
@@ -126,35 +48,7 @@ The logical structure of a formula can be viewed as a tree where nodes are arran
 \label{fig:formulaTree}
 \end{figure}
 
-As seen in Figure~\ref{fig:formulaTree}, the leaf nodes of the tree are constants and literals; these are the base cases in the recursion. The formula provided as an example has only binary operators; in the algorithm used for refactoring the Lustre equations, unary, binary, and tertiary (if-then-else) operators are handled in a similar fashion.
-
-\begin{comment}
- Algorithm~\ref{alg:splitFresh} shows the general case; the implementation handles each operator type in similar ways. 
-
-\begin{algorithm}[h]
-\SetKwFunction{FMain}{refactor}
-\SetKwFunction{Init}{initialize}
- \SetKwProg{Fn}{Function}{:}{}
-	\Fn{\Init{lustreEq}}{
-		$E \gets $ new Equation(lustreEq.lhs, freshVariable) \;
-		\FMain(lustreEq.expr, freshVariable, $E$) \;
-		add $E$ to Lustre node \;
-	}
-	
-	\Fn{\FMain{expr, freshVarID, $E$}}{
-		\eIf{expr.child is not leaf node}{
-			finalExpr = new Equation(freshVarID, new Expr(expr.op, \FMain(expr.child, newFreshVar))) \;
-			$E \gets$ new Equation(newFreshVar, finalExpr) \;
-			\Return finalExpr \;
-		} {%end if there exists AND in G
-			$E \gets$ new Equation(freshVarID, expr) \;
-			\Return freshVarID \;
-		}
-	}
-	\caption{Refactor Lustre Equations}
-	\label{alg:splitFresh}
-\end{algorithm}
-\end{comment}
+As seen in Figure~\ref{fig:formulaTree}, the leaf nodes of the tree are literals; these are the base cases in the recursion. The formula provided as an example has only binary operators; in the algorithm used for refactoring the Lustre equations, unary, binary, and tertiary (if-then-else) operators are handled in a similar fashion.
 
 Each subformula is assigned a fresh variable and added to the equations for the Lustre node. The fresh variables are also assigned to be IVC elements and considered during the \aivcalg algorithm. This is the resulting equation (Figure~\ref{fig:formulaTree}) after Algorithm~\ref{alg:splitFresh}.
 
@@ -185,7 +79,7 @@ The MIVC generated for this property is: $\{$\texttt{valid}, \texttt{invalid}$\}
 \end{center}
 \end{figure} 
 
-The equations are broken down into their respective subformulae and refactored such that the equations are totally decomposed and semantically equivalent. While this adds a significant number of new variables and equations to the model -- even in this simple example -- the MIVCs generated give more information on the subformulae of the equations necessary for proof. The MIVCs of the refactored model are shown in Figure~\ref{fig:monitorFreshIVCs}. 
+The equations are broken down into their respective subformulae and refactored such that the equations are totally decomposed and semantically equivalent. While this adds a significant number of new variables and equations to the model, the MIVCs generated give more information on the subformulae of the equations necessary for proof. The MIVCs of the refactored model are shown in Figure~\ref{fig:monitorFreshIVCs}. 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=.6\textwidth]{images/monitorFreshIVCs.PNG}
@@ -193,16 +87,12 @@ The equations are broken down into their respective subformulae and refactored s
 \end{center}
 \end{figure} 
 
-To preserve semantics of the equations during the decomposition, the original equation must be assigned a fresh variable. The MIVC algorithm captures the original equation in \texttt{FRESHVAR0}, but also provides a trace down the branch of the equation that is required for the proof. In this case, it traces down the left side of the original binary equation (\texttt{valid}) and chooses the fresh variable associated with: \texttt{not(errorCompA and errorCompB)}. This correlates to \texttt{FRESHVAR1}. Instead of only providing the equation \texttt{valid} as an MIVC, this provides a trace through the equation such that the necessary subformula for the proof are found. The third MIVC in this case simply maps back to \texttt{invalid}. 
+To preserve semantics of the equations during the decomposition, the original equation must be assigned a fresh variable. The MIVC algorithm captures the original equation in \texttt{FRESHVAR0}, but also provides a trace down the branch of the equation that is required for the proof. In this case, it traces down the left side of the original binary equation (\texttt{valid}) and chooses the fresh variable associated with: \texttt{not(errorCompA and errorCompB)}. This correlates to \texttt{FRESHVAR1}. Instead of only providing the equation \texttt{valid} as an MIVC, we see the necessary subformula required for the proof. The third MIVC in this case simply maps back to \texttt{invalid}. 
 
-The MIVCs now provide information on the necessary subformulae of an equation and not only the equation itself. If all branches are required, then all associated fresh variables would be found in those MIVCs. As expected, the MIVCs do provide a more accurate view of the subformulae used in a proof of a property. 
+The MIVCs now provide information on the necessary subformulae of an equation and not only the equation itself. If all branches are required, then all associated fresh variables would be found in those MIVCs. To further explore this question, we also want to see how the sets themselves change after refactorization. To this end, we ran a set of Lustre benchmark models used in previous MIVC enumeration work~\cite{ghassabani_2018} and compared the original MIVC enumerations to the refactored model MIVC results in terms of both number of sets generated and the cardinalities of the sets. 
 
 \subsubsection{RQ2}
-The refactorization described in the previous section introduces multiple new variables and equations into the Lustre model. While a more exact trace of each equation is possible using this method, the size of the model could grow substantially making the time of analysis unacceptable. To this end, we ran a subset of the Lustre benchmark models used in previous MIVC enumeration work~\cite{ghassabani_2018} and compared the time difference between the MIVC enumeration of the partially decomposed models and the MIVC enumeration of the original benchmark models without any decomposition. 
-
-In previous work, it was found that all MIVC enumeration on this set of benchmarks performed well using the Z3 solver~\cite{ghassabani_2018, z3} as compared to other solvers available for JKind. In the results presented here, we used Z3 as a solver and the only IVC elements flagged for consideration were the fresh variables. 
-
-The time of the MIVC enumeration of decomposed models includes both the decomposition itself and the MIVC enumeration. The timing comparison results are shown in Figure~\ref{fig:granIVC} and was executed on an Intel Core i7 with a 2.80GHz CPU and 16 GB RAM. 
+The refactorization described in the previous section introduces multiple new variables and equations into the Lustre model. While a more exact trace of each equation is possible using this method, the size of the model could grow substantially making the time of analysis unacceptable. We ran a subset of the Lustre benchmark models and compared the time difference between the MIVC enumeration of the refactored models and the MIVC enumeration of the original benchmark models without any refactorization. We used Z3 as a solver and the only IVC elements flagged for consideration were the fresh variables. The timing comparison results are shown in Figure~\ref{fig:granIVC} and was executed on an Intel Core i7 with a 2.80GHz CPU and 16 GB RAM. 
 
 \begin{figure}[h!]
 \begin{center}

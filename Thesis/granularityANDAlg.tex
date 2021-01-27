@@ -1,6 +1,6 @@
 \subsection{Initial Contractual Refinement}
 \label{sec:granularityANDAlg}
-The simplest restructuring that could be done on the model was to split any guarantees containing an $\land$ at the highest level of the Boolean formula and create additional guarantees from this refinement. The analysis performed on the model treats all guarantees as a large conjunction. This enables one to automatically split guarantees with expressions containing at the top level a conjunctive operator into two separate expressions. For instance, if $g_0 = A \land B$, then split this into $g_1 = A$, and $g_2 = B$ and insert $g_1$ and $g_2$ into the model and remove $g_0$. This was an initial probing of a deeper issue and gave a preliminary look into our assumption regarding minimal cut set generation in a model similar to that described in Section~\ref{sec:granularityEx}. Algorithm~\ref{alg:splitAnd} shows this algorithm used in this investigation. 
+To perform our initial experimentation, we implemented a simple algorithm in the safety annex which performs a shallow restructuring of the guarantees in a model. The simplest restructuring that could be done on the model was to split any guarantees containing an $\land$ at the highest level of the Boolean formula and create additional guarantees from this refinement. The analysis performed on the model treats all guarantees as a large conjunction. This enables one to automatically split guarantees with expressions containing at the top level a conjunctive operator into two separate expressions. For instance, if $g_0 = A \land B$, then split this into $g_1 = A$, and $g_2 = B$ and insert $g_1$ and $g_2$ into the model and remove $g_0$. This was an initial probing of a deeper issue and gave a preliminary look into our assumption regarding minimal cut set generation in a model similar to that described in Section~\ref{sec:granularityEx}. Algorithm~\ref{alg:splitAnd} shows this algorithm used in this investigation. 
 
 \begin{algorithm}[h]
 \SetKwFunction{FMain}{$splitOnAnd$}
@@ -31,9 +31,7 @@ The sensor described in Section~\ref{sec:granularityEx} is encoded into Lustre o
 \end{center}
 \end{figure}
  
-Given the property \texttt{((env\_temp $>$ 8) $=$ high\_temp\_indicator)}, in the first case, \texttt{GUARANTEE0} is an MIVC for the safety property. Since both the fault defined on the temperature indicator and the fault defined on the temperature reading output affect \texttt{GUARANTEE0}, the minimal cut sets contain both faults. 
-
-We then ran JKind on the model using Algorithm~\ref{alg:splitAnd}. The results of the algorithm on the Lustre encoding of the temperature sensor can be seen in Figure~\ref{fig:lustreTwoGuar}. 
+Given the property \texttt{((env\_temp $>$ 8) $=$ high\_temp\_indicator)}, in the first case, \texttt{GUARANTEE0} is an MIVC for the safety property. Since both the fault defined on the temperature indicator and the fault defined on the temperature reading output affect \texttt{GUARANTEE0}, the minimal cut sets contain both faults. We then ran JKind analysis, MIVC enumeration, and minimal cut set computation on the refined model. The results of the algorithm on the Lustre encoding of the temperature sensor can be seen in Figure~\ref{fig:lustreTwoGuar}. 
 
 \begin{figure}[h!]
 \begin{center}
@@ -42,13 +40,7 @@ We then ran JKind on the model using Algorithm~\ref{alg:splitAnd}. The results o
 \end{center}
 \end{figure} 
 
- In the second case, only \texttt{GUARANTEE2} is the IVC for the property. The minimal cut sets produced reflected what we expected and show only the high temperature indicator fault for the analysis in Figure~\ref{fig:lustreTwoGuar}. 
-
-While this algorithm is efficient and quite simple, iit only addresses the case of a conjunction as the top level operator of the guarantee. Due to the logical nature of how the Lustre model is analyzed, all guarantees are viewed as a conjunction; therefore, splitting guarantees into new statements only works on the $\land$ operator. This is sufficient for illustration and an initial test into the problem, but cannot provide much decomposition in a general model. 
-
-\subsection{Results of Initial Contractual Refinement}
-\label{sec:resultsAND}
-The initial contractual refinement was implemented in the safety annex and performed over the AGREE nominal guarantees. We tested the 18 AADL models used in Section~\ref{sec:timing} and compared the timing results of compositional verification without granular refinement and with this algorithm. The results can be seen in Figure~\ref{fig:graphGranularityAND}\footnote{All following analyses were run on an Intel Core i7 with a 2.80GHz CPU and 16 GB RAM. }. 
+ In the second case, only \texttt{GUARANTEE2} is the IVC for the property. The minimal cut sets produced reflected what we expected and show only the high temperature indicator fault for the analysis in Figure~\ref{fig:lustreTwoGuar}. The initial contractual refinement was implemented in the safety annex and performed over the AGREE nominal guarantees. We tested the 18 AADL models used in Section~\ref{sec:timing} and compared the timing results of compositional verification without granular refinement and with this algorithm. The results can be seen in Figure~\ref{fig:graphGranularityAND}\footnote{All following analyses were run on an Intel Core i7 with a 2.80GHz CPU and 16 GB RAM. }. 
 
 \begin{figure}[h!]
 \begin{center}
@@ -75,4 +67,6 @@ In most cases, the time of analysis is not increased. This is partially due to t
 
 Table~\ref{tab:guarNoANDRefinement} shows for each model number how many guarantees were in the original model compared to the number of guarantees after this initial refinement. When comparing analysis times shown in Figure~\ref{fig:graphGranularityAND}, the changes in analysis time are clear. For instance model number 18 had originally 168 total guarantees (all component instances and top level safety properties). Thirteen of these were further decomposed in this algorithm.  
 
-Compositional fault analysis was run using the algorithms described in Chapter~\ref{chap:compFF}. There was only two models in which changes were reflected in the minimal cut sets. In both cases, the sizes of cut sets were decreased by running this analysis. In one case, it was the model described in Section~\ref{sec:granularityEx}. In the other case, it was the WBS model described in Section~\ref{sec:wbs}. Given these results, we chose to implement a deeper refinement in JKind and this way could view more closely the results of MIVC generation. 
+Compositional fault analysis was run using the algorithms described in Chapter~\ref{chap:compFF}. There was only two models in which changes were reflected in the minimal cut sets. In both cases, the sizes of cut sets were decreased by running this analysis. In one case, it was the model described in Section~\ref{sec:granularityEx}. In the other case, it was the WBS model described in Section~\ref{sec:wbs}. 
+
+This algorithm is very shallow and only addresses the case of a conjunction as the top level operator of the guarantee. This initial refinement was sufficient for showing us that further refinement would provide more granular MIVCs and, thus, smaller and more specific cut sets. Given these results, we chose to implement a deeper refinement in JKind and this way could view more closely the results of MIVC generation. 

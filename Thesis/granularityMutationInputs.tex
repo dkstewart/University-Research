@@ -1,6 +1,6 @@
 \subsection{Mutations and Guarantees}
 \label{sec:granularityMutationInputs}
-In the early stages of safety analysis on a complex critical system, it is beneficial to see what model elements may contribute to a property violation. While it is true that analysts will define faults based on their knowledge of the domain, at times in complex systems not all of these faults and their consequences are clear. %Using the idea of mutations, we wish to see what the critical inputs to a system may be. 
+In the early stages of safety analysis on a complex critical system, it is beneficial to see what model elements may contribute to a property violation. While it is true that analysts will define faults based on their knowledge of the domain, at times in complex systems not all of these faults and their consequences are clear. Using the idea of mutations, we wish to see what the critical inputs to a system may be. 
 
 As an example, we look once again at the sensor subsystem of a PWR as outlined in Chapter~\ref{chap:compFF}. Given a nominal system model containing the sensor subsystem and a single temperature sensor, we wish to see what model elements -- specifically guarantees -- are the \mustcov\  elements for the program. This tells the analyst that if these guarantees are violated, there are no paths to a proof of the property. 
 
