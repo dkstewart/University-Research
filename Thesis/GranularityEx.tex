@@ -1,6 +1,6 @@
 \section{Running Example}
 \label{sec:granularityEx}
-To see how different representations of the system requirements will alter the MIVC and minimal cut set computations, let us examine once again the simple sensor example system that was described in Chapter~\ref{chap:compFF}. In this simple AADL architecture, the environmental temperature and pressure is sent to a subsystem of sensors which contains a temp sensor and a pressure sensor, both of which receive the respective environmental inputs. If the temperature (or pressure) surpasses a given threshold, then the temp (pressure) sensor outputs a high indication. It also gives the temperature (pressure) reading seen at the sensor. A diagram showing two levels of the AADL implementation is shown in Figure~\ref{fig:sensorGran1}.  
+To see how different representations of the system requirements will alter the MIVC and minimal cut set computations, let us examine once again the simple sensor example system that was described in Chapter~\ref{chap:compFF}. In this simple AADL architecture, the environmental temperature and pressure is sent to a subsystem of sensors that contains a temp sensor and a pressure sensor, both of which receive the respective environmental inputs. If the temperature (or pressure) surpasses a given threshold, then the temp (pressure) sensor outputs a high indication. It also gives the temperature (pressure) reading seen at the sensor. A diagram showing two levels of the AADL implementation is shown in Figure~\ref{fig:sensorGran1}.  
 
 \begin{figure}[h]
 \begin{center}
@@ -16,18 +16,15 @@ $G_1$: If the environmental temperature surpasses the threshold, $T_t$, then the
 
 $G_2$: The temperature read at the sensor is equivalent to the environmental temperature: \textit{temp = temp\_reading} 
 
-These can be seen in the model as two distinct guarantees over the respective outputs of the sensor component. Assume that at the sensor, they are written exactly as above in two separate guarantees. 
-
-Let us assume that system A is built by engineer A. The top level safety property states: 
+These can be seen in the model as two distinct guarantees over the respective outputs of the sensor component. Assume that at the sensor, they are written exactly as above in two separate guarantees. Let us assume that system A is built by engineer A. The top level safety property states: 
 \begin{center}
     \textit{If the environmental temperature reaches 90 degrees C, then the system shall report a high temperature indication.}
 \end{center}
 
 The direct subcomponent is the sensor system that contains the outputs: (1) a high temp indicator, and (2) the actual temperature. Engineer A chooses to write the supporting contract in the subsystem as follows: 
 \begin{center}
-    $(T_t \geq 90 \implies temp\_high) \land (temp\_indicator = T_t)$ 
+    $g_A: (T_t \geq 90 \implies temp\_high) \land (temp\_indicator = T_t)$ 
 \end{center}
-  
 The example temp sensor system contract hierarchy is shown in Figure~\ref{fig:granularityEx1}.  
 
 \begin{figure}[h!]
@@ -60,4 +57,4 @@ Since $g_B$ is not required for the proof of either the system safety property n
  
 In this example, it is easy to see how the granularity of the contracts may affect the results of analysis. Structurally (syntactically), the contracts written by engineer A and engineer B vary; yet logically they are equivalent. The proof of the nominal system holds in both cases. Yet, based on the architecture of the model and the formalization of the contracts, analysis results may be different. 
 
-In the remainder of this chapter, we attempt to explore this problem through automation of contractual refinement and comparison of analysis results for both inductive validity cores and minimal cut sets. 
+In the remainder of this chapter, we explore this problem through automation of contractual refinement and comparison of analysis results for both inductive validity cores and minimal cut sets. 
