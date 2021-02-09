@@ -1,7 +1,7 @@
 \section{Running Example}
 \label{sec:example}
 In a typical Pressurized Water Reactor (PWR), the core inside of the reactor vessel produces heat. Pressurized water in the primary coolant loop carries the heat to the steam generator. Within the steam generator, heat from the primary coolant loop vaporizes the water in a secondary loop, producing steam. The steamline directs the steam to the main turbine causing it to turn the turbine generator, which in turn produces electricity. There are a few important factors that must be considered during safety assessment and system design. An unsafe climb in temperature can cause high pressure and hence pipe rupture, and high levels of radiation could indicate a leak of primary coolant. 
-
+\begin{comment}
 \begin{figure}[h!]
 	\vspace{-2em}
 	\begin{center}
@@ -12,23 +12,18 @@ In a typical Pressurized Water Reactor (PWR), the core inside of the reactor ves
 	\label{fig:sensorSys}
 	%\vspace{-2em}
 \end{figure}
-
-The following sensor system can be thought of as a subsystem within a PWR that monitors these factors. A diagram of the model is shown in Figure~\ref{fig:sensorSys} and represents a simplified version of a safety critical system. The temperature subsystem details are shown at the bottom of Figure~\ref{fig:sensorSys}; each of the subsystems have a similar architecture.
-
-Each subsystem contain three sensors that monitor pressure, temperature, and radiation. If any of these conditions are too high, a shut down command is sent from the sensors to the parent components. 
-
-The temperature, pressure, and radiation sensor subsystems each contain three associated sensors for redundancy. Each sensor reports the associated environmental condition to a majority voter component. If the majority of the sensors reports high, a shut down command is sent to the subsystem. If any subsystem reports a shut down command, the top level system will shut down. Pressure, radiation, and temperature all have associated thresholds for high values which we refer to as $T_p$, $T_r$, and $T_t$ respectively. The safety property $P$ of interest in this system is: \emph{shut down when and only when we should} and is reflected by the shut down command at the top level ({\em shutdown}) where $T_t$, $T_p$, and $T_r$ are the thresholds associated with temperature, pressure, and radiation respectively:
-
+\end{comment}
+The following sensor system can be thought of as a simplified version of a subsystem within a PWR that monitors these factors. %A diagram of the model is shown in Figure~\ref{fig:sensorSys} and represents a simplified version of a safety critical system. The temperature subsystem details are shown at the bottom of Figure~\ref{fig:sensorSys}; each of the subsystems have a similar architecture.
+Each subsystem contain three sensors that monitor pressure, temperature, and radiation. If any of these conditions are too high, a shut down command is sent from the sensors to the parent components. The temperature, pressure, and radiation sensor subsystems each contain three associated sensors for redundancy. Each sensor reports the associated environmental condition to a majority voter component. If the majority of the sensors reports high, a shut down command is sent to the subsystem. If any subsystem reports a shut down command, the top level system will shut down. Pressure, radiation, and temperature all have associated thresholds for high values which we refer to as $T_p$, $T_r$, and $T_t$ respectively. The safety property $P$ of interest in this system is: \emph{shut down if and only if any of the thresholds are surpassed} and is reflected by the shut down command at the top level where $T_t$, $T_p$, and $T_r$ are the thresholds associated with temperature, pressure, and radiation respectively:
 \begin{equation*}
 shutdown =  (Env\_Temp > T_t)  \lor  (Env\_Pressure > T_p) \lor (Env\_Radiation > T_r)
 \end{equation*}
-
-For reference throughout this paper, we provide Figure~\ref{fig:sensorSysContracts} which shows the guarantees and faults of interest for this running example. 
+For reference throughout this paper, we provide Figure~\ref{fig:sensorSysContracts} which shows the guarantees and faults of interest for this running example. We do not show all guarantees and assumptions that are in the model, but only the ones of interest for the illustration. 
 
 \begin{figure}[h!]
 	\vspace{-4em}
 	\begin{center}
-		\includegraphics[width=0.8\textwidth, trim={0 7.5cm 0 0},clip]{images/PWRFigureContracts.png}
+		\includegraphics[width=0.8\textwidth]{images/PWRFigureContracts.png}
 	\end{center}
 	\vspace{-6em}
 	\caption{Sensor System Nominal and Fault Model Details}
@@ -36,7 +31,7 @@ For reference throughout this paper, we provide Figure~\ref{fig:sensorSysContrac
 	%\vspace{-2em}
 \end{figure}
 
-The top level shut down command is given as $S$ and each sensor subsystem provides their own shutdown command, $S_p$ for example.  We do not show all guarantees and assumptions that are in the model, but only the ones of interest for the illustration. Initially, assume that the faults of interest are unconstrained guarantees. When a guarantee becomes unconstrained, the output over which it is defined may be faulty. For our purposes in the next section, this situation is what we want to explore. When we describe the implementaton in Section~\ref{sec:impl}, we define more concrete failure scenarios.
+%The top level shut down command is given as $S$ and each sensor subsystem provides their own shutdown command, $S_p$ for example.  We do not show all guarantees and assumptions that are in the model, but only the ones of interest for the illustration. Initially, assume that the faults of interest are unconstrained guarantees. When a guarantee becomes unconstrained, the output over which it is defined may be faulty. For our purposes in the next section, this situation is what we want to explore. When we describe the implementaton in Section~\ref{sec:impl}, we define more concrete failure scenarios.
 
 \begin{comment}
 \subsection{PWR Fault Model}

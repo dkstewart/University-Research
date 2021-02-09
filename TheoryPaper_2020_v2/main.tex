@@ -119,7 +119,7 @@
 \newcommand{\ite}[3]{\mathit{if}\ {#1}\ \mathit{then}\ {#2}\ \mathit{else}\ {#3}}
 
 
-\title{The Composition of Fault Forests}
+\title{Composition of Fault Forests}
 
 %\author{Danielle Stewart  \and Michael Whalen \and Mats Heimdahl} 
 
@@ -134,8 +134,7 @@
 \maketitle
 
 \begin{abstract}
-Risk and fault analyses help to ensure that critical systems operate in an expected way, even in the presence of component failures. As critical systems become more dependent on software components, analyses of error propagation becomes crucial. These analyses should be scalable and sound in order to provide sufficient guarantee that the system is safe. This paper presents a compositional approach to the generation of fault trees and minimal cut sets. We use a behavioral fault model to explore how errors may lead to a top level event. The analysis is performed per layer of the architecture and we compose the results. A complete formalization is given. We implement this by leveraging minimal inductive validity cores produced by an infinite state model checker. This research provides a sound and scalable alternative to a monolithic framework. This enables safety analysts to understand the behavior of the system in the presence of faults while generating artifacts required for certification.
-
+Safety analysis is used to ensure that critical systems operate within some level of safety when failures are present. As critical systems become more dependent on software components, it becomes more challenging for safety analysts to comprehensively enumerate all possible failure causation paths. Any automated analyses should be sound to sufficiently prove that the system operates within the designated level of safety. This paper presents a compositional approach to the generation of fault forests (sets of fault trees) and minimal cut sets. We use a behavioral fault model to explore how errors may lead to a failure condition. The analysis is performed per layer of the architecture and the results are automatically composed. A complete formalization is given. We implement this by leveraging minimal inductive validity cores produced by an infinite state model checker. This research provides a sound alternative to a monolithic framework. This enables safety analysts to get a comprehensive enumeration of all applicable fault combinations using a compositional approach to generate while generating artifacts required for certification.
 %A compositional approach in model checking has provided a means for more scalable model checking analyses than with monolithic approaches. Commonly used safety artifacts include the set of all \emph{minimal cut sets}, minimal sets of faults that may lead to a violation of a safety property as well as the associated fault trees that graphically depict how the activation of faults leads to a top level event. In this paper, we present a novel compositional approach to computing fault trees and minimal cut sets. This research proves that the composition of fault trees is sound and demonstrates an implementation in the OSATE tool suite for AADL. 
 \end{abstract}
 
