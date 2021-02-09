@@ -78,7 +78,7 @@ A fault tree $FT = (r, \mathcal{L})$ is valid if and only if a true valuation fo
 
 The hierarchy of the fault tree is dependent on the associated Boolean formula. A more intuitive structure is that of {\em disjunctive normal form} (DNF) as seen in both fault trees depicted in Figure~\ref{fig:sensorSysComp}, but DNF is not required under our definition of a fault tree. 
 
-Traditionally, a safety property is a property of the system and in the assume-guarantee reasoning environment is a top level guarantee. In the following formalism, each layer of analysis is viewed as distinct from the system hierarchy as the proof is being constructed and the properties we wish to prove are guarantees of a component. We use the notation $P$ to refer to the set of all parent properties at a given layer of analysis. If the analysis is being performed at the top level, these are all safety properties of the system. If the analysis is being performed at an intermediate level, these are all guarantees of the parent component.
+Traditionally, a safety property is a property of the system and in the assume-guarantee reasoning environment is a top level guarantee. In the following formalism, each layer of analysis is viewed as distinct from the system hierarchy as the proof is being constructed, and the properties we wish to prove are guarantees of a component. We use the notation $P$ to refer to the set of all parent properties at a given layer of analysis. If the analysis is being performed at the top level, these are all safety properties of the system. If the analysis is being performed at an intermediate level, these are all guarantees of the parent component.
 
 A goal of compositional safety analysis is to reflect failures of leaf and intermediate components at the top level. Not all guarantees must be valid to prove a parent level guarantee. To this end, we wish to make a distinction between all guarantees of a component and those that are required to prove parent guarantees. The subset $\pi$ of $P$ are the guarantees that must be valid to prove the guarantees of a parent component. These are the critical guarantees of a component.
 
@@ -100,7 +100,7 @@ A fault forest $\mathit{FF}$ is valid if and only if for all $ \mathit{FT} \in \
 %%%%%%%%%%%%%%%%%%%%%
 
 %							SET UP FOR COMPONENT DEFINITION
-To prove each parent component guarantee $\pi_i \in \pi$, a certain subset of child guarantees are required to be non-faulty, i.e., the assocated activation literals are given a false valuation. We use the set $\mathit{NFV}$ to denote the non-faulty variables of the children components that are required to prove parent guarantees $\pi$.  These non-faulty variables are used in the relaxation of $T'$ (Equation~\ref{eq:T}). This can be stated as $I,T'(\mathit{NFV}) \vdash \pi$. 
+To prove each parent component guarantee $\pi_i \in \pi$, a certain subset of child guarantees are required to be non-faulty, i.e., the assocated activation literals are given a false valuation. We use the set $\mathit{NFV}$ to denote the non-faulty variables of the children components that are required to prove parent guarantees $\pi$.  These non-faulty variables are used in the relaxation of $T'$ (Equation~\ref{eq:T}). This can be stated as $(I,T'(\mathit{NFV})) \vdash \pi$. 
 
 The violation of certain child guarantees may lead to the violation of a parent guarantee $\pi_i$. The activation literals of the child are given a true valuation and are denoted as $\mathit{FV}$: faulty variables. A set of faulty variables of the children components contain the activation literals that correspond to leaves of a fault tree $\mathcal{L}$ with the root $r = \neg \pi_i$ for parent guarantee $\pi_i$. In other words, the fault tree $\mathit{FT_i} \in \mathit{FF}$ is associated with a property $\pi_i$. The non-faulty variables $\mathit{NFV}$ contain the valid child guarantees that are required to prove $\pi_i$, and the fault tree $\mathit{FT_i}$ reflects the child guarantee violations that may lead to the violation of $\pi_i$.
 
@@ -232,7 +232,7 @@ The enlargement of the model, $M'$, iteratively flattens the composed layers by 
 
 
 %%				NFV |- PI
-Given that in child and parent components, the properties $\pi$ can be derived from the non-faulty variables, we show that this relationship holds after composition. To state $(I, T'\mathit{NFV})) \vdash \pi$, we use the shorthand $\mathit{NFV} \vdash \pi$. 
+Given that in child and parent components, the properties $\pi$ can be derived from the non-faulty variables, we show that this relationship holds after composition. To state $(I, T'(\mathit{NFV})) \vdash \pi$, we use the shorthand $\mathit{NFV} \vdash \pi$. 
 
 \begin{theorem} If $\mathit{NFV}_c \vdash \pi_c$ and $\mathit{NFV}_p \vdash \pi_p$, then $\mathit{NFV}' \vdash \pi'$
 \begin{proof}
