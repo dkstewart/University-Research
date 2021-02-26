@@ -18,20 +18,16 @@ We propose a model-based safety assessment process backed by formal methods to h
 
 \begin{figure}[t!]
 	\centering
-	\includegraphics[width=0.85\textwidth]{images/process4.jpg}
+	\includegraphics[width=0.85\textwidth]{images/process4.PNG}
 	\caption{Proposed Safety Assessment Process Backed by Formal Methods}
 	\label{fig:updated_safety_process}
 \end{figure}
 
 \begin{enumerate}
-	\item System engineers capture the critical information in a shared AADL/AGREE model:  high-level hardware and software architecture, nominal behavior at the component level, and safety requirements at the system level.% (e.g., inhibit throttle movement during critical takeoff phase).
-	\item System engineers use the backend analysis tools (in our case a model checker) to verify that the nominal model supports the requirements.
-	\item Safety engineers use the Safety Annex to augment the nominal model with the component failure modes. % (e.g., processor failure, input signal corrupted).  
-	In addition, safety engineers specify the fault hypothesis for the analysis which corresponds to how many simultaneous faults the system must be able to tolerate.
-	\item Safety engineers use the backend analysis tools to analyze if the safety requirements and fault tolerance objectives are satisfied by the model in the presence of faults. % (e.g., if the system is resilient to a single failure). 
-	If the model design does not tolerate the specified number of faults (or specified probability threshold of fault occurrence), then the tool produces counterexamples leading to safety requirement violation in the presence of faults, %and also
-	 as well as all minimal sets of fault combinations that can cause the safety requirement to be violated.
-	%produces fault trees showing smallest set of faults that may lead to the safety requirement being violated. 
+	\item System engineers capture the critical information in a shared model:  high-level hardware and software architecture, nominal behavior at the component level, and safety requirements at the system level.
+	\item System engineers use a model checker to check that the safety requirements are satisfied by the nominal design model. 
+	\item Safety engineers augment the nominal model with the component failure modes. In addition, safety engineers specify the fault hypothesis for the analysis which corresponds to how many simultaneous faults the system must be able to tolerate.
+	\item Safety engineers use a model checker to analyze if the safety requirements and fault tolerance objectives are satisfied by the design in the presence of faults. If the design does not tolerate the specified number of faults (or probability threshold of fault occurrence), then the tool produces counterexamples or minimal sets of fault combinations that can cause the safety requirement to be violated.
 	\item The safety engineers examine the results to assess the validity of the fault combinations and the fault tolerance level of the system design. If a design change is warranted, the model will be updated with the latest design change and the above process is repeated.
 \end{enumerate}
 
