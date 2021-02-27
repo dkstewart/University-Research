@@ -14,7 +14,8 @@ A safety property $P : U \to \bool$ is a state predicate. A safety
 property $P$ holds on a transition system $(I, T)$ if it holds on all
 reachable states, i.e., $\forall u.~ \reach(u) \Rightarrow P(u)$,
 written as $\reach \Rightarrow P$ for short. When this is the case, we
-write $(I, T)\vdash P$. We assume the transition relation has the structure of a top level conjunction. Given $T(u, u') = T_1(u,u') \land \cdots T_n(u,u')$ we will write $T = \land_{i=1..n}T_i$ for short. By further abuse of notation, $T$ is identified with the set of its top-level conjuncts $\land_{i=1..n}T_i$\footnote{Each conjunct $T_i$ may contain its own conjuncts; thus, we differentiate by using the term ``top-level" conjunct for the conjunct $T_i$ in the formula $T$.}. Thus, $T_i \in T$ means that $T_i$ is a top-level conjunct of $T$, and $S\subseteq T$ means all top level conjuncts of $S$ are top-level conjuncts of $T$. %When a top-level conjunct $T_i$ is removed from $T$, we write $T \setminus \{T_i\}$
+write $(I, T)\vdash P$. We assume the transition relation has the structure of a top level conjunction. Given $T(u, u') = T_1(u,u') \land \cdots T_n(u,u')$ we will write $T = \land_{i=1..n}T_i$ for short. By further abuse of notation, $T$ is identified with the set of its top-level conjuncts $\land_{i=1..n}T_i$.%\footnote{Each conjunct $T_i$ may contain its own conjuncts; thus, we differentiate by using the term ``top-level" conjunct for the conjunct $T_i$ in the formula $T$.}. 
+Thus, $T_i \in T$ means that $T_i$ is a top-level conjunct of $T$, and $S\subseteq T$ means all top level conjuncts of $S$ are top-level conjuncts of $T$. %When a top-level conjunct $T_i$ is removed from $T$, we write $T \setminus \{T_i\}$
 
 The set of all nominal guarantees of the system $G$ consists of conjunctive constraints $g \in G$. Given no faults (i.e., nominal system) and a transition relation $T$ consisting of conjunctive constraints $T_i$, each $g$ is one of the transition constraints $T_i$ where:
 
@@ -23,11 +24,11 @@ T = g_1 \land  g_2 \land \cdots \land g_n
 \label{eq:Tn}
 \end{gather}
 
-We consider an arbitrary layer of analysis of the architecture and assume the property holds of the nominal relation $(I,T) \vdash P$. Let the set of all faults in the system be  denoted as $F$. A fault $f \in F$ is a deviation from the constraint imposed by a guarantee. Without loss of generality, we associate a single fault and an associated fault probability with a guarantee. Each fault $f_i$ is associated with an \emph{activation literal}, $\mathit{af_i}$, that determines whether the fault is active or inactive. %Any ``faults" in a mid-layer are simply violated guarantees, or deviations from normal behavior. 
+We consider an arbitrary layer of analysis of the architecture and assume the property holds of the nominal relation $(I,T) \vdash P$. Let the set of all faults in the system be  denoted as $F$. A fault $f \in F$ is a modification of the nominal constraint imposed by a guarantee. Without loss of generality, we associate a single fault and an associated fault probability with a guarantee. Each fault $f_i$ is associated with an \emph{activation literal}, $\mathit{af_i}$, that determines whether the fault is active or inactive. %Any ``faults" in a mid-layer are simply violated guarantees, or deviations from normal behavior. 
 
 %The faults in the safety annex are defined on leaf level components. Thus, for the lowest analysis layer, we must take into consideration faults and the guarantees their activation may violate. A fault $f \in F$ is a deviation from the normal constraint imposed by a guarantee. For the purposes of this paper, each guarantee at the leaf layer of analysis has an associated fault. 
 
-To consider the system under the presence of faults, consider a set $GF$ of modified guarantees in the presence of faults and let a mapping be defined from activation literals $\mathit{af_i} \in AF$ to these modified guarantees $\mathit{gf_i} \in GF$. 
+We extend the transition system so that we can view the system behavior in the presence of faults---or equivalently the absence of nominal constraints. To consider the system under the presence of faults, consider a set $GF$ of modified guarantees in the presence of faults and let a mapping be defined from activation literals $\mathit{af_i} \in AF$ to these modified guarantees $\mathit{gf_i} \in GF$. 
 \begin{center}
 $\mathit{gf_i} =$ \textit{if} $\mathit{af_i}$ \textit{then} $f_i$ \textit{else} $g_i$
 \label{eq:sigma}
@@ -93,6 +94,8 @@ A fault forest $\mathit{FF}$ is valid if and only if for all $ \mathit{FT} \in \
 \label{def:validFF}
 \end{definition}
 
+The goal of this formalization is to show that the composition of fault forests results in a valid fault forest. First, we assume we can derive all minimal counterexamples to the proof of a property (or guarantee) at any layer of compositional assume-guarantee analysis. Then we prove that after composition, the tree we obtain is a fault tree describing the system in the presence of faults. In Section~\ref{sec:prelim}, we discharge the assumption and show how we derive a valid fault forest for each layer of analysis. Since a fault forest is only valid with respect to the transition system from whence it came, we will now iteratively extend the model with each composition step. 
+
 
 % 					COMPOSE FAULT FORESTS:
 %%%%%%%%%%%%%%%%
@@ -132,7 +135,8 @@ These are the guarantees of the child components of the pressure subsystem: all 
 
 \end{comment}
 
-Given the definition of a component, we now discuss what it means to compose components. Each layer of composition moves iteratively closer to a monolithic model by the enlargement of each set described in a component. To begin this iterative process, we define the composition of fault trees. 
+Given the definition of a component, we now discuss what it means to compose components. Each layer of composition moves iteratively closer to a monolithic model by the enlargement of each set described in a component. To begin this iterative process, we define the composition of fault forests. 
+
 
 %%								DEFINE PHI for trees
 To show that the composition of fault trees results in a valid fault tree, let $\phi$ be a function $\phi : B \times B \rightarrow B$ for Boolean equations $B$. We use this mapping to define the composition of parent component fault tree $\mathit{FT_p}$ and child component fault tree $\mathit{FT_c}$, where $\mathit{FT}_c = (r_c, \mathcal{L}_c)$ and $\mathit{FT}_p = (r_p, \mathcal{L}_p)$.
@@ -147,24 +151,10 @@ To show that the composition of fault trees results in a valid fault tree, let $
 
 where $\mathcal{L}_p(r_c, \mathcal{L}_c)$ is the replacement of $\mathit{af_{r_c}}$ in $\mathcal{L}_p$ with $(r_c, \mathcal{L}_c)$. Intuitively, each of the violated guarantees has an associated activation literal. If an activation literal is found in the parent leaf equation $\mathcal{L}_p$, replace that activation literal ($\mathit{af_{r_c}}$) with the associated violated child guarantee ($\mathit{r_c}$). 
 
-%%%%5										COMPOSITION OF FT IS VALID
-We work under the {\em monotonicity assumption}, commonly adopted in safety analysis, that an additional fault cannot cancel the effect of existing faults. Given Definition~\ref{def:validFT}, we show that the composition of two fault trees results in a valid fault tree. 
-
-\begin{lemma} If $\mathit{FT}_c$ and $\mathit{FT}_p$ are valid fault trees, then their composition $\phi(\mathit{FT}_c, \mathit{FT}_p)$ is also a valid fault tree. 
-\begin{proof}
-Assume the antecedent. Then $(r_c, \mathcal{L}_c)$ is satisfiable for some violated guarantee $\neg g_i$ in the child component and all $\mathit{af} \in \mathcal{L}_c$ given true valuations. 
-
-Case 1: If the child root $\neg g_i$ does not have an associated $\mathit{af_i} \in \mathcal{L}_p$, then $\phi(\mathit{FT}_c, \mathit{FT}_p) = \mathit{FT}_p$ and is a valid fault tree.
-
-Case 2: If the child root $\neg g_i$ has an associated $\mathit{af_i} \in \mathcal{L}_p$, then $\mathit{af_i}$ has a true valuation. Given the mapping defined between guarantees and activation literals, replacement of $\mathit{af_i} \in \mathcal{L}_p$ with $\neg g_i$ preserves satisfiability. Furthermore, by the monotonicity assumption, the addition of more faults ($\mathit{af} \in \mathcal{L}_c$) to the Boolean formula does not change satisfiability. 
-
-In all cases, $\phi(\mathit{FT}_c, \mathit{FT}_p)$ is a valid fault tree. 
-\end{proof}
-\label{lemma:validTree}
-\end{lemma}
 
 %%%%%									DEFINE PHI FOR FORESTS
-Since each layer of the model may contain multiple properties, we wish to extend these formalisms to forests. We begin by extending the definition of the composing function $\phi$. Let $n$ be the number of properties for some parent component $p$ and let $m$ be the number of properties for some child component $c$. Then the parent fault forest $\mathit{FF}_p$ is a mapping $\mathit{FF}_p : S_1 \rightarrow B$ for $S_1 = \{1,2,\dots,m\}$ and the set of Boolean equations $B$ and $\mathit{FF}_c: S_2 \rightarrow B$ for $S_2 = \{1,2,\dots n\}$. 
+%Since each layer of the model may contain multiple properties, we wish to extend these formalisms to forests. We begin by extending the definition of the composing function $\phi$. 
+Let $n$ be the number of properties for some parent component $p$ and let $m$ be the number of properties for some child component $c$. Then the parent fault forest $\mathit{FF}_p$ is a mapping $\mathit{FF}_p : S_1 \rightarrow B$ for $S_1 = \{1,2,\dots,m\}$ and the set of Boolean equations $B$ and $\mathit{FF}_c: S_2 \rightarrow B$ for $S_2 = \{1,2,\dots n\}$. 
 
 Let $\phi_F$ be a function $\phi _F: \mathit{seq(B)} \times \mathit{seq(B)} \rightarrow \mathit{seq(B)}$ for finite sequences of Boolean equations $\mathit{seq(B)}$. We use this function to define the composition of parent and child component fault forests $\mathit{FF}_p = \{(r_{p1},\mathcal{L}_{p1}), \dots, (r_ {pm}, \mathcal{L}_{pm})\}$ and $\mathit{FF}_c = \{(r_{c1},\mathcal{L}_{c1}), \dots, (r_ {cn}, \mathcal{L}_{cn})\}$. $\phi_F$ is a mapping such that for all $i \in S_1$ and for all $j \in S_2$: 
 
@@ -175,7 +165,7 @@ Let $\phi_F$ be a function $\phi _F: \mathit{seq(B)} \times \mathit{seq(B)} \rig
    \end{cases}
 \end{gather}
 
-where $\mathcal{L}_p(r_c, \mathcal{L}_c)$ is the replacement of $\mathit{af_{r_c}}$ in $\mathcal{L}_p$ with $(r_c, \mathcal{L}_c)$.
+where $\mathcal{L}_{pi}(r_{cj}, \mathcal{L}_{cj})$ is the replacement of $\mathit{af_{r_cij}}$ in $\mathcal{L}_pi$ with $(r_cj, \mathcal{L}_cj)$. 
 
 Each literal in the formula $\mathcal{L}_p$ is a fault activation literal $\mathit{af_i}$. If $\mathit{af_i}$ has its associated guarantee $\mathit{gf_i}$ in the set of child roots $r_c$, then the mapping $\phi_F$ will extend $\mathit{af_i}$ in $\mathcal{L}_p$ with the leaf formula of the child root $\mathit{gf_i}$.  The resulting fault forest is a sequence of fault trees $\mathit{FF} = \{(r_{pk}, \mathcal{L}_{k}): k = 1,\dots,m\}$. The roots of the resulting forest are the same roots as  the parent forest while the leaf formulae may change based on replacement. 
 
@@ -194,24 +184,6 @@ We return to the sensor system example to illustrate this mapping. Graphically, 
 The pressure subsystem fault tree is $\mathit{FT}_{p} = (\neg G_p, (\mathit{af}_{p1} \land \mathit{af}_{p2}) \lor (\mathit{af}_{p1} \land \mathit{af}_{p3}) \lor (\mathit{af}_{p2} \land \mathit{af}_{p3}) $. The leaf formulae for each subsystem tree corresponds to pairwise combinations of active sensor faults. We now show the composition of the pressure subsystem child and top level parent fault trees. 
 
 The mapping $\phi_F$ iterates through each tree in the parent forest -- in this case, we have only one. Then for each parent tree it iterates through the Boolean literals in $\mathcal{L}$. If there is a match between a child root and a parent leaf, the replacement is made. We represent the unconstrained (violated) guarantee as $\neg G_p$ and it is associated with the fault activation literal $\mathit{af}_p$. Thus, $\mathit{af}_p$ will be extended with $\{\neg G_p, (\mathit{af}_{p1} \land \mathit{af}_{p2}) \lor (\mathit{af}_{p1} \land \mathit{af}_{p3}) \lor (\mathit{af}_{p2} \land \mathit{af}_{p3})\}$. This extension is done for each leaf formula in $\mathcal{L}_p$ from the parent fault forest. The end result of the replacement is easy to see in Figure~\ref{fig:sensorSysComp}.
-
-%%%%5										COMPOSITION OF FF IS VALID
-\begin{lemma} If $\mathit{FF_c}$ and $\mathit{FF_p}$ are valid fault forests, then their composition $\phi(\mathit{FF_c}, \mathit{FF_p})$ is also a valid fault forest. 
-\begin{proof}
-
-Assume the antecedent. Then for all $\mathit{FT_j} \in \mathit{FF_p}$ and $\mathit{FT_i} \in \mathit{FF_c}$, $\mathit{FT_i}$ and $\mathit{FT_j}$ are valid fault trees as per Definition~\ref{def:validFF}. For each iteration defined in the mapping $\phi_F$, apply Lemma~\ref{lemma:validTree} and the monotonicity assumption. 
-
-\end{proof}
-\label{lemma:validForest}
-\end{lemma}
-
-
-
-
-
-
-
-
 
 
 
@@ -239,6 +211,33 @@ Given that in child and parent components, the properties $\pi$ can be derived f
 Assume antecedent. Let $p' \in \pi'$. If $p' \in \pi_c$ then $\mathit{NFV}_c \vdash p'$ and likewise if $p' \in \pi_p$, then $\mathit{NFV}_p \vdash p'$. In either case, $\mathit{NFV}_c \cup \mathit{NFV}_p = \mathit{NFV}' \vdash \pi'$.
 \end{proof}
 \end{theorem} 
+
+%%%%5										COMPOSITION OF FT IS VALID
+We work under the {\em monotonicity assumption}, commonly adopted in safety analysis, that an additional fault cannot cancel the effect of existing faults. Given Definition~\ref{def:validFT}, we show that the composition of two fault trees results in a valid fault tree. We will then extend this to show that the composition of two fault forests results in a valid fault forest.
+
+\begin{lemma} If $\mathit{FT}_c$ and $\mathit{FT}_p$ are valid fault trees, then their composition $\phi(\mathit{FT}_c, \mathit{FT}_p)$ is also a valid fault tree. 
+\begin{proof}
+Assume the antecedent. Then $(r_c, \mathcal{L}_c)$ is satisfiable with regard to the child component transition system and all $\mathit{af} \in \mathcal{L}_c$ and $r_c$ are given true valuations. 
+
+Case 1: If the child root $\neg g_i$ does not have an associated $\mathit{af_i} \in \mathcal{L}_p$, then $\phi(\mathit{FT}_c, \mathit{FT}_p) = \mathit{FT}_p$ and the inclusion of the additional constraints from the child transition system in $M_c$ does not negate the effects of the faults in $FT_p$. Thus, it is a valid fault tree. 
+
+Case 2: If the child root $\neg g_i$ has an associated $\mathit{af_i} \in \mathcal{L}_p$, then $\mathit{af_i}$ has a true valuation. Given the mapping defined between guarantees and activation literals, replacement of $\mathit{af_i} \in \mathcal{L}_p$ with $\neg g_i$ preserves satisfiability. Furthermore, by the monotonicity assumption, the addition of more constraints ($\mathit{af} \in \mathcal{L}_c$) to the Boolean formula does not change satisfiability in the extended transition system.
+
+In all cases, $\phi(\mathit{FT}_c, \mathit{FT}_p)$ is a valid fault tree. 
+\end{proof}
+\label{lemma:validTree}
+\end{lemma}
+
+
+%%%%5										COMPOSITION OF FF IS VALID
+\begin{lemma} If $\mathit{FF_c}$ and $\mathit{FF_p}$ are valid fault forests, then their composition $\phi(\mathit{FF_c}, \mathit{FF_p})$ is also a valid fault forest. 
+\begin{proof}
+
+Assume the antecedent. Then for all $\mathit{FT_j} \in \mathit{FF_p}$ and $\mathit{FT_i} \in \mathit{FF_c}$, $\mathit{FT_i}$ and $\mathit{FT_j}$ are valid fault trees as per Definition~\ref{def:validFF}. For each iteration defined in the mapping $\phi_F$, apply Lemma~\ref{lemma:validTree} and the monotonicity assumption. 
+
+\end{proof}
+\label{lemma:validForest}
+\end{lemma}
 
 
 We have shown that a single layer of composition produces valid fault forests. To perform this analysis across $n$ layers of architecture we use induction to show that the resulting fault forest is valid. 
@@ -283,8 +282,3 @@ As a counterexample to the converse of Theorem~\ref{thm:sound}, consider the fol
 \end{comment}
 
 In this section, we have formalized the idea that fault trees (and forests) can be composed without losing the validity of each composed tree. We proved that this can be performed iteratively across an arbitrary number of layers. Now that we have the formal foundations laid, we proceed towards the implementation. 
-
-
-
-
-
